@@ -10,28 +10,28 @@ import UIKit
 class HeaderCollectionReusableView: UICollectionReusableView {
         
     private var titleLabel = UILabel()
-    
+
     static let idintifier = "HeaderCollectionReusableView"
     
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//        titleLabel.frame = bounds
-//    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+            titleLabel.frame = CGRect(x: 0, y: 0, width: 60, height: 40)
+    }
     
     func configureTitleLabel() {
-        addSubview(titleLabel)
+        self.addSubview(titleLabel)
         titleLabel.text = "Menu"
         titleLabel.font = UIFont.boldSystemFont(ofSize: 36)
-        titleLabel.textAlignment = .left
-        //titleLabel.numberOfLines = 1
         titleLabel.adjustsFontSizeToFitWidth = true
         
-        setTitleLabelConstraints()
+        //setTitleLabelConstraints()
     }
     
     func setTitleLabelConstraints() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 5).isActive = true
-        
+        titleLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
+        titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
 }

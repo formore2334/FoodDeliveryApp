@@ -16,7 +16,7 @@ class CircleCollectionViewCell: UICollectionViewCell {
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
-        imageView.layer.cornerRadius = 150.0 / 2.0
+        imageView.layer.cornerRadius = 130.0 / 2.0
         imageView.backgroundColor = .white
         imageView.layer.borderWidth = 2
         imageView.layer.borderColor = UIColor.systemPink.cgColor
