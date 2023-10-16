@@ -29,7 +29,6 @@ class ViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         collectionView?.frame = CGRect(x: 0, y: 100, width: view.frame.size.width, height: 250).integral
-
     }
 
     
@@ -55,9 +54,7 @@ class ViewController: UIViewController {
         guard let myCollection = collectionView else {
             return
         }
-        
         view.addSubview(myCollection)
-        
     }
     
 }
@@ -75,7 +72,7 @@ extension ViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CircleCollectionViewCell.identifier, for: indexPath) as! CircleCollectionViewCell
-        cell.configure(with: models[indexPath.row])
+        cell.configure(name: models[indexPath.row], title: "Cola")
         return cell
     }
     
