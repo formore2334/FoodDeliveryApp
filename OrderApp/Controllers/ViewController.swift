@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class ViewController: UIViewController {
     
     @IBOutlet weak var table: UITableView!
     
@@ -45,12 +45,12 @@ class MainViewController: UIViewController {
 
 }
 
-extension MainViewController: UITableViewDelegate {
+extension ViewController: UITableViewDelegate {
     
 }
 
 
-extension MainViewController: UITableViewDataSource {
+extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         2
     }

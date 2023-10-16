@@ -16,7 +16,7 @@ class PopularCategoriesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Welcome!"
+        //title = "Welcome!"
         
         navigationController?.navigationBar.isHidden = false
         
@@ -65,9 +65,9 @@ extension PopularCategoriesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         print("You tapped me")
-        let secondViewController = SecondViewController()
+        let categoryDetailVC = CategoryDetailMenuViewController()
         
-        navigationController?.pushViewController(secondViewController, animated: true)
+        navigationController?.pushViewController(categoryDetailVC, animated: true)
     }
     
 }

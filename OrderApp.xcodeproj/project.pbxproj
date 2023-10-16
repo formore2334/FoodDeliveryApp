@@ -9,11 +9,15 @@
 /* Begin PBXBuildFile section */
 		453F50812ADA50BB00D9DCF9 /* PopularCategoriesHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453F50802ADA50BA00D9DCF9 /* PopularCategoriesHeaderCollectionReusableView.swift */; };
 		453F50832ADD40ED00D9DCF9 /* CategoryDetailMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453F50822ADD40ED00D9DCF9 /* CategoryDetailMenuViewController.swift */; };
+		453F50872ADD6D3F00D9DCF9 /* SaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453F50862ADD6D3F00D9DCF9 /* SaleViewController.swift */; };
+		453F50892ADD6D8E00D9DCF9 /* SaleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453F50882ADD6D8D00D9DCF9 /* SaleCollectionViewCell.swift */; };
+		453F508B2ADD6DA300D9DCF9 /* SaleCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453F508A2ADD6DA300D9DCF9 /* SaleCollectionReusableView.swift */; };
+		453F508D2ADD7B8D00D9DCF9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453F508C2ADD7B8D00D9DCF9 /* HomeViewController.swift */; };
 		4546A5202AD9A38F00A850A8 /* PopularCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4546A51F2AD9A38F00A850A8 /* PopularCategoriesViewController.swift */; };
 		4546A5222AD9A67A00A850A8 /* PopularCategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4546A5212AD9A67A00A850A8 /* PopularCategoriesCollectionViewCell.swift */; };
 		454FBF2A2AD949E9001E75EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454FBF292AD949E9001E75EB /* AppDelegate.swift */; };
 		454FBF2C2AD949E9001E75EB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454FBF2B2AD949E9001E75EB /* SceneDelegate.swift */; };
-		454FBF2E2AD949E9001E75EB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454FBF2D2AD949E9001E75EB /* MainViewController.swift */; };
+		454FBF2E2AD949E9001E75EB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454FBF2D2AD949E9001E75EB /* ViewController.swift */; };
 		454FBF312AD949E9001E75EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 454FBF2F2AD949E9001E75EB /* Main.storyboard */; };
 		454FBF332AD949F5001E75EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 454FBF322AD949F5001E75EB /* Assets.xcassets */; };
 		454FBF362AD949F5001E75EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 454FBF342AD949F5001E75EB /* LaunchScreen.storyboard */; };
@@ -27,12 +31,16 @@
 /* Begin PBXFileReference section */
 		453F50802ADA50BA00D9DCF9 /* PopularCategoriesHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularCategoriesHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		453F50822ADD40ED00D9DCF9 /* CategoryDetailMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailMenuViewController.swift; sourceTree = "<group>"; };
+		453F50862ADD6D3F00D9DCF9 /* SaleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleViewController.swift; sourceTree = "<group>"; };
+		453F50882ADD6D8D00D9DCF9 /* SaleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleCollectionViewCell.swift; sourceTree = "<group>"; };
+		453F508A2ADD6DA300D9DCF9 /* SaleCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleCollectionReusableView.swift; sourceTree = "<group>"; };
+		453F508C2ADD7B8D00D9DCF9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4546A51F2AD9A38F00A850A8 /* PopularCategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularCategoriesViewController.swift; sourceTree = "<group>"; };
 		4546A5212AD9A67A00A850A8 /* PopularCategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularCategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		454FBF262AD949E9001E75EB /* OrderApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrderApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		454FBF292AD949E9001E75EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		454FBF2B2AD949E9001E75EB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		454FBF2D2AD949E9001E75EB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		454FBF2D2AD949E9001E75EB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		454FBF302AD949E9001E75EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		454FBF322AD949F5001E75EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		454FBF352AD949F5001E75EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -63,6 +71,16 @@
 				4546A5212AD9A67A00A850A8 /* PopularCategoriesCollectionViewCell.swift */,
 			);
 			path = PopularCategoriesControllers;
+			sourceTree = "<group>";
+		};
+		453F50852ADD6C4A00D9DCF9 /* DiscountOfferControllers */ = {
+			isa = PBXGroup;
+			children = (
+				453F50862ADD6D3F00D9DCF9 /* SaleViewController.swift */,
+				453F50882ADD6D8D00D9DCF9 /* SaleCollectionViewCell.swift */,
+				453F508A2ADD6DA300D9DCF9 /* SaleCollectionReusableView.swift */,
+			);
+			path = DiscountOfferControllers;
 			sourceTree = "<group>";
 		};
 		454FBF1D2AD949E9001E75EB = {
@@ -107,13 +125,15 @@
 		454FBF402AD97646001E75EB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				454FBF2D2AD949E9001E75EB /* MainViewController.swift */,
+				454FBF2D2AD949E9001E75EB /* ViewController.swift */,
 				454FBF412AD976C2001E75EB /* CollectionViewCell.swift */,
 				454FBF422AD976C2001E75EB /* CollectionViewCell.xib */,
 				454FBF452AD976E8001E75EB /* TableViewCell.swift */,
 				454FBF462AD976E8001E75EB /* TableViewCell.xib */,
 				453F50842ADD6B2A00D9DCF9 /* PopularCategoriesControllers */,
 				453F50822ADD40ED00D9DCF9 /* CategoryDetailMenuViewController.swift */,
+				453F508C2ADD7B8D00D9DCF9 /* HomeViewController.swift */,
+				453F50852ADD6C4A00D9DCF9 /* DiscountOfferControllers */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -195,12 +215,16 @@
 				453F50812ADA50BB00D9DCF9 /* PopularCategoriesHeaderCollectionReusableView.swift in Sources */,
 				454FBF3E2AD95132001E75EB /* MenuModel.swift in Sources */,
 				4546A5222AD9A67A00A850A8 /* PopularCategoriesCollectionViewCell.swift in Sources */,
-				454FBF2E2AD949E9001E75EB /* MainViewController.swift in Sources */,
+				454FBF2E2AD949E9001E75EB /* ViewController.swift in Sources */,
+				453F508D2ADD7B8D00D9DCF9 /* HomeViewController.swift in Sources */,
 				454FBF472AD976E8001E75EB /* TableViewCell.swift in Sources */,
+				453F50872ADD6D3F00D9DCF9 /* SaleViewController.swift in Sources */,
 				4546A5202AD9A38F00A850A8 /* PopularCategoriesViewController.swift in Sources */,
 				454FBF2A2AD949E9001E75EB /* AppDelegate.swift in Sources */,
 				453F50832ADD40ED00D9DCF9 /* CategoryDetailMenuViewController.swift in Sources */,
 				454FBF2C2AD949E9001E75EB /* SceneDelegate.swift in Sources */,
+				453F508B2ADD6DA300D9DCF9 /* SaleCollectionReusableView.swift in Sources */,
+				453F50892ADD6D8E00D9DCF9 /* SaleCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
