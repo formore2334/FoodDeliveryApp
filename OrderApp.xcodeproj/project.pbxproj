@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		453F50812ADA50BB00D9DCF9 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453F50802ADA50BA00D9DCF9 /* HeaderCollectionReusableView.swift */; };
+		453F50832ADD40ED00D9DCF9 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453F50822ADD40ED00D9DCF9 /* SecondViewController.swift */; };
 		4546A5202AD9A38F00A850A8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4546A51F2AD9A38F00A850A8 /* ViewController.swift */; };
 		4546A5222AD9A67A00A850A8 /* CircleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4546A5212AD9A67A00A850A8 /* CircleCollectionViewCell.swift */; };
 		454FBF2A2AD949E9001E75EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454FBF292AD949E9001E75EB /* AppDelegate.swift */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		453F50802ADA50BA00D9DCF9 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		453F50822ADD40ED00D9DCF9 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		4546A51F2AD9A38F00A850A8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4546A5212AD9A67A00A850A8 /* CircleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleCollectionViewCell.swift; sourceTree = "<group>"; };
 		454FBF262AD949E9001E75EB /* OrderApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrderApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,6 +103,7 @@
 				454FBF452AD976E8001E75EB /* TableViewCell.swift */,
 				454FBF462AD976E8001E75EB /* TableViewCell.xib */,
 				4546A51F2AD9A38F00A850A8 /* ViewController.swift */,
+				453F50822ADD40ED00D9DCF9 /* SecondViewController.swift */,
 				453F50802ADA50BA00D9DCF9 /* HeaderCollectionReusableView.swift */,
 				4546A5212AD9A67A00A850A8 /* CircleCollectionViewCell.swift */,
 			);
@@ -188,6 +191,7 @@
 				454FBF472AD976E8001E75EB /* TableViewCell.swift in Sources */,
 				4546A5202AD9A38F00A850A8 /* ViewController.swift in Sources */,
 				454FBF2A2AD949E9001E75EB /* AppDelegate.swift in Sources */,
+				453F50832ADD40ED00D9DCF9 /* SecondViewController.swift in Sources */,
 				454FBF2C2AD949E9001E75EB /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

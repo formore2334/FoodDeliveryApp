@@ -8,8 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
-    
+        
     private var titleLabel = UILabel()
     private var collectionView: UICollectionView?
 
@@ -17,13 +16,15 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        title = "Welcome!"
+        
+        navigationController?.navigationBar.isHidden = false
+        
         layoutCollection()
         
         collectionView?.delegate = self
         collectionView?.dataSource = self
         configureCollectionView()
-        
     }
     
     override func viewDidLayoutSubviews() {
@@ -42,7 +43,6 @@ class ViewController: UIViewController {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     }
     
-
     
     func configureCollectionView() {
         
@@ -62,6 +62,14 @@ class ViewController: UIViewController {
 
 extension ViewController: UICollectionViewDelegate {
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        print("You tapped me")
+        let secondViewController = SecondViewController()
+        
+        navigationController?.pushViewController(secondViewController, animated: true)
+    }
+    
 }
 
 extension ViewController: UICollectionViewDataSource {
@@ -71,7 +79,9 @@ extension ViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CircleCollectionViewCell.identifier, for: indexPath) as! CircleCollectionViewCell
+        
         cell.configure(name: models[indexPath.row], title: "Cola")
         return cell
     }
@@ -82,7 +92,6 @@ extension ViewController: UICollectionViewDataSource {
 
         header.configureTitleLabel()
         return header
-
     }  
 }
 
