@@ -7,9 +7,9 @@
 
 import UIKit
 
-class CircleCollectionViewCell: UICollectionViewCell {
+class PopularCategoriesCollectionViewCell: UICollectionViewCell {
     
-    static let identifier = "CircleCollectionViewCell"
+    static let identifier = "PopularCategoriesCollectionViewCell"
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()

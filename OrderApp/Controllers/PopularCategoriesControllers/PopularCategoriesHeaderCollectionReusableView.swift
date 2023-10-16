@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HeaderCollectionReusableView: UICollectionReusableView {
+class PopularCategoriesHeaderCollectionReusableView: UICollectionReusableView {
         
     private var titleLabel = UILabel()
 

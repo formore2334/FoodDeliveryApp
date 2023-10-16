@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class CategoryDetailMenuViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

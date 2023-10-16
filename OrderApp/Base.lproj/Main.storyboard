@@ -38,10 +38,10 @@
             </objects>
             <point key="canvasLocation" x="8" y="5"/>
         </scene>
-        <!--View Controller-->
+        <!--Popular Categories View Controller-->
         <scene sceneID="mo0-dW-2ne">
             <objects>
-                <viewController id="7ba-LI-jNK" customClass="ViewController" customModule="OrderApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7ba-LI-jNK" customClass="PopularCategoriesViewController" customModule="OrderApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="N2R-hA-7lw">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
