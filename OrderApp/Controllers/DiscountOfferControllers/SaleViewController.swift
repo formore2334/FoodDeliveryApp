@@ -29,7 +29,7 @@ override func viewDidLoad() {
 
 override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
-    collectionView?.frame = CGRect(x: 0, y: 100, width: view.frame.size.width, height: 250).integral
+    collectionView?.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 250).integral
 }
 
 
