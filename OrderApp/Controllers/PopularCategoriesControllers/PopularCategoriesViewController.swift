@@ -93,10 +93,8 @@ class PopularCategoriesViewController: UIViewController {
         collectionView?.showsHorizontalScrollIndicator = false
         collectionView?.backgroundColor = .white
         
-        guard let myCollection = collectionView else {
-            return
-        }
-        view.addSubview(myCollection)
+        guard let collectionView = collectionView else { return }
+        view.addSubview(collectionView)
     }
     
 }
@@ -107,7 +105,7 @@ extension PopularCategoriesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         print("You tapped me")
-        let categoryDetailVC = CategoryDetailMenuViewController()
+        let categoryDetailVC = CategoryDetailMenuViewController(menuItem: models[indexPath.row].menuItem)
         
         navigationController?.pushViewController(categoryDetailVC, animated: true)
     }

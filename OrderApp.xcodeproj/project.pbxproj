@@ -26,6 +26,7 @@
 		454FBF442AD976C2001E75EB /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 454FBF422AD976C2001E75EB /* CollectionViewCell.xib */; };
 		454FBF472AD976E8001E75EB /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454FBF452AD976E8001E75EB /* TableViewCell.swift */; };
 		454FBF482AD976E8001E75EB /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 454FBF462AD976E8001E75EB /* TableViewCell.xib */; };
+		45FF89292ADEC532006FE6EC /* DetailMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FF89282ADEC532006FE6EC /* DetailMenuCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		454FBF422AD976C2001E75EB /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
 		454FBF452AD976E8001E75EB /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		454FBF462AD976E8001E75EB /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		45FF89282ADEC532006FE6EC /* DetailMenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMenuCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,11 +133,20 @@
 				454FBF452AD976E8001E75EB /* TableViewCell.swift */,
 				454FBF462AD976E8001E75EB /* TableViewCell.xib */,
 				453F50842ADD6B2A00D9DCF9 /* PopularCategoriesControllers */,
-				453F50822ADD40ED00D9DCF9 /* CategoryDetailMenuViewController.swift */,
+				45FF89272ADEC447006FE6EC /* DetailMenuControllers */,
 				453F508C2ADD7B8D00D9DCF9 /* HomeViewController.swift */,
 				453F50852ADD6C4A00D9DCF9 /* DiscountOfferControllers */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		45FF89272ADEC447006FE6EC /* DetailMenuControllers */ = {
+			isa = PBXGroup;
+			children = (
+				453F50822ADD40ED00D9DCF9 /* CategoryDetailMenuViewController.swift */,
+				45FF89282ADEC532006FE6EC /* DetailMenuCollectionViewCell.swift */,
+			);
+			path = DetailMenuControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,6 +227,7 @@
 				454FBF3E2AD95132001E75EB /* MenuModel.swift in Sources */,
 				4546A5222AD9A67A00A850A8 /* PopularCategoriesCollectionViewCell.swift in Sources */,
 				454FBF2E2AD949E9001E75EB /* ViewController.swift in Sources */,
+				45FF89292ADEC532006FE6EC /* DetailMenuCollectionViewCell.swift in Sources */,
 				453F508D2ADD7B8D00D9DCF9 /* HomeViewController.swift in Sources */,
 				454FBF472AD976E8001E75EB /* TableViewCell.swift in Sources */,
 				453F50872ADD6D3F00D9DCF9 /* SaleViewController.swift in Sources */,
