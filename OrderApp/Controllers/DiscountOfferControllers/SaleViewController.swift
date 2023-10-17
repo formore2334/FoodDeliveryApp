@@ -64,7 +64,7 @@ extension SaleViewController: UICollectionViewDelegate {
 func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     collectionView.deselectItem(at: indexPath, animated: true)
     print("You tapped me")
-    let categoryDetailVC = CategoryDetailMenuViewController(menuItem: models[indexPath.row].menuItem)
+    let categoryDetailVC = CategoryDetailMenuViewController(menuItem: menu[indexPath.row].menuItem)
     
     navigationController?.pushViewController(categoryDetailVC, animated: true)
 }
@@ -74,14 +74,14 @@ func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPat
 extension SaleViewController: UICollectionViewDataSource {
 
 func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return models.count
+    return menu.count
 }
 
 func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SaleCollectionViewCell.identifier, for: indexPath) as! SaleCollectionViewCell
     
-    cell.configure(name: models[indexPath.row].imageName, title: models[indexPath.row].title)
+    cell.configure(name: menu[indexPath.row].imageName, title: menu[indexPath.row].title)
     return cell
 }
 
