@@ -16,10 +16,10 @@ class SaleCollectionViewCell: UICollectionViewCell {
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
-        imageView.layer.cornerRadius = 130.0 / 2.0
         imageView.backgroundColor = .white
         imageView.layer.borderWidth = 2
-        imageView.layer.borderColor = UIColor.systemPink.cgColor
+        imageView.layer.cornerRadius = 20
+        imageView.layer.borderColor = UIColor.gray.cgColor
         return imageView
     }()
     
