@@ -65,6 +65,12 @@ class CategoryDetailMenuViewController: UIViewController {
 
 extension CategoryDetailMenuViewController: UICollectionViewDelegate {
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailInfoVC = DetailInfoViewController(menuItem: menuItem[indexPath.row])
+        
+        navigationController?.pushViewController(detailInfoVC, animated: true)
+    }
+    
 }
 
 extension CategoryDetailMenuViewController: UICollectionViewDataSource {

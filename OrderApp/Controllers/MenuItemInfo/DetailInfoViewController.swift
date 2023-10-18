@@ -10,7 +10,7 @@ import UIKit
 
 // MARK: - Detail info about selected item from menu
 
-class DetailInfoCollectionViewController: UIViewController {
+class DetailInfoViewController: UIViewController {
     
     var menuItem: MenuItem
     
@@ -29,12 +29,16 @@ class DetailInfoCollectionViewController: UIViewController {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 28)
         label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true
+        label.frame = CGRect(x: 0, y: 350, width: 200, height: 60)
         return label
     }()
     
     var descriptionLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true
+        label.frame = CGRect(x: 0, y: 450, width: 200, height: 40)
         return label
     }()
     
