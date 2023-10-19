@@ -11,26 +11,45 @@ class HomeViewController: UIViewController {
     
     var titleLabel = UILabel()
     var stackView = UIStackView()
+    var scrollView = UIScrollView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureTitleLabel()
+        configureScrollView()
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        scrollView.contentSize = stackView.bounds.size
+    }
+
+    
+    //MARK: - ScrollView
+    
+    func configureScrollView() {
+        view.addSubview(scrollView)
+        
         configureStackView()
         
+        scrollView.addSubview(stackView)
+        
+        setScrollViewConstraints()
+        setStackViewConstraints()
     }
     
     
     //MARK: - StackView
     
     func configureStackView() {
-        view.addSubview(stackView)
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.spacing = 20
         
         addCollectionsToStackView()
-        setStackViewConstraints()
     }
     
     func addCollectionsToStackView() {
@@ -73,6 +92,15 @@ class HomeViewController: UIViewController {
         titleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
     }
+    
+    func setScrollViewConstraints() {
+            scrollView.translatesAutoresizingMaskIntoConstraints = false
+            scrollView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        }
+
     
     func setStackViewConstraints() {
         stackView.translatesAutoresizingMaskIntoConstraints = false
