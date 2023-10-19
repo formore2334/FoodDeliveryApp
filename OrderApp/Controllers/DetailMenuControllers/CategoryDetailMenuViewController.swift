@@ -8,6 +8,7 @@
 import UIKit
 
 // MARK: - Detail menu for each category from menu
+
 class CategoryDetailMenuViewController: UIViewController {
 
     var menuItem: [MenuItem]
@@ -23,45 +24,60 @@ class CategoryDetailMenuViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .white
         title = "Second VC"
         
-        layoutCollection()
-        collectionView?.delegate = self
-        collectionView?.dataSource = self
         configureCollectionView()
-        
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        collectionView?.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height).integral
-    }
-    
-    
-    func layoutCollection() {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: 100, height: 100)
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-    }
+   //MARK: - Configure CollectionView
     
     func configureCollectionView() {
         
-        collectionView?.register(DetailMenuCollectionViewCell.self, forCellWithReuseIdentifier: DetailMenuCollectionViewCell.identifier)
-        collectionView?.backgroundColor = .white
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layoutCollection())
         
         guard let collectionView = collectionView else { return }
         view.addSubview(collectionView)
+        
+        setCollectionViewConstraints()
+        
+        collectionView.backgroundColor = .white
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        collectionView.register(DetailMenuCollectionViewCell.self, forCellWithReuseIdentifier: DetailMenuCollectionViewCell.identifier)
+    }
+    
+    
+    func layoutCollection() -> UICollectionViewFlowLayout {
+        let layout = UICollectionViewFlowLayout()
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        layout.minimumLineSpacing = 20
+        
+        return layout
+        
+    }
+    
+    //MARK: - Constraints
+    func setCollectionViewConstraints() {
+        guard let collectionView = collectionView else { return }
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
 
 }
 
+//MARK: - Delegat's
 
 extension CategoryDetailMenuViewController: UICollectionViewDelegate {
     
@@ -86,7 +102,6 @@ extension CategoryDetailMenuViewController: UICollectionViewDataSource {
         
         return cell
     }
-    
     
 }
 
