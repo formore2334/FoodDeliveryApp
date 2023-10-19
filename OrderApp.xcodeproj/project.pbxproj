@@ -75,8 +75,8 @@
 			isa = PBXGroup;
 			children = (
 				4546A51F2AD9A38F00A850A8 /* PopularCategoriesViewController.swift */,
-				453F50802ADA50BA00D9DCF9 /* PopularCategoriesHeaderCollectionReusableView.swift */,
 				4546A5212AD9A67A00A850A8 /* PopularCategoriesCollectionViewCell.swift */,
+				453F50802ADA50BA00D9DCF9 /* PopularCategoriesHeaderCollectionReusableView.swift */,
 			);
 			path = PopularCategoriesControllers;
 			sourceTree = "<group>";

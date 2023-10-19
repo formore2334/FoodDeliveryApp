@@ -23,12 +23,13 @@ class PopularCategoriesViewController: UIViewController {
         
         collectionView?.delegate = self
         collectionView?.dataSource = self
+        
         configureCollectionView()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        collectionView?.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 250).integral
+        collectionView?.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 220)
     }
 
     
@@ -94,6 +95,6 @@ extension PopularCategoriesViewController: UICollectionViewDataSource {
 
 extension PopularCategoriesViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: 10, height: 35)
+        return CGSize(width: 10, height: view.frame.size.height)
     }
 }

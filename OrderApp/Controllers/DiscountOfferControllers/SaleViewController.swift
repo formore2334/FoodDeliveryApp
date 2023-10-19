@@ -29,14 +29,14 @@ class SaleViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        collectionView?.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 250).integral
+        collectionView?.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 350).integral
     }
     
     
     func layoutCollection() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 200, height: 400)
+        layout.itemSize = CGSize(width: 200, height: 250)
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.sectionHeadersPinToVisibleBounds = true
         
