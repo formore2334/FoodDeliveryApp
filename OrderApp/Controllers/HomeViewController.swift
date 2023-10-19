@@ -51,14 +51,17 @@ class HomeViewController: UIViewController {
     //MARK: - Title
     
     func configureTitleLabel() {
+        
         view.addSubview(titleLabel)
-        titleLabel.text = "Welcome!"
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 12)
+        titleLabel.text = "Welm's"
+        titleLabel.textColor = .white
+        titleLabel.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 90)
+        titleLabel.backgroundColor = .systemOrange
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 25)
         titleLabel.textAlignment = .center
         titleLabel.numberOfLines = 0
         titleLabel.adjustsFontSizeToFitWidth = true
-        
-        setTitleLabelConstraints()
+    
     }
     
     
