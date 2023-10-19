@@ -19,7 +19,7 @@ class SaleCollectionViewCell: UICollectionViewCell {
         imageView.layer.cornerRadius = 20
         imageView.backgroundColor = .white
         imageView.layer.borderWidth = 2
-        imageView.layer.borderColor = UIColor.gray.cgColor
+        imageView.layer.borderColor = UIColor(named: "redOrange")?.cgColor
         return imageView
     }()
     

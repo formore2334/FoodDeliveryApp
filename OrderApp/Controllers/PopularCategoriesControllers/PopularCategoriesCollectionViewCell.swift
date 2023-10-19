@@ -19,7 +19,7 @@ class PopularCategoriesCollectionViewCell: UICollectionViewCell {
         imageView.layer.cornerRadius = 130.0 / 2.0
         imageView.backgroundColor = .white
         imageView.layer.borderWidth = 2
-        imageView.layer.borderColor = UIColor.systemPink.cgColor
+        imageView.layer.borderColor = UIColor(named: "redOrange")?.cgColor
         return imageView
     }()
     
