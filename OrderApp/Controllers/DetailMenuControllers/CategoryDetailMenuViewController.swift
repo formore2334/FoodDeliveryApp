@@ -31,19 +31,19 @@ class CategoryDetailMenuViewController: UIViewController {
         view.backgroundColor = .white
         title = "Second VC"
         
-        configureCollectionView()
+        configureVC()
     }
 
    //MARK: - Configure CollectionView
     
-    func configureCollectionView() {
+    func configureVC() {
         
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layoutCollection())
         
         guard let collectionView = collectionView else { return }
         view.addSubview(collectionView)
         
-        setCollectionViewConstraints()
+        setConstraints()
         
         collectionView.backgroundColor = .white
         collectionView.delegate = self
@@ -59,11 +59,10 @@ class CategoryDetailMenuViewController: UIViewController {
         layout.minimumLineSpacing = 20
         
         return layout
-        
     }
     
     //MARK: - Constraints
-    func setCollectionViewConstraints() {
+    func setConstraints() {
         guard let collectionView = collectionView else { return }
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         

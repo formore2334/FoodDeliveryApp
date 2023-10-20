@@ -59,7 +59,7 @@ extension TableViewCell: UICollectionViewDataSource {
         
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: PopularCategoriesHeaderCollectionReusableView.idintifier, for: indexPath) as! PopularCategoriesHeaderCollectionReusableView
         
-        header.configureTitleLabel()
+        header.configure()
         return header
         
         

@@ -32,19 +32,11 @@ class PopularCategoriesCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super .init(frame: frame)
 
-        contentView.addSubview(imageView)
-        contentView.addSubview(titleLabel)
+        configureCell()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        imageView.frame = contentView.bounds
-        titleLabel.frame = CGRect(x: 0, y: imageView.frame.maxY + 10, width: contentView.bounds.width, height: 20)
-
     }
     
     override func prepareForReuse() {
@@ -53,8 +45,39 @@ class PopularCategoriesCollectionViewCell: UICollectionViewCell {
         titleLabel.text = nil
     }
     
-    public func configure(name: String, title: String) {
-        imageView.image = UIImage(named: name)
+    //MARK: - Configure DetailMenuView
+    
+   private func configureCell() {
+        contentView.addSubview(imageView)
+        contentView.addSubview(titleLabel)
+        
+       setConstraints()
+    }
+    
+    public func configure(imageName: String, title: String) {
+        imageView.image = UIImage(named: imageName)
         titleLabel.text = title
     }
+    
+    //MARK: - Constraints
+    
+   private func setConstraints() {
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            imageView.heightAnchor.constraint(equalToConstant: 130),
+            imageView.widthAnchor.constraint(equalToConstant: 130),
+            
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            
+            titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
+    }
+    
 }

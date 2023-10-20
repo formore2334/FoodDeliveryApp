@@ -13,17 +13,28 @@ class PopularCategoriesHeaderCollectionReusableView: UICollectionReusableView {
 
     static let idintifier = "HeaderCollectionReusableView"
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-            titleLabel.frame = CGRect(x: 0, y: 0, width: 200, height: 40)
-    }
     
-    func configureTitleLabel() {
+  public func configure() {
         self.addSubview(titleLabel)
         titleLabel.text = "Most popular at this week"
         titleLabel.font = UIFont.boldSystemFont(ofSize: 36)
         titleLabel.adjustsFontSizeToFitWidth = true
 
+        setConstraints()
+    }
+    
+    //MARK: - Constraints
+    
+   private func setConstraints() {
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            titleLabel.heightAnchor.constraint(equalToConstant: 40),
+            titleLabel.widthAnchor.constraint(equalToConstant: 200),
+
+            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
+            titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -210)
+        ])
     }
    
 }

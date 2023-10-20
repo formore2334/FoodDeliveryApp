@@ -8,8 +8,7 @@
 import UIKit
 
 class PopularCategoriesViewController: UIViewController {
-        
-    private var titleLabel = UILabel()
+
     private var collectionView: UICollectionView?
 
     private let menu: [Menu] = Menu.mockData
@@ -17,46 +16,57 @@ class PopularCategoriesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBar.isHidden = false
-        
-        layoutCollection()
-        
-        collectionView?.delegate = self
-        collectionView?.dataSource = self
-        
-        configureCollectionView()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        collectionView?.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 220)
+        configureVC()
     }
 
     
-    func layoutCollection() {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 130, height: 130)
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.sectionHeadersPinToVisibleBounds = true
-
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-    }
+    //MARK: - Configure PopularCategories vc
     
-    
-    func configureCollectionView() {
+    private func configureVC() {
         
-        collectionView?.register(PopularCategoriesCollectionViewCell.self, forCellWithReuseIdentifier: PopularCategoriesCollectionViewCell.identifier)
-        collectionView?.register(PopularCategoriesHeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: PopularCategoriesHeaderCollectionReusableView.idintifier)
-        collectionView?.showsHorizontalScrollIndicator = false
-        collectionView?.backgroundColor = .white
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layoutCollection())
         
         guard let collectionView = collectionView else { return }
         view.addSubview(collectionView)
+        
+        setConstraints()
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        collectionView.register(PopularCategoriesCollectionViewCell.self, forCellWithReuseIdentifier: PopularCategoriesCollectionViewCell.identifier)
+        collectionView.register(PopularCategoriesHeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: PopularCategoriesHeaderCollectionReusableView.idintifier)
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundColor = .white
+    }
+    
+    func layoutCollection() -> UICollectionViewFlowLayout {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        layout.sectionHeadersPinToVisibleBounds = true
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 10)
+        
+        return layout
+    }
+    
+    
+    //MARK: - Constraints
+    func setConstraints() {
+        guard let collectionView = collectionView else { return }
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
     
 }
 
+// MARK: - Delegat's
 
 extension PopularCategoriesViewController: UICollectionViewDelegate {
     
@@ -80,7 +90,7 @@ extension PopularCategoriesViewController: UICollectionViewDataSource {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCategoriesCollectionViewCell.identifier, for: indexPath) as! PopularCategoriesCollectionViewCell
         
-        cell.configure(name: menu[indexPath.row].imageName, title: menu[indexPath.row].title)
+        cell.configure(imageName: menu[indexPath.row].imageName, title: menu[indexPath.row].title)
         return cell
     }
     
@@ -88,13 +98,15 @@ extension PopularCategoriesViewController: UICollectionViewDataSource {
 
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: PopularCategoriesHeaderCollectionReusableView.idintifier, for: indexPath) as! PopularCategoriesHeaderCollectionReusableView
 
-        header.configureTitleLabel()
+        header.configure()
         return header
     }  
 }
 
 extension PopularCategoriesViewController: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: 10, height: view.frame.size.height)
+        return CGSize(width: 10, height: 10)
     }
+    
 }
