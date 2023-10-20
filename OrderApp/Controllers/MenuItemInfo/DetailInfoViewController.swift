@@ -14,33 +14,12 @@ class DetailInfoViewController: UIViewController {
     
     var menuItem: MenuItem
     
-    var imageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.clipsToBounds = true
-        imageView.contentMode = .scaleAspectFill
-        imageView.layer.masksToBounds = true
-        imageView.layer.cornerRadius = 20
-        imageView.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
-        
-        return imageView
-    }()
+    private var imageView = UIImageView()
     
-    var titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 28)
-        label.textAlignment = .center
-        label.adjustsFontSizeToFitWidth = true
-        label.frame = CGRect(x: 0, y: 350, width: 200, height: 60)
-        return label
-    }()
+    private var titleLabel = UILabel()
     
-    var descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.adjustsFontSizeToFitWidth = true
-        label.frame = CGRect(x: 0, y: 450, width: 200, height: 40)
-        return label
-    }()
+    private var textView = UITextView()
+    
     
     init(menuItem: MenuItem) {
         self.menuItem = menuItem
@@ -54,22 +33,92 @@ class DetailInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Detail Info"
         
-        configureDetailInfo()
+        configureVC()
+        
         
     }
+
     
+    // MARK: - Configure DetailInfo VC
     
-    func configureDetailInfo() {
+    private func configureVC() {
+        setImageView()
+        setTitleLabel()
+        setTextView()
+        
+        setAllConstraints()
+    }
+    
+    // MARK: - Configure varibles
+    
+    private func setImageView() {
         view.addSubview(imageView)
-        view.addSubview(titleLabel)
-        view.addSubview(descriptionLabel)
-        
         imageView.image = UIImage(named: menuItem.imageName)
-        titleLabel.text = menuItem.title
-        descriptionLabel.text = menuItem.description
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.masksToBounds = true
+        imageView.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height / 3)
     }
     
+    
+    private func setTitleLabel() {
+        view.addSubview(titleLabel)
+        titleLabel.text = menuItem.title
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 22)
+        titleLabel.adjustsFontSizeToFitWidth = true
+    }
+    
+    private func setTextView() {
+        view.addSubview(textView)
+        textView.text = menuItem.description
+        textView.textColor = .systemGray
+        textView.isEditable = false
+        textView.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height / 4)
+    }
+    
+    
+    //MARK: - Constraints
+    
+    private func setAllConstraints() {
+        setImageViewConstraints()
+        setTitleLabelConstrains()
+        setTextViewConstrains()
+    }
+    
+    private func setImageViewConstraints() {
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            imageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1 / 2.5)
+        ])
+    }
+    
+    private func setTitleLabelConstrains() {
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 20),
+            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+        
+    }
+    
+    
+    private func setTextViewConstrains() {
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            textView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 50),
+            textView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            textView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            textView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+    }
     
 }
