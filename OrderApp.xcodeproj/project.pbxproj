@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		453688D52AE2D8B800AF64FB /* DetailMenuReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453688D42AE2D8B800AF64FB /* DetailMenuReusableView.swift */; };
 		453F50812ADA50BB00D9DCF9 /* PopularCategoriesHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453F50802ADA50BA00D9DCF9 /* PopularCategoriesHeaderCollectionReusableView.swift */; };
 		453F50832ADD40ED00D9DCF9 /* CategoryDetailMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453F50822ADD40ED00D9DCF9 /* CategoryDetailMenuViewController.swift */; };
 		453F50872ADD6D3F00D9DCF9 /* SaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453F50862ADD6D3F00D9DCF9 /* SaleViewController.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		453688D42AE2D8B800AF64FB /* DetailMenuReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMenuReusableView.swift; sourceTree = "<group>"; };
 		453F50802ADA50BA00D9DCF9 /* PopularCategoriesHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularCategoriesHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		453F50822ADD40ED00D9DCF9 /* CategoryDetailMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailMenuViewController.swift; sourceTree = "<group>"; };
 		453F50862ADD6D3F00D9DCF9 /* SaleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleViewController.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 			children = (
 				453F50822ADD40ED00D9DCF9 /* CategoryDetailMenuViewController.swift */,
 				45FF89282ADEC532006FE6EC /* DetailMenuCollectionViewCell.swift */,
+				453688D42AE2D8B800AF64FB /* DetailMenuReusableView.swift */,
 			);
 			path = DetailMenuControllers;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				454FBF432AD976C2001E75EB /* CollectionViewCell.swift in Sources */,
+				453688D52AE2D8B800AF64FB /* DetailMenuReusableView.swift in Sources */,
 				453F50812ADA50BB00D9DCF9 /* PopularCategoriesHeaderCollectionReusableView.swift in Sources */,
 				454FBF3E2AD95132001E75EB /* MenuModel.swift in Sources */,
 				4546A5222AD9A67A00A850A8 /* PopularCategoriesCollectionViewCell.swift in Sources */,

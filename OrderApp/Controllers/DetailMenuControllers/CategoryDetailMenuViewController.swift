@@ -50,6 +50,7 @@ class CategoryDetailMenuViewController: UIViewController {
         collectionView.dataSource = self
         
         collectionView.register(DetailMenuCollectionViewCell.self, forCellWithReuseIdentifier: DetailMenuCollectionViewCell.identifier)
+        collectionView.register(DetailMenuReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DetailMenuReusableView.idintifier)
     }
     
     
@@ -57,6 +58,7 @@ class CategoryDetailMenuViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         layout.minimumLineSpacing = 20
+        layout.sectionHeadersPinToVisibleBounds = true
         
         return layout
     }
@@ -102,9 +104,19 @@ extension CategoryDetailMenuViewController: UICollectionViewDataSource {
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DetailMenuReusableView.idintifier, for: indexPath) as! DetailMenuReusableView
+
+        header.configure()
+        return header
+    }
 }
 
-
 extension CategoryDetailMenuViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: view.bounds.size.width, height: 50)
+    }
     
 }
