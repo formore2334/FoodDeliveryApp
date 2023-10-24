@@ -33,10 +33,7 @@ class DetailInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         configureVC()
-        
-        
     }
 
     
@@ -58,7 +55,7 @@ class DetailInfoViewController: UIViewController {
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
-        imageView.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height / 3)
+        imageView.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height / 2.2)
     }
     
     
@@ -76,25 +73,13 @@ class DetailInfoViewController: UIViewController {
         textView.isEditable = false
         textView.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height / 4)
     }
-    
-    
+
+
     //MARK: - Constraints
     
     private func setAllConstraints() {
-        setImageViewConstraints()
         setTitleLabelConstrains()
         setTextViewConstrains()
-    }
-    
-    private func setImageViewConstraints() {
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            imageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1 / 2.5)
-        ])
     }
     
     private func setTitleLabelConstrains() {

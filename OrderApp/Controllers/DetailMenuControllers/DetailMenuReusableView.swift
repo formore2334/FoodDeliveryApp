@@ -13,9 +13,9 @@ class DetailMenuReusableView: UICollectionReusableView {
     
     static let idintifier = "DetailMenuReusableView"
     
-    public func configure() {
+    public func configure(title: String) {
         self.addSubview(titleLabel)
-        titleLabel.text = "Position"
+        titleLabel.text = title
         titleLabel.font = UIFont.boldSystemFont(ofSize: 22)
         titleLabel.adjustsFontSizeToFitWidth = true
         

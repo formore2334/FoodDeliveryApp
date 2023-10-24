@@ -73,7 +73,7 @@ extension PopularCategoriesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         print("You tapped me")
-        let categoryDetailVC = CategoryDetailMenuViewController(menuItem: menu[indexPath.row].menuItem)
+        let categoryDetailVC = CategoryDetailMenuViewController(menu: menu[indexPath.row])
         
         navigationController?.pushViewController(categoryDetailVC, animated: true)
     }

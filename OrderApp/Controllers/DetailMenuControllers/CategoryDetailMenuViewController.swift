@@ -11,12 +11,14 @@ import UIKit
 
 class CategoryDetailMenuViewController: UIViewController {
 
-    var menuItem: [MenuItem]
+    var menu: Menu
+    
+    private var titleLabel = UILabel()
     
     private var collectionView: UICollectionView?
     
-    init(menuItem: [MenuItem]) {
-        self.menuItem = menuItem
+    init(menu: Menu) {
+        self.menu = menu
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -28,10 +30,14 @@ class CategoryDetailMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .white
-        title = "Second VC"
-        
+        configureTitleLabel()
         configureVC()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.tintColor = .white
+            UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
     }
 
    //MARK: - Configure CollectionView
@@ -63,6 +69,22 @@ class CategoryDetailMenuViewController: UIViewController {
         return layout
     }
     
+    //MARK: - App Logo
+    
+    func configureTitleLabel() {
+        
+        view.addSubview(titleLabel)
+        titleLabel.text = "Welm's"
+        titleLabel.textColor = .white
+        titleLabel.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 90)
+        titleLabel.backgroundColor = UIColor(named: "redOrange")
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 25)
+        titleLabel.textAlignment = .center
+        titleLabel.numberOfLines = 0
+        titleLabel.adjustsFontSizeToFitWidth = true
+    
+    }
+    
     //MARK: - Constraints
     func setConstraints() {
         guard let collectionView = collectionView else { return }
@@ -83,7 +105,7 @@ class CategoryDetailMenuViewController: UIViewController {
 extension CategoryDetailMenuViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailInfoVC = DetailInfoViewController(menuItem: menuItem[indexPath.row])
+        let detailInfoVC = DetailInfoViewController(menuItem: menu.menuItem[indexPath.row])
         
         navigationController?.pushViewController(detailInfoVC, animated: true)
     }
@@ -92,14 +114,14 @@ extension CategoryDetailMenuViewController: UICollectionViewDelegate {
 
 extension CategoryDetailMenuViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return menuItem.count
+        return menu.menuItem.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailMenuCollectionViewCell.identifier, for: indexPath) as! DetailMenuCollectionViewCell
         
-        cell.configure(name: menuItem[indexPath.row].imageName, title: menuItem[indexPath.row].title)
+        cell.configure(name: menu.menuItem[indexPath.row].imageName, title: menu.menuItem[indexPath.row].title)
         
         return cell
     }
@@ -108,7 +130,7 @@ extension CategoryDetailMenuViewController: UICollectionViewDataSource {
 
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DetailMenuReusableView.idintifier, for: indexPath) as! DetailMenuReusableView
 
-        header.configure()
+        header.configure(title: menu.title)
         return header
     }
 }
