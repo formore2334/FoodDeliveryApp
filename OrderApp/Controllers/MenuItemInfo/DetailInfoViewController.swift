@@ -20,6 +20,8 @@ class DetailInfoViewController: UIViewController {
     
     private var textView = UITextView()
     
+    let addToBasketButton = AddToBascketButton()
+    
     
     init(menuItem: MenuItem) {
         self.menuItem = menuItem
@@ -43,6 +45,7 @@ class DetailInfoViewController: UIViewController {
         setImageView()
         setTitleLabel()
         setTextView()
+        setAddButton()
         
         setAllConstraints()
     }
@@ -73,6 +76,14 @@ class DetailInfoViewController: UIViewController {
         textView.isEditable = false
         textView.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height / 4)
     }
+    
+    private func setAddButton() {
+        
+           view.addSubview(addToBasketButton)
+
+           
+
+    }
 
 
     //MARK: - Constraints
@@ -80,6 +91,7 @@ class DetailInfoViewController: UIViewController {
     private func setAllConstraints() {
         setTitleLabelConstrains()
         setTextViewConstrains()
+        setAddButtonConstraints()
     }
     
     private func setTitleLabelConstrains() {
@@ -105,5 +117,16 @@ class DetailInfoViewController: UIViewController {
         ])
         
     }
+    
+    private func setAddButtonConstraints() {
+           addToBasketButton.translatesAutoresizingMaskIntoConstraints = false
+
+           NSLayoutConstraint.activate([
+               addToBasketButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+               addToBasketButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+               addToBasketButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30)
+           ])
+       }
+
     
 }
