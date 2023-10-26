@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: windowScene)
         
-        let vc = HomeViewController()
+        let vc = BascketViewController()
         let navigationController = UINavigationController(rootViewController: vc)
         window.rootViewController = navigationController
         window.backgroundColor = .white
