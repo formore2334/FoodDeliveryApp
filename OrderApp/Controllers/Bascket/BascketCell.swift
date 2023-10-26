@@ -35,7 +35,7 @@ class BascketCell: UITableViewCell {
         return button
     }()
     
-    private var numberOfItemsLabel: UILabel = {
+    private var itemCountsLabel: UILabel = {
         let label = UILabel()
         label.text = "\(0)"
         label.font = UIFont.boldSystemFont(ofSize: 25)
@@ -67,27 +67,50 @@ class BascketCell: UITableViewCell {
     
    //MARK: - Configurations
     
-    public func configureCell(menuItem: MenuItem) {
+    public func configureCell(menuItem: MenuItem, itemCounts: Int) {
         itemImageView.image = UIImage(named: menuItem.imageName)
         itemTextLabel.text = menuItem.title
-        //numberOfItemsLabel.text = "\(numberOfItems)"
+        itemCountsLabel.text = "\(itemCounts)"
     }
     
     private func configureContentView() {
         contentView.addSubview(itemImageView)
         contentView.addSubview(itemTextLabel)
         contentView.addSubview(subtractItemButton)
-        contentView.addSubview(numberOfItemsLabel)
+        contentView.addSubview(itemCountsLabel)
         contentView.addSubview(addItemButton)
         setAllConstraints()
+        configureAddItemButton()
+        configureSubtractItemButton()
     }
     
     private func configureAddItemButton() {
-        
+        addItemButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
     }
     
-    private func subtractAddItemButton() {
+    @objc private func addButtonTapped() {
+        guard let itemCountsText = itemCountsLabel.text,
+              let itemCounts = Int(itemCountsText) else {
+            return
+        }
         
+        itemCountsLabel.text = "\(itemCounts + 1)"
+    }
+
+    
+    private func configureSubtractItemButton() {
+        subtractItemButton.addTarget(self, action: #selector(subtractButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc private func subtractButtonTapped() {
+        guard let itemCountsText = itemCountsLabel.text,
+              let itemCounts = Int(itemCountsText),
+              itemCounts > 0
+        else {
+            return
+        }
+        
+        itemCountsLabel.text = "\(itemCounts - 1)"
     }
     
     //MARK: - Constraints
@@ -98,7 +121,7 @@ class BascketCell: UITableViewCell {
         setItemImageViewConstraints()
         setItemTextLabelConstraints()
         setSubtractItemButtonConstraints()
-        setNumberOfItemsLabelConstraints()
+        setItemCountsLabelConstraints()
         setAddItemButtonConstraints()
     }
     
@@ -135,16 +158,16 @@ class BascketCell: UITableViewCell {
             subtractItemButton.widthAnchor.constraint(equalToConstant: 20),
             
             subtractItemButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            subtractItemButton.trailingAnchor.constraint(equalTo: numberOfItemsLabel.leadingAnchor, constant: -5)
+            subtractItemButton.trailingAnchor.constraint(equalTo: itemCountsLabel.leadingAnchor, constant: -5)
         ])
     }
     
-    private func setNumberOfItemsLabelConstraints() {
-        numberOfItemsLabel.translatesAutoresizingMaskIntoConstraints = false
+    private func setItemCountsLabelConstraints() {
+        itemCountsLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            numberOfItemsLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            numberOfItemsLabel.trailingAnchor.constraint(equalTo: addItemButton.leadingAnchor, constant: -5)
+            itemCountsLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            itemCountsLabel.trailingAnchor.constraint(equalTo: addItemButton.leadingAnchor, constant: -5)
         ])
     }
     
