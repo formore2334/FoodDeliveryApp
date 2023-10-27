@@ -28,9 +28,9 @@
 		454FBF472AD976E8001E75EB /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454FBF452AD976E8001E75EB /* TableViewCell.swift */; };
 		454FBF482AD976E8001E75EB /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 454FBF462AD976E8001E75EB /* TableViewCell.xib */; };
 		455A7A542AE7B80900EE1844 /* AddToBascketButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A7A532AE7B80800EE1844 /* AddToBascketButton.swift */; };
-		455A7A562AE7DD4100EE1844 /* Bascket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A7A552AE7DD4100EE1844 /* Bascket.swift */; };
-		455A7A582AE7DF1E00EE1844 /* BascketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A7A572AE7DF1D00EE1844 /* BascketViewController.swift */; };
-		455A7A5A2AE7E71F00EE1844 /* BascketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A7A592AE7E71F00EE1844 /* BascketCell.swift */; };
+		455A7A562AE7DD4100EE1844 /* Basket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A7A552AE7DD4100EE1844 /* Basket.swift */; };
+		455A7A582AE7DF1E00EE1844 /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A7A572AE7DF1D00EE1844 /* BasketViewController.swift */; };
+		455A7A5A2AE7E71F00EE1844 /* BasketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A7A592AE7E71F00EE1844 /* BasketCell.swift */; };
 		455A7A5C2AE7F04700EE1844 /* UIView+Extansions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A7A5B2AE7F04600EE1844 /* UIView+Extansions.swift */; };
 		45DEED602ADFC6FC00CB6439 /* DetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEED5F2ADFC6FC00CB6439 /* DetailInfoViewController.swift */; };
 		45DEED622ADFD9CB00CB6439 /* SalesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEED612ADFD9CA00CB6439 /* SalesModel.swift */; };
@@ -62,9 +62,9 @@
 		454FBF452AD976E8001E75EB /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		454FBF462AD976E8001E75EB /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		455A7A532AE7B80800EE1844 /* AddToBascketButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToBascketButton.swift; sourceTree = "<group>"; };
-		455A7A552AE7DD4100EE1844 /* Bascket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bascket.swift; sourceTree = "<group>"; };
-		455A7A572AE7DF1D00EE1844 /* BascketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BascketViewController.swift; sourceTree = "<group>"; };
-		455A7A592AE7E71F00EE1844 /* BascketCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BascketCell.swift; sourceTree = "<group>"; };
+		455A7A552AE7DD4100EE1844 /* Basket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Basket.swift; sourceTree = "<group>"; };
+		455A7A572AE7DF1D00EE1844 /* BasketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewController.swift; sourceTree = "<group>"; };
+		455A7A592AE7E71F00EE1844 /* BasketCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketCell.swift; sourceTree = "<group>"; };
 		455A7A5B2AE7F04600EE1844 /* UIView+Extansions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extansions.swift"; sourceTree = "<group>"; };
 		45DEED5F2ADFC6FC00CB6439 /* DetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoViewController.swift; sourceTree = "<group>"; };
 		45DEED612ADFD9CA00CB6439 /* SalesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesModel.swift; sourceTree = "<group>"; };
@@ -141,7 +141,7 @@
 			children = (
 				454FBF3D2AD95132001E75EB /* MenuModel.swift */,
 				45DEED612ADFD9CA00CB6439 /* SalesModel.swift */,
-				455A7A552AE7DD4100EE1844 /* Bascket.swift */,
+				455A7A552AE7DD4100EE1844 /* Basket.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -168,8 +168,8 @@
 			isa = PBXGroup;
 			children = (
 				455A7A532AE7B80800EE1844 /* AddToBascketButton.swift */,
-				455A7A572AE7DF1D00EE1844 /* BascketViewController.swift */,
-				455A7A592AE7E71F00EE1844 /* BascketCell.swift */,
+				455A7A572AE7DF1D00EE1844 /* BasketViewController.swift */,
+				455A7A592AE7E71F00EE1844 /* BasketCell.swift */,
 			);
 			path = Bascket;
 			sourceTree = "<group>";
@@ -279,8 +279,8 @@
 				454FBF3E2AD95132001E75EB /* MenuModel.swift in Sources */,
 				4546A5222AD9A67A00A850A8 /* PopularCategoriesCollectionViewCell.swift in Sources */,
 				454FBF2E2AD949E9001E75EB /* ViewController.swift in Sources */,
-				455A7A5A2AE7E71F00EE1844 /* BascketCell.swift in Sources */,
-				455A7A562AE7DD4100EE1844 /* Bascket.swift in Sources */,
+				455A7A5A2AE7E71F00EE1844 /* BasketCell.swift in Sources */,
+				455A7A562AE7DD4100EE1844 /* Basket.swift in Sources */,
 				45FF89292ADEC532006FE6EC /* DetailMenuCollectionViewCell.swift in Sources */,
 				453F508D2ADD7B8D00D9DCF9 /* HomeViewController.swift in Sources */,
 				454FBF472AD976E8001E75EB /* TableViewCell.swift in Sources */,
@@ -293,7 +293,7 @@
 				45DEED642AE00C0E00CB6439 /* DetailSaleViewController.swift in Sources */,
 				455A7A5C2AE7F04700EE1844 /* UIView+Extansions.swift in Sources */,
 				455A7A542AE7B80900EE1844 /* AddToBascketButton.swift in Sources */,
-				455A7A582AE7DF1E00EE1844 /* BascketViewController.swift in Sources */,
+				455A7A582AE7DF1E00EE1844 /* BasketViewController.swift in Sources */,
 				453F508B2ADD6DA300D9DCF9 /* SaleCollectionReusableView.swift in Sources */,
 				453F50892ADD6D8E00D9DCF9 /* SaleCollectionViewCell.swift in Sources */,
 				45DEED602ADFC6FC00CB6439 /* DetailInfoViewController.swift in Sources */,

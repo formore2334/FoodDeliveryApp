@@ -7,9 +7,21 @@
 
 import UIKit
 
-class BascketCell: UITableViewCell {
+protocol BasketCellDelegate: AnyObject {
+   
+    func didTapAddButton(_ cell: UITableViewCell)
+    
+    func didTapSubtractButton(_ cell: UITableViewCell)
 
-    static let identifier = String(describing: BascketCell.self)
+}
+
+class BasketCell: UITableViewCell {
+    
+    var menuItem: MenuItem?
+    
+    weak var delegate: BasketCellDelegate?
+    
+    static let identifier = String(describing: BasketCell.self)
     
     //MARK: - Set varibles
     
@@ -95,6 +107,8 @@ class BascketCell: UITableViewCell {
         }
         
         itemCountsLabel.text = "\(itemCounts + 1)"
+        
+        delegate?.didTapAddButton(self)
     }
 
     
@@ -111,6 +125,8 @@ class BascketCell: UITableViewCell {
         }
         
         itemCountsLabel.text = "\(itemCounts - 1)"
+        
+        delegate?.didTapSubtractButton(self)
     }
     
     //MARK: - Constraints

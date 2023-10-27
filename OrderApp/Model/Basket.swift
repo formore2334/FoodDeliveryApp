@@ -8,14 +8,14 @@
 import Foundation
 
 
-struct Bascket {
-    let numberOfItems: Int
+struct Basket {
+    var numberOfItems: Int
     let totalSum: Double
     let menuItems: [MenuItem]
 }
 
-extension Bascket {
-    static let mockData = Bascket(numberOfItems: 3, totalSum: 15.99, menuItems: [
+extension Basket {
+    static let mockData = Basket(numberOfItems: 3, totalSum: 15.99, menuItems: [
         MenuItem(imageName: "cube", title: "Fries 1", description: ""),
         MenuItem(imageName: "cube", title: "Fries 1", description: ""),
         MenuItem(imageName: "cube", title: "Fries 1", description: ""),
