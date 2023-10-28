@@ -32,8 +32,8 @@ class PopularCategoriesHeaderCollectionReusableView: UICollectionReusableView {
             titleLabel.heightAnchor.constraint(equalToConstant: 40),
             titleLabel.widthAnchor.constraint(equalToConstant: 200),
 
-            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-            titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -210)
+            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: -10),
+            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10)
         ])
     }
    
