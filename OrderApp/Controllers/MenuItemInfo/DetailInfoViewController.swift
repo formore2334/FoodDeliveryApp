@@ -20,7 +20,7 @@ class DetailInfoViewController: UIViewController {
     
     private var textView = UITextView()
     
-    let addToBasketButton = AddToBascketButton()
+    private let addToBasketButton = AddToBascketButton()
     
     
     init(menuItem: MenuItem) {
@@ -37,7 +37,7 @@ class DetailInfoViewController: UIViewController {
         
         configureVC()
     }
-
+    
     
     // MARK: - Configure DetailInfo VC
     
@@ -78,14 +78,12 @@ class DetailInfoViewController: UIViewController {
     }
     
     private func setAddButton() {
-        
-           view.addSubview(addToBasketButton)
-
-           
-
+        view.addSubview(addToBasketButton)
+        addToBasketButton.delegate = self
+        addToBasketButton.menuItem = menuItem
     }
-
-
+    
+    
     //MARK: - Constraints
     
     private func setAllConstraints() {
@@ -105,7 +103,6 @@ class DetailInfoViewController: UIViewController {
         
     }
     
-    
     private func setTextViewConstrains() {
         textView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -119,14 +116,24 @@ class DetailInfoViewController: UIViewController {
     }
     
     private func setAddButtonConstraints() {
-           addToBasketButton.translatesAutoresizingMaskIntoConstraints = false
+        addToBasketButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            addToBasketButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            addToBasketButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            addToBasketButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30)
+        ])
+    }
+    
+}
 
-           NSLayoutConstraint.activate([
-               addToBasketButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-               addToBasketButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-               addToBasketButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30)
-           ])
-       }
-
+//MARK: - Delegate
+extension DetailInfoViewController: AddToBascketButtonDelegate {
+    
+    func didTapAddToBasketButton(with menuItem: MenuItem) {
+        let basketVC = BasketViewController()
+        basketVC.updateBasket(with: menuItem)
+        navigationController?.pushViewController(basketVC, animated: true)
+    }
     
 }
