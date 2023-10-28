@@ -13,16 +13,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let window = UIWindow(windowScene: windowScene)
         
-        let vc = HomeViewController()
-        let navigationController = UINavigationController(rootViewController: vc)
-        window.rootViewController = navigationController
+        let homeVC = HomeViewController()
+        let menuVC = MenuViewController()
+        let basketVC = BasketViewController()
+        
+        let homeNC = UINavigationController(rootViewController: homeVC)
+        let menuNC = UINavigationController(rootViewController: menuVC)
+        let basketNC = UINavigationController(rootViewController: basketVC)
+        
+        let tabBar = UITabBarController()
+        tabBar.setViewControllers([homeNC, menuNC, basketNC], animated: true)
+        
+        tabBar.tabBar.backgroundImage = UIImage()
+        tabBar.tabBar.shadowImage = UIImage()
+        tabBar.tabBar.tintColor = .black
+        
+        homeNC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 1)
+        menuNC.tabBarItem = UITabBarItem(title: "Menu", image: UIImage(systemName: "fork.knife"), tag: 2)
+        basketNC.tabBarItem = UITabBarItem(title: "Basket", image: UIImage(systemName: "basket"), tag: 3)
+    
+        window.rootViewController = tabBar
         window.backgroundColor = .white
         self.window = window
         window.makeKeyAndVisible()

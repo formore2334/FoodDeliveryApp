@@ -32,6 +32,7 @@
 		455A7A582AE7DF1E00EE1844 /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A7A572AE7DF1D00EE1844 /* BasketViewController.swift */; };
 		455A7A5A2AE7E71F00EE1844 /* BasketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A7A592AE7E71F00EE1844 /* BasketCell.swift */; };
 		455A7A5C2AE7F04700EE1844 /* UIView+Extansions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A7A5B2AE7F04600EE1844 /* UIView+Extansions.swift */; };
+		456745582AED46AC0090CB09 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456745572AED46AC0090CB09 /* MenuViewController.swift */; };
 		45DEED602ADFC6FC00CB6439 /* DetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEED5F2ADFC6FC00CB6439 /* DetailInfoViewController.swift */; };
 		45DEED622ADFD9CB00CB6439 /* SalesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEED612ADFD9CA00CB6439 /* SalesModel.swift */; };
 		45DEED642AE00C0E00CB6439 /* DetailSaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEED632AE00C0D00CB6439 /* DetailSaleViewController.swift */; };
@@ -66,6 +67,7 @@
 		455A7A572AE7DF1D00EE1844 /* BasketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewController.swift; sourceTree = "<group>"; };
 		455A7A592AE7E71F00EE1844 /* BasketCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketCell.swift; sourceTree = "<group>"; };
 		455A7A5B2AE7F04600EE1844 /* UIView+Extansions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extansions.swift"; sourceTree = "<group>"; };
+		456745572AED46AC0090CB09 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		45DEED5F2ADFC6FC00CB6439 /* DetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoViewController.swift; sourceTree = "<group>"; };
 		45DEED612ADFD9CA00CB6439 /* SalesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesModel.swift; sourceTree = "<group>"; };
 		45DEED632AE00C0D00CB6439 /* DetailSaleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSaleViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				45DEED5E2ADFC62700CB6439 /* MenuItemInfo */,
 				455A7A522AE7B7AB00EE1844 /* Bascket */,
 				453F50852ADD6C4A00D9DCF9 /* DiscountOfferControllers */,
+				456745572AED46AC0090CB09 /* MenuViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				4546A5202AD9A38F00A850A8 /* PopularCategoriesViewController.swift in Sources */,
 				454FBF2A2AD949E9001E75EB /* AppDelegate.swift in Sources */,
 				453F50832ADD40ED00D9DCF9 /* CategoryDetailMenuViewController.swift in Sources */,
+				456745582AED46AC0090CB09 /* MenuViewController.swift in Sources */,
 				454FBF2C2AD949E9001E75EB /* SceneDelegate.swift in Sources */,
 				45DEED642AE00C0E00CB6439 /* DetailSaleViewController.swift in Sources */,
 				455A7A5C2AE7F04700EE1844 /* UIView+Extansions.swift in Sources */,
