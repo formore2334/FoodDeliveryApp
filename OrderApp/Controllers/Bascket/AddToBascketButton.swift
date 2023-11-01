@@ -6,19 +6,13 @@
 //
 
 import UIKit
+// NotificationCenter.default.post(name: Notification.Name("AddToBasket"), object: menuItem)
 
-protocol AddToBascketButtonDelegate: AnyObject {
-    
-    func didTapAddToBasketButton(with menuItem: MenuItem)
-    
-}
 
 class AddToBascketButton: UIView {
     
     var menuItem: MenuItem?
-    
-    weak var delegate: AddToBascketButtonDelegate?
-    
+
     private var addButton: UIButton = {
         let button = UIButton()
         button.setTitle("Add to bascket", for: .normal)
@@ -48,7 +42,7 @@ class AddToBascketButton: UIView {
     @objc private func addButtonTapped() {
         guard let menuItem = menuItem else { return }
         addButton.setTitle("\(menuItem.title) added", for: .normal)
-        delegate?.didTapAddToBasketButton(with: menuItem)
+       
         print("DEBUG: Add to basket button tapped")
         
     }

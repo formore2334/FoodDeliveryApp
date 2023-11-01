@@ -7,6 +7,18 @@
 
 import UIKit
 
+
+//NotificationCenter.default.addObserver(self, selector: #selector(update(_:)), name: Notification.Name("AddToBasket"), object: nil)
+// @objc private func update(_ notification: Notification) {
+//if let menuItem = notification.object as? MenuItem {
+//    updateBasket(with: menuItem)
+//    configureNavigationBar()
+//}
+//}
+
+
+
+
 class BasketViewController: UIViewController {
 
     private var basket = Basket.mockData
@@ -21,9 +33,10 @@ class BasketViewController: UIViewController {
     
     private var numOfItems = 0
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         configureNavigationBar()
         configureTableView()
     }
@@ -31,6 +44,10 @@ class BasketViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         tableView.frame = view.bounds
     }
+   
+    
+
+
     
     func configureTableView() {
         view.addSubview(tableView)

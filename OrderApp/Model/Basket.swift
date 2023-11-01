@@ -9,7 +9,7 @@ import Foundation
 
 
 struct Basket {
-    var numberOfItems: Int
+    let numberOfItems: Int
     let totalSum: Double
     let menuItems: [MenuItem]
 }

@@ -21,8 +21,7 @@ class DetailInfoViewController: UIViewController {
     private var textView = UITextView()
     
     private let addToBasketButton = AddToBascketButton()
-    
-    
+
     init(menuItem: MenuItem) {
         self.menuItem = menuItem
         super.init(nibName: nil, bundle: nil)
@@ -34,7 +33,7 @@ class DetailInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         configureVC()
     }
     
@@ -79,7 +78,6 @@ class DetailInfoViewController: UIViewController {
     
     private func setAddButton() {
         view.addSubview(addToBasketButton)
-        addToBasketButton.delegate = self
         addToBasketButton.menuItem = menuItem
     }
     
@@ -127,13 +125,3 @@ class DetailInfoViewController: UIViewController {
     
 }
 
-//MARK: - Delegate
-extension DetailInfoViewController: AddToBascketButtonDelegate {
-    
-    func didTapAddToBasketButton(with menuItem: MenuItem) {
-        let basketVC = BasketViewController()
-        basketVC.updateBasket(with: menuItem)
-        navigationController?.pushViewController(basketVC, animated: true)
-    }
-    
-}
