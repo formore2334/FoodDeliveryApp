@@ -12,13 +12,14 @@ import UIKit
 class CategoryDetailMenuViewController: UIViewController {
 
     var menu: Menu
-    
+    var coordinator: MainCoordinator?
     private var titleLabel = UILabel()
     
     private var collectionView: UICollectionView?
     
-    init(menu: Menu) {
+    init(menu: Menu, coordinator: MainCoordinator? = nil) {
         self.menu = menu
+        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -105,7 +106,7 @@ class CategoryDetailMenuViewController: UIViewController {
 extension CategoryDetailMenuViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailInfoVC = DetailInfoViewController(menuItem: menu.menuItem[indexPath.row])
+        let detailInfoVC = DetailInfoViewController(menuItem: menu.menuItem[indexPath.row], coordinator: coordinator)
         
         navigationController?.pushViewController(detailInfoVC, animated: true)
     }

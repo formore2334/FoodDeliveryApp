@@ -13,7 +13,7 @@ import UIKit
 class DetailInfoViewController: UIViewController {
     
     var menuItem: MenuItem
-    
+    var coordinator: MainCoordinator?
     private var imageView = UIImageView()
     
     private var titleLabel = UILabel()
@@ -22,8 +22,9 @@ class DetailInfoViewController: UIViewController {
     
     private let addToBasketButton = AddToBascketButton()
 
-    init(menuItem: MenuItem) {
+    init(menuItem: MenuItem, coordinator: MainCoordinator? = nil) {
         self.menuItem = menuItem
+        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -79,6 +80,8 @@ class DetailInfoViewController: UIViewController {
     private func setAddButton() {
         view.addSubview(addToBasketButton)
         addToBasketButton.menuItem = menuItem
+        addToBasketButton.coordinator = coordinator
+       
     }
     
     

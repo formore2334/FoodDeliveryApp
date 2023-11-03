@@ -8,10 +8,19 @@
 import UIKit
 
 class PopularCategoriesViewController: UIViewController {
-
+    var coordinator: MainCoordinator?
     private var collectionView: UICollectionView?
 
     private let menu: [Menu] = Menu.mockData
+    
+    init(coordinator: MainCoordinator? = nil) {
+        self.coordinator = coordinator
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,7 +82,7 @@ extension PopularCategoriesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         print("You tapped me")
-        let categoryDetailVC = CategoryDetailMenuViewController(menu: menu[indexPath.row])
+        let categoryDetailVC = CategoryDetailMenuViewController(menu: menu[indexPath.row], coordinator: coordinator)
         
         navigationController?.pushViewController(categoryDetailVC, animated: true)
     }

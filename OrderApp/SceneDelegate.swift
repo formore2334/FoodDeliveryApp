@@ -9,6 +9,7 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
+    var coordinator: Coordinator?
     var window: UIWindow?
 
 
@@ -16,30 +17,40 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let window = UIWindow(windowScene: windowScene)
+
         
-        let homeVC = HomeViewController()
-        let menuVC = MenuViewController()
-        let basketVC = BasketViewController()
-        
-        let homeNC = UINavigationController(rootViewController: homeVC)
-        let menuNC = UINavigationController(rootViewController: menuVC)
-        let basketNC = UINavigationController(rootViewController: basketVC)
-        
-        let tabBar = UITabBarController()
-        tabBar.setViewControllers([homeNC, menuNC, basketNC], animated: true)
-        
-        tabBar.tabBar.backgroundImage = UIImage()
-        tabBar.tabBar.shadowImage = UIImage()
-        tabBar.tabBar.tintColor = .black
-        
-        homeNC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 1)
-        menuNC.tabBarItem = UITabBarItem(title: "Menu", image: UIImage(systemName: "fork.knife"), tag: 2)
-        basketNC.tabBarItem = UITabBarItem(title: "Basket", image: UIImage(systemName: "basket"), tag: 3)
-    
-        window.rootViewController = tabBar
+        let navController = UINavigationController()
+        coordinator = MainCoordinator(navigationController: navController)
+        coordinator?.start()
+
+        window.rootViewController = navController
         window.backgroundColor = .white
-        self.window = window
         window.makeKeyAndVisible()
+        self.window = window
+        
+//        let homeVC = HomeViewController()
+//        let menuVC = MenuViewController()
+//        let basketVC = BasketViewController()
+//
+//        let homeNC = UINavigationController(rootViewController: homeVC)
+//        let menuNC = UINavigationController(rootViewController: menuVC)
+//        let basketNC = UINavigationController(rootViewController: basketVC)
+//
+//        let tabBar = UITabBarController()
+//        tabBar.setViewControllers([homeNC, menuNC, basketNC], animated: true)
+//
+//        tabBar.tabBar.backgroundImage = UIImage()
+//        tabBar.tabBar.shadowImage = UIImage()
+//        tabBar.tabBar.tintColor = .black
+//
+//        homeNC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 1)
+//        menuNC.tabBarItem = UITabBarItem(title: "Menu", image: UIImage(systemName: "fork.knife"), tag: 2)
+//        basketNC.tabBarItem = UITabBarItem(title: "Basket", image: UIImage(systemName: "basket"), tag: 3)
+//
+//        window.rootViewController = tabBar
+//        window.backgroundColor = .white
+//        self.window = window
+//        window.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

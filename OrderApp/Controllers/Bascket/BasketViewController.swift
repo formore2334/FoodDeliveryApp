@@ -21,7 +21,9 @@ import UIKit
 
 class BasketViewController: UIViewController {
 
-    private var basket = Basket.mockData
+    var coordinator: MainCoordinator?
+    
+    var basket: Basket = Basket(numberOfItems: 0, totalSum: 0, menuItems: [])
     
     private var tableView = UITableView()
     
@@ -108,7 +110,7 @@ extension BasketViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: BasketCell.identifier, for: indexPath) as! BasketCell
         
         if uniqueMenuItems.count > 0 {
-            let menuItem = uniqueMenuItems[indexPath.row]
+        let menuItem = uniqueMenuItems[indexPath.row]
             let itemCounts = itemCounts[menuItem.title] ?? 0
             
             cell.delegate = self

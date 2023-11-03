@@ -11,6 +11,8 @@ import UIKit
 
 class AddToBascketButton: UIView {
     
+    var coordinator: MainCoordinator?
+    
     var menuItem: MenuItem?
 
     private var addButton: UIButton = {
@@ -42,7 +44,7 @@ class AddToBascketButton: UIView {
     @objc private func addButtonTapped() {
         guard let menuItem = menuItem else { return }
         addButton.setTitle("\(menuItem.title) added", for: .normal)
-       
+        coordinator?.passOrderToBasket(menuItem: menuItem)
         print("DEBUG: Add to basket button tapped")
         
     }

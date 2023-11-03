@@ -9,6 +9,8 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    var coordinator: MainCoordinator?
+    
     var titleLabel = UILabel()
     var stackView = UIStackView()
     var scrollView = UIScrollView()
@@ -53,7 +55,7 @@ class HomeViewController: UIViewController {
     }
     
     func addCollectionsToStackView() {
-        let popularCategoriesVC = PopularCategoriesViewController()
+        let popularCategoriesVC = PopularCategoriesViewController(coordinator: coordinator)
         let saleVC = SaleViewController()
         
         addChild(popularCategoriesVC)

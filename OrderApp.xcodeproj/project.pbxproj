@@ -27,6 +27,8 @@
 		455A7A582AE7DF1E00EE1844 /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A7A572AE7DF1D00EE1844 /* BasketViewController.swift */; };
 		455A7A5A2AE7E71F00EE1844 /* BasketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A7A592AE7E71F00EE1844 /* BasketCell.swift */; };
 		455A7A5C2AE7F04700EE1844 /* UIView+Extansions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A7A5B2AE7F04600EE1844 /* UIView+Extansions.swift */; };
+		455E903A2AF3C0DF002DB5E3 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455E90392AF3C0DF002DB5E3 /* Coordinator.swift */; };
+		455E903C2AF3C0F3002DB5E3 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455E903B2AF3C0F3002DB5E3 /* MainCoordinator.swift */; };
 		456745582AED46AC0090CB09 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456745572AED46AC0090CB09 /* MenuViewController.swift */; };
 		45DEED602ADFC6FC00CB6439 /* DetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEED5F2ADFC6FC00CB6439 /* DetailInfoViewController.swift */; };
 		45DEED622ADFD9CB00CB6439 /* SalesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEED612ADFD9CA00CB6439 /* SalesModel.swift */; };
@@ -57,6 +59,8 @@
 		455A7A572AE7DF1D00EE1844 /* BasketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewController.swift; sourceTree = "<group>"; };
 		455A7A592AE7E71F00EE1844 /* BasketCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketCell.swift; sourceTree = "<group>"; };
 		455A7A5B2AE7F04600EE1844 /* UIView+Extansions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extansions.swift"; sourceTree = "<group>"; };
+		455E90392AF3C0DF002DB5E3 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		455E903B2AF3C0F3002DB5E3 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		456745572AED46AC0090CB09 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		45DEED5F2ADFC6FC00CB6439 /* DetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoViewController.swift; sourceTree = "<group>"; };
 		45DEED612ADFD9CA00CB6439 /* SalesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesModel.swift; sourceTree = "<group>"; };
@@ -141,6 +145,7 @@
 		454FBF402AD97646001E75EB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				455E90382AF3C0CA002DB5E3 /* Coordinator */,
 				453F50842ADD6B2A00D9DCF9 /* PopularCategoriesControllers */,
 				45FF89272ADEC447006FE6EC /* DetailMenuControllers */,
 				453F508C2ADD7B8D00D9DCF9 /* HomeViewController.swift */,
@@ -168,6 +173,15 @@
 				455A7A5B2AE7F04600EE1844 /* UIView+Extansions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		455E90382AF3C0CA002DB5E3 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				455E90392AF3C0DF002DB5E3 /* Coordinator.swift */,
+				455E903B2AF3C0F3002DB5E3 /* MainCoordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		45DEED5E2ADFC62700CB6439 /* MenuItemInfo */ = {
@@ -260,6 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				453688D52AE2D8B800AF64FB /* DetailMenuReusableView.swift in Sources */,
+				455E903C2AF3C0F3002DB5E3 /* MainCoordinator.swift in Sources */,
 				453F50812ADA50BB00D9DCF9 /* PopularCategoriesHeaderCollectionReusableView.swift in Sources */,
 				454FBF3E2AD95132001E75EB /* MenuModel.swift in Sources */,
 				4546A5222AD9A67A00A850A8 /* PopularCategoriesCollectionViewCell.swift in Sources */,
@@ -276,6 +291,7 @@
 				454FBF2C2AD949E9001E75EB /* SceneDelegate.swift in Sources */,
 				45DEED642AE00C0E00CB6439 /* DetailSaleViewController.swift in Sources */,
 				455A7A5C2AE7F04700EE1844 /* UIView+Extansions.swift in Sources */,
+				455E903A2AF3C0DF002DB5E3 /* Coordinator.swift in Sources */,
 				455A7A542AE7B80900EE1844 /* AddToBascketButton.swift in Sources */,
 				455A7A582AE7DF1E00EE1844 /* BasketViewController.swift in Sources */,
 				453F508B2ADD6DA300D9DCF9 /* SaleCollectionReusableView.swift in Sources */,

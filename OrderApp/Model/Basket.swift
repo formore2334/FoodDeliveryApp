@@ -11,7 +11,7 @@ import Foundation
 struct Basket {
     let numberOfItems: Int
     let totalSum: Double
-    let menuItems: [MenuItem]
+    var menuItems: [MenuItem]
 }
 
 extension Basket {
