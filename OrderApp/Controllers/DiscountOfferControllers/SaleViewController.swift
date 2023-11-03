@@ -16,43 +16,58 @@ class SaleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+      
         
-        navigationController?.navigationBar.isHidden = false
-        
-        layoutCollection()
-        
-        collectionView?.delegate = self
-        collectionView?.dataSource = self
-        
-        configureCollectionView()
+        configureVC()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        collectionView?.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 350).integral
+        collectionView?.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 400)
     }
     
+    //MARK: - Configure PopularCategories vc
     
-    func layoutCollection() {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 200, height: 250)
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.sectionHeadersPinToVisibleBounds = true
+    private func configureVC() {
         
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-    }
-    
-    
-    func configureCollectionView() {
-        
-        collectionView?.register(SaleCollectionViewCell.self, forCellWithReuseIdentifier: SaleCollectionViewCell.identifier)
-        collectionView?.register(SaleCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SaleCollectionReusableView.idintifier)
-        collectionView?.showsHorizontalScrollIndicator = false
-        collectionView?.backgroundColor = .white
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layoutCollection())
         
         guard let collectionView = collectionView else { return }
         view.addSubview(collectionView)
+        
+        setConstraints()
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        collectionView.register(SaleCollectionViewCell.self, forCellWithReuseIdentifier: SaleCollectionViewCell.identifier)
+        collectionView.register(SaleCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SaleCollectionReusableView.idintifier)
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundColor = .white
+    }
+    
+    func layoutCollection() -> UICollectionViewFlowLayout {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        layout.sectionHeadersPinToVisibleBounds = true
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 10)
+        
+        return layout
+    }
+    
+    
+    //MARK: - Constraints
+    func setConstraints() {
+        guard let collectionView = collectionView else { return }
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
     
 }
@@ -80,7 +95,7 @@ extension SaleViewController: UICollectionViewDataSource {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SaleCollectionViewCell.identifier, for: indexPath) as! SaleCollectionViewCell
         
-        cell.configure(name: sales[indexPath.row].imageName, title: sales[indexPath.row].title)
+        cell.configure(imageName: sales[indexPath.row].imageName, title: sales[indexPath.row].title)
         return cell
     }
     
@@ -89,7 +104,7 @@ extension SaleViewController: UICollectionViewDataSource {
         
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SaleCollectionReusableView.idintifier, for: indexPath) as! SaleCollectionReusableView
         
-        header.configureTitleLabel()
+        header.configure()
         return header
     }
     
@@ -98,7 +113,7 @@ extension SaleViewController: UICollectionViewDataSource {
 extension SaleViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: 10, height: 35)
+        return CGSize(width: 10, height: 10)
     }
     
 }

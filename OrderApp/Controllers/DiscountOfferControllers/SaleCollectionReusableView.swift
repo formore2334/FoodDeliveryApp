@@ -13,17 +13,24 @@ class SaleCollectionReusableView: UICollectionReusableView {
 
     static let idintifier = "SaleCollectionReusableView"
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        titleLabel.frame = CGRect(x: 0, y: 0, width: 60, height: 40)
-    }
-    
-    func configureTitleLabel() {
-        self.addSubview(titleLabel)
-        titleLabel.text = "Sales"
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 36)
-        titleLabel.adjustsFontSizeToFitWidth = true
+    public func configure() {
+          self.addSubview(titleLabel)
+          titleLabel.text = "Sales"
+          titleLabel.font = UIFont.boldSystemFont(ofSize: 36)
+          titleLabel.adjustsFontSizeToFitWidth = true
 
-    }
+          setConstraints()
+      }
+      
+      //MARK: - Constraints
+      
+     private func setConstraints() {
+          titleLabel.translatesAutoresizingMaskIntoConstraints = false
+          
+          NSLayoutConstraint.activate([
+              titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
+              titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10)
+          ])
+      }
   
 }
