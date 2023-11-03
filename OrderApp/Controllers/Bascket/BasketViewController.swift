@@ -34,10 +34,7 @@ class BasketViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         tableView.frame = view.bounds
     }
-   
     
-
-
     
     func configureTableView() {
         view.addSubview(tableView)
@@ -122,10 +119,7 @@ extension BasketViewController: UITableViewDataSource {
 //MARK: - Sorting bascket
 
 extension BasketViewController {
-    
-    
-    
-    
+
     func sortItemCounts(with menuItems: [MenuItem]) {
         self.itemCounts = [:]
         
@@ -154,6 +148,8 @@ extension BasketViewController {
     
 }
 
+//MARK: - Delegate from Cell
+
 extension BasketViewController: BasketCellDelegate {
     
     func didTapAddButton(_ cell: UITableViewCell) {
@@ -167,7 +163,6 @@ extension BasketViewController: BasketCellDelegate {
     func didTapSubtractButton(_ cell: UITableViewCell) {
         guard let indexPath = tableView.indexPath(for: cell as! BasketCell) else { return }
         
-
         removeItemFromBasket(at: indexPath.row)
         configureNavigationBar()
     }
