@@ -8,7 +8,9 @@
 import UIKit
 
 class PopularCategoriesViewController: UIViewController {
+    
     var coordinator: MainCoordinator?
+    
     private var collectionView: UICollectionView?
 
     private let menu: [Menu] = Menu.mockData

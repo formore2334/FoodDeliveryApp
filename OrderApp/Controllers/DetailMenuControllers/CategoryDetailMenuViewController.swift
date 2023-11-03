@@ -12,7 +12,9 @@ import UIKit
 class CategoryDetailMenuViewController: UIViewController {
 
     var menu: Menu
+    
     var coordinator: MainCoordinator?
+    
     private var titleLabel = UILabel()
     
     private var collectionView: UICollectionView?
