@@ -25,6 +25,14 @@ class BasketCell: UITableViewCell {
     
     //MARK: - Set varibles
     
+    private var priceLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.font = UIFont.boldSystemFont(ofSize: 15)
+        label.adjustsFontSizeToFitWidth = true
+        return label
+    }()
+    
     private var itemImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 70.0 / 2.0
@@ -80,12 +88,14 @@ class BasketCell: UITableViewCell {
    //MARK: - Configurations
     
     public func configureCell(menuItem: MenuItem, itemCounts: Int) {
+        priceLabel.text = "\(menuItem.price)$"
         itemImageView.image = UIImage(named: menuItem.imageName)
         itemTextLabel.text = menuItem.title
         itemCountsLabel.text = "\(itemCounts)"
     }
     
     private func configureContentView() {
+        contentView.addSubview(priceLabel)
         contentView.addSubview(itemImageView)
         contentView.addSubview(itemTextLabel)
         contentView.addSubview(subtractItemButton)
@@ -134,6 +144,7 @@ class BasketCell: UITableViewCell {
     
     /// Set All constraints together
     private func setAllConstraints() {
+        setPriceLabelConstraints()
         setItemImageViewConstraints()
         setItemTextLabelConstraints()
         setSubtractItemButtonConstraints()
@@ -142,6 +153,18 @@ class BasketCell: UITableViewCell {
     }
     
     /// Set constraints to each varible
+    private func setPriceLabelConstraints() {
+        priceLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            priceLabel.heightAnchor.constraint(equalToConstant: 50),
+            priceLabel.widthAnchor.constraint(equalToConstant: 50),
+            
+            priceLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            priceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10)
+        ])
+    }
+    
     private func setItemImageViewConstraints() {
         itemImageView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -150,7 +173,7 @@ class BasketCell: UITableViewCell {
             itemImageView.widthAnchor.constraint(equalToConstant: 70),
             
             itemImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            itemImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10)
+            itemImageView.leadingAnchor.constraint(equalTo: priceLabel.trailingAnchor, constant: 10)
         ])
     }
     
