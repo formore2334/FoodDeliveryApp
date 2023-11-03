@@ -7,18 +7,6 @@
 
 import UIKit
 
-
-//NotificationCenter.default.addObserver(self, selector: #selector(update(_:)), name: Notification.Name("AddToBasket"), object: nil)
-// @objc private func update(_ notification: Notification) {
-//if let menuItem = notification.object as? MenuItem {
-//    updateBasket(with: menuItem)
-//    configureNavigationBar()
-//}
-//}
-
-
-
-
 class BasketViewController: UIViewController {
 
     var coordinator: MainCoordinator?
@@ -60,8 +48,6 @@ class BasketViewController: UIViewController {
         tableView.allowsSelection = false
         tableView.register(BasketCell.self, forCellReuseIdentifier: BasketCell.identifier)
         
-        sortItemCounts()
-        filterUniqueMenuItems()
     }
     
     func configureNavigationBar() {
@@ -79,13 +65,21 @@ class BasketViewController: UIViewController {
 
     }
     
+    
+    
     func updateBasket(with newItem: MenuItem) {
         var updatedMenuItems = basket.menuItems
         updatedMenuItems.append(newItem)
         
         basket = Basket(numberOfItems: basket.numberOfItems, totalSum: basket.totalSum, menuItems: updatedMenuItems)
         print(basket.menuItems.count)
+        
+        sortItemCounts(with: updatedMenuItems)
+        filterUniqueMenuItems(with: updatedMenuItems)
+        
+        tableView.reloadData()
     }
+
     
     func removeItemFromBasket(at index: Int) {
         var updatedMenuItems = basket.menuItems
@@ -106,12 +100,13 @@ extension BasketViewController: UITableViewDataSource {
         return uniqueMenuItems.count
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: BasketCell.identifier, for: indexPath) as! BasketCell
         
         if uniqueMenuItems.count > 0 {
-        let menuItem = uniqueMenuItems[indexPath.row]
-            let itemCounts = itemCounts[menuItem.title] ?? 0
+            let menuItem = uniqueMenuItems[indexPath.row]
+            let itemCounts = self.itemCounts[menuItem.title] ?? 0
             
             cell.delegate = self
             cell.configureCell(menuItem: menuItem, itemCounts: itemCounts)
@@ -128,29 +123,33 @@ extension BasketViewController: UITableViewDataSource {
 
 extension BasketViewController {
     
-    func sortItemCounts() {
-
-        for menuItem in basket.menuItems {
-            if let count = itemCounts[menuItem.title] {
-                itemCounts[menuItem.title] = count + 1
+    
+    
+    
+    func sortItemCounts(with menuItems: [MenuItem]) {
+        self.itemCounts = [:]
+        
+        for menuItem in menuItems {
+            if let count = self.itemCounts[menuItem.title] {
+                self.itemCounts[menuItem.title] = count + 1
             } else {
-                itemCounts[menuItem.title] = 1
+                self.itemCounts[menuItem.title] = 1
             }
         }
-
     }
-    
-    
-    func filterUniqueMenuItems() {
+
+    func filterUniqueMenuItems(with menuItems: [MenuItem]) {
         var uniqueTitles: Set<String> = []
+        var filteredMenuItems: [MenuItem] = []
         
-        for menuItem in basket.menuItems {
+        for menuItem in menuItems {
             if !uniqueTitles.contains(menuItem.title) {
                 uniqueTitles.insert(menuItem.title)
-                uniqueMenuItems.append(menuItem)
+                filteredMenuItems.append(menuItem)
             }
         }
         
+        self.uniqueMenuItems = filteredMenuItems
     }
     
 }
