@@ -77,7 +77,6 @@ class BasketViewController: UIViewController {
     }
     
     
-    
     func configureTableView() {
         view.addSubview(tableView)
         
@@ -90,28 +89,6 @@ class BasketViewController: UIViewController {
         setTableViewConstraints()
     }
     
-    
-    func updateBasket(with newItem: MenuItem) {
-        var updatedMenuItems = basket.menuItems
-        updatedMenuItems.append(newItem)
-        
-        basket = Basket(totalSum: basket.totalSum, menuItems: updatedMenuItems)
-        print(basket.menuItems.count)
-        
-        sortItemCounts(with: updatedMenuItems)
-        filterUniqueMenuItems(with: updatedMenuItems)
-        
-        tableView.reloadData()
-    }
-
-    
-    func removeItemFromBasket(at index: Int) {
-        var updatedMenuItems = basket.menuItems
-        updatedMenuItems.remove(at: index)
-
-        basket = Basket(totalSum: basket.totalSum, menuItems: updatedMenuItems)
-    }
- 
     
     //MARK: - Constraints
     
@@ -180,7 +157,7 @@ extension BasketViewController: UITableViewDataSource {
  
 }
 
-//MARK: - Sorting bascket
+//MARK: - Update & Sorting logic
 
 extension BasketViewController {
 
@@ -208,6 +185,28 @@ extension BasketViewController {
         }
         
         self.uniqueMenuItems = filteredMenuItems
+    }
+    
+    
+    func updateBasket(with newItem: MenuItem) {
+        var updatedMenuItems = basket.menuItems
+        updatedMenuItems.append(newItem)
+        
+        basket = Basket(totalSum: basket.totalSum, menuItems: updatedMenuItems)
+        print(basket.menuItems.count)
+        
+        sortItemCounts(with: updatedMenuItems)
+        filterUniqueMenuItems(with: updatedMenuItems)
+        
+        tableView.reloadData()
+    }
+
+    
+    func removeItemFromBasket(at index: Int) {
+        var updatedMenuItems = basket.menuItems
+        updatedMenuItems.remove(at: index)
+
+        basket = Basket(totalSum: basket.totalSum, menuItems: updatedMenuItems)
     }
     
 }

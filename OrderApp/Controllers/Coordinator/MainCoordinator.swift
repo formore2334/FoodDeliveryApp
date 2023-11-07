@@ -41,6 +41,7 @@ class MainCoordinator: Coordinator {
     func passOrderToBasket(menuItem: MenuItem) {
         if let basketVC = tabBarController.viewControllers?[2] as? BasketViewController {
             basketVC.updateBasket(with: menuItem)
+            basketVC.configureItemCounterLabel()
             print("DEBUG: ", basketVC.basket.menuItems)
         }
     }
