@@ -11,7 +11,7 @@ class BasketViewController: UIViewController {
 
     var coordinator: MainCoordinator?
     
-    var basket: Basket = Basket(numberOfItems: 0, totalSum: 0, menuItems: [])
+    var basket: Basket = Basket(totalSum: 0, menuItems: [])
     
     private var tableView = UITableView()
     
@@ -20,8 +20,6 @@ class BasketViewController: UIViewController {
     private var uniqueMenuItems = [MenuItem]()
     
     private var numberLabel = UILabel()
-    
-    private var numOfItems = 0
     
 
     override func viewDidLoad() {
@@ -68,7 +66,7 @@ class BasketViewController: UIViewController {
         var updatedMenuItems = basket.menuItems
         updatedMenuItems.append(newItem)
         
-        basket = Basket(numberOfItems: basket.numberOfItems, totalSum: basket.totalSum, menuItems: updatedMenuItems)
+        basket = Basket(totalSum: basket.totalSum, menuItems: updatedMenuItems)
         print(basket.menuItems.count)
         
         sortItemCounts(with: updatedMenuItems)
@@ -82,7 +80,7 @@ class BasketViewController: UIViewController {
         var updatedMenuItems = basket.menuItems
         updatedMenuItems.remove(at: index)
 
-        basket = Basket(numberOfItems: basket.numberOfItems, totalSum: basket.totalSum, menuItems: updatedMenuItems)
+        basket = Basket(totalSum: basket.totalSum, menuItems: updatedMenuItems)
     }
  
 }

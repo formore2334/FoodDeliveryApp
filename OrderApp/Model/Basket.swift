@@ -9,13 +9,12 @@ import Foundation
 
 
 struct Basket {
-    let numberOfItems: Int
     let totalSum: Double
     var menuItems: [MenuItem]
 }
 
 extension Basket {
-    static let mockData = Basket(numberOfItems: 3, totalSum: 15.99, menuItems: [
+    static let mockData = Basket(totalSum: 15.99, menuItems: [
         MenuItem(price: 5.99, imageName: "cube", title: "Fries 1", description: ""),
         MenuItem(price: 5.99, imageName: "cube", title: "Fries 1", description: ""),
         MenuItem(price: 5.99, imageName: "cube", title: "Fries 1", description: ""),
