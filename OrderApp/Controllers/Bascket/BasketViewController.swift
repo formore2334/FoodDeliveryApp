@@ -19,19 +19,63 @@ class BasketViewController: UIViewController {
     
     private var uniqueMenuItems = [MenuItem]()
     
-    private var numberLabel = UILabel()
+    private var itemCounterLabel = UILabel()
+    
+    private var titleLabel = UILabel()
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        configureNavigationBar()
+        configureTitleLabel()
+        configureItemCounterLabel()
         configureTableView()
     }
-
-    override func viewDidLayoutSubviews() {
-        tableView.frame = view.bounds
+    
+    
+   //MARK: - Configurations
+    func configureTitleLabel() {
+        view.addSubview(titleLabel)
+        
+        attributedStringTitle()
+        
+        setTitleLabelConstraints()
     }
+
+    // Set attributes for titleLabel (text + image)
+    private func attributedStringTitle() {
+        let attributedText = NSMutableAttributedString(string: "Basket ")
+        
+        let basketImageAttachment = NSTextAttachment()
+        basketImageAttachment.image = UIImage(systemName: "basket")
+        
+        let imageSize = CGSize(width: 35, height: 35)
+        basketImageAttachment.bounds = CGRect(origin: CGPoint(x: 0, y: -3.5), size: imageSize)
+        
+        // Create NSAttributedString with basket image
+        let basketImageString = NSAttributedString(attachment: basketImageAttachment)
+        
+        attributedText.append(basketImageString)
+        
+        // Set attributes for line
+        attributedText.addAttributes([
+            .font: UIFont.boldSystemFont(ofSize: 30),
+            .foregroundColor: UIColor.black
+        ], range: NSRange(location: 0, length: attributedText.length))
+    
+        
+     titleLabel.attributedText = attributedText
+    }
+    
+    func configureItemCounterLabel() {
+        view.addSubview(itemCounterLabel)
+        itemCounterLabel.text = "\(basket.menuItems.count)"
+        itemCounterLabel.font = UIFont.systemFont(ofSize: 37)
+        itemCounterLabel.textColor = .black
+        
+        setItemCounterLabelConstraints()
+    }
+    
     
     
     func configureTableView() {
@@ -43,23 +87,8 @@ class BasketViewController: UIViewController {
         tableView.allowsSelection = false
         tableView.register(BasketCell.self, forCellReuseIdentifier: BasketCell.identifier)
         
+        setTableViewConstraints()
     }
-    
-    func configureNavigationBar() {
-        title = "Bascket"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .always
-        
-        
-        numberLabel.text = "\(basket.menuItems.count)"
-        numberLabel.font = UIFont.systemFont(ofSize: 27)
-        numberLabel.textColor = .black
-        
-        let numberItem = UIBarButtonItem(customView: numberLabel)
-        navigationItem.rightBarButtonItem = numberItem
-
-    }
-    
     
     
     func updateBasket(with newItem: MenuItem) {
@@ -83,6 +112,43 @@ class BasketViewController: UIViewController {
         basket = Basket(totalSum: basket.totalSum, menuItems: updatedMenuItems)
     }
  
+    
+    //MARK: - Constraints
+    
+    // Header constraints
+    func setTitleLabelConstraints() {
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+    }
+    
+    func setItemCounterLabelConstraints() {
+        itemCounterLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            
+            itemCounterLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -30),
+            itemCounterLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
+        ])
+    }
+    
+    
+    // TableView constraints
+    func setTableViewConstraints() {
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            
+            tableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+    }
 }
 
 
@@ -155,14 +221,14 @@ extension BasketViewController: BasketCellDelegate {
         
         let menuItem = basket.menuItems[indexPath.row]
         updateBasket(with: menuItem)
-        configureNavigationBar()
+        configureItemCounterLabel()
     }
     
     func didTapSubtractButton(_ cell: UITableViewCell) {
         guard let indexPath = tableView.indexPath(for: cell as! BasketCell) else { return }
         
         removeItemFromBasket(at: indexPath.row)
-        configureNavigationBar()
+        configureItemCounterLabel()
     }
     
 }
