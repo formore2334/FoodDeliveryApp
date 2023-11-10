@@ -13,12 +13,16 @@ import UIKit
 class DetailInfoViewController: UIViewController {
     
     var menuItem: MenuItem
+    
     var coordinator: MainCoordinator?
-    private var imageView = UIImageView()
     
-    private var titleLabel = UILabel()
+    private var menuItemImageView = UIImageView()
     
-    private var textView = UITextView()
+    private var menuItemTitleLabel = UILabel()
+    
+    private var menuItemDescriptionTextView = UITextView()
+    
+    private var menuItemIngredientsTextLabel = UILabel()
     
     private let addToBasketButton = AddToBascketButton()
 
@@ -35,9 +39,15 @@ class DetailInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.backgroundColor = .white
         configureVC()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.tintColor = .white
+            UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
+    }
     
     // MARK: - Configure DetailInfo VC
     
@@ -53,35 +63,35 @@ class DetailInfoViewController: UIViewController {
     // MARK: - Configure varibles
     
     private func setImageView() {
-        view.addSubview(imageView)
-        imageView.image = UIImage(named: menuItem.imageName)
-        imageView.clipsToBounds = true
-        imageView.contentMode = .scaleAspectFill
-        imageView.layer.masksToBounds = true
-        imageView.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height / 2.2)
+        view.addSubview(menuItemImageView)
+        menuItemImageView.image = UIImage(named: menuItem.imageName)
+        menuItemImageView.clipsToBounds = true
+        menuItemImageView.contentMode = .scaleAspectFill
+        menuItemImageView.layer.masksToBounds = true
+        menuItemImageView.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height / 2.2)
     }
     
     
     private func setTitleLabel() {
-        view.addSubview(titleLabel)
-        titleLabel.text = menuItem.title
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 22)
-        titleLabel.adjustsFontSizeToFitWidth = true
+        view.addSubview(menuItemTitleLabel)
+        menuItemTitleLabel.text = menuItem.title
+        menuItemTitleLabel.font = UIFont.boldSystemFont(ofSize: 22)
+        menuItemTitleLabel.adjustsFontSizeToFitWidth = true
     }
     
     private func setTextView() {
-        view.addSubview(textView)
-        textView.text = menuItem.description
-        textView.textColor = .systemGray
-        textView.isEditable = false
-        textView.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height / 4)
+        view.addSubview(menuItemDescriptionTextView)
+        menuItemDescriptionTextView.text = menuItem.description
+        menuItemDescriptionTextView.textColor = .lightGray
+        menuItemDescriptionTextView.isEditable = false
+        menuItemDescriptionTextView.backgroundColor = .systemGray6
+        menuItemDescriptionTextView.layer.cornerRadius = 10
     }
     
     private func setAddButton() {
         view.addSubview(addToBasketButton)
         addToBasketButton.menuItem = menuItem
         addToBasketButton.coordinator = coordinator
-       
     }
     
     
@@ -94,24 +104,24 @@ class DetailInfoViewController: UIViewController {
     }
     
     private func setTitleLabelConstrains() {
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        menuItemTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 20),
-            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            menuItemTitleLabel.topAnchor.constraint(equalTo: menuItemImageView.bottomAnchor, constant: 20),
+            menuItemTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            menuItemTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
         
     }
     
     private func setTextViewConstrains() {
-        textView.translatesAutoresizingMaskIntoConstraints = false
+        menuItemDescriptionTextView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            textView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 50),
-            textView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            textView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            textView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            menuItemDescriptionTextView.topAnchor.constraint(equalTo: menuItemTitleLabel.bottomAnchor, constant: 20),
+            menuItemDescriptionTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            menuItemDescriptionTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            menuItemDescriptionTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100)
         ])
         
     }
