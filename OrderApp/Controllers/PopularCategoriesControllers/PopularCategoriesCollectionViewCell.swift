@@ -11,15 +11,20 @@ class PopularCategoriesCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "PopularCategoriesCollectionViewCell"
     
-    private let imageView: UIImageView = {
+    private var cellContainer: UIView = {
+        let container = UIView()
+        container.backgroundColor = .lightGray
+        container.layer.cornerRadius = 10
+        return container
+    }()
+
+    
+    private var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
-        imageView.layer.cornerRadius = 130.0 / 2.0
-        imageView.backgroundColor = .white
-        imageView.layer.borderWidth = 2
-        imageView.layer.borderColor = UIColor(named: "redOrange")?.cgColor
+        imageView.layer.cornerRadius = 10
         return imageView
     }()
     
@@ -39,45 +44,43 @@ class PopularCategoriesCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        imageView.image = nil
-        titleLabel.text = nil
-    }
-    
-    //MARK: - Configure DetailMenuView
-    
-   private func configureCell() {
-        contentView.addSubview(imageView)
-        contentView.addSubview(titleLabel)
+    private func configureCell() {
+        contentView.addSubview(cellContainer)
+         contentView.addSubview(imageView)
+         contentView.addSubview(titleLabel)
         
-       setConstraints()
-    }
-    
-    public func configure(imageName: String, title: String) {
-        imageView.image = UIImage(named: imageName)
-        titleLabel.text = title
-    }
-    
-    //MARK: - Constraints
-    
-   private func setConstraints() {
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        
+        setConstraints()
+     }
+     
+     public func configure(imageName: String, title: String) {
+         imageView.image = UIImage(named: imageName)
+         titleLabel.text = title
+         
+     }
+     
+     //MARK: - Constraints
+     
+    private func setConstraints() {
+        cellContainer.translatesAutoresizingMaskIntoConstraints = false
+         imageView.translatesAutoresizingMaskIntoConstraints = false
+         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+         
         NSLayoutConstraint.activate([
-            imageView.heightAnchor.constraint(equalToConstant: 130),
-            imageView.widthAnchor.constraint(equalToConstant: 130),
-            
-            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            
-            titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-        ])
-    }
+            cellContainer.topAnchor.constraint(equalTo: contentView.topAnchor),
+            cellContainer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            cellContainer.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            cellContainer.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+                
+                imageView.centerYAnchor.constraint(equalTo: cellContainer.centerYAnchor),
+                imageView.leadingAnchor.constraint(equalTo: cellContainer.leadingAnchor, constant: 10),
+                imageView.heightAnchor.constraint(equalTo: cellContainer.heightAnchor, multiplier: 0.7),
+                imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor),
+                
+                titleLabel.centerYAnchor.constraint(equalTo: cellContainer.centerYAnchor),
+                titleLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
+                titleLabel.trailingAnchor.constraint(equalTo: cellContainer.trailingAnchor, constant: -10)
+            ])
+
+     }
     
 }
