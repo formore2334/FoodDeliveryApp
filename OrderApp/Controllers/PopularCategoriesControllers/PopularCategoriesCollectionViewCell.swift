@@ -13,7 +13,7 @@ class PopularCategoriesCollectionViewCell: UICollectionViewCell {
     
     private var cellContainer: UIView = {
         let container = UIView()
-        container.backgroundColor = .lightGray
+        container.backgroundColor = .systemGray5
         container.layer.cornerRadius = 10
         return container
     }()
