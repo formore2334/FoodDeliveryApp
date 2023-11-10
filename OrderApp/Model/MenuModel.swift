@@ -59,12 +59,12 @@ extension Menu {
             MenuItem(price: 5.99, imageName: "cube", title: "Souse 4", description: "Good Choise to.."),
             MenuItem(price: 1.99, imageName: "cube", title: "Souse 5", description: "Good Choise to..")
             ]),
-        Menu(imageName: "cube", title: "Chicken", description: "Nice food", menuItem: [
-            MenuItem(price: 8.99, imageName: "cube", title: "Chicken 1", description: "Good Choise to.."),
-            MenuItem(price: 15.99, imageName: "cube", title: "Chicken 2", description: "Good Choise to.."),
-            MenuItem(price: 11.99, imageName: "cube", title: "Chicken 3", description: "Good Choise to.."),
-            MenuItem(price: 13.99, imageName: "cube", title: "Chicken 4", description: "Good Choise to.."),
-            MenuItem(price: 19.99, imageName: "cube", title: "Chicken 5", description: "Good Choise to..")
-            ])
+//        Menu(imageName: "cube", title: "Chicken", description: "Nice food", menuItem: [
+//            MenuItem(price: 8.99, imageName: "cube", title: "Chicken 1", description: "Good Choise to.."),
+//            MenuItem(price: 15.99, imageName: "cube", title: "Chicken 2", description: "Good Choise to.."),
+//            MenuItem(price: 11.99, imageName: "cube", title: "Chicken 3", description: "Good Choise to.."),
+//            MenuItem(price: 13.99, imageName: "cube", title: "Chicken 4", description: "Good Choise to.."),
+//            MenuItem(price: 19.99, imageName: "cube", title: "Chicken 5", description: "Good Choise to..")
+//            ])
     ]
 }
