@@ -11,105 +11,112 @@ class HomeViewController: UIViewController {
     
     var coordinator: MainCoordinator?
     
-    var titleLabel = UILabel()
-    var stackView = UIStackView()
-    var scrollView = UIScrollView()
+    private var scrollView = UIScrollView()
+    
+    private var popularCategoriesStackView = UIStackView()
+    
+    private var salesCategoriesStackView = UIStackView()
+    
+    private let logoImageView = UIImageView()
+    
+    private let logoContainer = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureTitleLabel()
+        configureLogoImage()
         configureScrollView()
-        
     }
+    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        scrollView.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height * 2)
         
-        scrollView.contentSize = stackView.bounds.size
+        popularCategoriesStackView.frame = CGRect(x: 0, y: 20, width: view.bounds.width, height: 200)
+        popularCategoriesStackView.axis = .horizontal
+        
+        salesCategoriesStackView.frame = CGRect(x: 0, y: 270, width: view.bounds.width, height: 250)
+        salesCategoriesStackView.axis = .horizontal
     }
-
     
-    //MARK: - ScrollView
+    // MARK: - Configurations
+    
+    
+    func configureLogoImage() {
+        logoImageView.image = UIImage(named: "logoWelms")
+        logoImageView.contentMode = .scaleAspectFit
+        logoImageView.clipsToBounds = true
+        logoImageView.layer.masksToBounds = true
+        logoImageView.backgroundColor = .systemGray6
+        
+        view.addSubview(logoContainer)
+        logoContainer.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height / 7)
+        logoContainer.backgroundColor = .systemGray6
+        logoContainer.addSubview(logoImageView)
+        
+        setLogoImageConstraints()
+    }
+    
     
     func configureScrollView() {
         view.addSubview(scrollView)
         
-        configureStackView()
+        scrollView.addSubview(popularCategoriesStackView)
+        scrollView.addSubview(salesCategoriesStackView)
         
-        scrollView.addSubview(stackView)
+        addPopularCategoriesToStackView()
+        addSalesToStackView()
         
         setScrollViewConstraints()
-        setStackViewConstraints()
     }
     
+    //MARK: - Adding collections to stackView
     
-    //MARK: - StackView
-    
-    func configureStackView() {
-        stackView.axis = .vertical
-        stackView.distribution = .fillEqually
-        stackView.spacing = 20
-        
-        addCollectionsToStackView()
-    }
-    
-    func addCollectionsToStackView() {
+    func addPopularCategoriesToStackView() {
         let popularCategoriesVC = PopularCategoriesViewController(coordinator: coordinator)
-        let saleVC = SaleViewController()
         
         addChild(popularCategoriesVC)
-        addChild(saleVC)
         
-        stackView.addArrangedSubview(popularCategoriesVC.view)
-        stackView.addArrangedSubview(saleVC.view)
+        popularCategoriesStackView.addArrangedSubview(popularCategoriesVC.view)
         
         popularCategoriesVC.didMove(toParent: self)
-        saleVC.didMove(toParent: self)
     }
     
-    
-    //MARK: - Title
-    
-    func configureTitleLabel() {
+    func addSalesToStackView() {
+        let salesVC = SaleViewController(coordinator: coordinator)
         
-        view.addSubview(titleLabel)
-        titleLabel.text = "Welm's"
-        titleLabel.textColor = .white
-        titleLabel.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 90)
-        titleLabel.backgroundColor = UIColor(named: "redOrange")
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 25)
-        titleLabel.textAlignment = .center
-        titleLabel.numberOfLines = 0
-        titleLabel.adjustsFontSizeToFitWidth = true
-    
+        addChild(salesVC)
+        
+        salesCategoriesStackView.addArrangedSubview(salesVC.view)
+        
+        salesVC.didMove(toParent: self)
     }
-    
     
     // MARK: - Constraints
     
-    func setTitleLabelConstraints() {
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
-        titleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
-        titleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
+    func setLogoImageConstraints() {
+        logoImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            logoImageView.heightAnchor.constraint(equalToConstant: 60),
+            logoImageView.widthAnchor.constraint(equalToConstant: 200),
+            
+            logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -40),
+            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
     }
     
     func setScrollViewConstraints() {
-            scrollView.translatesAutoresizingMaskIntoConstraints = false
-            scrollView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        }
-
-    
-    func setStackViewConstraints() {
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30).isActive = true
-        stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30).isActive = true
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            
+            scrollView.topAnchor.constraint(equalTo: logoContainer.bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
     
 }
