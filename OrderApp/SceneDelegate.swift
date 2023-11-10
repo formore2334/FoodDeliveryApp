@@ -22,6 +22,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navController = UINavigationController()
         coordinator = MainCoordinator(navigationController: navController)
         coordinator?.start()
+        
+        let vc = SaleViewController()
+        let navVC = UINavigationController(rootViewController: vc)
 
         window.rootViewController = navController
         window.backgroundColor = .white
