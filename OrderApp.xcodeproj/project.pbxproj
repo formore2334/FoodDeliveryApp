@@ -19,7 +19,7 @@
 		454FBF332AD949F5001E75EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 454FBF322AD949F5001E75EB /* Assets.xcassets */; };
 		454FBF362AD949F5001E75EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 454FBF342AD949F5001E75EB /* LaunchScreen.storyboard */; };
 		454FBF3E2AD95132001E75EB /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454FBF3D2AD95132001E75EB /* Menu.swift */; };
-		455A7A542AE7B80900EE1844 /* AddToBascketButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A7A532AE7B80800EE1844 /* AddToBascketButton.swift */; };
+		455A7A542AE7B80900EE1844 /* AddToBasketButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A7A532AE7B80800EE1844 /* AddToBasketButton.swift */; };
 		455A7A562AE7DD4100EE1844 /* Basket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A7A552AE7DD4100EE1844 /* Basket.swift */; };
 		455A7A582AE7DF1E00EE1844 /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A7A572AE7DF1D00EE1844 /* BasketViewController.swift */; };
 		455A7A5A2AE7E71F00EE1844 /* BasketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A7A592AE7E71F00EE1844 /* BasketCell.swift */; };
@@ -50,7 +50,7 @@
 		454FBF352AD949F5001E75EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		454FBF372AD949F5001E75EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		454FBF3D2AD95132001E75EB /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
-		455A7A532AE7B80800EE1844 /* AddToBascketButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToBascketButton.swift; sourceTree = "<group>"; };
+		455A7A532AE7B80800EE1844 /* AddToBasketButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToBasketButton.swift; sourceTree = "<group>"; };
 		455A7A552AE7DD4100EE1844 /* Basket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Basket.swift; sourceTree = "<group>"; };
 		455A7A572AE7DF1D00EE1844 /* BasketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewController.swift; sourceTree = "<group>"; };
 		455A7A592AE7E71F00EE1844 /* BasketCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketCell.swift; sourceTree = "<group>"; };
@@ -144,19 +144,19 @@
 				455E90382AF3C0CA002DB5E3 /* Coordinator */,
 				455FE4C92B0202A000506E9C /* Home */,
 				455FE4CA2B0202E800506E9C /* Menu */,
-				455A7A522AE7B7AB00EE1844 /* Bascket */,
+				455A7A522AE7B7AB00EE1844 /* Basket */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		455A7A522AE7B7AB00EE1844 /* Bascket */ = {
+		455A7A522AE7B7AB00EE1844 /* Basket */ = {
 			isa = PBXGroup;
 			children = (
-				455A7A532AE7B80800EE1844 /* AddToBascketButton.swift */,
+				455A7A532AE7B80800EE1844 /* AddToBasketButton.swift */,
 				455A7A572AE7DF1D00EE1844 /* BasketViewController.swift */,
 				455A7A592AE7E71F00EE1844 /* BasketCell.swift */,
 			);
-			path = Bascket;
+			path = Basket;
 			sourceTree = "<group>";
 		};
 		455A7A5D2AE7F06200EE1844 /* Extensions */ = {
@@ -305,7 +305,7 @@
 				455A7A5C2AE7F04700EE1844 /* UIView+Extansions.swift in Sources */,
 				455FE4CC2B02053E00506E9C /* MenuCell.swift in Sources */,
 				455E903A2AF3C0DF002DB5E3 /* Coordinator.swift in Sources */,
-				455A7A542AE7B80900EE1844 /* AddToBascketButton.swift in Sources */,
+				455A7A542AE7B80900EE1844 /* AddToBasketButton.swift in Sources */,
 				455A7A582AE7DF1E00EE1844 /* BasketViewController.swift in Sources */,
 				453F50892ADD6D8E00D9DCF9 /* SaleCollectionViewCell.swift in Sources */,
 				45DEED602ADFC6FC00CB6439 /* DetailInfoViewController.swift in Sources */,

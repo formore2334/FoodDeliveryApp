@@ -17,7 +17,7 @@ class DetailSaleViewController: UIViewController {
     
     private var saleDescriptionTextView = UITextView()
     
-    private let addToBasketButton = AddToBascketButton()
+    private let addToBasketButton = AddToBasketButton()
 
     init(sale: Sale, coordinator: MainCoordinator? = nil) {
         self.sale = sale

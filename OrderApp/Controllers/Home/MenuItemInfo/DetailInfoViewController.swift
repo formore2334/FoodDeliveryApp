@@ -24,7 +24,7 @@ class DetailInfoViewController: UIViewController {
     
     private var menuItemIngredientsTextLabel = UILabel()
     
-    private let addToBasketButton = AddToBascketButton()
+    private let addToBasketButton = AddToBasketButton()
 
     init(menuItem: MenuItem, coordinator: MainCoordinator? = nil) {
         self.menuItem = menuItem

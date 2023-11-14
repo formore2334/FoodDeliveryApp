@@ -9,7 +9,7 @@ import UIKit
 // NotificationCenter.default.post(name: Notification.Name("AddToBasket"), object: menuItem)
 
 
-class AddToBascketButton: UIView {
+class AddToBasketButton: UIView {
     
     var coordinator: MainCoordinator?
     
