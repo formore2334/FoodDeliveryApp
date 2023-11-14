@@ -27,10 +27,8 @@ class MainCoordinator: Coordinator {
         basketVC.coordinator = self
         
         tabBarController.viewControllers = [homeVC, menuVC, basketVC]
-        
-        tabBarController.tabBar.backgroundImage = UIImage()
-        tabBarController.tabBar.shadowImage = UIImage()
         tabBarController.tabBar.tintColor = .black
+        
         homeVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 0)
         menuVC.tabBarItem = UITabBarItem(title: "Menu", image: UIImage(systemName: "fork.knife"), tag: 1)
         basketVC.tabBarItem = UITabBarItem(title: "Basket", image: UIImage(systemName: "basket"), tag: 2)
