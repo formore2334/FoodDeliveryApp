@@ -32,6 +32,11 @@ class BasketViewController: UIViewController {
         configureTableView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     
    //MARK: - Configurations
     func configureTitleLabel() {
@@ -192,21 +197,29 @@ extension BasketViewController {
         var updatedMenuItems = basket.menuItems
         updatedMenuItems.append(newItem)
         
-        basket = Basket(totalSum: basket.totalSum, menuItems: updatedMenuItems)
-        print(basket.menuItems.count)
-        
         sortItemCounts(with: updatedMenuItems)
         filterUniqueMenuItems(with: updatedMenuItems)
         
-        tableView.reloadData()
+        basket = Basket(totalSum: basket.totalSum, menuItems: updatedMenuItems)
+        print(basket.menuItems.count)
+        print("DEBUG basketVC add: ", basket.menuItems)
+
     }
 
     
     func removeItemFromBasket(at index: Int) {
+        guard index >= 0 && index < basket.menuItems.count else { return }
+        
         var updatedMenuItems = basket.menuItems
         updatedMenuItems.remove(at: index)
+        
+        sortItemCounts(with: updatedMenuItems)
+        filterUniqueMenuItems(with: updatedMenuItems)
 
         basket = Basket(totalSum: basket.totalSum, menuItems: updatedMenuItems)
+        print(basket.menuItems.count)
+        print("DEBUG basketVC remove: ", basket.menuItems)
+        
     }
     
 }
