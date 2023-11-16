@@ -27,7 +27,11 @@
 		455E903A2AF3C0DF002DB5E3 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455E90392AF3C0DF002DB5E3 /* Coordinator.swift */; };
 		455E903C2AF3C0F3002DB5E3 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455E903B2AF3C0F3002DB5E3 /* MainCoordinator.swift */; };
 		455FE4CC2B02053E00506E9C /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455FE4CB2B02053D00506E9C /* MenuCell.swift */; };
+		4562CBE62B04C2B0007F6A4D /* CheckoutListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4562CBE52B04C2B0007F6A4D /* CheckoutListViewController.swift */; };
 		456745582AED46AC0090CB09 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456745572AED46AC0090CB09 /* MenuViewController.swift */; };
+		457847FA2B064016009B14CA /* CheckoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457847F92B064016009B14CA /* CheckoutButton.swift */; };
+		457847FC2B066543009B14CA /* CheckoutListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457847FB2B066543009B14CA /* CheckoutListCell.swift */; };
+		457847FE2B066597009B14CA /* CheckoutList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457847FD2B066596009B14CA /* CheckoutList.swift */; };
 		45915F022B03651E0032D4BB /* MenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45915F012B03651E0032D4BB /* MenuHeaderView.swift */; };
 		45DEED602ADFC6FC00CB6439 /* DetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEED5F2ADFC6FC00CB6439 /* DetailInfoViewController.swift */; };
 		45DEED622ADFD9CB00CB6439 /* Sales.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEED612ADFD9CA00CB6439 /* Sales.swift */; };
@@ -58,7 +62,11 @@
 		455E90392AF3C0DF002DB5E3 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		455E903B2AF3C0F3002DB5E3 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		455FE4CB2B02053D00506E9C /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
+		4562CBE52B04C2B0007F6A4D /* CheckoutListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutListViewController.swift; sourceTree = "<group>"; };
 		456745572AED46AC0090CB09 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		457847F92B064016009B14CA /* CheckoutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutButton.swift; sourceTree = "<group>"; };
+		457847FB2B066543009B14CA /* CheckoutListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutListCell.swift; sourceTree = "<group>"; };
+		457847FD2B066596009B14CA /* CheckoutList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutList.swift; sourceTree = "<group>"; };
 		45915F012B03651E0032D4BB /* MenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHeaderView.swift; sourceTree = "<group>"; };
 		45DEED5F2ADFC6FC00CB6439 /* DetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoViewController.swift; sourceTree = "<group>"; };
 		45DEED612ADFD9CA00CB6439 /* Sales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sales.swift; sourceTree = "<group>"; };
@@ -134,6 +142,7 @@
 				454FBF3D2AD95132001E75EB /* Menu.swift */,
 				45DEED612ADFD9CA00CB6439 /* Sales.swift */,
 				455A7A552AE7DD4100EE1844 /* Basket.swift */,
+				457847FD2B066596009B14CA /* CheckoutList.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -145,6 +154,7 @@
 				455FE4C92B0202A000506E9C /* Home */,
 				455FE4CA2B0202E800506E9C /* Menu */,
 				455A7A522AE7B7AB00EE1844 /* Basket */,
+				4562CBE42B04C27D007F6A4D /* CheckoutList */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -196,6 +206,16 @@
 				45915F012B03651E0032D4BB /* MenuHeaderView.swift */,
 			);
 			path = Menu;
+			sourceTree = "<group>";
+		};
+		4562CBE42B04C27D007F6A4D /* CheckoutList */ = {
+			isa = PBXGroup;
+			children = (
+				457847F92B064016009B14CA /* CheckoutButton.swift */,
+				4562CBE52B04C2B0007F6A4D /* CheckoutListViewController.swift */,
+				457847FB2B066543009B14CA /* CheckoutListCell.swift */,
+			);
+			path = CheckoutList;
 			sourceTree = "<group>";
 		};
 		45DEED5E2ADFC62700CB6439 /* MenuItemInfo */ = {
@@ -287,18 +307,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				455E903C2AF3C0F3002DB5E3 /* MainCoordinator.swift in Sources */,
+				457847FE2B066597009B14CA /* CheckoutList.swift in Sources */,
 				454FBF3E2AD95132001E75EB /* Menu.swift in Sources */,
 				4546A5222AD9A67A00A850A8 /* PopularCategoriesCollectionViewCell.swift in Sources */,
 				455A7A5A2AE7E71F00EE1844 /* BasketCell.swift in Sources */,
+				457847FA2B064016009B14CA /* CheckoutButton.swift in Sources */,
 				455A7A562AE7DD4100EE1844 /* Basket.swift in Sources */,
 				45FF89292ADEC532006FE6EC /* DetailMenuCollectionViewCell.swift in Sources */,
 				453F508D2ADD7B8D00D9DCF9 /* HomeViewController.swift in Sources */,
 				45DEED622ADFD9CB00CB6439 /* Sales.swift in Sources */,
+				4562CBE62B04C2B0007F6A4D /* CheckoutListViewController.swift in Sources */,
 				453F50872ADD6D3F00D9DCF9 /* SaleViewController.swift in Sources */,
 				4546A5202AD9A38F00A850A8 /* PopularCategoriesViewController.swift in Sources */,
 				454FBF2A2AD949E9001E75EB /* AppDelegate.swift in Sources */,
 				45915F022B03651E0032D4BB /* MenuHeaderView.swift in Sources */,
 				453F50832ADD40ED00D9DCF9 /* CategoryDetailMenuViewController.swift in Sources */,
+				457847FC2B066543009B14CA /* CheckoutListCell.swift in Sources */,
 				456745582AED46AC0090CB09 /* MenuViewController.swift in Sources */,
 				454FBF2C2AD949E9001E75EB /* SceneDelegate.swift in Sources */,
 				45DEED642AE00C0E00CB6439 /* DetailSaleViewController.swift in Sources */,

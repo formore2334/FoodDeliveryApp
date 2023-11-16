@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         coordinator = MainCoordinator(navigationController: navController)
         coordinator?.start()
         
-        let vc = MenuViewController()
+        let vc = HomeViewController()
         let navVC = UINavigationController(rootViewController: vc)
 
         window.rootViewController = navController
