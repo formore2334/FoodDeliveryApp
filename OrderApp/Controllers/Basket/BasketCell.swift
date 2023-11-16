@@ -38,6 +38,8 @@ class BasketCell: UITableViewCell {
         imageView.layer.cornerRadius = 70.0 / 2.0
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
+        imageView.layer.borderWidth = 0.5
+        imageView.layer.borderColor = UIColor.black.cgColor
         return imageView
     }()
     
