@@ -11,17 +11,15 @@ class BasketViewController: UIViewController {
 
     var coordinator: MainCoordinator?
     
-    var basket: Basket = Basket(totalSum: 0, menuItems: [])
+    var basket: Basket = Basket(basketItems: [])
     
     private var tableView = UITableView()
-    
-    private var itemCounts: [String: Int] = [:]
-    
-    private var uniqueMenuItems = [MenuItem]()
     
     private var itemCounterLabel = UILabel()
     
     private var titleLabel = UILabel()
+    
+    private var checkoutButton = CheckoutButton()
     
 
     override func viewDidLoad() {
@@ -30,15 +28,12 @@ class BasketViewController: UIViewController {
         configureTitleLabel()
         configureItemCounterLabel()
         configureTableView()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        tableView.reloadData()
+        setCheckoutButton()
     }
     
     
    //MARK: - Configurations
+    
     func configureTitleLabel() {
         view.addSubview(titleLabel)
         
@@ -46,7 +41,36 @@ class BasketViewController: UIViewController {
         
         setTitleLabelConstraints()
     }
-
+    
+    func configureItemCounterLabel() {
+        view.addSubview(itemCounterLabel)
+        itemCounterLabel.text = "\(basket.totalCount)"
+        itemCounterLabel.font = UIFont.systemFont(ofSize: 37)
+        itemCounterLabel.textColor = .black
+        
+        setItemCounterLabelConstraints()
+    }
+    
+    
+    func configureTableView() {
+        view.addSubview(tableView)
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.rowHeight = 80
+        tableView.allowsSelection = false
+        tableView.register(BasketCell.self, forCellReuseIdentifier: BasketCell.identifier)
+        
+        setTableViewConstraints()
+    }
+    
+    func setCheckoutButton() {
+        view.addSubview(checkoutButton)
+        checkoutButton.basket = basket
+        
+        setCheckoutButtonConstraints()
+    }
+    
     // Set attributes for titleLabel (text + image)
     private func attributedStringTitle() {
         let attributedText = NSMutableAttributedString(string: "Basket ")
@@ -68,30 +92,7 @@ class BasketViewController: UIViewController {
             .foregroundColor: UIColor.black
         ], range: NSRange(location: 0, length: attributedText.length))
     
-        
      titleLabel.attributedText = attributedText
-    }
-    
-    func configureItemCounterLabel() {
-        view.addSubview(itemCounterLabel)
-        itemCounterLabel.text = "\(basket.menuItems.count)"
-        itemCounterLabel.font = UIFont.systemFont(ofSize: 37)
-        itemCounterLabel.textColor = .black
-        
-        setItemCounterLabelConstraints()
-    }
-    
-    
-    func configureTableView() {
-        view.addSubview(tableView)
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.rowHeight = 80
-        tableView.allowsSelection = false
-        tableView.register(BasketCell.self, forCellReuseIdentifier: BasketCell.identifier)
-        
-        setTableViewConstraints()
     }
     
     
@@ -131,116 +132,119 @@ class BasketViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
+    
+    // Checkout button constraints
+    private func setCheckoutButtonConstraints() {
+        checkoutButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            checkoutButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            checkoutButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            checkoutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30)
+        ])
+    }
+    
 }
 
+//MARK: - Data Source
 
 extension BasketViewController: UITableViewDelegate {
     
 }
 
 extension BasketViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return uniqueMenuItems.count
+        return basket.basketItems.count
     }
-    
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: BasketCell.identifier, for: indexPath) as! BasketCell
+        let basketItem = basket.basketItems[indexPath.row]
         
-        if uniqueMenuItems.count > 0 {
-            let menuItem = uniqueMenuItems[indexPath.row]
-            let itemCounts = self.itemCounts[menuItem.title] ?? 0
-            
-            cell.delegate = self
-            cell.configureCell(menuItem: menuItem, itemCounts: itemCounts)
-        } else {
-            return UITableViewCell()
-        }
+        cell.configureCell(menuItem: basketItem.menuItem, itemCounts: basketItem.count)
+        cell.delegate = self
         
         return cell
     }
- 
+
 }
 
 //MARK: - Update & Sorting logic
 
 extension BasketViewController {
-
-    func sortItemCounts(with menuItems: [MenuItem]) {
-        self.itemCounts = [:]
+    
+    func addItemToBasket(menuItem: MenuItem) {
+        if let existingBasketItemIndex = basket.basketItems.firstIndex(where: { $0.menuItem == menuItem }) {
+            var basketItem = basket.basketItems[existingBasketItemIndex]
+            basketItem.count += 1
+            basket.basketItems[existingBasketItemIndex] = basketItem
+        } else {
+            let newBasketItem = BasketItem(menuItem: menuItem, count: 1)
+            basket.basketItems.append(newBasketItem)
+        }
         
-        for menuItem in menuItems {
-            if let count = self.itemCounts[menuItem.title] {
-                self.itemCounts[menuItem.title] = count + 1
+        updateData()
+    }
+
+    func removeItemFromBasket(menuItem: MenuItem) {
+        if let existingBasketItemIndex = basket.basketItems.firstIndex(where: { $0.menuItem == menuItem }) {
+            var basketItem = basket.basketItems[existingBasketItemIndex]
+            basketItem.count -= 1
+            if basketItem.count == 0 {
+                basket.basketItems.remove(at: existingBasketItemIndex)
             } else {
-                self.itemCounts[menuItem.title] = 1
-            }
-        }
-    }
-
-    func filterUniqueMenuItems(with menuItems: [MenuItem]) {
-        var uniqueTitles: Set<String> = []
-        var filteredMenuItems: [MenuItem] = []
-        
-        for menuItem in menuItems {
-            if !uniqueTitles.contains(menuItem.title) {
-                uniqueTitles.insert(menuItem.title)
-                filteredMenuItems.append(menuItem)
+                basket.basketItems[existingBasketItemIndex] = basketItem
             }
         }
         
-        self.uniqueMenuItems = filteredMenuItems
-    }
-    
-    
-    func updateBasket(with newItem: MenuItem) {
-        var updatedMenuItems = basket.menuItems
-        updatedMenuItems.append(newItem)
-        
-        sortItemCounts(with: updatedMenuItems)
-        filterUniqueMenuItems(with: updatedMenuItems)
-        
-        basket = Basket(totalSum: basket.totalSum, menuItems: updatedMenuItems)
-        print(basket.menuItems.count)
-        print("DEBUG basketVC add: ", basket.menuItems)
-
+        updateData()
     }
 
-    
-    func removeItemFromBasket(at index: Int) {
-        guard index >= 0 && index < basket.menuItems.count else { return }
+    private func incrementItemCount(at index: Int) {
+        var basketItem = basket.basketItems[index]
+        basketItem.count += 1
+        basket.basketItems[index] = basketItem
         
-        var updatedMenuItems = basket.menuItems
-        updatedMenuItems.remove(at: index)
-        
-        sortItemCounts(with: updatedMenuItems)
-        filterUniqueMenuItems(with: updatedMenuItems)
+        updateData()
+    }
 
-        basket = Basket(totalSum: basket.totalSum, menuItems: updatedMenuItems)
-        print(basket.menuItems.count)
-        print("DEBUG basketVC remove: ", basket.menuItems)
-        
+    private func decrementItemCount(at index: Int) {
+        var basketItem = basket.basketItems[index]
+        basketItem.count -= 1
+        if basketItem.count == 0 {
+            basket.basketItems.remove(at: index)
+        } else {
+            basket.basketItems[index] = basketItem
+        }
+     
+        updateData()
+    }
+    
+    private func updateData() {
+        setCheckoutButton()
+        configureItemCounterLabel()
+        tableView.reloadData()
     }
     
 }
 
-//MARK: - Delegate from Cell
+//MARK: - Delegate
 
 extension BasketViewController: BasketCellDelegate {
     
     func didTapAddButton(_ cell: UITableViewCell) {
         guard let indexPath = tableView.indexPath(for: cell as! BasketCell) else { return }
         
-        let menuItem = basket.menuItems[indexPath.row]
-        updateBasket(with: menuItem)
-        configureItemCounterLabel()
+        let index = indexPath.row
+        incrementItemCount(at: index)
     }
     
     func didTapSubtractButton(_ cell: UITableViewCell) {
         guard let indexPath = tableView.indexPath(for: cell as! BasketCell) else { return }
         
-        removeItemFromBasket(at: indexPath.row)
-        configureItemCounterLabel()
+        let index = indexPath.row
+        decrementItemCount(at: index)
     }
     
 }

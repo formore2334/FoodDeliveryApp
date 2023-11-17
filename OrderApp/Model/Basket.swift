@@ -8,20 +8,35 @@
 import Foundation
 
 
+struct BasketItem {
+    let menuItem: MenuItem
+    var count: Int
+}
+
 struct Basket {
-    let totalSum: Double
-    let menuItems: [MenuItem]
+    
+    var basketItems: [BasketItem] {
+        didSet {
+            print("DEBUG: ", basketItems.count)
+            print("DEBUG: ", basketItems)
+        }
+    }
+    
+    var totalCount: Int {
+        return basketItems.reduce(0) { $0 + $1.count }
+    }
+    
+    var totalSum: Double {
+        let sum = basketItems.reduce(0) { $0 + ($1.menuItem.price * Double($1.count)) }
+        return Double(String(format: "%.2f", sum)) ?? 0.0
+    }
+    
 }
 
 extension Basket {
-    static let mockData = Basket(totalSum: 0.0, menuItems: [
-        MenuItem(price: 5.99, imageName: "cube", title: "Fries 1", description: ""),
-        MenuItem(price: 5.99, imageName: "cube", title: "Fries 1", description: ""),
-        MenuItem(price: 5.99, imageName: "cube", title: "Fries 1", description: ""),
-        MenuItem(price: 5.99, imageName: "cube", title: "Fries 1", description: ""),
-        MenuItem(price: 16.99, imageName: "cube", title: "Combo 2", description: ""),
-        MenuItem(price: 16.99, imageName: "cube", title: "Combo 2", description: ""),
-        MenuItem(price: 3.99, imageName: "cube", title: "Drink 1", description: ""),
-        MenuItem(price: 3.99, imageName: "cube", title: "Drink 1", description: "")
+    static let mockData = Basket(basketItems: [
+        BasketItem(menuItem: MenuItem(price: 5.99, imageName: "cube", title: "Fries 1", description: ""), count: 2),
+        BasketItem(menuItem: MenuItem(price: 16.99, imageName: "cube", title: "Combo 2", description: ""), count: 1),
+        BasketItem(menuItem: MenuItem(price: 3.99, imageName: "cube", title: "Drink 1", description: ""), count: 2)
     ])
 }
