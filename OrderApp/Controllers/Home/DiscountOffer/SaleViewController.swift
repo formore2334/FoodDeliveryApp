@@ -79,7 +79,7 @@ extension SaleViewController {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SaleCollectionViewCell.identifier, for: indexPath) as! SaleCollectionViewCell
         
-        cell.configure(imageName: sales[indexPath.row].imageName, title: sales[indexPath.row].title)
+        cell.configure(imageName: sales[indexPath.row].previewImageName, title: sales[indexPath.row].title)
         return cell
     }
     

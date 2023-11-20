@@ -54,7 +54,7 @@ class DetailSaleViewController: UIViewController {
     }
     
     func setBackgroundImage() {
-        let backgroundImageView = UIImageView(image: UIImage(named: sale.imageName))
+        let backgroundImageView = UIImageView(image: UIImage(named: sale.backgroundImageName))
         backgroundImageView.contentMode = .scaleAspectFill
         backgroundImageView.clipsToBounds = true
         backgroundImageView.layer.opacity = 0.5
