@@ -26,11 +26,12 @@ class CheckoutListViewController: UIViewController {
     
     let totalSumLabel: UILabel = {
         let label = UILabel()
-        label.text = "75.07$"
         label.font = UIFont.systemFont(ofSize: 25)
         label.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         return label
     }()
+    
+    let payButton = PayButton()
     
     
     init(basket: Basket) {
@@ -47,6 +48,13 @@ class CheckoutListViewController: UIViewController {
         
         configureVC()
         configureTotalInfo()
+        setPayButton()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.tintColor = .black
+            UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
     }
     
     private func configureVC() {
@@ -71,8 +79,18 @@ class CheckoutListViewController: UIViewController {
         setTotalInfoConstraints()
     }
     
+    private func setPayButton() {
+        view.addSubview(payButton)
+        
+        payButton.basket = basket
+        
+        setPayButtonConstraints()
+    }
+    
     // MARK: - Constraints
     
+    
+    //Table view constraints
     func setConstraints() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -84,6 +102,7 @@ class CheckoutListViewController: UIViewController {
         ])
     }
     
+    //Total info constraints
     func setTotalInfoConstraints() {
         totalTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         totalSumLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -96,6 +115,18 @@ class CheckoutListViewController: UIViewController {
             totalSumLabel.heightAnchor.constraint(equalToConstant: 50),
             totalSumLabel.topAnchor.constraint(equalTo: tableView.bottomAnchor),
             totalSumLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
+        ])
+    }
+    
+    // Pay button constraints
+    private func setPayButtonConstraints() {
+        payButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            payButton.heightAnchor.constraint(equalToConstant: 40),
+            payButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 60),
+            payButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -60),
+            payButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30)
         ])
     }
    
