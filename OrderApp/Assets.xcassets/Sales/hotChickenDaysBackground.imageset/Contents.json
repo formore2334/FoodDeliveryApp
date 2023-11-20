@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "juicy-chicken-burger-with-fresh-lettuce-crispy-french-fries-wooden-board.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "juicy-chicken-burger-with-fresh-lettuce-crispy-french-fries-wooden-board 1.jpg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "juicy-chicken-burger-with-fresh-lettuce-crispy-french-fries-wooden-board 2.jpg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

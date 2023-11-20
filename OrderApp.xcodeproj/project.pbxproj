@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		452DAD512B07B30600E693AC /* PayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452DAD502B07B30600E693AC /* PayButton.swift */; };
+		452DAD532B07B33300E693AC /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452DAD522B07B33200E693AC /* PayViewController.swift */; };
 		453F50832ADD40ED00D9DCF9 /* CategoryDetailMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453F50822ADD40ED00D9DCF9 /* CategoryDetailMenuViewController.swift */; };
 		453F50872ADD6D3F00D9DCF9 /* SaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453F50862ADD6D3F00D9DCF9 /* SaleViewController.swift */; };
 		453F50892ADD6D8E00D9DCF9 /* SaleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453F50882ADD6D8D00D9DCF9 /* SaleCollectionViewCell.swift */; };
@@ -40,6 +42,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		452DAD502B07B30600E693AC /* PayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayButton.swift; sourceTree = "<group>"; };
+		452DAD522B07B33200E693AC /* PayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
 		453F50822ADD40ED00D9DCF9 /* CategoryDetailMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailMenuViewController.swift; sourceTree = "<group>"; };
 		453F50862ADD6D3F00D9DCF9 /* SaleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleViewController.swift; sourceTree = "<group>"; };
 		453F50882ADD6D8D00D9DCF9 /* SaleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -85,6 +89,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		452DAD4F2B07B2DC00E693AC /* PayScreen */ = {
+			isa = PBXGroup;
+			children = (
+				452DAD502B07B30600E693AC /* PayButton.swift */,
+				452DAD522B07B33200E693AC /* PayViewController.swift */,
+			);
+			path = PayScreen;
+			sourceTree = "<group>";
+		};
 		453F50842ADD6B2A00D9DCF9 /* PopularCategories */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +168,7 @@
 				455FE4CA2B0202E800506E9C /* Menu */,
 				455A7A522AE7B7AB00EE1844 /* Basket */,
 				4562CBE42B04C27D007F6A4D /* CheckoutList */,
+				452DAD4F2B07B2DC00E693AC /* PayScreen */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -312,8 +326,10 @@
 				4546A5222AD9A67A00A850A8 /* PopularCategoriesCollectionViewCell.swift in Sources */,
 				455A7A5A2AE7E71F00EE1844 /* BasketCell.swift in Sources */,
 				457847FA2B064016009B14CA /* CheckoutButton.swift in Sources */,
+				452DAD532B07B33300E693AC /* PayViewController.swift in Sources */,
 				455A7A562AE7DD4100EE1844 /* Basket.swift in Sources */,
 				45FF89292ADEC532006FE6EC /* DetailMenuCollectionViewCell.swift in Sources */,
+				452DAD512B07B30600E693AC /* PayButton.swift in Sources */,
 				453F508D2ADD7B8D00D9DCF9 /* HomeViewController.swift in Sources */,
 				45DEED622ADFD9CB00CB6439 /* Sales.swift in Sources */,
 				4562CBE62B04C2B0007F6A4D /* CheckoutListViewController.swift in Sources */,
