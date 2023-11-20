@@ -11,11 +11,11 @@ class PopularCategoriesViewController: UICollectionViewController {
     
     var coordinator: MainCoordinator?
     
-    private let menu: [Menu] = Menu.mockData.shuffled()
+    private let menu: [Menu] = Menu.mockData
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Best of Week"
+        label.text = "Categories"
         label.font = UIFont.boldSystemFont(ofSize: 25)
         label.textColor = .black
         label.textAlignment = .left

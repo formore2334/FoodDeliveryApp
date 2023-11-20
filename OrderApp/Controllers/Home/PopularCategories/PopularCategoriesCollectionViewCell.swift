@@ -77,7 +77,7 @@ class PopularCategoriesCollectionViewCell: UICollectionViewCell {
                 imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor),
                 
                 titleLabel.centerYAnchor.constraint(equalTo: cellContainer.centerYAnchor),
-                titleLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
+                titleLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor),
                 titleLabel.trailingAnchor.constraint(equalTo: cellContainer.trailingAnchor, constant: -10)
             ])
 
