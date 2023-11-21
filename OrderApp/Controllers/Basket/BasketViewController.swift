@@ -34,7 +34,7 @@ class BasketViewController: UIViewController {
     
    //MARK: - Configurations
     
-    func configureTitleLabel() {
+    private func configureTitleLabel() {
         view.addSubview(titleLabel)
         
         attributedStringTitle()
@@ -42,7 +42,7 @@ class BasketViewController: UIViewController {
         setTitleLabelConstraints()
     }
     
-    func configureItemCounterLabel() {
+    private func configureItemCounterLabel() {
         view.addSubview(itemCounterLabel)
         itemCounterLabel.text = "\(basket.totalCount)"
         itemCounterLabel.font = UIFont.systemFont(ofSize: 37)
@@ -52,7 +52,7 @@ class BasketViewController: UIViewController {
     }
     
     
-    func configureTableView() {
+    private func configureTableView() {
         view.addSubview(tableView)
         
         tableView.delegate = self
@@ -64,7 +64,7 @@ class BasketViewController: UIViewController {
         setTableViewConstraints()
     }
     
-    func setCheckoutButton() {
+    private func setCheckoutButton() {
         view.addSubview(checkoutButton)
         checkoutButton.basket = basket
         
@@ -99,7 +99,7 @@ class BasketViewController: UIViewController {
     //MARK: - Constraints
     
     // Header constraints
-    func setTitleLabelConstraints() {
+    private func setTitleLabelConstraints() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -109,7 +109,7 @@ class BasketViewController: UIViewController {
         ])
     }
     
-    func setItemCounterLabelConstraints() {
+    private func setItemCounterLabelConstraints() {
         itemCounterLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -121,7 +121,7 @@ class BasketViewController: UIViewController {
     
     
     // TableView constraints
-    func setTableViewConstraints() {
+    private func setTableViewConstraints() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -162,7 +162,7 @@ extension BasketViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: BasketCell.identifier, for: indexPath) as! BasketCell
         let basketItem = basket.basketItems[indexPath.row]
         
-        cell.configureCell(menuItem: basketItem.menuItem, itemCounts: basketItem.count)
+        cell.configure(menuItem: basketItem.menuItem, itemCounts: basketItem.count)
         cell.delegate = self
         
         return cell
@@ -174,7 +174,7 @@ extension BasketViewController: UITableViewDataSource {
 
 extension BasketViewController {
     
-    func addItemToBasket(menuItem: MenuItem) {
+    public func addItemToBasket(menuItem: MenuItem) {
         if let existingBasketItemIndex = basket.basketItems.firstIndex(where: { $0.menuItem == menuItem }) {
             var basketItem = basket.basketItems[existingBasketItemIndex]
             basketItem.count += 1
@@ -187,7 +187,7 @@ extension BasketViewController {
         updateData()
     }
 
-    func removeItemFromBasket(menuItem: MenuItem) {
+    public func removeItemFromBasket(menuItem: MenuItem) {
         if let existingBasketItemIndex = basket.basketItems.firstIndex(where: { $0.menuItem == menuItem }) {
             var basketItem = basket.basketItems[existingBasketItemIndex]
             basketItem.count -= 1

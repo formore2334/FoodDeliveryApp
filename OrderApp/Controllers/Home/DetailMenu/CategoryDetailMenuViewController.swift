@@ -54,7 +54,7 @@ class CategoryDetailMenuViewController: UICollectionViewController {
 
    //MARK: - Configure CollectionView
     
-    func configureVC() {
+    private func configureVC() {
         view.addSubview(titleLabel)
         titleLabel.text = menu.title
         
@@ -65,7 +65,7 @@ class CategoryDetailMenuViewController: UICollectionViewController {
         setConstraints()
     }
     
-    func setBackgroundImage() {
+    private func setBackgroundImage() {
         let backgroundImageView = UIImageView(image: UIImage(named: "backgroundImageSecondPart"))
         backgroundImageView.contentMode = .scaleAspectFill
         backgroundImageView.clipsToBounds = true
@@ -77,7 +77,7 @@ class CategoryDetailMenuViewController: UICollectionViewController {
     
     //MARK: - App Logo
     
-    func configureLogoImage() {
+    private func configureLogoImage() {
         logoImageView.image = UIImage(named: "logoWelms")
         logoImageView.contentMode = .scaleAspectFit
         logoImageView.clipsToBounds = true
@@ -95,7 +95,7 @@ class CategoryDetailMenuViewController: UICollectionViewController {
     
     //MARK: - Constraints
       
-    func setLogoImageConstraints() {
+    private func setLogoImageConstraints() {
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -107,7 +107,7 @@ class CategoryDetailMenuViewController: UICollectionViewController {
         ])
     }
     
-      func setConstraints() {
+    private func setConstraints() {
           titleLabel.translatesAutoresizingMaskIntoConstraints = false
           collectionView.translatesAutoresizingMaskIntoConstraints = false
           
@@ -134,7 +134,7 @@ extension CategoryDetailMenuViewController {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailMenuCollectionViewCell.identifier, for: indexPath) as! DetailMenuCollectionViewCell
         
-        cell.configure(name: menu.menuItem[indexPath.row].imageName, title: menu.menuItem[indexPath.row].title)
+        cell.configure(stringURL: menu.menuItem[indexPath.row].imageURL, title: menu.menuItem[indexPath.row].title)
         return cell
     }
     
