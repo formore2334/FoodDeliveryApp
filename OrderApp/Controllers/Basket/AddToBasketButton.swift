@@ -6,7 +6,6 @@
 //
 
 import UIKit
-// NotificationCenter.default.post(name: Notification.Name("AddToBasket"), object: menuItem)
 
 
 class AddToBasketButton: UIView {
@@ -45,8 +44,6 @@ class AddToBasketButton: UIView {
         guard let menuItem = menuItem else { return }
         addButton.setTitle("\(menuItem.title) added", for: .normal)
         coordinator?.passOrderToBasket(menuItem: menuItem)
-        print("DEBUG: Add to basket button tapped")
-        
     }
     
     private func setConstraints() {
@@ -59,6 +56,5 @@ class AddToBasketButton: UIView {
             addButton.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
-    
     
 }
