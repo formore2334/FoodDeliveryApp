@@ -21,7 +21,6 @@ class CategoryDetailMenuViewController: UICollectionViewController {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        //label.text = "Top Salers"
         label.font = UIFont.boldSystemFont(ofSize: 25)
         label.textColor = .black
         label.textAlignment = .left
