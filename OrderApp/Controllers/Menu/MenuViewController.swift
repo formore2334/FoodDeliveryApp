@@ -27,14 +27,14 @@ class MenuViewController: UICollectionViewController {
         configureVC()
     }
     
-    func configureVC() {
+    private func configureVC() {
         collectionView.register(MenuCell.self, forCellWithReuseIdentifier: MenuCell.identifier)
         collectionView.register(MenuHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MenuHeaderView.identifier)
         collectionView.collectionViewLayout = layoutCollection()
         setBackgroundImage()
     }
     
-    func setBackgroundImage() {
+    private func setBackgroundImage() {
         let backgroundImageView = UIImageView(image: UIImage(named: "backgroundFullImage"))
         backgroundImageView.contentMode = .scaleAspectFit
         backgroundImageView.clipsToBounds = true
@@ -62,7 +62,7 @@ extension MenuViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCell.identifier, for: indexPath) as! MenuCell
 
         let menuItem = menu[indexPath.section].menuItem[indexPath.item]
-        cell.configure(name: menuItem.imageName, title: menuItem.title)
+        cell.configure(urlString: menuItem.imageURL, title: menuItem.title)
 
         return cell
     }
