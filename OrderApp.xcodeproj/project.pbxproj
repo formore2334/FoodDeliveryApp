@@ -31,6 +31,7 @@
 		455FE4CC2B02053E00506E9C /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455FE4CB2B02053D00506E9C /* MenuCell.swift */; };
 		4562CBE62B04C2B0007F6A4D /* CheckoutListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4562CBE52B04C2B0007F6A4D /* CheckoutListViewController.swift */; };
 		456745582AED46AC0090CB09 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456745572AED46AC0090CB09 /* MenuViewController.swift */; };
+		456A0D152B0BA2CC0029247D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456A0D142B0BA2CC0029247D /* NetworkManager.swift */; };
 		457847FA2B064016009B14CA /* CheckoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457847F92B064016009B14CA /* CheckoutButton.swift */; };
 		457847FC2B066543009B14CA /* CheckoutListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457847FB2B066543009B14CA /* CheckoutListCell.swift */; };
 		457847FE2B066597009B14CA /* CheckoutList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457847FD2B066596009B14CA /* CheckoutList.swift */; };
@@ -68,6 +69,7 @@
 		455FE4CB2B02053D00506E9C /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		4562CBE52B04C2B0007F6A4D /* CheckoutListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutListViewController.swift; sourceTree = "<group>"; };
 		456745572AED46AC0090CB09 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		456A0D142B0BA2CC0029247D /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		457847F92B064016009B14CA /* CheckoutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutButton.swift; sourceTree = "<group>"; };
 		457847FB2B066543009B14CA /* CheckoutListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutListCell.swift; sourceTree = "<group>"; };
 		457847FD2B066596009B14CA /* CheckoutList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutList.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				454FBF2B2AD949E9001E75EB /* SceneDelegate.swift */,
 				455A7A5D2AE7F06200EE1844 /* Extensions */,
 				454FBF3F2AD9513E001E75EB /* Model */,
+				456A0D132B0BA29D0029247D /* NetworkLayer */,
 				454FBF402AD97646001E75EB /* Controllers */,
 				454FBF2F2AD949E9001E75EB /* Main.storyboard */,
 				454FBF322AD949F5001E75EB /* Assets.xcassets */,
@@ -230,6 +233,14 @@
 				457847FB2B066543009B14CA /* CheckoutListCell.swift */,
 			);
 			path = CheckoutList;
+			sourceTree = "<group>";
+		};
+		456A0D132B0BA29D0029247D /* NetworkLayer */ = {
+			isa = PBXGroup;
+			children = (
+				456A0D142B0BA2CC0029247D /* NetworkManager.swift */,
+			);
+			path = NetworkLayer;
 			sourceTree = "<group>";
 		};
 		45DEED5E2ADFC62700CB6439 /* MenuItemInfo */ = {
@@ -332,6 +343,7 @@
 				452DAD512B07B30600E693AC /* PayButton.swift in Sources */,
 				453F508D2ADD7B8D00D9DCF9 /* HomeViewController.swift in Sources */,
 				45DEED622ADFD9CB00CB6439 /* Sales.swift in Sources */,
+				456A0D152B0BA2CC0029247D /* NetworkManager.swift in Sources */,
 				4562CBE62B04C2B0007F6A4D /* CheckoutListViewController.swift in Sources */,
 				453F50872ADD6D3F00D9DCF9 /* SaleViewController.swift in Sources */,
 				4546A5202AD9A38F00A850A8 /* PopularCategoriesViewController.swift in Sources */,
