@@ -66,7 +66,6 @@ class DetailInfoViewController: UIViewController {
     
     private func setImageView() {
         view.addSubview(menuItemImageView)
-        //menuItemImageView.image = UIImage(named: menuItem.imageName)
         menuItemImageView.clipsToBounds = true
         menuItemImageView.contentMode = .scaleAspectFill
         menuItemImageView.layer.masksToBounds = true
