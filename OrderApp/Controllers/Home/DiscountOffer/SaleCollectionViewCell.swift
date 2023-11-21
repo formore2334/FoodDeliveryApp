@@ -11,6 +11,8 @@ class SaleCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "SaleCollectionViewCell"
     
+    let networkManager = NetworkManager()
+    
     private var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
@@ -43,12 +45,21 @@ class SaleCollectionViewCell: UICollectionViewCell {
         setConstraints()
      }
      
-     public func configure(imageName: String, title: String) {
-         imageView.image = UIImage(named: imageName)
+     public func configure(stringURL: String, title: String) {
          titleLabel.text = title
          
+         getImage(stringURL: stringURL)
      }
-     
+    
+    private func getImage(stringURL: String) {
+        guard let url = URL(string: stringURL) else { return }
+        
+        networkManager.fetchImage(url: url) { [weak self] image, error in
+            DispatchQueue.main.async {
+                self?.imageView.image = image
+            }
+        }
+    }
      //MARK: - Constraints
      
     private func setConstraints() {

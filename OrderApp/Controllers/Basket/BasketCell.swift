@@ -17,11 +17,11 @@ protocol BasketCellDelegate: AnyObject {
 
 class BasketCell: UITableViewCell {
     
-    var menuItem: MenuItem?
+    static let identifier = String(describing: BasketCell.self)
+    
+    private let networkManager = NetworkManager()
     
     weak var delegate: BasketCellDelegate?
-    
-    static let identifier = String(describing: BasketCell.self)
     
     //MARK: - Set varibles
     
@@ -89,11 +89,23 @@ class BasketCell: UITableViewCell {
     
    //MARK: - Configurations
     
-    public func configureCell(menuItem: MenuItem, itemCounts: Int) {
+    public func configure(menuItem: MenuItem, itemCounts: Int) {
         priceLabel.text = "\(menuItem.price)$"
-        itemImageView.image = UIImage(named: menuItem.imageName)
         itemTextLabel.text = menuItem.title
         itemCountsLabel.text = "\(itemCounts)"
+        
+        getImage(stringURL: menuItem.imageURL)
+    }
+    
+    // gettting image with url
+    private func getImage(stringURL: String) {
+        guard let url = URL(string: stringURL) else { return }
+        
+        networkManager.fetchImage(url: url) { [weak self] image, error in
+            DispatchQueue.main.async {
+                self?.itemImageView.image = image
+            }
+        }
     }
     
     private func configureContentView() {
@@ -108,41 +120,7 @@ class BasketCell: UITableViewCell {
         configureSubtractItemButton()
     }
     
-    private func configureAddItemButton() {
-        addItemButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
-    }
-    
-    @objc private func addButtonTapped() {
-        guard let itemCountsText = itemCountsLabel.text,
-              let itemCounts = Int(itemCountsText) else {
-            return
-        }
-        
-        itemCountsLabel.text = "\(itemCounts + 1)"
-        
-        delegate?.didTapAddButton(self)
-    }
-
-    
-    private func configureSubtractItemButton() {
-        subtractItemButton.addTarget(self, action: #selector(subtractButtonTapped), for: .touchUpInside)
-    }
-    
-    @objc private func subtractButtonTapped() {
-        guard let itemCountsText = itemCountsLabel.text,
-              let itemCounts = Int(itemCountsText),
-              itemCounts > 0
-        else {
-            return
-        }
-        
-        itemCountsLabel.text = "\(itemCounts - 1)"
-        
-        delegate?.didTapSubtractButton(self)
-    }
-    
     //MARK: - Constraints
-    
     
     /// Set All constraints together
     private func setAllConstraints() {
@@ -222,6 +200,45 @@ class BasketCell: UITableViewCell {
             addItemButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             addItemButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
         ])
+    }
+    
+}
+
+// MARK: - Add & Subtract logic
+
+extension BasketCell {
+    
+    private func configureAddItemButton() {
+        addItemButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc private func addButtonTapped() {
+        guard let itemCountsText = itemCountsLabel.text,
+              let itemCounts = Int(itemCountsText) else {
+            return
+        }
+        
+        itemCountsLabel.text = "\(itemCounts + 1)"
+        
+        delegate?.didTapAddButton(self)
+    }
+
+    
+    private func configureSubtractItemButton() {
+        subtractItemButton.addTarget(self, action: #selector(subtractButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc private func subtractButtonTapped() {
+        guard let itemCountsText = itemCountsLabel.text,
+              let itemCounts = Int(itemCountsText),
+              itemCounts > 0
+        else {
+            return
+        }
+        
+        itemCountsLabel.text = "\(itemCounts - 1)"
+        
+        delegate?.didTapSubtractButton(self)
     }
     
 }

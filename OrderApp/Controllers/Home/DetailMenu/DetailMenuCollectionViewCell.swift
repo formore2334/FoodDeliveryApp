@@ -11,6 +11,8 @@ class DetailMenuCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "DetailMenuCollectionViewCell"
     
+    private let networkManager = NetworkManager()
+    
     private var cellContainer: UIView = {
         let container = UIView()
         container.backgroundColor = .systemGray5
@@ -48,7 +50,7 @@ class DetailMenuCollectionViewCell: UICollectionViewCell {
     }
 
 
-    func configureCell() {
+    private func configureCell() {
         contentView.addSubview(cellContainer)
         contentView.addSubview(imageView)
         contentView.addSubview(titleLabel)
@@ -56,14 +58,25 @@ class DetailMenuCollectionViewCell: UICollectionViewCell {
        setDetailMenuConstraints()
     }
     
-    public func configure(name: String, title: String) {
-        imageView.image = UIImage(named: name)
+    public func configure(stringURL: String, title: String) {
         titleLabel.text = title
+        
+        getImage(stringURL: stringURL)
+    }
+    
+    private func getImage(stringURL: String) {
+        guard let url = URL(string: stringURL) else { return }
+        
+        networkManager.fetchImage(url: url) { [weak self] image, error in
+            DispatchQueue.main.async {
+                self?.imageView.image = image
+            }
+        }
     }
     
     //MARK: - Constraints
     
-    func setDetailMenuConstraints() {
+    private func setDetailMenuConstraints() {
         cellContainer.translatesAutoresizingMaskIntoConstraints = false
         imageView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false

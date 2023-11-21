@@ -16,6 +16,8 @@ class DetailInfoViewController: UIViewController {
     
     var coordinator: MainCoordinator?
     
+    private let networkManager = NetworkManager()
+    
     private var menuItemImageView = UIImageView()
     
     private var menuItemTitleLabel = UILabel()
@@ -64,11 +66,13 @@ class DetailInfoViewController: UIViewController {
     
     private func setImageView() {
         view.addSubview(menuItemImageView)
-        menuItemImageView.image = UIImage(named: menuItem.imageName)
+        //menuItemImageView.image = UIImage(named: menuItem.imageName)
         menuItemImageView.clipsToBounds = true
         menuItemImageView.contentMode = .scaleAspectFill
         menuItemImageView.layer.masksToBounds = true
         menuItemImageView.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height / 2.2)
+        
+        getImage()
     }
     
     
@@ -92,6 +96,16 @@ class DetailInfoViewController: UIViewController {
         view.addSubview(addToBasketButton)
         addToBasketButton.menuItem = menuItem
         addToBasketButton.coordinator = coordinator
+    }
+    
+    private func getImage() {
+        guard let url = URL(string: menuItem.imageURL) else { return }
+        
+        networkManager.fetchImage(url: url) { [weak self] image, error in
+            DispatchQueue.main.async {
+                self?.menuItemImageView.image = image
+            }
+        }
     }
     
     
