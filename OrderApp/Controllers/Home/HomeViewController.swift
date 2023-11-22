@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UIScrollViewDelegate {
     
     var coordinator: MainCoordinator?
     
@@ -17,18 +17,13 @@ class HomeViewController: UIViewController {
     
     private var salesCategoriesStackView = UIStackView()
     
-    private let logoImageView = UIImageView()
-    
-    private let logoContainer = UIView()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        configureLogoImage()
+       
+        configureLogo()
         configureScrollView()
     }
-    
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         scrollView.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height * 2)
@@ -42,22 +37,12 @@ class HomeViewController: UIViewController {
     
     // MARK: - Configurations
     
-    
-    func configureLogoImage() {
-        logoImageView.image = UIImage(named: "logoWelms")
-        logoImageView.contentMode = .scaleAspectFit
-        logoImageView.clipsToBounds = true
-        logoImageView.layer.masksToBounds = true
-        logoImageView.backgroundColor = .systemGray6
+    func configureLogo() {
+        guard let navigationController = navigationController else { return }
         
-        view.addSubview(logoContainer)
-        logoContainer.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height / 7)
-        logoContainer.backgroundColor = .systemGray6
-        logoContainer.addSubview(logoImageView)
-        
-        setLogoImageConstraints()
+        let logoView = LogoView()
+        logoView.setupNavigationBarLogo(in: navigationController, with: navigationItem)
     }
-    
     
     func configureScrollView() {
         view.addSubview(scrollView)
@@ -95,24 +80,12 @@ class HomeViewController: UIViewController {
     
     // MARK: - Constraints
     
-    func setLogoImageConstraints() {
-        logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            logoImageView.heightAnchor.constraint(equalToConstant: 60),
-            logoImageView.widthAnchor.constraint(equalToConstant: 200),
-            
-            logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -40),
-            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
-    }
-    
     func setScrollViewConstraints() {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             
-            scrollView.topAnchor.constraint(equalTo: logoContainer.bottomAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)

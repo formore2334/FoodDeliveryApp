@@ -24,7 +24,17 @@ class MenuViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        configureLogo()
         configureVC()
+    }
+    
+    //MARK: - Configurations
+    
+   private func configureLogo() {
+        guard let navigationController = navigationController else { return }
+        
+        let logoView = LogoView()
+        logoView.setupNavigationBarLogo(in: navigationController, with: navigationItem)
     }
     
     private func configureVC() {

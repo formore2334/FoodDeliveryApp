@@ -15,10 +15,6 @@ class CategoryDetailMenuViewController: UICollectionViewController {
     
     var menu: Menu
     
-    private let logoImageView = UIImageView()
-    
-    private let logoContainerView = UIView()
-    
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 25)
@@ -41,7 +37,7 @@ class CategoryDetailMenuViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        configureLogoImage()
+        configureLogo()
         configureVC()
     }
     
@@ -56,7 +52,6 @@ class CategoryDetailMenuViewController: UICollectionViewController {
     private func configureVC() {
         view.addSubview(titleLabel)
         titleLabel.text = menu.title
-        
         collectionView.register(DetailMenuCollectionViewCell.self, forCellWithReuseIdentifier: DetailMenuCollectionViewCell.identifier)
         collectionView.collectionViewLayout = layoutCollection()
     
@@ -76,42 +71,21 @@ class CategoryDetailMenuViewController: UICollectionViewController {
     
     //MARK: - App Logo
     
-    private func configureLogoImage() {
-        logoImageView.image = UIImage(named: "logoWelms")
-        logoImageView.contentMode = .scaleAspectFit
-        logoImageView.clipsToBounds = true
-        logoImageView.layer.masksToBounds = true
-        logoImageView.backgroundColor = .systemGray6
+    func configureLogo() {
+        guard let navigationController = navigationController else { return }
         
-        view.addSubview(logoContainerView)
-        logoContainerView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height / 7)
-        logoContainerView.backgroundColor = .systemGray6
-        logoContainerView.addSubview(logoImageView)
-       
-        setLogoImageConstraints()
+        let logoView = LogoView()
+        logoView.setupNavigationBarLogo(in: navigationController, with: navigationItem)
     }
 
-    
     //MARK: - Constraints
-      
-    private func setLogoImageConstraints() {
-        logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-         logoImageView.heightAnchor.constraint(equalToConstant: 60),
-         logoImageView.widthAnchor.constraint(equalToConstant: 200),
-
-         logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -40),
-         logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
-    }
     
     private func setConstraints() {
           titleLabel.translatesAutoresizingMaskIntoConstraints = false
           collectionView.translatesAutoresizingMaskIntoConstraints = false
           
           NSLayoutConstraint.activate([
-              titleLabel.topAnchor.constraint(equalTo: logoContainerView.bottomAnchor, constant: 20),
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
               titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
              
               collectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: -10),

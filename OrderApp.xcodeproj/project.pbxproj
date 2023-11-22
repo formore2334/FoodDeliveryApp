@@ -36,6 +36,7 @@
 		457847FC2B066543009B14CA /* CheckoutListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457847FB2B066543009B14CA /* CheckoutListCell.swift */; };
 		457847FE2B066597009B14CA /* CheckoutList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457847FD2B066596009B14CA /* CheckoutList.swift */; };
 		45915F022B03651E0032D4BB /* MenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45915F012B03651E0032D4BB /* MenuHeaderView.swift */; };
+		45AF524C2B0CC799009EDB11 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AF524B2B0CC799009EDB11 /* LogoView.swift */; };
 		45DEED602ADFC6FC00CB6439 /* DetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEED5F2ADFC6FC00CB6439 /* DetailInfoViewController.swift */; };
 		45DEED622ADFD9CB00CB6439 /* Sales.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEED612ADFD9CA00CB6439 /* Sales.swift */; };
 		45DEED642AE00C0E00CB6439 /* DetailSaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEED632AE00C0D00CB6439 /* DetailSaleViewController.swift */; };
@@ -74,6 +75,7 @@
 		457847FB2B066543009B14CA /* CheckoutListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutListCell.swift; sourceTree = "<group>"; };
 		457847FD2B066596009B14CA /* CheckoutList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutList.swift; sourceTree = "<group>"; };
 		45915F012B03651E0032D4BB /* MenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHeaderView.swift; sourceTree = "<group>"; };
+		45AF524B2B0CC799009EDB11 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		45DEED5F2ADFC6FC00CB6439 /* DetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoViewController.swift; sourceTree = "<group>"; };
 		45DEED612ADFD9CA00CB6439 /* Sales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sales.swift; sourceTree = "<group>"; };
 		45DEED632AE00C0D00CB6439 /* DetailSaleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSaleViewController.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				453F508C2ADD7B8D00D9DCF9 /* HomeViewController.swift */,
+				45AF524B2B0CC799009EDB11 /* LogoView.swift */,
 				453F50842ADD6B2A00D9DCF9 /* PopularCategories */,
 				45FF89272ADEC447006FE6EC /* DetailMenu */,
 				45DEED5E2ADFC62700CB6439 /* MenuItemInfo */,
@@ -358,6 +361,7 @@
 				455FE4CC2B02053E00506E9C /* MenuCell.swift in Sources */,
 				455E903A2AF3C0DF002DB5E3 /* Coordinator.swift in Sources */,
 				455A7A542AE7B80900EE1844 /* AddToBasketButton.swift in Sources */,
+				45AF524C2B0CC799009EDB11 /* LogoView.swift in Sources */,
 				455A7A582AE7DF1E00EE1844 /* BasketViewController.swift in Sources */,
 				453F50892ADD6D8E00D9DCF9 /* SaleCollectionViewCell.swift in Sources */,
 				45DEED602ADFC6FC00CB6439 /* DetailInfoViewController.swift in Sources */,

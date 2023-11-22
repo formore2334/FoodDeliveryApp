@@ -40,7 +40,6 @@ class PopularCategoriesViewController: UICollectionViewController {
     
     private func configureVC() {
         view.addSubview(titleLabel)
-        
         collectionView.register(PopularCategoriesCollectionViewCell.self, forCellWithReuseIdentifier: PopularCategoriesCollectionViewCell.identifier)
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.collectionViewLayout = layoutCollection()
@@ -85,7 +84,12 @@ extension PopularCategoriesViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let categoryDetailVC = CategoryDetailMenuViewController(menu: menu[indexPath.row], coordinator: coordinator)
         
-        navigationController?.pushViewController(categoryDetailVC, animated: true)
+        UIView.transition(with: navigationController!.view, duration: 0.5, options: .transitionCrossDissolve, animations: {
+            self.navigationController?.pushViewController(categoryDetailVC, animated: false)
+        }, completion: nil)
+
+
+
     }
 
 }

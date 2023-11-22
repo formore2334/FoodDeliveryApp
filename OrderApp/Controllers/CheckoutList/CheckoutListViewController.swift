@@ -46,6 +46,7 @@ class CheckoutListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureLogo()
         configureVC()
         configureTotalInfo()
         setPayButton()
@@ -56,6 +57,15 @@ class CheckoutListViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .black
             UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
     }
+    
+    //MARK: - Configurations
+    
+    private func configureLogo() {
+         guard let navigationController = navigationController else { return }
+         
+         let logoView = LogoView()
+         logoView.setupNavigationBarLogo(in: navigationController, with: navigationItem)
+     }
     
     private func configureVC() {
         // Create and configure the table view
