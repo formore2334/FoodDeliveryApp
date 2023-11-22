@@ -17,6 +17,8 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     
     private var salesCategoriesStackView = UIStackView()
     
+    private var couponsCategoriesStackView = UIStackView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -26,13 +28,16 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        scrollView.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height * 2)
+        scrollView.contentSize = CGSize(width: view.bounds.width, height: 770)
         
         popularCategoriesStackView.frame = CGRect(x: 0, y: 20, width: view.bounds.width, height: 200)
         popularCategoriesStackView.axis = .horizontal
         
-        salesCategoriesStackView.frame = CGRect(x: 0, y: 270, width: view.bounds.width, height: 250)
+        salesCategoriesStackView.frame = CGRect(x: 0, y: 265, width: view.bounds.width, height: 250)
         salesCategoriesStackView.axis = .horizontal
+        
+        couponsCategoriesStackView.frame = CGRect(x: 0, y: 540, width: view.bounds.width, height: 230)
+        couponsCategoriesStackView.axis = .horizontal
     }
     
     // MARK: - Configurations
@@ -49,9 +54,11 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
         scrollView.addSubview(popularCategoriesStackView)
         scrollView.addSubview(salesCategoriesStackView)
+        scrollView.addSubview(couponsCategoriesStackView)
         
         addPopularCategoriesToStackView()
         addSalesToStackView()
+        addCouponsToStackView()
         
         setScrollViewConstraints()
     }
@@ -76,6 +83,16 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         salesCategoriesStackView.addArrangedSubview(salesVC.view)
         
         salesVC.didMove(toParent: self)
+    }
+    
+    func addCouponsToStackView() {
+        let couponsVC = CouponViewController()
+        
+        addChild(couponsVC)
+        
+        couponsCategoriesStackView.addArrangedSubview(couponsVC.view)
+        
+        couponsVC.didMove(toParent: self)
     }
     
     // MARK: - Constraints
