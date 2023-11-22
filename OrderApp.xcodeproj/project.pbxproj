@@ -31,6 +31,10 @@
 		455FE4CC2B02053E00506E9C /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455FE4CB2B02053D00506E9C /* MenuCell.swift */; };
 		4562CBE62B04C2B0007F6A4D /* CheckoutListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4562CBE52B04C2B0007F6A4D /* CheckoutListViewController.swift */; };
 		456745582AED46AC0090CB09 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456745572AED46AC0090CB09 /* MenuViewController.swift */; };
+		4567FED92B0DD68F00B032F2 /* Coupon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4567FED82B0DD68F00B032F2 /* Coupon.swift */; };
+		4567FEDB2B0DD6A500B032F2 /* CouponViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4567FEDA2B0DD6A500B032F2 /* CouponViewController.swift */; };
+		4567FEDD2B0DD6C700B032F2 /* CouponCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4567FEDC2B0DD6C700B032F2 /* CouponCell.swift */; };
+		4567FEDF2B0DD70000B032F2 /* DetailCouponInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4567FEDE2B0DD70000B032F2 /* DetailCouponInfoViewController.swift */; };
 		456A0D152B0BA2CC0029247D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456A0D142B0BA2CC0029247D /* NetworkManager.swift */; };
 		457847FA2B064016009B14CA /* CheckoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457847F92B064016009B14CA /* CheckoutButton.swift */; };
 		457847FC2B066543009B14CA /* CheckoutListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457847FB2B066543009B14CA /* CheckoutListCell.swift */; };
@@ -70,6 +74,10 @@
 		455FE4CB2B02053D00506E9C /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		4562CBE52B04C2B0007F6A4D /* CheckoutListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutListViewController.swift; sourceTree = "<group>"; };
 		456745572AED46AC0090CB09 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		4567FED82B0DD68F00B032F2 /* Coupon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coupon.swift; sourceTree = "<group>"; };
+		4567FEDA2B0DD6A500B032F2 /* CouponViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponViewController.swift; sourceTree = "<group>"; };
+		4567FEDC2B0DD6C700B032F2 /* CouponCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponCell.swift; sourceTree = "<group>"; };
+		4567FEDE2B0DD70000B032F2 /* DetailCouponInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCouponInfoViewController.swift; sourceTree = "<group>"; };
 		456A0D142B0BA2CC0029247D /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		457847F92B064016009B14CA /* CheckoutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutButton.swift; sourceTree = "<group>"; };
 		457847FB2B066543009B14CA /* CheckoutListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutListCell.swift; sourceTree = "<group>"; };
@@ -159,6 +167,7 @@
 			children = (
 				454FBF3D2AD95132001E75EB /* Menu.swift */,
 				45DEED612ADFD9CA00CB6439 /* Sales.swift */,
+				4567FED82B0DD68F00B032F2 /* Coupon.swift */,
 				455A7A552AE7DD4100EE1844 /* Basket.swift */,
 				457847FD2B066596009B14CA /* CheckoutList.swift */,
 			);
@@ -214,6 +223,7 @@
 				45FF89272ADEC447006FE6EC /* DetailMenu */,
 				45DEED5E2ADFC62700CB6439 /* MenuItemInfo */,
 				453F50852ADD6C4A00D9DCF9 /* DiscountOffer */,
+				4567FED72B0DD67100B032F2 /* Coupons */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -236,6 +246,16 @@
 				457847FB2B066543009B14CA /* CheckoutListCell.swift */,
 			);
 			path = CheckoutList;
+			sourceTree = "<group>";
+		};
+		4567FED72B0DD67100B032F2 /* Coupons */ = {
+			isa = PBXGroup;
+			children = (
+				4567FEDA2B0DD6A500B032F2 /* CouponViewController.swift */,
+				4567FEDC2B0DD6C700B032F2 /* CouponCell.swift */,
+				4567FEDE2B0DD70000B032F2 /* DetailCouponInfoViewController.swift */,
+			);
+			path = Coupons;
 			sourceTree = "<group>";
 		};
 		456A0D132B0BA29D0029247D /* NetworkLayer */ = {
@@ -351,9 +371,12 @@
 				453F50872ADD6D3F00D9DCF9 /* SaleViewController.swift in Sources */,
 				4546A5202AD9A38F00A850A8 /* PopularCategoriesViewController.swift in Sources */,
 				454FBF2A2AD949E9001E75EB /* AppDelegate.swift in Sources */,
+				4567FEDB2B0DD6A500B032F2 /* CouponViewController.swift in Sources */,
 				45915F022B03651E0032D4BB /* MenuHeaderView.swift in Sources */,
 				453F50832ADD40ED00D9DCF9 /* CategoryDetailMenuViewController.swift in Sources */,
+				4567FEDF2B0DD70000B032F2 /* DetailCouponInfoViewController.swift in Sources */,
 				457847FC2B066543009B14CA /* CheckoutListCell.swift in Sources */,
+				4567FEDD2B0DD6C700B032F2 /* CouponCell.swift in Sources */,
 				456745582AED46AC0090CB09 /* MenuViewController.swift in Sources */,
 				454FBF2C2AD949E9001E75EB /* SceneDelegate.swift in Sources */,
 				45DEED642AE00C0E00CB6439 /* DetailSaleViewController.swift in Sources */,
@@ -361,6 +384,7 @@
 				455FE4CC2B02053E00506E9C /* MenuCell.swift in Sources */,
 				455E903A2AF3C0DF002DB5E3 /* Coordinator.swift in Sources */,
 				455A7A542AE7B80900EE1844 /* AddToBasketButton.swift in Sources */,
+				4567FED92B0DD68F00B032F2 /* Coupon.swift in Sources */,
 				45AF524C2B0CC799009EDB11 /* LogoView.swift in Sources */,
 				455A7A582AE7DF1E00EE1844 /* BasketViewController.swift in Sources */,
 				453F50892ADD6D8E00D9DCF9 /* SaleCollectionViewCell.swift in Sources */,
