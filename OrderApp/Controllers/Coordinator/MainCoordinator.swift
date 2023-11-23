@@ -29,24 +29,23 @@ class MainCoordinator: Coordinator {
         // Embed controllers in a UINavigationController. Its doing to appear logoImage
         let homeNavVC = UINavigationController(rootViewController: homeVC)
         let menuNavVC = UINavigationController(rootViewController: menuVC)
-        //let basketNavVC = UINavigationController(rootViewController: basketVC)
+        let basketNavVC = UINavigationController(rootViewController: basketVC)
         navigationController.isNavigationBarHidden = true
         
-        tabBarController.viewControllers = [homeNavVC, menuNavVC, basketVC]
+        tabBarController.viewControllers = [homeNavVC, menuNavVC, basketNavVC]
         tabBarController.tabBar.tintColor = .black
         
         homeNavVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 0)
         menuNavVC.tabBarItem = UITabBarItem(title: "Menu", image: UIImage(systemName: "fork.knife"), tag: 1)
-        basketVC.tabBarItem = UITabBarItem(title: "Basket", image: UIImage(systemName: "basket"), tag: 2)
+        basketNavVC.tabBarItem = UITabBarItem(title: "Basket", image: UIImage(systemName: "basket"), tag: 2)
         
         navigationController.setViewControllers([tabBarController], animated: false)
     }
         
     
-
-    
     func passOrderToBasket(menuItem: MenuItem) {
-        if let basketVC = tabBarController.viewControllers?[2] as? BasketViewController {
+        if let basketNavVC = tabBarController.viewControllers?[2] as? UINavigationController,
+           let basketVC = basketNavVC.viewControllers.first as? BasketViewController {
             basketVC.addItemToBasket(menuItem: menuItem)
         }
     }
