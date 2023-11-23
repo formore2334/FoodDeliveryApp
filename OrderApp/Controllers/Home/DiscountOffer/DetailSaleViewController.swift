@@ -16,8 +16,8 @@ class DetailSaleViewController: UIViewController {
     private var saleTitleLabel = UILabel()
     
     private var saleDescriptionTextView = UITextView()
-    
-    private let addToBasketButton = AddToBasketButton()
+
+    private let customButton = CustomButton()
 
     init(sale: Sale, coordinator: MainCoordinator? = nil) {
         self.sale = sale
@@ -47,10 +47,10 @@ class DetailSaleViewController: UIViewController {
     private func configureVC() {
         setTitleLabel()
         setTextView()
-        setAddButton()
+        setCustomButton()
         setBackgroundImage()
         
-        setAllConstraints()
+        setTextViewConstrains()
     }
     
     func setBackgroundImage() {
@@ -85,19 +85,26 @@ class DetailSaleViewController: UIViewController {
         saleDescriptionTextView.layer.cornerRadius = 10
     }
     
-    private func setAddButton() {
-        view.addSubview(addToBasketButton)
-       // addToBasketButton.menuItem = menuItem
-        addToBasketButton.coordinator = coordinator
+    //MARK: - Basket Button translation
+    
+    private func setCustomButton() {
+        view.addSubview(customButton)
+        customButton.setTitle("Add to basket", for: .normal)
+        customButton.pin(to: view)
+        addActionToCustomButton()
+    }
+    
+    private func addActionToCustomButton() {
+        customButton.addTarget(self, action: #selector(customButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc private func customButtonTapped() {
+//        customButton.setTitle("\(menuItem.title) added", for: .normal)
+//        coordinator?.passOrderToBasket(menuItem: menuItem)
     }
     
     
     //MARK: - Constraints
-    
-    private func setAllConstraints() {
-        setTextViewConstrains()
-        setAddButtonConstraints()
-    }
     
     private func setTextViewConstrains() {
         saleDescriptionTextView.translatesAutoresizingMaskIntoConstraints = false
@@ -109,16 +116,6 @@ class DetailSaleViewController: UIViewController {
             saleDescriptionTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100)
         ])
         
-    }
-    
-    private func setAddButtonConstraints() {
-        addToBasketButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            addToBasketButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-            addToBasketButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-            addToBasketButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30)
-        ])
     }
     
 }

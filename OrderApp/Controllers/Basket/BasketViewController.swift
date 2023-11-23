@@ -19,7 +19,7 @@ class BasketViewController: UIViewController {
     
     private var titleLabel = UILabel()
     
-    private var checkoutButton = CheckoutButton()
+    private var customButton = CustomButton()
     
 
     override func viewDidLoad() {
@@ -28,7 +28,14 @@ class BasketViewController: UIViewController {
         configureTitleLabel()
         configureItemCounterLabel()
         configureTableView()
-        setCheckoutButton()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        setCustomButton()
+        addActionToCustomButton()
     }
     
     
@@ -64,13 +71,6 @@ class BasketViewController: UIViewController {
         setTableViewConstraints()
     }
     
-    private func setCheckoutButton() {
-        view.addSubview(checkoutButton)
-        checkoutButton.basket = basket
-        
-        setCheckoutButtonConstraints()
-    }
-    
     // Set attributes for titleLabel (text + image)
     private func attributedStringTitle() {
         let attributedText = NSMutableAttributedString(string: "Basket ")
@@ -93,6 +93,28 @@ class BasketViewController: UIViewController {
         ], range: NSRange(location: 0, length: attributedText.length))
     
      titleLabel.attributedText = attributedText
+    }
+    
+    //MARK: - Checkout Button translation
+    
+    private func setCustomButton() {
+        view.addSubview(customButton)
+        customButton.setTitle("Checkout", for: .normal)
+        customButton.pin(to: view)
+    }
+    
+    private func addActionToCustomButton() {
+        customButton.addTarget(self, action: #selector(customButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc private func customButtonTapped() {
+        if basket.basketItems.count > 0 {
+            let checkoutListVC = CheckoutListViewController(basket: basket)
+            
+            navigationController?.pushViewController(checkoutListVC, animated: true)
+        } else {
+            customButton.shake()
+        }
     }
     
     
@@ -130,17 +152,6 @@ class BasketViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        ])
-    }
-    
-    // Checkout button constraints
-    private func setCheckoutButtonConstraints() {
-        checkoutButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            checkoutButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-            checkoutButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-            checkoutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30)
         ])
     }
     
@@ -222,7 +233,7 @@ extension BasketViewController {
     }
     
     private func updateData() {
-        setCheckoutButton()
+        setCustomButton()
         configureItemCounterLabel()
         tableView.reloadData()
     }

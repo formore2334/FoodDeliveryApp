@@ -31,7 +31,7 @@ class CheckoutListViewController: UIViewController {
         return label
     }()
     
-    let payButton = PayButton()
+    private let customButton = CustomButton()
     
     
     init(basket: Basket) {
@@ -49,7 +49,7 @@ class CheckoutListViewController: UIViewController {
         configureLogo()
         configureVC()
         configureTotalInfo()
-        setPayButton()
+        setCustomButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -89,12 +89,28 @@ class CheckoutListViewController: UIViewController {
         setTotalInfoConstraints()
     }
     
-    private func setPayButton() {
-        view.addSubview(payButton)
-        
-        payButton.basket = basket
-        
-        setPayButtonConstraints()
+    //MARK: - Basket Button translation
+    
+    private func setCustomButton() {
+        view.addSubview(customButton)
+        customButton.setTitle("Pay", for: .normal)
+        customButton.backgroundColor = UIColor.init(red: 51/255, green: 153/255, blue: 255/255, alpha: 0.9)
+        customButton.pinPayBtn(to: view)
+        addActionToCustomButton()
+    }
+    
+    private func addActionToCustomButton() {
+        customButton.addTarget(self, action: #selector(customButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc private func customButtonTapped() {
+        if checkoutList.name != "" {
+            let payVC = PayViewController()
+            
+            navigationController?.pushViewController(payVC, animated: true)
+        } else {
+            customButton.shake()
+        }
     }
     
     // MARK: - Constraints
@@ -106,7 +122,7 @@ class CheckoutListViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             tableView.heightAnchor.constraint(equalToConstant: 300),
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
         ])
@@ -125,18 +141,6 @@ class CheckoutListViewController: UIViewController {
             totalSumLabel.heightAnchor.constraint(equalToConstant: 50),
             totalSumLabel.topAnchor.constraint(equalTo: tableView.bottomAnchor),
             totalSumLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
-        ])
-    }
-    
-    // Pay button constraints
-    private func setPayButtonConstraints() {
-        payButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            payButton.heightAnchor.constraint(equalToConstant: 40),
-            payButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 60),
-            payButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -60),
-            payButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30)
         ])
     }
    
