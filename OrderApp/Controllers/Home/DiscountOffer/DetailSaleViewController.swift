@@ -99,6 +99,7 @@ class DetailSaleViewController: UIViewController {
     }
     
     @objc private func customButtonTapped() {
+        customButton.pressWithEnable()
 //        customButton.setTitle("\(menuItem.title) added", for: .normal)
 //        coordinator?.passOrderToBasket(menuItem: menuItem)
     }

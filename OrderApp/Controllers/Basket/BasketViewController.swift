@@ -109,8 +109,9 @@ class BasketViewController: UIViewController {
     
     @objc private func customButtonTapped() {
         if basket.basketItems.count > 0 {
-            let checkoutListVC = CheckoutListViewController(basket: basket)
+            customButton.press()
             
+            let checkoutListVC = CheckoutListViewController(basket: basket)
             navigationController?.pushViewController(checkoutListVC, animated: true)
         } else {
             customButton.shake()

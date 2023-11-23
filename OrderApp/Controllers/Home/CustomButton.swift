@@ -21,9 +21,9 @@ class CustomButton: UIButton {
     }
     
     
-    func setupButton() {
+    private func setupButton() {
         setTitleColor(.white, for: .normal)
-        setTitle("hey", for: .normal)
+
         backgroundColor = .red
         titleLabel?.font = UIFont.systemFont(ofSize: 18)
         layer.cornerRadius = 20
@@ -39,10 +39,9 @@ class CustomButton: UIButton {
         layer.shadowRadius = 8
         layer.shadowOpacity = 0.5
         layer.masksToBounds = false
-        clipsToBounds = true
     }
     
-    func shake() {
+    public func shake() {
         let shake = CABasicAnimation(keyPath: "position")
         shake.duration = 0.1
         shake.repeatCount = 2
@@ -60,6 +59,38 @@ class CustomButton: UIButton {
         layer.add(shake, forKey: "position")
     }
     
-   
+    public func press() {
+        scaleAnimation(isEnabled: false)
+    }
     
+    public func pressWithEnable() {
+        scaleAnimation(isEnabled: true)
+    }
+    
+    private func scaleAnimation(isEnabled: Bool) {
+        let scaleAnimation = CABasicAnimation(keyPath: "transform.scale")
+        scaleAnimation.duration = 0.1
+        scaleAnimation.fromValue = 1.0
+        scaleAnimation.toValue = 0.9
+        scaleAnimation.autoreverses = true
+        scaleAnimation.repeatCount = 1
+        
+        if isEnabled {
+            scaleAnimation.delegate = self
+        }
+
+        layer.add(scaleAnimation, forKey: "buttonPress")
+    }
+    
+}
+
+//MARK: - Enable button
+
+extension CustomButton: CAAnimationDelegate {
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        isEnabled = !flag
+        layer.opacity = 0.7
+        setTitleColor(.lightGray, for: .disabled)
+
+    }
 }

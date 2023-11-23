@@ -105,8 +105,9 @@ class CheckoutListViewController: UIViewController {
     
     @objc private func customButtonTapped() {
         if checkoutList.name != "" {
-            let payVC = PayViewController()
+            customButton.press()
             
+            let payVC = PayViewController()
             navigationController?.pushViewController(payVC, animated: true)
         } else {
             customButton.shake()
