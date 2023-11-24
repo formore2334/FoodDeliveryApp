@@ -212,9 +212,8 @@
 		455FE4C92B0202A000506E9C /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				45803B2C2B10498F00BB1081 /* Helpers */,
 				453F508C2ADD7B8D00D9DCF9 /* HomeViewController.swift */,
-				45AF524B2B0CC799009EDB11 /* LogoView.swift */,
-				4586B63F2B0F5FC900439562 /* CustomButton.swift */,
 				453F50842ADD6B2A00D9DCF9 /* PopularCategories */,
 				453F50852ADD6C4A00D9DCF9 /* DiscountOffer */,
 				4567FED72B0DD67100B032F2 /* Coupons */,
@@ -257,6 +256,15 @@
 				456A0D142B0BA2CC0029247D /* NetworkManager.swift */,
 			);
 			path = NetworkLayer;
+			sourceTree = "<group>";
+		};
+		45803B2C2B10498F00BB1081 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				45AF524B2B0CC799009EDB11 /* LogoView.swift */,
+				4586B63F2B0F5FC900439562 /* CustomButton.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		45DEED5E2ADFC62700CB6439 /* MenuItemInfo */ = {
