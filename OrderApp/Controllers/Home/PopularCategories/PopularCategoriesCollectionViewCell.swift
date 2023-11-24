@@ -49,6 +49,7 @@ class PopularCategoriesCollectionViewCell: UICollectionViewCell {
          contentView.addSubview(imageView)
          contentView.addSubview(titleLabel)
         
+        setShadow()
         setConstraints()
      }
      
@@ -57,6 +58,14 @@ class PopularCategoriesCollectionViewCell: UICollectionViewCell {
          titleLabel.text = title
          
      }
+    
+    private func setShadow() {
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        layer.shadowRadius = 3
+        layer.shadowOpacity = 0.5
+        layer.masksToBounds = false
+    }
      
      //MARK: - Constraints
      
