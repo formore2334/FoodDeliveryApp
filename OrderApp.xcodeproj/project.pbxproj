@@ -174,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				455E90382AF3C0CA002DB5E3 /* Coordinator */,
+				45803B2C2B10498F00BB1081 /* Helpers */,
 				455FE4C92B0202A000506E9C /* Home */,
 				455FE4CA2B0202E800506E9C /* Menu */,
 				455A7A522AE7B7AB00EE1844 /* Basket */,
@@ -212,7 +213,6 @@
 		455FE4C92B0202A000506E9C /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				45803B2C2B10498F00BB1081 /* Helpers */,
 				453F508C2ADD7B8D00D9DCF9 /* HomeViewController.swift */,
 				453F50842ADD6B2A00D9DCF9 /* PopularCategories */,
 				453F50852ADD6C4A00D9DCF9 /* DiscountOffer */,
