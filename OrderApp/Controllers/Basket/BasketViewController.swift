@@ -25,17 +25,11 @@ class BasketViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setCustomButton()
         configureTitleLabel()
         configureItemCounterLabel()
         configureTableView()
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        setCustomButton()
-        addActionToCustomButton()
+        setAllConstraint()
     }
     
     
@@ -45,8 +39,6 @@ class BasketViewController: UIViewController {
         view.addSubview(titleLabel)
         
         attributedStringTitle()
-        
-        setTitleLabelConstraints()
     }
     
     private func configureItemCounterLabel() {
@@ -54,8 +46,6 @@ class BasketViewController: UIViewController {
         itemCounterLabel.text = "\(basket.totalCount)"
         itemCounterLabel.font = UIFont.systemFont(ofSize: 37)
         itemCounterLabel.textColor = .black
-        
-        setItemCounterLabelConstraints()
     }
     
     
@@ -67,8 +57,6 @@ class BasketViewController: UIViewController {
         tableView.rowHeight = 80
         tableView.allowsSelection = false
         tableView.register(BasketCell.self, forCellReuseIdentifier: BasketCell.identifier)
-        
-        setTableViewConstraints()
     }
     
     // Set attributes for titleLabel (text + image)
@@ -101,6 +89,8 @@ class BasketViewController: UIViewController {
         view.addSubview(customButton)
         customButton.setTitle("Checkout", for: .normal)
         customButton.pin(to: view)
+        
+        addActionToCustomButton()
     }
     
     private func addActionToCustomButton() {
@@ -121,27 +111,32 @@ class BasketViewController: UIViewController {
     
     //MARK: - Constraints
     
-    // Header constraints
-    private func setTitleLabelConstraints() {
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
+    private func setAllConstraint() {
+        setItemCounterLabelConstraints()
+        setTitleLabelConstraints()
+        setTableViewConstraints()
     }
     
+    // Header Info constraints
     private func setItemCounterLabelConstraints() {
         itemCounterLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             
-            itemCounterLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
+            itemCounterLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -40),
             itemCounterLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
         ])
     }
     
+    private func setTitleLabelConstraints() {
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            
+            titleLabel.topAnchor.constraint(equalTo: itemCounterLabel.bottomAnchor, constant: 35),
+            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+    }
     
     // TableView constraints
     private func setTableViewConstraints() {
@@ -152,7 +147,7 @@ class BasketViewController: UIViewController {
             tableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: customButton.topAnchor, constant: -20)
         ])
     }
     
