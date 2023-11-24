@@ -19,11 +19,14 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     
     private var couponsCategoriesStackView = UIStackView()
     
+    private var lastPresentedViewController = UIViewController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        
         configureLogo()
         configureScrollView()
+        didAppearTranslationAnimation()
     }
 
     override func viewDidLayoutSubviews() {
@@ -95,6 +98,11 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         couponsVC.didMove(toParent: self)
     }
     
+    // Animate appear
+    func didAppearTranslationAnimation() {
+        CGAffineTransform.animateContentFlyIn(middleItem: salesCategoriesStackView, firstItem: popularCategoriesStackView, lastItem: couponsCategoriesStackView, superView: view)
+    }
+
     // MARK: - Constraints
     
     func setScrollViewConstraints() {
