@@ -10,8 +10,6 @@ import UIKit
 
 class CouponCell: UICollectionViewCell {
 
-    static let identifier = "CouponCell"
-
     let networkManager = NetworkManager()
     
     private var cellContainer: UIView = {

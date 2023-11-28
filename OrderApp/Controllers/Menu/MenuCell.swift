@@ -9,8 +9,6 @@ import UIKit
 
 class MenuCell: UICollectionViewCell {
     
-    static let identifier = "MenuCell"
-    
     private let networkManager = NetworkManager()
     
     private var cellContainer: UIView = {

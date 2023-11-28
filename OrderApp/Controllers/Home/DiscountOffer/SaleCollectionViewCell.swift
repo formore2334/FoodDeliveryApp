@@ -9,8 +9,6 @@ import UIKit
 
 class SaleCollectionViewCell: UICollectionViewCell {
     
-    static let identifier = "SaleCollectionViewCell"
-    
     let networkManager = NetworkManager()
     
     private var imageView: UIImageView = {

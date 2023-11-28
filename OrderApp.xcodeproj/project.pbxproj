@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		450219B12B15C73A00347211 /* UICollectionView+Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450219B02B15C73A00347211 /* UICollectionView+Identifier.swift */; };
+		450219B32B15C83300347211 /* UITableViewCell+Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450219B22B15C83300347211 /* UITableViewCell+Identifier.swift */; };
 		452DAD532B07B33300E693AC /* PayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452DAD522B07B33200E693AC /* PayViewController.swift */; };
 		453F50832ADD40ED00D9DCF9 /* CategoryDetailMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453F50822ADD40ED00D9DCF9 /* CategoryDetailMenuViewController.swift */; };
 		453F50872ADD6D3F00D9DCF9 /* SaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453F50862ADD6D3F00D9DCF9 /* SaleViewController.swift */; };
@@ -47,6 +49,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		450219B02B15C73A00347211 /* UICollectionView+Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Identifier.swift"; sourceTree = "<group>"; };
+		450219B22B15C83300347211 /* UITableViewCell+Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Identifier.swift"; sourceTree = "<group>"; };
 		452DAD522B07B33200E693AC /* PayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayViewController.swift; sourceTree = "<group>"; };
 		453F50822ADD40ED00D9DCF9 /* CategoryDetailMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailMenuViewController.swift; sourceTree = "<group>"; };
 		453F50862ADD6D3F00D9DCF9 /* SaleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleViewController.swift; sourceTree = "<group>"; };
@@ -200,6 +204,8 @@
 			children = (
 				455A7A5B2AE7F04600EE1844 /* UIView+Extansions.swift */,
 				45803B2D2B1056A200BB1081 /* UIView+Animations.swift */,
+				450219B02B15C73A00347211 /* UICollectionView+Identifier.swift */,
+				450219B22B15C83300347211 /* UITableViewCell+Identifier.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -380,6 +386,7 @@
 				45915F022B03651E0032D4BB /* MenuHeaderView.swift in Sources */,
 				453F50832ADD40ED00D9DCF9 /* CategoryDetailMenuViewController.swift in Sources */,
 				4567FEDF2B0DD70000B032F2 /* DetailCouponInfoViewController.swift in Sources */,
+				450219B12B15C73A00347211 /* UICollectionView+Identifier.swift in Sources */,
 				457847FC2B066543009B14CA /* CheckoutListCell.swift in Sources */,
 				4567FEDD2B0DD6C700B032F2 /* CouponCell.swift in Sources */,
 				456745582AED46AC0090CB09 /* MenuViewController.swift in Sources */,
@@ -390,6 +397,7 @@
 				455E903A2AF3C0DF002DB5E3 /* Coordinator.swift in Sources */,
 				4567FED92B0DD68F00B032F2 /* Coupon.swift in Sources */,
 				45AF524C2B0CC799009EDB11 /* LogoView.swift in Sources */,
+				450219B32B15C83300347211 /* UITableViewCell+Identifier.swift in Sources */,
 				455A7A582AE7DF1E00EE1844 /* BasketViewController.swift in Sources */,
 				453F50892ADD6D8E00D9DCF9 /* SaleCollectionViewCell.swift in Sources */,
 				45DEED602ADFC6FC00CB6439 /* DetailInfoViewController.swift in Sources */,

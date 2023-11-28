@@ -17,8 +17,6 @@ protocol BasketCellDelegate: AnyObject {
 
 class BasketCell: UITableViewCell {
     
-    static let identifier = String(describing: BasketCell.self)
-    
     private let networkManager = NetworkManager()
     
     weak var delegate: BasketCellDelegate?

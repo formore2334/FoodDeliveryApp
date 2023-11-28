@@ -9,8 +9,6 @@ import UIKit
 
 class PopularCategoriesCollectionViewCell: UICollectionViewCell {
     
-    static let identifier = "PopularCategoriesCollectionViewCell"
-    
     private var cellContainer: UIView = {
         let container = UIView()
         container.backgroundColor = .systemGray5

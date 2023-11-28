@@ -9,8 +9,6 @@ import UIKit
 
 class CheckoutListCell: UITableViewCell {
     
-    static let identifier = "CheckoutListCell"
-    
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .caption1)
