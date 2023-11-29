@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         coordinator = MainCoordinator(navigationController: navController)
         coordinator?.start()
         
-        let vc = DetailCouponInfoViewController(coupon: Coupon.mockData[0] )
+        let vc = CheckoutListViewController(basket: Basket(basketItems: []))
         let navVC = UINavigationController(rootViewController: vc)
 
         window.rootViewController = navController

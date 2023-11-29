@@ -12,26 +12,32 @@ class CheckoutListViewController: UIViewController {
     
     var basket: Basket
     
-    var tableView: UITableView!
-    var checkoutListInfo: [CheckoutListInfo] = [.name, .phone, .address, .comment, .coupon]
-    var checkoutList = CheckoutList(name: "", phone: "", address: "", comment: "", coupon: "")
+    private let formContentBuilder = FormContentBuilder()
     
-    let totalTitleLabel: UILabel = {
+    private var tableView = UITableView()
+    
+    private let customButton = CustomButton()
+    
+    private let checkoutListItems: [CheckoutList] = [.name, .phone, .email, .address, .comment, .coupon]
+    
+    private let totalTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "Total:"
         label.font = UIFont.boldSystemFont(ofSize: 25)
-        label.frame = CGRect(x: 0, y: 0, width: 150, height: 50)
         return label
     }()
     
-    let totalSumLabel: UILabel = {
+    private let totalSumLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 12)
+        return label
+    }()
+    
+    private let discountLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 25)
-        label.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         return label
     }()
-    
-    private let customButton = CustomButton()
     
     
     init(basket: Basket) {
@@ -83,8 +89,9 @@ class CheckoutListViewController: UIViewController {
     private func configureTotalInfo() {
         view.addSubview(totalTitleLabel)
         view.addSubview(totalSumLabel)
+        view.addSubview(discountLabel)
         
-        totalSumLabel.text = "\(basket.totalSum)$"
+        discountLabel.text = "\(basket.totalSum)$"
         
         setTotalInfoConstraints()
     }
@@ -104,7 +111,7 @@ class CheckoutListViewController: UIViewController {
     }
     
     @objc private func customButtonTapped() {
-        if checkoutList.name != "" {
+        if formContentBuilder.isValid {
             customButton.press()
             
             let payVC = PayViewController()
@@ -122,7 +129,7 @@ class CheckoutListViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            tableView.heightAnchor.constraint(equalToConstant: 300),
+            tableView.heightAnchor.constraint(equalToConstant: 360),
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
@@ -133,15 +140,21 @@ class CheckoutListViewController: UIViewController {
     func setTotalInfoConstraints() {
         totalTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         totalSumLabel.translatesAutoresizingMaskIntoConstraints = false
+        discountLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             totalTitleLabel.heightAnchor.constraint(equalToConstant: 50),
-            totalTitleLabel.topAnchor.constraint(equalTo: tableView.bottomAnchor),
-            totalTitleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
+            totalTitleLabel.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 20),
+            totalTitleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             
-            totalSumLabel.heightAnchor.constraint(equalToConstant: 50),
-            totalSumLabel.topAnchor.constraint(equalTo: tableView.bottomAnchor),
-            totalSumLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
+            discountLabel.heightAnchor.constraint(equalToConstant: 25),
+            discountLabel.centerYAnchor.constraint(equalTo: totalTitleLabel.centerYAnchor),
+            discountLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
+            
+            totalSumLabel.heightAnchor.constraint(equalToConstant: 25),
+            totalSumLabel.leadingAnchor.constraint(equalTo: discountLabel.trailingAnchor, constant: -16),
+            totalSumLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            totalSumLabel.bottomAnchor.constraint(equalTo: discountLabel.topAnchor)
         ])
     }
    
@@ -158,36 +171,60 @@ extension CheckoutListViewController: UITableViewDelegate {
 extension CheckoutListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return checkoutListInfo.count
+        return checkoutListItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CheckoutListCell.identifier, for: indexPath) as! CheckoutListCell
         
-        let info = checkoutListInfo[indexPath.row]
-        cell.configure(with: info)
+        let checkoutListItem = checkoutListItems[indexPath.row]
+        cell.configure(with: checkoutListItem)
         cell.didEnterText = { [weak self] text in
-            switch info {
+            
+            guard let self = self else { return }
+            
+            // Validate all text fields
+            switch checkoutListItem {
+                
             case .name:
-                self?.checkoutList.name = text
+                if let (_, errorText) = self.formContentBuilder.updateUserInfo(text: text, for: .name) {
+                    cell.errorLabel.text = errorText as? String
+                }
+                
             case .phone:
-                self?.checkoutList.phone = text
+                if let (_, errorText) = self.formContentBuilder.updateUserInfo(text: text, for: .phone) {
+                    cell.errorLabel.text = errorText as? String
+                }
+                
+            case .email:
+                if let (_, errorText) = self.formContentBuilder.updateUserInfo(text: text, for: .email) {
+                    cell.errorLabel.text = errorText as? String
+                }
+                
             case .address:
-                self?.checkoutList.address = text
+                if let (_, errorText) = self.formContentBuilder.updateUserInfo(text: text, for: .address) {
+                    cell.errorLabel.text = errorText as? String
+                }
+                
             case .comment:
-                self?.checkoutList.comment = text
+                if let (_, _) = self.formContentBuilder.updateUserInfo(text: text, for: .comment) {
+                    //
+                }
+                
             case .coupon:
-                self?.checkoutList.coupon = text
+                if let (calculatedDiscount, crossedTotalSum) = self.formContentBuilder.updateUserInfo(text: text, for: .coupon, with: self.basket) {
+                    self.discountLabel.text = calculatedDiscount
+                    self.totalSumLabel.attributedText = crossedTotalSum as? NSAttributedString
+                } else {
+                    self.discountLabel.text = "\(self.basket.totalSum)"
+                    self.totalSumLabel.text = ""
+                }
+                
             }
-            print("DEBUG checkoutList: ", self?.checkoutList ?? "checkoutList - nil")
+           
         }
         
         return cell
     }
     
 }
-
-
-
-
-

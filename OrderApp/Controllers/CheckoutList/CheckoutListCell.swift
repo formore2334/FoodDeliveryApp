@@ -9,19 +9,21 @@ import UIKit
 
 class CheckoutListCell: UITableViewCell {
     
-    private var titleLabel: UILabel = {
+    private var textField = UITextField()
+    
+    var errorLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .caption1)
-        label.font = UIFont.systemFont(ofSize: 15)
-        label.textAlignment = .left
-        label.textColor = .lightGray
+        label.textColor = .red
+        label.text = ""
         return label
     }()
     
-     var textField: UITextField = {
-        let textField = UITextField()
-
-        return textField
+    private lazy var contentStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        return stackView
     }()
     
     var didEnterText: ((String) -> ())?
@@ -38,13 +40,14 @@ class CheckoutListCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func configure(with checkoutListInfo: CheckoutListInfo) {
-        titleLabel.text = checkoutListInfo.rawValue
+    public func configure(with checkoutListItem: CheckoutList) {
+        textField.placeholder = checkoutListItem.rawValue
     }
     
     private func configureContentView() {
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(textField)
+        contentView.addSubview(contentStackView)
+        contentStackView.addArrangedSubview(textField)
+        contentStackView.addArrangedSubview(errorLabel)
         
         textField.delegate = self
         
@@ -54,23 +57,20 @@ class CheckoutListCell: UITableViewCell {
     //MARK: - Constraints
     
     func setConstraints() {
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        textField.translatesAutoresizingMaskIntoConstraints = false
+        contentStackView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: topAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            textField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
-            textField.leadingAnchor.constraint(equalTo: leadingAnchor),
-            textField.trailingAnchor.constraint(equalTo: trailingAnchor),
-            textField.bottomAnchor.constraint(equalTo: bottomAnchor),
+            contentStackView.topAnchor.constraint(equalTo: topAnchor),
+            contentStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            contentStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            contentStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
     
 }
 
+// MARK: - Text Delegate
 extension CheckoutListCell: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         didEnterText?(textField.text ?? "")
