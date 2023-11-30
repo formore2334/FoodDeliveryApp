@@ -12,7 +12,7 @@ import Foundation
 
 class FormContentBuilder {
     
-    var salesManager = SalesManager()
+    var couponsManager = CouponsManager()
     
     let validateManager = ValidateManager()
     
@@ -83,12 +83,12 @@ class FormContentBuilder {
             guard let basket = basket else { return nil }
             
             // Returned values for total label's
-            salesManager.basket = basket
-            salesManager.applyCoupon(text)
+            couponsManager.basket = basket
+            couponsManager.applyCoupon(text)
             
-            if salesManager.couponIsValid {
+            if couponsManager.couponIsValid {
                 
-                let calculatedDiscount = salesManager.calculatedDiscountString
+                let calculatedDiscount = couponsManager.calculatedDiscountString
                 let totalSum = "\(basket.totalSum)"
                 let discount = totalSum.crossOutTheLine()
                 
