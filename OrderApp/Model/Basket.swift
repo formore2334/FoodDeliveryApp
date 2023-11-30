@@ -21,7 +21,16 @@ struct Basket {
     }
     
     var totalSum: Double {
-        let sum = basketItems.reduce(0) { $0 + ($1.menuItem.price * Double($1.count)) }
+        let sum = basketItems.reduce(0.0) { result, basketItem in
+            let menuItem = basketItem.menuItem
+            
+            if let discountMenuItem = menuItem as? DiscountMenuItem {
+                return result + (discountMenuItem.newPrice * Double(basketItem.count))
+            } else {
+                return result + (menuItem.price * Double(basketItem.count))
+            }
+        }
+        
         return Double(String(format: "%.2f", sum)) ?? 0.0
     }
     
