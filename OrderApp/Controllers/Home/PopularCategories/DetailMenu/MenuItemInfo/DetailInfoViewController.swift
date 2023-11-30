@@ -105,7 +105,19 @@ class DetailInfoViewController: UIViewController {
     
     private func setCustomButton() {
         view.addSubview(customButton)
-        customButton.setTitle("Add to basket", for: .normal)
+        
+        if let discountMenuItem = menuItem as? DiscountMenuItem {
+            let priceString = "Add for \(discountMenuItem.newPrice)$"
+            let crossedOldPriceString = " \(menuItem.price)"
+            
+            let attributedString = NSAttributedString()
+            let prepareAttributedString = attributedString.concatenationWithCrossOut(baseString: priceString, crossedString: crossedOldPriceString)
+            
+            customButton.setAttributedTitle(prepareAttributedString, for: .normal)
+        } else {
+            customButton.setTitle("Add for \(menuItem.price)$", for: .normal)
+        }
+        
         customButton.pin(to: view)
         addActionToCustomButton()
     }
@@ -115,6 +127,7 @@ class DetailInfoViewController: UIViewController {
     }
     
     @objc private func customButtonTapped() {
+        customButton.setAttributedTitle(nil, for: .normal)
         customButton.setTitle("\(menuItem.title) added", for: .normal)
         customButton.pressWithEnable()
         coordinator?.passOrderToBasket(menuItem: menuItem)

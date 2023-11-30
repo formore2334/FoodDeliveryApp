@@ -87,7 +87,7 @@ class BasketViewController: UIViewController {
     
     private func setCustomButton() {
         view.addSubview(customButton)
-        customButton.setTitle("Checkout", for: .normal)
+        customButton.setTitle("Checkout  \(basket.totalSum)$", for: .normal)
         customButton.pin(to: view)
         
         addActionToCustomButton()

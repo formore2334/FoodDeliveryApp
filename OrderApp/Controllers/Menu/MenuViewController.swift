@@ -72,7 +72,7 @@ extension MenuViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCell.identifier, for: indexPath) as! MenuCell
 
         let menuItem = menu[indexPath.section].menuItem[indexPath.item]
-        cell.configure(urlString: menuItem.imageURL, title: menuItem.title)
+        cell.configure(menuItem: menuItem)
 
         return cell
     }
@@ -108,8 +108,8 @@ extension MenuViewController: UICollectionViewDelegateFlowLayout {
     func layoutCollection() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets(top: 20, left: 20, bottom: 50, right: 20)
-        layout.minimumLineSpacing = 50
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 20, bottom: 100, right: 20)
+        layout.minimumLineSpacing = 90
         
         return layout
     }

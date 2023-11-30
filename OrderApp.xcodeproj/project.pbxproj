@@ -37,11 +37,13 @@
 		4567FEDD2B0DD6C700B032F2 /* CouponCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4567FEDC2B0DD6C700B032F2 /* CouponCell.swift */; };
 		4567FEDF2B0DD70000B032F2 /* DetailCouponInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4567FEDE2B0DD70000B032F2 /* DetailCouponInfoViewController.swift */; };
 		456A0D152B0BA2CC0029247D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456A0D142B0BA2CC0029247D /* NetworkManager.swift */; };
+		45706C782B18B37700E701AE /* SalesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45706C772B18B37700E701AE /* SalesManager.swift */; };
 		4576A6552B1741440011F35D /* String+CrossText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4576A6542B1741430011F35D /* String+CrossText.swift */; };
 		4576A6582B17424D0011F35D /* ValidateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4576A6572B17424D0011F35D /* ValidateManager.swift */; };
 		4576A65A2B1742870011F35D /* RegexPatterns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4576A6592B1742870011F35D /* RegexPatterns.swift */; };
 		4576A65C2B174CC90011F35D /* FormContentBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4576A65B2B174CC90011F35D /* FormContentBuilder.swift */; };
-		4576A65F2B17578A0011F35D /* SalesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4576A65E2B1757890011F35D /* SalesManager.swift */; };
+		4576A65F2B17578A0011F35D /* CouponsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4576A65E2B1757890011F35D /* CouponsManager.swift */; };
+		4576A6612B179FDD0011F35D /* NSAttributedString+Concatenation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4576A6602B179FDD0011F35D /* NSAttributedString+Concatenation.swift */; };
 		457847FC2B066543009B14CA /* CheckoutListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457847FB2B066543009B14CA /* CheckoutListCell.swift */; };
 		457847FE2B066597009B14CA /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457847FD2B066596009B14CA /* UserInfo.swift */; };
 		45803B2E2B1056A200BB1081 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45803B2D2B1056A200BB1081 /* UIView+Animations.swift */; };
@@ -87,11 +89,13 @@
 		4567FEDC2B0DD6C700B032F2 /* CouponCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponCell.swift; sourceTree = "<group>"; };
 		4567FEDE2B0DD70000B032F2 /* DetailCouponInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCouponInfoViewController.swift; sourceTree = "<group>"; };
 		456A0D142B0BA2CC0029247D /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		45706C772B18B37700E701AE /* SalesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesManager.swift; sourceTree = "<group>"; };
 		4576A6542B1741430011F35D /* String+CrossText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+CrossText.swift"; sourceTree = "<group>"; };
 		4576A6572B17424D0011F35D /* ValidateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateManager.swift; sourceTree = "<group>"; };
 		4576A6592B1742870011F35D /* RegexPatterns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexPatterns.swift; sourceTree = "<group>"; };
 		4576A65B2B174CC90011F35D /* FormContentBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormContentBuilder.swift; sourceTree = "<group>"; };
-		4576A65E2B1757890011F35D /* SalesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesManager.swift; sourceTree = "<group>"; };
+		4576A65E2B1757890011F35D /* CouponsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponsManager.swift; sourceTree = "<group>"; };
+		4576A6602B179FDD0011F35D /* NSAttributedString+Concatenation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Concatenation.swift"; sourceTree = "<group>"; };
 		457847FB2B066543009B14CA /* CheckoutListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutListCell.swift; sourceTree = "<group>"; };
 		457847FD2B066596009B14CA /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		45803B2D2B1056A200BB1081 /* UIView+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
@@ -222,6 +226,7 @@
 				450219B22B15C83300347211 /* UITableViewCell+Identifier.swift */,
 				450219B82B15D42300347211 /* UITextField+Validate.swift */,
 				4576A6542B1741430011F35D /* String+CrossText.swift */,
+				4576A6602B179FDD0011F35D /* NSAttributedString+Concatenation.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -296,7 +301,8 @@
 		4576A65D2B17573F0011F35D /* SalesManager */ = {
 			isa = PBXGroup;
 			children = (
-				4576A65E2B1757890011F35D /* SalesManager.swift */,
+				4576A65E2B1757890011F35D /* CouponsManager.swift */,
+				45706C772B18B37700E701AE /* SalesManager.swift */,
 			);
 			path = SalesManager;
 			sourceTree = "<group>";
@@ -399,6 +405,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45706C782B18B37700E701AE /* SalesManager.swift in Sources */,
 				455E903C2AF3C0F3002DB5E3 /* MainCoordinator.swift in Sources */,
 				457847FE2B066597009B14CA /* UserInfo.swift in Sources */,
 				454FBF3E2AD95132001E75EB /* Menu.swift in Sources */,
@@ -411,7 +418,7 @@
 				45FF89292ADEC532006FE6EC /* DetailMenuCollectionViewCell.swift in Sources */,
 				4576A65A2B1742870011F35D /* RegexPatterns.swift in Sources */,
 				453F508D2ADD7B8D00D9DCF9 /* HomeViewController.swift in Sources */,
-				4576A65F2B17578A0011F35D /* SalesManager.swift in Sources */,
+				4576A65F2B17578A0011F35D /* CouponsManager.swift in Sources */,
 				45DEED622ADFD9CB00CB6439 /* Sales.swift in Sources */,
 				456A0D152B0BA2CC0029247D /* NetworkManager.swift in Sources */,
 				4562CBE62B04C2B0007F6A4D /* CheckoutListViewController.swift in Sources */,
@@ -435,6 +442,7 @@
 				455FE4CC2B02053E00506E9C /* MenuCell.swift in Sources */,
 				455E903A2AF3C0DF002DB5E3 /* Coordinator.swift in Sources */,
 				4567FED92B0DD68F00B032F2 /* Coupon.swift in Sources */,
+				4576A6612B179FDD0011F35D /* NSAttributedString+Concatenation.swift in Sources */,
 				4576A6552B1741440011F35D /* String+CrossText.swift in Sources */,
 				45AF524C2B0CC799009EDB11 /* LogoView.swift in Sources */,
 				450219B32B15C83300347211 /* UITableViewCell+Identifier.swift in Sources */,

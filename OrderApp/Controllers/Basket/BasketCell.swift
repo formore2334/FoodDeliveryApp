@@ -31,6 +31,14 @@ class BasketCell: UITableViewCell {
         return label
     }()
     
+    private var crossPriceLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .right
+        label.font = UIFont.preferredFont(forTextStyle: .caption1)
+        label.adjustsFontSizeToFitWidth = true
+        return label
+    }()
+    
     private var itemImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 70.0 / 2.0
@@ -88,7 +96,20 @@ class BasketCell: UITableViewCell {
    //MARK: - Configurations
     
     public func configure(menuItem: MenuItem, itemCounts: Int) {
-        priceLabel.text = "\(menuItem.price)$"
+        
+        if let discountMenuItem = menuItem as? DiscountMenuItem {
+            
+            let crossedString = "\(discountMenuItem.price)"
+            let crossedPrice = crossedString.crossOutTheLine()
+            
+            crossPriceLabel.attributedText = crossedPrice
+            priceLabel.text = "\(discountMenuItem.newPrice)$"
+        } else {
+            crossPriceLabel.text = ""
+            priceLabel.text = "\(menuItem.price)$"
+        }
+        
+        
         itemTextLabel.text = menuItem.title
         itemCountsLabel.text = "\(itemCounts)"
         
@@ -108,6 +129,7 @@ class BasketCell: UITableViewCell {
     
     private func configureContentView() {
         contentView.addSubview(priceLabel)
+        contentView.addSubview(crossPriceLabel)
         contentView.addSubview(itemImageView)
         contentView.addSubview(itemTextLabel)
         contentView.addSubview(subtractItemButton)
@@ -123,6 +145,7 @@ class BasketCell: UITableViewCell {
     /// Set All constraints together
     private func setAllConstraints() {
         setPriceLabelConstraints()
+        setCrossPriceLabelConstraints()
         setItemImageViewConstraints()
         setItemTextLabelConstraints()
         setSubtractItemButtonConstraints()
@@ -140,6 +163,18 @@ class BasketCell: UITableViewCell {
             
             priceLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             priceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10)
+        ])
+    }
+    
+    private func setCrossPriceLabelConstraints() {
+        crossPriceLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            crossPriceLabel.heightAnchor.constraint(equalToConstant: 20),
+            crossPriceLabel.widthAnchor.constraint(equalToConstant: 30),
+            
+            crossPriceLabel.bottomAnchor.constraint(equalTo: priceLabel.centerYAnchor, constant: -10),
+            crossPriceLabel.leadingAnchor.constraint(equalTo: priceLabel.centerXAnchor)
         ])
     }
     

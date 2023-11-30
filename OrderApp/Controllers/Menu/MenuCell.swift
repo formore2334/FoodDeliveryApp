@@ -11,7 +11,7 @@ class MenuCell: UICollectionViewCell {
     
     private let networkManager = NetworkManager()
     
-    private var cellContainer: UIView = {
+    private lazy var cellContainer: UIView = {
         let container = UIView()
         container.backgroundColor = .systemGray5
         container.layer.cornerRadius = 10
@@ -22,7 +22,7 @@ class MenuCell: UICollectionViewCell {
         return container
     }()
     
-    private let imageView: UIImageView = {
+    private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
@@ -31,9 +31,16 @@ class MenuCell: UICollectionViewCell {
         return imageView
     }()
     
-    private var titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let title = UILabel()
         title.textAlignment = .center
+        return title
+    }()
+    
+    private lazy var priceLabel: UILabel = {
+        let title = UILabel()
+        title.textAlignment = .center
+        title.font = UIFont.preferredFont(forTextStyle: .subheadline)
         return title
     }()
     
@@ -52,14 +59,27 @@ class MenuCell: UICollectionViewCell {
         contentView.addSubview(cellContainer)
         contentView.addSubview(imageView)
         contentView.addSubview(titleLabel)
+        contentView.addSubview(priceLabel)
         
        setDetailMenuConstraints()
     }
     
-    public func configure(urlString: String, title: String) {
-        titleLabel.text = title
+    public func configure(menuItem: MenuItem) {
         
-        getImage(stringURL: urlString)
+        if let discountMenuItem = menuItem as? DiscountMenuItem {
+            let priceString = "\(discountMenuItem.newPrice)$"
+            let crossedOldPriceString = " \(menuItem.price)"
+            
+            let attributedString = NSAttributedString()
+            let prepareAttributedString = attributedString.concatenationWithCrossOut(baseString: priceString, crossedString: crossedOldPriceString, crossedStringFontSize: 11)
+            
+            priceLabel.attributedText = prepareAttributedString
+        } else {
+            priceLabel.text = "\(menuItem.price)$"
+        }
+        
+        titleLabel.text = menuItem.title
+        getImage(stringURL: menuItem.imageURL)
     }
     
     private func getImage(stringURL: String) {
@@ -78,6 +98,7 @@ class MenuCell: UICollectionViewCell {
         cellContainer.translatesAutoresizingMaskIntoConstraints = false
         imageView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        priceLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             cellContainer.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -90,9 +111,13 @@ class MenuCell: UICollectionViewCell {
             imageView.heightAnchor.constraint(equalTo: cellContainer.heightAnchor, multiplier: 0.9),
             imageView.widthAnchor.constraint(equalTo: cellContainer.widthAnchor, multiplier: 0.9),
             
-            titleLabel.topAnchor.constraint(equalTo: cellContainer.bottomAnchor, constant: 10),
+            titleLabel.topAnchor.constraint(equalTo: cellContainer.bottomAnchor, constant: 15),
             titleLabel.centerXAnchor.constraint(equalTo: cellContainer.centerXAnchor),
-            titleLabel.heightAnchor.constraint(equalToConstant: 20)
+            titleLabel.heightAnchor.constraint(equalToConstant: 20),
+            
+            priceLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            priceLabel.centerXAnchor.constraint(equalTo: titleLabel.centerXAnchor),
+            priceLabel.heightAnchor.constraint(equalToConstant: 15)
         ])
     }
     

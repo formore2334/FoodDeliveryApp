@@ -15,7 +15,7 @@ class CategoryDetailMenuViewController: UICollectionViewController {
     
     var menu: Menu
     
-    private let titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 25)
         label.textColor = .black
@@ -107,7 +107,7 @@ extension CategoryDetailMenuViewController {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailMenuCollectionViewCell.identifier, for: indexPath) as! DetailMenuCollectionViewCell
         
-        cell.configure(stringURL: menu.menuItem[indexPath.row].imageURL, title: menu.menuItem[indexPath.row].title)
+       cell.configure(menuItem: menu.menuItem[indexPath.row])
         return cell
     }
     
@@ -128,7 +128,7 @@ extension CategoryDetailMenuViewController: UICollectionViewDelegateFlowLayout {
     func layoutCollection() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
-        layout.minimumLineSpacing = 50
+        layout.minimumLineSpacing = 90
         
         return layout
     }
