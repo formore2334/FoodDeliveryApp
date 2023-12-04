@@ -7,14 +7,11 @@
 
 import UIKit
 
-class MainCoordinator: Coordinator {
-    var childCoordinators = [Coordinator]()
-    var navigationController: UINavigationController
+class MainCoordinator: Coordinator {    
+    var tabBarController: UITabBarController
     
-   private let tabBarController = UITabBarController()
-    
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+    init(tabBarController: UITabBarController) {
+        self.tabBarController = tabBarController
     }
     
     func start() {
@@ -26,11 +23,9 @@ class MainCoordinator: Coordinator {
         menuVC.coordinator = self
         basketVC.coordinator = self
         
-        // Embed controllers in a UINavigationController. Its doing to appear logoImage
         let homeNavVC = UINavigationController(rootViewController: homeVC)
         let menuNavVC = UINavigationController(rootViewController: menuVC)
         let basketNavVC = UINavigationController(rootViewController: basketVC)
-        navigationController.isNavigationBarHidden = true
         
         tabBarController.viewControllers = [homeNavVC, menuNavVC, basketNavVC]
         tabBarController.tabBar.tintColor = .black
@@ -38,8 +33,6 @@ class MainCoordinator: Coordinator {
         homeNavVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 0)
         menuNavVC.tabBarItem = UITabBarItem(title: "Menu", image: UIImage(systemName: "fork.knife"), tag: 1)
         basketNavVC.tabBarItem = UITabBarItem(title: "Basket", image: UIImage(systemName: "basket"), tag: 2)
-        
-        navigationController.setViewControllers([tabBarController], animated: false)
     }
         
     
@@ -49,5 +42,19 @@ class MainCoordinator: Coordinator {
             basketVC.addItemToBasket(menuItem: menuItem)
         }
     }
-
+    
+    func goToCurrentSale(menuItem: MenuItem) {
+        let saleManager = SalesManager()
+        
+        guard let sale = saleManager.getCurrentSale(with: menuItem) else {
+            print("Sale not found")
+            return
+        }
+        
+        let detailSaleVC = DetailSaleViewController(sale: sale, coordinator: self)
+        
+        let navigationController = tabBarController.selectedViewController as? UINavigationController
+        navigationController?.pushViewController(detailSaleVC, animated: true)
+    }
+    
 }

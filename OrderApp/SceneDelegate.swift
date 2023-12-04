@@ -19,14 +19,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
 
         
-        let navController = UINavigationController()
-        coordinator = MainCoordinator(navigationController: navController)
+        let tabBarController = UITabBarController()
+        coordinator = MainCoordinator(tabBarController: tabBarController)
         coordinator?.start()
         
         let vc = CheckoutListViewController(basket: Basket(basketItems: []))
         let navVC = UINavigationController(rootViewController: vc)
 
-        window.rootViewController = navController
+        window.rootViewController = tabBarController
         window.backgroundColor = .white
         window.makeKeyAndVisible()
         self.window = window
