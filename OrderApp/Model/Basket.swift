@@ -24,7 +24,7 @@ struct Basket {
         let sum = basketItems.reduce(0.0) { result, basketItem in
             let menuItem = basketItem.menuItem
             
-            if let discountMenuItem = menuItem as? DiscountMenuItem {
+            if let discountMenuItem = menuItem as? Discountble {
                 return result + (discountMenuItem.newPrice * Double(basketItem.count))
             } else {
                 return result + (menuItem.price * Double(basketItem.count))
