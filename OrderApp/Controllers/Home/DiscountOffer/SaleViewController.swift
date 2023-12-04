@@ -11,7 +11,7 @@ class SaleViewController: UICollectionViewController {
     
     var coordinator: MainCoordinator?
     
-    private let sales: [Sale] = Sale.mockData
+    private let salesManager = SalesManager()
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -71,7 +71,7 @@ class SaleViewController: UICollectionViewController {
 extension SaleViewController {
     
    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sales.count
+       return salesManager.sales.count
     }
     
     
@@ -79,13 +79,13 @@ extension SaleViewController {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SaleCollectionViewCell.identifier, for: indexPath) as! SaleCollectionViewCell
         
-        cell.configure(stringURL: sales[indexPath.row].previewImageName, title: sales[indexPath.row].title)
+       cell.configure(stringURL: salesManager.sales[indexPath.row].previewImageURL, title: salesManager.sales[indexPath.row].title)
         return cell
     }
     
    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let detailSaleVC = DetailSaleViewController(sale: sales[indexPath.row])
+       let detailSaleVC = DetailSaleViewController(sale: salesManager.sales[indexPath.row], coordinator: coordinator)
         
         navigationController?.pushViewController(detailSaleVC, animated: true)
     }
