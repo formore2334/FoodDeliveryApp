@@ -97,9 +97,9 @@ class BasketCell: UITableViewCell {
     
     public func configure(menuItem: MenuItem, itemCounts: Int) {
         
-        if let discountMenuItem = menuItem as? DiscountMenuItem {
+        if let discountMenuItem = menuItem as? Discountble {
             
-            let crossedString = "\(discountMenuItem.price)"
+            let crossedString = "\(menuItem.price)"
             let crossedPrice = crossedString.crossOutTheLine()
             
             crossPriceLabel.attributedText = crossedPrice

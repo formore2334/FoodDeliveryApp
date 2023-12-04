@@ -27,6 +27,8 @@ class DetailInfoViewController: UIViewController {
     private var menuItemIngredientsTextLabel = UILabel()
     
     private let customButton = CustomButton()
+    
+    private let specialSaleButton = SpecialSaleButton()
 
     init(menuItem: MenuItem, coordinator: MainCoordinator? = nil) {
         self.menuItem = menuItem
@@ -58,6 +60,7 @@ class DetailInfoViewController: UIViewController {
         setTitleLabel()
         setTextView()
         setCustomButton()
+        setSpecialSaleButton()
         
         setAllConstraints()
     }
@@ -134,6 +137,27 @@ class DetailInfoViewController: UIViewController {
     }
     
     
+    //MARK: - Special Button translation
+    
+    private func setSpecialSaleButton() {
+        view.addSubview(specialSaleButton)
+        
+        if menuItem as? SpecialSaleMenuItem != nil {
+            addActionToSpecialSaleButton()
+            setSpecialSaleButtonConstraints()
+        }
+        
+       
+    }
+    
+    private func addActionToSpecialSaleButton() {
+        specialSaleButton.addTarget(self, action: #selector(specialSaleButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc private func specialSaleButtonTapped() {
+        coordinator?.goToCurrentSale(menuItem: menuItem)
+    }
+    
     //MARK: - Constraints
     
     private func setAllConstraints() {
@@ -162,6 +186,17 @@ class DetailInfoViewController: UIViewController {
             menuItemDescriptionTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100)
         ])
         
+    }
+    
+    private func setSpecialSaleButtonConstraints() {
+        specialSaleButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            specialSaleButton.bottomAnchor.constraint(equalTo: menuItemImageView.bottomAnchor, constant: -10),
+            specialSaleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            specialSaleButton.heightAnchor.constraint(equalToConstant: 35),
+            specialSaleButton.widthAnchor.constraint(equalToConstant: 100)
+        ])
     }
     
 }
