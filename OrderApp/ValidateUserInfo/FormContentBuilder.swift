@@ -16,7 +16,7 @@ class FormContentBuilder {
     
     let validateManager = ValidateManager()
     
-    var userInfo = UserInfo(name: "", phone: "", email: "", address: "", comment: "", coupon: "") {
+    var userInfo = UserInfo(orderNumber: "", name: "", phone: "", email: "", address: "", comment: "", coupon: "") {
         didSet {
            // print("DEBUG checkoutList: ", userInfo)
         }
