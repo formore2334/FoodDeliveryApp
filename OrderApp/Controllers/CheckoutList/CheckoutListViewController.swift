@@ -39,6 +39,15 @@ class CheckoutListViewController: UIViewController {
         return label
     }()
     
+    private lazy var noteLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Note: If you enter correctly all information, click on comment field to continue, because i'm doing this table validation without Combine -_-"
+        label.numberOfLines = 3
+        label.font = UIFont.preferredFont(forTextStyle: .caption1)
+        label.textColor = .gray
+        return label
+    }()
+    
     
     init(basket: Basket) {
         self.basket = basket
@@ -61,7 +70,7 @@ class CheckoutListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.tintColor = .black
-            UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
+            UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
     }
     
     //MARK: - Configurations
@@ -90,6 +99,7 @@ class CheckoutListViewController: UIViewController {
         view.addSubview(totalTitleLabel)
         view.addSubview(totalSumLabel)
         view.addSubview(discountLabel)
+        view.addSubview(noteLabel)
         
         discountLabel.text = "\(basket.totalSum)$"
         
@@ -101,7 +111,7 @@ class CheckoutListViewController: UIViewController {
     private func setCustomButton() {
         view.addSubview(customButton)
         customButton.setTitle("Pay", for: .normal)
-        customButton.backgroundColor = UIColor.init(red: 51/255, green: 153/255, blue: 255/255, alpha: 0.9)
+        customButton.backgroundColor = UIColor(named: "lightBlue")
         customButton.pinPayBtn(to: view)
         addActionToCustomButton()
     }
@@ -113,8 +123,10 @@ class CheckoutListViewController: UIViewController {
     @objc private func customButtonTapped() {
         if formContentBuilder.isValid {
             customButton.press()
+
+            let payVC = PayViewController(userInfo: formContentBuilder.userInfo, basket: basket)
             
-            let payVC = PayViewController()
+            navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
             navigationController?.pushViewController(payVC, animated: true)
         } else {
             customButton.shake()
@@ -141,6 +153,7 @@ class CheckoutListViewController: UIViewController {
         totalTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         totalSumLabel.translatesAutoresizingMaskIntoConstraints = false
         discountLabel.translatesAutoresizingMaskIntoConstraints = false
+        noteLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             totalTitleLabel.heightAnchor.constraint(equalToConstant: 50),
@@ -154,7 +167,11 @@ class CheckoutListViewController: UIViewController {
             totalSumLabel.heightAnchor.constraint(equalToConstant: 25),
             totalSumLabel.leadingAnchor.constraint(equalTo: discountLabel.trailingAnchor, constant: -16),
             totalSumLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-            totalSumLabel.bottomAnchor.constraint(equalTo: discountLabel.topAnchor)
+            totalSumLabel.bottomAnchor.constraint(equalTo: discountLabel.topAnchor),
+            
+            noteLabel.topAnchor.constraint(equalTo: totalTitleLabel.bottomAnchor, constant: 10),
+            noteLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            noteLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
         ])
     }
    
