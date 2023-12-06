@@ -26,11 +26,16 @@ enum CheckoutListError: String, CaseIterable, Error {
 }
 
 struct UserInfo {
+    var orderNumber: String
     var name: String
     var phone: String
     var email: String
     var address: String
     var comment: String
     var coupon: String
+}
 
+struct UserOrder {
+    let userInfo: UserInfo
+    let basket: Basket
 }
