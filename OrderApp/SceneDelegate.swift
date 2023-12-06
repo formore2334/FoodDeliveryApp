@@ -23,37 +23,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         coordinator = MainCoordinator(tabBarController: tabBarController)
         coordinator?.start()
         
-        let vc = CheckoutListViewController(basket: Basket(basketItems: []))
+        //let vc = PayViewController(userInfo: UserInfo(orderNumber: "", name: "Mike", phone: "123456789", email: "heloeverybodyimfine@gmail.com", address: "st. St. Patrick, b.74, 221", comment: "", coupon: ""), basket: Basket(basketItems: Basket.mockData.basketItems))
+        
+        let vc = CheckoutListViewController(basket: Basket(basketItems: Basket.mockData.basketItems) )
         let navVC = UINavigationController(rootViewController: vc)
 
         window.rootViewController = tabBarController
         window.backgroundColor = .white
         window.makeKeyAndVisible()
         self.window = window
-        
-//        let homeVC = HomeViewController()
-//        let menuVC = MenuViewController()
-//        let basketVC = BasketViewController()
-//
-//        let homeNC = UINavigationController(rootViewController: homeVC)
-//        let menuNC = UINavigationController(rootViewController: menuVC)
-//        let basketNC = UINavigationController(rootViewController: basketVC)
-//
-//        let tabBar = UITabBarController()
-//        tabBar.setViewControllers([homeNC, menuNC, basketNC], animated: true)
-//
-//        tabBar.tabBar.backgroundImage = UIImage()
-//        tabBar.tabBar.shadowImage = UIImage()
-//        tabBar.tabBar.tintColor = .black
-//
-//        homeNC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 1)
-//        menuNC.tabBarItem = UITabBarItem(title: "Menu", image: UIImage(systemName: "fork.knife"), tag: 2)
-//        basketNC.tabBarItem = UITabBarItem(title: "Basket", image: UIImage(systemName: "basket"), tag: 3)
-//
-//        window.rootViewController = tabBar
-//        window.backgroundColor = .white
-//        self.window = window
-//        window.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
