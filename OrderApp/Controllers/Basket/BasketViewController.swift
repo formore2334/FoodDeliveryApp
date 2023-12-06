@@ -24,6 +24,8 @@ class BasketViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(clearBasket), name: Notification.Name("ClearBasketNotification"), object: nil)
 
         setCustomButton()
         configureTitleLabel()
@@ -83,6 +85,12 @@ class BasketViewController: UIViewController {
      titleLabel.attributedText = attributedText
     }
     
+    //Listening to notification
+    @objc func clearBasket() {
+        self.basket.basketItems.removeAll()
+        updateData()
+    }
+    
     //MARK: - Checkout Button translation
     
     private func setCustomButton() {
@@ -102,6 +110,9 @@ class BasketViewController: UIViewController {
             customButton.press()
             
             let checkoutListVC = CheckoutListViewController(basket: basket)
+            
+            navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+
             navigationController?.pushViewController(checkoutListVC, animated: true)
         } else {
             customButton.shake()
