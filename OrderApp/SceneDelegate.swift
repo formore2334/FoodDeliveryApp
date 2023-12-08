@@ -28,7 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //let vc = CheckoutListViewController(basket: Basket(basketItems: Basket.mockData.basketItems))
         let navVC = UINavigationController(rootViewController: vc)
 
-        window.rootViewController = navVC
+        window.rootViewController = tabBarController
         window.backgroundColor = .white
         window.makeKeyAndVisible()
         self.window = window

@@ -13,6 +13,14 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     
     private var scrollView = UIScrollView()
     
+    private var masterStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.distribution = .fillProportionally
+        stackView.spacing = 50
+        return stackView
+    }()
+    
     private var popularCategoriesStackView = UIStackView()
     
     private var salesCategoriesStackView = UIStackView()
@@ -33,20 +41,6 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         configureScrollView()
         didAppearTranslationAnimation()
     }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        scrollView.contentSize = CGSize(width: view.bounds.width, height: 770)
-        
-        popularCategoriesStackView.frame = CGRect(x: 0, y: 20, width: view.bounds.width, height: 200)
-        popularCategoriesStackView.axis = .horizontal
-        
-        salesCategoriesStackView.frame = CGRect(x: 0, y: 265, width: view.bounds.width, height: 250)
-        salesCategoriesStackView.axis = .horizontal
-        
-        couponsCategoriesStackView.frame = CGRect(x: 0, y: 540, width: view.bounds.width, height: 230)
-        couponsCategoriesStackView.axis = .horizontal
-    }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -63,16 +57,20 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     
     func configureScrollView() {
         view.addSubview(scrollView)
+        scrollView.alwaysBounceVertical = true
         
-        scrollView.addSubview(popularCategoriesStackView)
-        scrollView.addSubview(salesCategoriesStackView)
-        scrollView.addSubview(couponsCategoriesStackView)
+        scrollView.addSubview(masterStackView)
+        
+        masterStackView.addArrangedSubview(popularCategoriesStackView)
+        masterStackView.addArrangedSubview(salesCategoriesStackView)
+        masterStackView.addArrangedSubview(couponsCategoriesStackView)
         
         addPopularCategoriesToStackView()
         addSalesToStackView()
         addCouponsToStackView()
         
         setScrollViewConstraints()
+        setStackViewConstraints()
     }
     
     //MARK: - Adding collections to stackView
@@ -114,7 +112,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
 
     // MARK: - Constraints
     
-    func setScrollViewConstraints() {
+    private func setScrollViewConstraints() {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -122,8 +120,36 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
+        
+    }
+    
+    // Set constraints to each stack view
+    private func setStackViewConstraints() {
+        masterStackView.translatesAutoresizingMaskIntoConstraints = false
+        popularCategoriesStackView.translatesAutoresizingMaskIntoConstraints = false
+        salesCategoriesStackView.translatesAutoresizingMaskIntoConstraints = false
+        couponsCategoriesStackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            masterStackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
+            masterStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            masterStackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            masterStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            masterStackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            
+            
+            popularCategoriesStackView.widthAnchor.constraint(equalTo: masterStackView.widthAnchor),
+            popularCategoriesStackView.heightAnchor.constraint(equalToConstant: 200),
+            
+            salesCategoriesStackView.widthAnchor.constraint(equalTo: masterStackView.widthAnchor),
+            salesCategoriesStackView.heightAnchor.constraint(equalToConstant: 250),
+            
+            couponsCategoriesStackView.widthAnchor.constraint(equalTo: masterStackView.widthAnchor),
+            couponsCategoriesStackView.heightAnchor.constraint(equalToConstant: 230),
+        ])
+        
     }
     
 }
