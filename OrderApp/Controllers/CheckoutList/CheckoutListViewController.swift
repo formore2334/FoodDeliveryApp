@@ -20,6 +20,15 @@ class CheckoutListViewController: UIViewController {
     
     private let checkoutListItems: [CheckoutList] = [.name, .phone, .email, .address, .comment, .coupon]
     
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.showsVerticalScrollIndicator = true
+        scrollView.alwaysBounceVertical = true
+        return scrollView
+    }()
+    
+    private var contentView = UIView()
+    
     private let totalTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "Total:"
@@ -63,7 +72,7 @@ class CheckoutListViewController: UIViewController {
         
         configureLogo()
         configureVC()
-        configureTotalInfo()
+        
         setCustomButton()
     }
     
@@ -83,6 +92,16 @@ class CheckoutListViewController: UIViewController {
      }
     
     private func configureVC() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        
+        configureTableView()
+        configureTotalInfo()
+        
+        setScrollViewConstraints()
+    }
+    
+    private func configureTableView() {
         // Create and configure the table view
         tableView = UITableView(frame: view.bounds, style: .plain)
         tableView.dataSource = self
@@ -90,16 +109,17 @@ class CheckoutListViewController: UIViewController {
         tableView.rowHeight = 60
         tableView.isScrollEnabled = false
         tableView.register(CheckoutListCell.self, forCellReuseIdentifier: CheckoutListCell.identifier)
-        view.addSubview(tableView)
         
-        setConstraints()
+        contentView.addSubview(tableView)
+        
+        setTableViewConstraints()
     }
     
     private func configureTotalInfo() {
-        view.addSubview(totalTitleLabel)
-        view.addSubview(totalSumLabel)
-        view.addSubview(discountLabel)
-        view.addSubview(noteLabel)
+        contentView.addSubview(totalTitleLabel)
+        contentView.addSubview(totalSumLabel)
+        contentView.addSubview(discountLabel)
+        contentView.addSubview(noteLabel)
         
         discountLabel.text = "\(basket.totalSum)$"
         
@@ -135,16 +155,34 @@ class CheckoutListViewController: UIViewController {
     
     // MARK: - Constraints
     
+    // Scroll view & content view constraints
+    func setScrollViewConstraints() {
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+        ])
+    }
     
     //Table view constraints
-    func setConstraints() {
+    func setTableViewConstraints() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             tableView.heightAnchor.constraint(equalToConstant: 360),
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
-            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
+            tableView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            tableView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            tableView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20)
         ])
     }
     
@@ -166,12 +204,13 @@ class CheckoutListViewController: UIViewController {
             
             totalSumLabel.heightAnchor.constraint(equalToConstant: 25),
             totalSumLabel.leadingAnchor.constraint(equalTo: discountLabel.trailingAnchor, constant: -16),
-            totalSumLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            totalSumLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
             totalSumLabel.bottomAnchor.constraint(equalTo: discountLabel.topAnchor),
             
             noteLabel.topAnchor.constraint(equalTo: totalTitleLabel.bottomAnchor, constant: 10),
-            noteLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            noteLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            noteLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
+            noteLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -50),
+            noteLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -100),
         ])
     }
    
