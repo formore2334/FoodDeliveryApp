@@ -11,7 +11,7 @@ class BasketViewController: UIViewController {
 
     var coordinator: MainCoordinator?
     
-    var basket: Basket = Basket(basketItems: [])
+    private let basketManager: BasketManager
     
     private var tableView = UITableView()
     
@@ -21,11 +21,22 @@ class BasketViewController: UIViewController {
     
     private var customButton = CustomButton()
     
-
+    init(basketManager: BasketManager = BasketManager(basket: Basket(basketItems: []))) {
+        self.basketManager = basketManager
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(clearBasket), name: Notification.Name("ClearBasketNotification"), object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(clearBasket),
+                                               name: Notification.Name("BackToHomeNotification"),
+                                               object: nil)
 
         setCustomButton()
         configureTitleLabel()
@@ -34,6 +45,9 @@ class BasketViewController: UIViewController {
         setAllConstraint()
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
    //MARK: - Configurations
     
@@ -45,7 +59,7 @@ class BasketViewController: UIViewController {
     
     private func configureItemCounterLabel() {
         view.addSubview(itemCounterLabel)
-        itemCounterLabel.text = "\(basket.totalCount)"
+        itemCounterLabel.text = "\(basketManager.basketTotalCount)"
         itemCounterLabel.font = UIFont.systemFont(ofSize: 37)
         itemCounterLabel.textColor = .black
     }
@@ -63,7 +77,7 @@ class BasketViewController: UIViewController {
     
     // Set attributes for titleLabel (text + image)
     private func attributedStringTitle() {
-        let attributedText = NSMutableAttributedString(string: "Basket ")
+        let attributedText = NSMutableAttributedString(string: "Basket" + " ")
         
         let basketImageAttachment = NSTextAttachment()
         basketImageAttachment.image = UIImage(systemName: "basket")
@@ -86,8 +100,8 @@ class BasketViewController: UIViewController {
     }
     
     //Listening to notification
-    @objc func clearBasket() {
-        self.basket.basketItems.removeAll()
+    @objc private func clearBasket() {
+        basketManager.clearBasket()
         updateData()
     }
     
@@ -95,7 +109,7 @@ class BasketViewController: UIViewController {
     
     private func setCustomButton() {
         view.addSubview(customButton)
-        customButton.setTitle("Checkout  \(basket.totalSum)$", for: .normal)
+        customButton.setTitle("\(basketManager.checkoutWithTotalSum)", for: .normal)
         customButton.pin(to: view)
         
         addActionToCustomButton()
@@ -106,10 +120,10 @@ class BasketViewController: UIViewController {
     }
     
     @objc private func customButtonTapped() {
-        if basket.basketItems.count > 0 {
+        if basketManager.basketItemsCount > 0 {
             customButton.press()
             
-            let checkoutListVC = CheckoutListViewController(basket: basket)
+            let checkoutListVC = CheckoutListViewController(basket: basketManager.basket)
             
             navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 
@@ -173,12 +187,12 @@ extension BasketViewController: UITableViewDelegate {
 extension BasketViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return basket.basketItems.count
+        return basketManager.basketItemsCount
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: BasketCell.identifier, for: indexPath) as! BasketCell
-        let basketItem = basket.basketItems[indexPath.row]
+        let basketItem = basketManager.basket.basketItems[indexPath.row]
         
         cell.configure(menuItem: basketItem.menuItem, itemCounts: basketItem.count)
         cell.delegate = self
@@ -193,48 +207,25 @@ extension BasketViewController: UITableViewDataSource {
 extension BasketViewController {
     
     public func addItemToBasket(menuItem: MenuItem) {
-        if let existingBasketItemIndex = basket.basketItems.firstIndex(where: { $0.menuItem == menuItem }) {
-            var basketItem = basket.basketItems[existingBasketItemIndex]
-            basketItem.count += 1
-            basket.basketItems[existingBasketItemIndex] = basketItem
-        } else {
-            let newBasketItem = BasketItem(menuItem: menuItem, count: 1)
-            basket.basketItems.append(newBasketItem)
-        }
+        basketManager.addItemToBasket(with: menuItem)
         
         updateData()
     }
 
     public func removeItemFromBasket(menuItem: MenuItem) {
-        if let existingBasketItemIndex = basket.basketItems.firstIndex(where: { $0.menuItem == menuItem }) {
-            var basketItem = basket.basketItems[existingBasketItemIndex]
-            basketItem.count -= 1
-            if basketItem.count == 0 {
-                basket.basketItems.remove(at: existingBasketItemIndex)
-            } else {
-                basket.basketItems[existingBasketItemIndex] = basketItem
-            }
-        }
+        basketManager.removeItemFromBasket(with: menuItem)
         
         updateData()
     }
 
     private func incrementItemCount(at index: Int) {
-        var basketItem = basket.basketItems[index]
-        basketItem.count += 1
-        basket.basketItems[index] = basketItem
+        basketManager.incrementItemCount(at: index)
         
         updateData()
     }
 
     private func decrementItemCount(at index: Int) {
-        var basketItem = basket.basketItems[index]
-        basketItem.count -= 1
-        if basketItem.count == 0 {
-            basket.basketItems.remove(at: index)
-        } else {
-            basket.basketItems[index] = basketItem
-        }
+        basketManager.decrementItemCount(at: index)
      
         updateData()
     }
