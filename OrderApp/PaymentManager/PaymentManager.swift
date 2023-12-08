@@ -56,7 +56,7 @@ struct PaymentManager {
     
     // Send notification when home button was tapped to clear basket & return from secondary vc to home (optional)
     func sendNotification() {
-        NotificationCenter.default.post(name: Notification.Name("ClearBasketNotification"), object: nil)
+        NotificationCenter.default.post(name: Notification.Name("BackToHomeNotification"), object: nil)
     }
     
     // Configure checkDetailsView. Used inside this manager
