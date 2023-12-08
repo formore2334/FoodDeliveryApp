@@ -103,7 +103,7 @@ class CheckDetailsView: UIView {
             userInfoView.topAnchor.constraint(equalTo: conformButton.bottomAnchor, constant: 10),
             userInfoView.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 20),
             userInfoView.trailingAnchor.constraint(equalTo: container.trailingAnchor),
-            userInfoView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -50)
+            userInfoView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -30)
         ])
     }
     

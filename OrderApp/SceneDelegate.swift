@@ -23,12 +23,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         coordinator = MainCoordinator(tabBarController: tabBarController)
         coordinator?.start()
         
-        //let vc = PayViewController(userInfo: UserInfo(orderNumber: "", name: "Mike", phone: "123456789", email: "heloeverybodyimfine@gmail.com", address: "st. St. Patrick, b.74, 221", comment: "", coupon: ""), basket: Basket(basketItems: Basket.mockData.basketItems))
+        let vc = PayViewController(userInfo: UserInfo(orderNumber: "", name: "Mike", phone: "123456789", email: "heloeverybodyimfine@gmail.com", address: "st. St. Patrick, b.74, 221", comment: "", coupon: ""), basket: Basket(basketItems: Basket.mockData.basketItems))
         
-        let vc = CheckoutListViewController(basket: Basket(basketItems: Basket.mockData.basketItems) )
+        //let vc = CheckoutListViewController(basket: Basket(basketItems: Basket.mockData.basketItems))
         let navVC = UINavigationController(rootViewController: vc)
 
-        window.rootViewController = tabBarController
+        window.rootViewController = navVC
         window.backgroundColor = .white
         window.makeKeyAndVisible()
         self.window = window
