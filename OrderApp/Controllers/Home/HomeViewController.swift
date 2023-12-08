@@ -24,6 +24,11 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didAppearTranslationAnimation),
+                                               name: NSNotification.Name("BackToHomeNotification"),
+                                               object: nil)
+        
         configureLogo()
         configureScrollView()
         didAppearTranslationAnimation()
@@ -41,6 +46,10 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
         couponsCategoriesStackView.frame = CGRect(x: 0, y: 540, width: view.bounds.width, height: 230)
         couponsCategoriesStackView.axis = .horizontal
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: - Configurations
@@ -99,7 +108,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     }
     
     // Animate appear
-    func didAppearTranslationAnimation() {
+    @objc func didAppearTranslationAnimation() {
         CGAffineTransform.animateContentFlyIn(middleItem: salesCategoriesStackView, firstItem: popularCategoriesStackView, lastItem: couponsCategoriesStackView, superView: view)
     }
 

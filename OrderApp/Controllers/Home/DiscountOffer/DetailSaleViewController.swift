@@ -81,10 +81,19 @@ class DetailSaleViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(popToRootVC),
+                                               name: NSNotification.Name("BackToHomeNotification"),
+                                               object: nil)
+        
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         
         navigationController?.navigationBar.tintColor = .white
             UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: - Configure DetailInfo VC
@@ -114,6 +123,11 @@ class DetailSaleViewController: UIViewController {
                 self?.backgroundImageView.image = image
             }
         }
+    }
+    
+    // Listening to notification
+    @objc func popToRootVC() {
+        navigationController?.popToRootViewController(animated: false)
     }
     
     // MARK: - Configure varibles

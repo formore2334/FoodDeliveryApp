@@ -43,8 +43,18 @@ class CategoryDetailMenuViewController: UICollectionViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(popToRootVC),
+                                               name: NSNotification.Name("BackToHomeNotification"),
+                                               object: nil)
+        
         navigationController?.navigationBar.tintColor = .black
             UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
    //MARK: - Configure CollectionView
@@ -66,6 +76,11 @@ class CategoryDetailMenuViewController: UICollectionViewController {
         backgroundImageView.layer.opacity = 0.1
 
         collectionView.backgroundView = backgroundImageView
+    }
+    
+    // Listening to notification
+    @objc func popToRootVC() {
+        navigationController?.popToRootViewController(animated: false)
     }
 
     
