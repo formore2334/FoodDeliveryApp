@@ -23,8 +23,6 @@ class DetailSaleViewController: UIViewController {
         return dividerView
     }()
     
-  //  private var dividerView = DividerView()
-    
     private lazy var headlineTextLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
@@ -54,7 +52,6 @@ class DetailSaleViewController: UIViewController {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        //imageView.layer.opacity = 0.5
         return imageView
     }()
     
@@ -110,9 +107,8 @@ class DetailSaleViewController: UIViewController {
         view.addSubview(backgroundImageView)
         view.sendSubviewToBack(backgroundImageView)
         
-        backgroundImageView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
-        
         getImage()
+        setBackgroundImageConstraint()
     }
     
     private func getImage() {
@@ -269,6 +265,18 @@ class DetailSaleViewController: UIViewController {
             dividerView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             dividerView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             dividerView.heightAnchor.constraint(equalToConstant: 0.25)
+        ])
+    }
+    
+    private func setBackgroundImageConstraint() {
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            
+            backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
     
