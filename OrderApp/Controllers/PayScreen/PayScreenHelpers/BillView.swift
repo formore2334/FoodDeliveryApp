@@ -98,7 +98,7 @@ class BillView: UIView {
             
             emailLabel.bottomAnchor.constraint(equalTo: container.bottomAnchor),
             emailLabel.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 10),
-            emailLabel.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -50)
+            emailLabel.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -70)
         ])
     }
     

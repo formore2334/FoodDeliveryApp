@@ -33,7 +33,6 @@ class PayViewController: UIViewController {
         return container
     }()
     
-    
     var containerPortrait: [NSLayoutConstraint] = []
     
     var containerLandscape: [NSLayoutConstraint] = []
@@ -74,26 +73,25 @@ class PayViewController: UIViewController {
         UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
     }
     
+    // Change layout with device orientation
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        let isPortrait = UIDevice.current.orientation.isPortrait
+        let isLandscape = UIDevice.current.orientation.isLandscape
         
-        if isPortrait {
-            NSLayoutConstraint.deactivate(containerLandscape + paymentInfoContainerLandscape)
-            NSLayoutConstraint.activate(containerPortrait + paymentInfoContainerPortrait)
-        } else {
-            if paymentInfoContainer.subviews.first(where: { $0 is PaymentDetailsView }) != nil {
-                    NSLayoutConstraint.deactivate(paymentInfoContainerPortrait)
-                    NSLayoutConstraint.activate(paymentInfoContainerLandscape)
-                } else {
-                    NSLayoutConstraint.deactivate(paymentInfoContainerLandscape)
-                    NSLayoutConstraint.activate(paymentInfoContainerPortrait)
-                }
-
+        // Setup constraints based on orientation
+        if isLandscape {
             NSLayoutConstraint.deactivate(containerPortrait)
             NSLayoutConstraint.activate(containerLandscape)
             
+            NSLayoutConstraint.deactivate(paymentInfoContainerPortrait)
+            NSLayoutConstraint.activate(paymentInfoContainerLandscape)
+        } else {
+            NSLayoutConstraint.deactivate(containerLandscape)
+            NSLayoutConstraint.activate(containerPortrait)
+            
+            NSLayoutConstraint.deactivate(paymentInfoContainerLandscape)
+            NSLayoutConstraint.activate(paymentInfoContainerPortrait)
         }
         
     }
@@ -140,71 +138,6 @@ class PayViewController: UIViewController {
         
         setBackgroundColorContainerConstraints()
     }
-    
-    
-    //MARK: - Constraints
-    
-    func setContainerConstraints() {
-        container.translatesAutoresizingMaskIntoConstraints = false
-        
-        containerPortrait = [
-            container.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            container.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            container.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30),
-            container.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
-            container.heightAnchor.constraint(equalToConstant: 350)
-        ]
-    
-        containerLandscape = [
-            container.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            container.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 5),
-            container.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30),
-            container.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
-            container.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.8)
-        ]
-       
-    }
-    
-    func setBackgroundColorContainerConstraints() {
-        backgroundColorContainer.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            backgroundColorContainer.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            backgroundColorContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            backgroundColorContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            backgroundColorContainer.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        ])
-    }
-    
-    func setPaymentInfoContainerConstraints() {
-        paymentInfoContainer.translatesAutoresizingMaskIntoConstraints = false
-        
-         paymentInfoContainerPortrait = [
-            paymentInfoContainer.topAnchor.constraint(equalTo: container.topAnchor, constant: 10),
-            paymentInfoContainer.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 10),
-            paymentInfoContainer.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -10),
-            paymentInfoContainer.bottomAnchor.constraint(equalTo: controlButtonsContainer.topAnchor, constant: -16)
-        ]
-        
-        paymentInfoContainerLandscape = [
-           paymentInfoContainer.topAnchor.constraint(equalTo: container.topAnchor, constant: 10),
-           paymentInfoContainer.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 10),
-           paymentInfoContainer.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -10),
-           paymentInfoContainer.bottomAnchor.constraint(equalTo: controlButtonsContainer.topAnchor)
-       ]
-        
-    }
-    
-    func setControlButtonsContainerConstraints() {
-        controlButtonsContainer.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            controlButtonsContainer.heightAnchor.constraint(equalToConstant: 40),
-            controlButtonsContainer.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -20),
-            controlButtonsContainer.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 20),
-            controlButtonsContainer.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -16)
-        ])
-    }
 
 }
 
@@ -240,6 +173,72 @@ extension PayViewController: PayViewControlButtonsDelegate {
             self.tabBarController?.selectedIndex = 0
             self.navigationController?.popToRootViewController(animated: false)
         }
+    }
+    
+}
+
+//MARK: - Constraints
+
+extension PayViewController {
+
+    func setContainerConstraints() {
+        container.translatesAutoresizingMaskIntoConstraints = false
+        
+        containerPortrait = [
+            container.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            container.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            container.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30),
+            container.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
+            container.heightAnchor.constraint(equalToConstant: 350)
+        ]
+    
+        containerLandscape = [
+            container.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30),
+            container.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
+            container.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            container.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+        ]
+       
+    }
+    
+    func setBackgroundColorContainerConstraints() {
+        backgroundColorContainer.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            backgroundColorContainer.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            backgroundColorContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundColorContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            backgroundColorContainer.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+    }
+    
+    func setPaymentInfoContainerConstraints() {
+        paymentInfoContainer.translatesAutoresizingMaskIntoConstraints = false
+        
+        paymentInfoContainerPortrait = [
+            paymentInfoContainer.topAnchor.constraint(equalTo: container.topAnchor, constant: 10),
+            paymentInfoContainer.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 10),
+            paymentInfoContainer.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -10),
+            paymentInfoContainer.bottomAnchor.constraint(equalTo: controlButtonsContainer.topAnchor, constant: -10)
+        ]
+        
+        paymentInfoContainerLandscape = [
+            paymentInfoContainer.topAnchor.constraint(equalTo: container.topAnchor, constant: 10),
+            paymentInfoContainer.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 10),
+            paymentInfoContainer.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -10),
+            paymentInfoContainer.bottomAnchor.constraint(equalTo: controlButtonsContainer.topAnchor, constant: 10)
+        ]
+    }
+    
+    func setControlButtonsContainerConstraints() {
+        controlButtonsContainer.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            controlButtonsContainer.heightAnchor.constraint(equalToConstant: 40),
+            controlButtonsContainer.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -20),
+            controlButtonsContainer.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 20),
+            controlButtonsContainer.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -16)
+        ])
     }
     
 }

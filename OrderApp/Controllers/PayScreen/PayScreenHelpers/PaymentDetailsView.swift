@@ -111,7 +111,7 @@ class PaymentDetailsView: UIView {
             container.topAnchor.constraint(equalTo: topAnchor),
             container.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             container.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-            container.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
+            container.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -40),
             
             headerLabel.topAnchor.constraint(equalTo: container.topAnchor, constant: 10),
             headerLabel.centerXAnchor.constraint(equalTo: container.centerXAnchor),
@@ -129,7 +129,7 @@ class PaymentDetailsView: UIView {
             topDividerView.topAnchor.constraint(equalTo: orderNumberLabel.bottomAnchor, constant: 10),
             topDividerView.leadingAnchor.constraint(equalTo: nestedContainer.leadingAnchor, constant: 10),
             topDividerView.trailingAnchor.constraint(equalTo: nestedContainer.trailingAnchor, constant: -10),
-            topDividerView.heightAnchor.constraint(equalToConstant: 0.25),
+            topDividerView.heightAnchor.constraint(equalToConstant: 0.3),
             
             userInfoView.topAnchor.constraint(equalTo: orderNumberLabel.bottomAnchor, constant: 20),
             userInfoView.leadingAnchor.constraint(equalTo: nestedContainer.leadingAnchor, constant: 10),
@@ -139,7 +139,7 @@ class PaymentDetailsView: UIView {
             bottomDividerView.bottomAnchor.constraint(equalTo: totalSumLabel.topAnchor, constant: -10),
             bottomDividerView.leadingAnchor.constraint(equalTo: nestedContainer.leadingAnchor, constant: 10),
             bottomDividerView.trailingAnchor.constraint(equalTo: nestedContainer.trailingAnchor, constant: -10),
-            bottomDividerView.heightAnchor.constraint(equalToConstant: 0.25),
+            bottomDividerView.heightAnchor.constraint(equalToConstant: 0.3),
             
             totalSumLabel.bottomAnchor.constraint(equalTo: nestedContainer.bottomAnchor, constant: -10),
             totalSumLabel.leadingAnchor.constraint(equalTo: nestedContainer.leadingAnchor, constant: 10),
