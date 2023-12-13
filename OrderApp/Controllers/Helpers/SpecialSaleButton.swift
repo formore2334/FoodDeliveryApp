@@ -15,7 +15,6 @@ class SpecialSaleButton: UIButton {
         
         setupButton()
         startPulsatingAnimation()
-        startGradientAnimation()
     }
     
     required init?(coder: NSCoder) {
@@ -25,30 +24,7 @@ class SpecialSaleButton: UIButton {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = bounds
-        
-        let topColor = UIColor.red.cgColor
-        let bottomColor = UIColor.yellow.cgColor
-        
-        gradientLayer.colors = [topColor, bottomColor]
-        gradientLayer.locations = [0.0, 1.0]
-        
-        let radius = min(bounds.width, bounds.height) / 2
-        let startPoint = CGPoint(x: 0.0, y: 0.6)
-        let endPoint = CGPoint(x: 0.4, y: 0.8)
-        
-        gradientLayer.startPoint = startPoint
-        gradientLayer.endPoint = endPoint
-        
-        let maskLayer = CAShapeLayer()
-        let path = UIBezierPath(roundedRect: bounds, cornerRadius: radius)
-        maskLayer.path = path.cgPath
-        
-        gradientLayer.mask = maskLayer
-        
-        layer.insertSublayer(gradientLayer, at: 0)
-        layer.cornerRadius = radius
+        applyGradient()
     }
     
     private func setupButton() {
@@ -56,6 +32,8 @@ class SpecialSaleButton: UIButton {
         setTitleColor(.white, for: .normal)
         
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+        
+        setShadow()
     }
     
     private func startPulsatingAnimation() {
@@ -68,16 +46,27 @@ class SpecialSaleButton: UIButton {
         layer.add(pulseAnimation, forKey: "pulsating")
     }
     
-    private func startGradientAnimation() {
-        let gradientAnimation = CABasicAnimation(keyPath: "locations")
-        gradientAnimation.duration = 0.5
-        gradientAnimation.fromValue = [0.0, 1.0]
-        gradientAnimation.toValue = [1.0, 0.0]
-        gradientAnimation.autoreverses = true
-        gradientAnimation.repeatCount = .infinity
+    private func setShadow() {
+        layer.shadowColor = UIColor.yellow.cgColor
+        layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+        layer.shadowRadius = 3
+        layer.shadowOpacity = 0.5
+        layer.masksToBounds = false
+    }
+
+    
+    private func applyGradient() {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [UIColor.systemOrange.cgColor, UIColor.red.cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0.8)
+        gradientLayer.endPoint = CGPoint(x: 1.1, y: 0.3)
+        gradientLayer.frame = bounds
         
-        guard let gradientLayer = layer.sublayers?.first as? CAGradientLayer else { return }
-        gradientLayer.add(gradientAnimation, forKey: "gradientAnimation")
+        let radius = min(bounds.width, bounds.height) / 2
+        gradientLayer.cornerRadius = radius
+        
+        // Insert the gradient layer at the bottom of the layer hierarchy
+        layer.insertSublayer(gradientLayer, at: 0)
     }
     
 }
