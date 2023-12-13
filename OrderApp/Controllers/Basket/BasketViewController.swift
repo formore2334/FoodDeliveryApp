@@ -233,6 +233,7 @@ extension BasketViewController {
     private func updateData() {
         setCustomButton()
         configureItemCounterLabel()
+        coordinator?.configureTabBarLabel(with: basketManager.basketTotalCount)
         tableView.reloadData()
     }
     
