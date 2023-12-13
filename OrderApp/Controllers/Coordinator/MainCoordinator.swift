@@ -7,8 +7,11 @@
 
 import UIKit
 
-class MainCoordinator: Coordinator {    
+class MainCoordinator: Coordinator {
+    
     var tabBarController: UITabBarController
+    
+    private let container = CustomTabBarContainer()
     
     init(tabBarController: UITabBarController) {
         self.tabBarController = tabBarController
@@ -23,22 +26,36 @@ class MainCoordinator: Coordinator {
         menuVC.coordinator = self
         basketVC.coordinator = self
         
-        let homeNavVC = UINavigationController(rootViewController: homeVC)
-        let menuNavVC = UINavigationController(rootViewController: menuVC)
-        let basketNavVC = UINavigationController(rootViewController: basketVC)
+        let homeNavigationController = UINavigationController(rootViewController: homeVC)
+        let menuNavigationController = UINavigationController(rootViewController: menuVC)
+        let basketNavigationController = UINavigationController(rootViewController: basketVC)
         
-        tabBarController.viewControllers = [homeNavVC, menuNavVC, basketNavVC]
+        tabBarController.viewControllers = [homeNavigationController, menuNavigationController, basketNavigationController]
         tabBarController.tabBar.tintColor = .black
         
-        homeNavVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 0)
-        menuNavVC.tabBarItem = UITabBarItem(title: "Menu", image: UIImage(systemName: "fork.knife"), tag: 1)
-        basketNavVC.tabBarItem = UITabBarItem(title: "Basket", image: UIImage(systemName: "basket"), tag: 2)
+        homeNavigationController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 0)
+        menuNavigationController.tabBarItem = UITabBarItem(title: "Menu", image: UIImage(systemName: "fork.knife"), tag: 1)
+        basketNavigationController.tabBarItem = UITabBarItem(title: "Basket", image: UIImage(systemName: "basket"), tag: 2)
+    }
+    
+    
+    func configureTabBarLabel(with count: Int) {
+        tabBarController.tabBar.addSubview(container)
+        tabBarController.tabBar.sendSubviewToBack(container)
+        
+        container.configureLabel(with: count)
+        
+        if let basketTabBarItem = tabBarController.tabBar.items?[2],
+           let basketView = basketTabBarItem.value(forKey: "view") as? UIView {
+            container.pinToBounds(to: basketView)
+        }
+        
     }
         
     
     func passOrderToBasket(menuItem: MenuItem) {
-        if let basketNavVC = tabBarController.viewControllers?[2] as? UINavigationController,
-           let basketVC = basketNavVC.viewControllers.first as? BasketViewController {
+        if let basketNavigationController = tabBarController.viewControllers?[2] as? UINavigationController,
+           let basketVC = basketNavigationController.viewControllers.first as? BasketViewController {
             basketVC.addItemToBasket(menuItem: menuItem)
         }
     }
