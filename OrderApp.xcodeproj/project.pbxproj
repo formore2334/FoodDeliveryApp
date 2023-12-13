@@ -21,7 +21,6 @@
 		453F508D2ADD7B8D00D9DCF9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453F508C2ADD7B8D00D9DCF9 /* HomeViewController.swift */; };
 		4546A5202AD9A38F00A850A8 /* PopularCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4546A51F2AD9A38F00A850A8 /* PopularCategoriesViewController.swift */; };
 		4546A5222AD9A67A00A850A8 /* PopularCategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4546A5212AD9A67A00A850A8 /* PopularCategoriesCollectionViewCell.swift */; };
-		454715842B19CB470012F7B7 /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454715832B19CB470012F7B7 /* DividerView.swift */; };
 		454FBF2A2AD949E9001E75EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454FBF292AD949E9001E75EB /* AppDelegate.swift */; };
 		454FBF2C2AD949E9001E75EB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454FBF2B2AD949E9001E75EB /* SceneDelegate.swift */; };
 		454FBF312AD949E9001E75EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 454FBF2F2AD949E9001E75EB /* Main.storyboard */; };
@@ -60,7 +59,9 @@
 		457847FE2B066597009B14CA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457847FD2B066596009B14CA /* User.swift */; };
 		45803B2E2B1056A200BB1081 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45803B2D2B1056A200BB1081 /* UIView+Animations.swift */; };
 		4586B6402B0F5FC900439562 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4586B63F2B0F5FC900439562 /* CustomButton.swift */; };
+		458FE0082B25C59100DAF0CF /* StarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FE0072B25C59100DAF0CF /* StarView.swift */; };
 		45915F022B03651E0032D4BB /* MenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45915F012B03651E0032D4BB /* MenuHeaderView.swift */; };
+		4593B83A2B28305500416578 /* CustomTabBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4593B8392B28305500416578 /* CustomTabBarContainer.swift */; };
 		45AF524C2B0CC799009EDB11 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AF524B2B0CC799009EDB11 /* LogoView.swift */; };
 		45DEED602ADFC6FC00CB6439 /* DetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEED5F2ADFC6FC00CB6439 /* DetailInfoViewController.swift */; };
 		45DEED622ADFD9CB00CB6439 /* Sales.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEED612ADFD9CA00CB6439 /* Sales.swift */; };
@@ -83,7 +84,6 @@
 		453F508C2ADD7B8D00D9DCF9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4546A51F2AD9A38F00A850A8 /* PopularCategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularCategoriesViewController.swift; sourceTree = "<group>"; };
 		4546A5212AD9A67A00A850A8 /* PopularCategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularCategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
-		454715832B19CB470012F7B7 /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
 		454FBF262AD949E9001E75EB /* OrderApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrderApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		454FBF292AD949E9001E75EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		454FBF2B2AD949E9001E75EB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -124,7 +124,9 @@
 		457847FD2B066596009B14CA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		45803B2D2B1056A200BB1081 /* UIView+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
 		4586B63F2B0F5FC900439562 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		458FE0072B25C59100DAF0CF /* StarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarView.swift; sourceTree = "<group>"; };
 		45915F012B03651E0032D4BB /* MenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHeaderView.swift; sourceTree = "<group>"; };
+		4593B8392B28305500416578 /* CustomTabBarContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarContainer.swift; sourceTree = "<group>"; };
 		45AF524B2B0CC799009EDB11 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		45DEED5F2ADFC6FC00CB6439 /* DetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoViewController.swift; sourceTree = "<group>"; };
 		45DEED612ADFD9CA00CB6439 /* Sales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sales.swift; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 		455FE4C92B0202A000506E9C /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				4593B8392B28305500416578 /* CustomTabBarContainer.swift */,
 				453F508C2ADD7B8D00D9DCF9 /* HomeViewController.swift */,
 				453F50842ADD6B2A00D9DCF9 /* PopularCategories */,
 				453F50852ADD6C4A00D9DCF9 /* DiscountOffer */,
@@ -360,10 +363,10 @@
 			isa = PBXGroup;
 			children = (
 				45AF524B2B0CC799009EDB11 /* LogoView.swift */,
-				454715832B19CB470012F7B7 /* DividerView.swift */,
 				4586B63F2B0F5FC900439562 /* CustomButton.swift */,
 				451113D02B1A088E0069CB5F /* SpecialSaleButton.swift */,
 				457846532B20C2EC00A8F84F /* LoadingView.swift */,
+				458FE0072B25C59100DAF0CF /* StarView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				455A7A5A2AE7E71F00EE1844 /* BasketCell.swift in Sources */,
 				452DAD532B07B33300E693AC /* PayViewController.swift in Sources */,
 				450219B92B15D42400347211 /* UITextField+Validate.swift in Sources */,
+				458FE0082B25C59100DAF0CF /* StarView.swift in Sources */,
 				453C1B582B1E2879003CAF76 /* UserInfoView.swift in Sources */,
 				453C1B542B1DF045003CAF76 /* CheckDetailsView.swift in Sources */,
 				455A7A562AE7DD4100EE1844 /* Basket.swift in Sources */,
@@ -480,7 +484,6 @@
 				4562CBE62B04C2B0007F6A4D /* CheckoutListViewController.swift in Sources */,
 				453F50872ADD6D3F00D9DCF9 /* SaleViewController.swift in Sources */,
 				4576A65C2B174CC90011F35D /* FormContentBuilder.swift in Sources */,
-				454715842B19CB470012F7B7 /* DividerView.swift in Sources */,
 				4546A5202AD9A38F00A850A8 /* PopularCategoriesViewController.swift in Sources */,
 				4586B6402B0F5FC900439562 /* CustomButton.swift in Sources */,
 				454FBF2A2AD949E9001E75EB /* AppDelegate.swift in Sources */,
@@ -510,6 +513,7 @@
 				4568DA5E2B1EFFA6000F1C0B /* PaymentManager.swift in Sources */,
 				4568DA602B1F014A000F1C0B /* PayViewControlButtons.swift in Sources */,
 				4578464F2B207CE300A8F84F /* UIButton+Animations.swift in Sources */,
+				4593B83A2B28305500416578 /* CustomTabBarContainer.swift in Sources */,
 				455A7A582AE7DF1E00EE1844 /* BasketViewController.swift in Sources */,
 				453F50892ADD6D8E00D9DCF9 /* SaleCollectionViewCell.swift in Sources */,
 				45DEED602ADFC6FC00CB6439 /* DetailInfoViewController.swift in Sources */,

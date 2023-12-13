@@ -11,6 +11,8 @@ class DetailMenuCollectionViewCell: UICollectionViewCell {
     
     private let networkManager = NetworkManager()
     
+    private let starView = StarView()
+    
     private lazy var cellContainer: UIView = {
         let container = UIView()
         container.backgroundColor = .systemGray5
@@ -34,6 +36,7 @@ class DetailMenuCollectionViewCell: UICollectionViewCell {
     private lazy var titleLabel: UILabel = {
         let title = UILabel()
         title.textAlignment = .center
+        title.font = UIFont.boldSystemFont(ofSize: 15)
         return title
     }()
     
@@ -54,10 +57,16 @@ class DetailMenuCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        starView.layer.removeAllAnimations()
+    }
 
     private func configureCell() {
         contentView.addSubview(cellContainer)
         contentView.addSubview(imageView)
+        contentView.addSubview(starView)
         contentView.addSubview(titleLabel)
         contentView.addSubview(priceLabel)
         
@@ -78,8 +87,16 @@ class DetailMenuCollectionViewCell: UICollectionViewCell {
             priceLabel.text = "\(menuItem.price)$"
         }
         
+        if menuItem as? SpecialSaleMenuItem != nil {
+            starView.isHidden = false
+        } else {
+            starView.isHidden = true
+        }
+        
         titleLabel.text = menuItem.title
         getImage(stringURL: menuItem.imageURL)
+        
+        starView.startPulseAnimation()
     }
     
     private func getImage(stringURL: String) {
@@ -96,6 +113,7 @@ class DetailMenuCollectionViewCell: UICollectionViewCell {
     
     private func setDetailMenuConstraints() {
         cellContainer.translatesAutoresizingMaskIntoConstraints = false
+        starView.translatesAutoresizingMaskIntoConstraints = false
         imageView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -110,6 +128,11 @@ class DetailMenuCollectionViewCell: UICollectionViewCell {
             imageView.centerYAnchor.constraint(equalTo: cellContainer.centerYAnchor),
             imageView.heightAnchor.constraint(equalTo: cellContainer.heightAnchor, multiplier: 0.9),
             imageView.widthAnchor.constraint(equalTo: cellContainer.widthAnchor, multiplier: 0.9),
+            
+            starView.topAnchor.constraint(equalTo: cellContainer.topAnchor, constant: -4),
+            starView.trailingAnchor.constraint(equalTo: cellContainer.trailingAnchor, constant: 10),
+            starView.heightAnchor.constraint(equalToConstant: 25),
+            starView.widthAnchor.constraint(equalToConstant: 25),
             
             titleLabel.topAnchor.constraint(equalTo: cellContainer.bottomAnchor, constant: 15),
             titleLabel.centerXAnchor.constraint(equalTo: cellContainer.centerXAnchor),
