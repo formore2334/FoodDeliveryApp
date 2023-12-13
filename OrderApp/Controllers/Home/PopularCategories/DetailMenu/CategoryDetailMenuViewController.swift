@@ -127,7 +127,7 @@ extension CategoryDetailMenuViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailInfoVC = DetailInfoViewController(menuItem: menu.menuItem[indexPath.row], coordinator: coordinator)
+        let detailInfoVC = DetailInfoViewController(menuItem: menu.menuItem[indexPath.row], menuTitle: menu.title, coordinator: coordinator)
         
         navigationController?.pushViewController(detailInfoVC, animated: true)
     }

@@ -14,24 +14,53 @@ class DetailInfoViewController: UIViewController {
     
     var menuItem: MenuItem
     
+    var menuTitle: String
+    
     var coordinator: MainCoordinator?
     
     private let networkManager = NetworkManager()
     
-    private var menuItemImageView = UIImageView()
-    
-    private var menuItemTitleLabel = UILabel()
-    
-    private var menuItemDescriptionTextView = UITextView()
-    
-    private var menuItemIngredientsTextLabel = UILabel()
-    
     private let customButton = CustomButton()
     
     private let specialSaleButton = SpecialSaleButton()
+    
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.showsVerticalScrollIndicator = true
+        scrollView.alwaysBounceVertical = true
+        return scrollView
+    }()
+    
+    private var contentView = UIView()
+    
+    private lazy var imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.masksToBounds = true
+        return imageView
+    }()
+    
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.preferredFont(forTextStyle: .title2)
+        label.adjustsFontSizeToFitWidth = true
+        return label
+    }()
+    
+    private lazy var textView: UITextView = {
+        let textView = UITextView()
+        textView.textColor = .darkGray
+        textView.isEditable = false
+        textView.font = UIFont.preferredFont(forTextStyle: .footnote)
+        textView.backgroundColor = .systemGray6
+        textView.layer.cornerRadius = 10
+        return textView
+    }()
 
-    init(menuItem: MenuItem, coordinator: MainCoordinator? = nil) {
+    init(menuItem: MenuItem, menuTitle: String, coordinator: MainCoordinator? = nil) {
         self.menuItem = menuItem
+        self.menuTitle = menuTitle
         self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
@@ -43,22 +72,24 @@ class DetailInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .white
         configureVC()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.tintColor = .white
-            UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
+        navigationController?.navigationBar.tintColor = .black
+            UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
+        
+        title = menuTitle
+        view.backgroundColor = .white
     }
+   
+
     
     // MARK: - Configure DetailInfo VC
     
     private func configureVC() {
-        setImageView()
-        setTitleLabel()
-        setTextView()
+        prepareVC()
         setCustomButton()
         setSpecialSaleButton()
         
@@ -67,48 +98,115 @@ class DetailInfoViewController: UIViewController {
     
     // MARK: - Configure varibles
     
-    private func setImageView() {
-        view.addSubview(menuItemImageView)
-        menuItemImageView.clipsToBounds = true
-        menuItemImageView.contentMode = .scaleAspectFill
-        menuItemImageView.layer.masksToBounds = true
-        menuItemImageView.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height / 2.2)
+    private func prepareVC() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        
+        contentView.addSubview(imageView)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(textView)
+        
+        titleLabel.text = menuItem.title.uppercased()
+        textView.text = menuItem.description
         
         getImage()
     }
     
-    
-    private func setTitleLabel() {
-        view.addSubview(menuItemTitleLabel)
-        menuItemTitleLabel.text = menuItem.title
-        menuItemTitleLabel.font = UIFont.boldSystemFont(ofSize: 22)
-        menuItemTitleLabel.adjustsFontSizeToFitWidth = true
-    }
-    
-    private func setTextView() {
-        view.addSubview(menuItemDescriptionTextView)
-        menuItemDescriptionTextView.text = menuItem.description
-        menuItemDescriptionTextView.textColor = .lightGray
-        menuItemDescriptionTextView.isEditable = false
-        menuItemDescriptionTextView.backgroundColor = .systemGray6
-        menuItemDescriptionTextView.layer.cornerRadius = 10
-    }
-    
+    // Fetch image
     private func getImage() {
         guard let url = URL(string: menuItem.imageURL) else { return }
         
         networkManager.fetchImage(url: url) { [weak self] image, error in
             DispatchQueue.main.async {
-                self?.menuItemImageView.image = image
+                self?.imageView.image = image
             }
         }
     }
     
-    //MARK: - Basket Button translation
+    //MARK: - Constraints
     
+    private func setAllConstraints() {
+        setScrollViewConstraints()
+        setImageViewConstraints()
+        setTitleLabelConstrains()
+        setTextViewConstrains()
+    }
+    
+    // Scroll view & content view constraints
+    func setScrollViewConstraints() {
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+        ])
+    }
+    
+    private func setImageViewConstraints() {
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4),
+            imageView.widthAnchor.constraint(equalTo: view.widthAnchor)
+        ])
+    }
+    
+    private func setTitleLabelConstrains() {
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 20),
+            titleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
+            titleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+        ])
+    }
+    
+    private func setTextViewConstrains() {
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            textView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2),
+            textView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
+            textView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            textView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            textView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -100)
+        ])
+    }
+    
+    private func setSpecialSaleButtonConstraints() {
+        specialSaleButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            specialSaleButton.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -10),
+            specialSaleButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            specialSaleButton.heightAnchor.constraint(equalToConstant: 35),
+            specialSaleButton.widthAnchor.constraint(equalToConstant: 100)
+        ])
+    }
+    
+}
+
+
+// MARK: - Buttons Logic
+
+extension DetailInfoViewController {
+    
+    // Basket Button translation
     private func setCustomButton() {
         view.addSubview(customButton)
         
+        // Add sale string to button label if needs
         if let discountMenuItem = menuItem as? DiscountMenuItem {
             let priceString = "Add for \(discountMenuItem.newPrice)$"
             let crossedOldPriceString = " \(menuItem.price)"
@@ -137,17 +235,15 @@ class DetailInfoViewController: UIViewController {
     }
     
     
-    //MARK: - Special Button translation
-    
+    // Special Button translation
     private func setSpecialSaleButton() {
         view.addSubview(specialSaleButton)
         
+        // Add special sale button if needs
         if menuItem as? SpecialSaleMenuItem != nil {
             addActionToSpecialSaleButton()
             setSpecialSaleButtonConstraints()
         }
-        
-       
     }
     
     private func addActionToSpecialSaleButton() {
@@ -158,46 +254,4 @@ class DetailInfoViewController: UIViewController {
         coordinator?.goToCurrentSale(menuItem: menuItem)
     }
     
-    //MARK: - Constraints
-    
-    private func setAllConstraints() {
-        setTitleLabelConstrains()
-        setTextViewConstrains()
-    }
-    
-    private func setTitleLabelConstrains() {
-        menuItemTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            menuItemTitleLabel.topAnchor.constraint(equalTo: menuItemImageView.bottomAnchor, constant: 20),
-            menuItemTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            menuItemTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
-        
-    }
-    
-    private func setTextViewConstrains() {
-        menuItemDescriptionTextView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            menuItemDescriptionTextView.topAnchor.constraint(equalTo: menuItemTitleLabel.bottomAnchor, constant: 20),
-            menuItemDescriptionTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            menuItemDescriptionTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            menuItemDescriptionTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100)
-        ])
-        
-    }
-    
-    private func setSpecialSaleButtonConstraints() {
-        specialSaleButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            specialSaleButton.bottomAnchor.constraint(equalTo: menuItemImageView.bottomAnchor, constant: -10),
-            specialSaleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            specialSaleButton.heightAnchor.constraint(equalToConstant: 35),
-            specialSaleButton.widthAnchor.constraint(equalToConstant: 100)
-        ])
-    }
-    
 }
-
