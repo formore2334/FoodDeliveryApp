@@ -24,7 +24,7 @@ protocol Discountable: MenuItemProtocol {
 extension Discountable {
     var newPrice: Double {
         let newPrice = price - (price / 100 * Double(sale))
-        return Double(String(format: "%.2f", newPrice)) ?? 0.0
+        return newPrice.twoDigitsFormat()
     }
 }
 

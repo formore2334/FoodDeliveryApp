@@ -31,7 +31,7 @@ struct CouponsManager {
     func calculateDiscount() -> Double {
         guard let appliedCoupon = appliedCoupon, let basket = basket else { return basket?.totalSum ?? 0 }
         let discount = basket.totalSum - (basket.totalSum / 100 * Double(appliedCoupon.discountValue))
-        return Double(String(format: "%.2f", discount)) ?? 0.0
+        return discount.twoDigitsFormat()
     }
     
     mutating func applyCoupon(_ couponKeyWord: String) {

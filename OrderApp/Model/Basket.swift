@@ -31,7 +31,7 @@ struct Basket {
             }
         }
         
-        return Double(String(format: "%.2f", sum)) ?? 0.0
+        return sum.twoDigitsFormat()
     }
     
 }
