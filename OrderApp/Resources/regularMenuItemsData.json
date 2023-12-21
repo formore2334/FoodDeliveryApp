@@ -1,0 +1,100 @@
+[
+   {
+      "id": 1001,
+      "price": 16.99,
+      "imageURL": "https://img.freepik.com/premium-photo/fresh-tasty-burger-french-fries-soft-drink-dark-background_113876-3426.jpg?size=626&ext=jpg&uid=R126075889&ga=GA1.1.94238438.1700466765&semt=ais",
+      "title": "Grill Combo",
+      "description": "1x Burger, 1x Medium Fries, 1x Cola Soda, 1x Tomato Souse\\nHere you get it all - The full Welm's Grill experience!"
+   },
+   {
+      "id": 2001,
+      "price": 8.05,
+      "imageURL": "https://burst.shopifycdn.com/photos/stacked-cheeseburger-on-yellow-background.jpg?width=925&amp;format=pjpg&amp;exif=0&amp;iptc=0",
+      "title": "THE BIG TASTY",
+      "description": "Beef cheeseburger topped with lettuce and tomato, served on an all-natural sesame seed bun. Our beef burger is cooked medium (pink on the inside), unless requested otherwise."
+   },
+   {
+      "id": 2004,
+      "price": 9.18,
+      "imageURL": "https://img.freepik.com/free-photo/chicken-burger-with-french-fries-table_140725-4532.jpg?size=626&ext=jpg&uid=R126075889&ga=GA1.1.94238438.1700466765&semt=sph",
+      "title": "Chickenburger",
+      "description": "Beef cheeseburger topped with a fried egg, crispy bacon and Tasty Spicy Ketchup, served on an all-natural sesame seed bun. Our beef burger is cooked medium (pink on the inside), unless requested otherwise"
+   },
+   {
+      "id": 3001,
+      "price": 4.59,
+      "imageURL": "https://img.freepik.com/premium-photo/french-fries-craft-paper-box-wooden-board-top-view-with-copy-space_251318-209.jpg?size=626&ext=jpg&uid=R126075889&ga=GA1.1.94238438.1700466765&semt=ais",
+      "title": "French Fries",
+      "description": "Good Choise to.."
+   },
+   {
+      "id": 3002,
+      "price": 4.59,
+      "imageURL": "https://img.freepik.com/free-photo/high-angle-french-fries-paper-with-sauce_23-2148701493.jpg?size=626&ext=jpg&uid=R126075889&ga=GA1.1.94238438.1700466765&semt=ais",
+      "title": "Village Fries",
+      "description": "Good Choise to.."
+   },
+   {
+      "id": 3003,
+      "price": 5.59,
+      "imageURL": "https://img.freepik.com/premium-photo/fried-forest-chanterelle-mushrooms-with-herbs-wooden-background-top-view_89816-37706.jpg?size=626&ext=jpg&uid=R126075889&ga=GA1.1.94238438.1700466765&semt=ais",
+      "title": "Fried Potatoes",
+      "description": "Good Choise to.."
+   },
+   {
+      "id": 4001,
+      "price": 2.85,
+      "imageURL": "https://img.freepik.com/free-photo/beautiful-cold-drink-cola-with-ice-cubes_1150-26255.jpg?size=626&ext=jpg&uid=R126075889&ga=GA1.1.94238438.1700466765&semt=sph",
+      "title": "Cola Soda",
+      "description": "1x big glass of cola 400ml."
+   },
+   {
+      "id": 4002,
+      "price": 2.85,
+      "imageURL": "https://img.freepik.com/premium-photo/drink_920207-1754.jpg?size=626&ext=jpg&uid=R126075889&ga=GA1.1.94238438.1700466765&semt=sph",
+      "title": "Fanta Soda",
+      "description": "1x big glass of fanta 400ml."
+   },
+   {
+      "id": 4003,
+      "price": 4.99,
+      "imageURL": "https://img.freepik.com/free-photo/glasses-green-apple-healthy-tea-put-fresh-green-apples_1150-34476.jpg?size=626&ext=jpg&uid=R126075889&ga=GA1.1.94238438.1700466765&semt=sph",
+      "title": "Apple tea",
+      "description": "Healthy tea glass from fresh apples and high quality ceylon tea 400ml."
+   },
+   {
+      "id": 4005,
+      "price": 6.99,
+      "imageURL": "https://img.freepik.com/free-photo/front-view-glasses-beer-with-wheat_23-2148755010.jpg?size=626&ext=jpg&uid=R126075889&ga=GA1.1.94238438.1700466765&semt=sph",
+      "title": "Beer",
+      "description": "2x glass of nandmade lager beer 500ml."
+   },
+   {
+      "id": 5001,
+      "price": 1.65,
+      "imageURL": "https://img.freepik.com/free-photo/ketchup-tomato-sauce-with-fresh-tomato_1150-38251.jpg?size=626&ext=jpg&uid=R126075889&ga=GA1.1.94238438.1700466765&semt=ais",
+      "title": "Tomato souse",
+      "description": "1x potion of ketchup from fresh tomatoes 50ml."
+   },
+   {
+      "id": 5002,
+      "price": 1.65,
+      "imageURL": "https://img.freepik.com/premium-photo/barbecue-sauce-bowl-brush-rustic-wooden-table-condiments-herbs_59529-1627.jpg?size=626&ext=jpg&uid=R126075889&ga=GA1.1.94238438.1700466765&semt=ais",
+      "title": "BBQ souse",
+      "description": "1x portion of BBQ souse 50ml.\\nThis is smell like wood burning stove."
+   },
+   {
+      "id": 5003,
+      "price": 1.65,
+      "imageURL": "https://img.freepik.com/free-photo/red-lentil-soup-disposable-cup-bowl-served-with-green-vegetables_114579-865.jpg?size=626&ext=jpg&uid=R126075889&ga=GA1.1.94238438.1700466765&semt=ais",
+      "title": "Mustard souse",
+      "description": "1x portion of fresh mustard souse 50ml\\n Warning! This is russian style spicy mustard for spicy lovers!"
+   },
+   {
+      "id": 5004,
+      "price": 3.99,
+      "imageURL": "https://img.freepik.com/premium-photo/three-kinds-red-tomato-sauce_136595-10831.jpg?size=626&ext=jpg&uid=R126075889&ga=GA1.1.94238438.1700466765&semt=ais",
+      "title": "Souse 4",
+      "description": "All souses in one order.\\nTomato, BBQ and especialy guest - Salsa souse: 50ml 50ml 50ml."
+   }
+]
