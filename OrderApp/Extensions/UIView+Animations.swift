@@ -27,3 +27,18 @@ extension CGAffineTransform {
         }, completion: nil)
     }
 }
+
+
+extension UIView {
+    func startBlinkingAnimation() {
+        UIView.animate(withDuration: 0.7, delay: 0.0, options: [.repeat, .autoreverse], animations: {
+            self.alpha = 0.5
+        }, completion: nil)
+    }
+    
+    func stopBlinkingAnimation() {
+        self.alpha = 1.0
+        self.layer.removeAllAnimations()
+    }
+
+}
