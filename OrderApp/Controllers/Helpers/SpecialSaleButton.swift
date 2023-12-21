@@ -21,6 +21,12 @@ class SpecialSaleButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        stopPulsatingAnimation()
+        print("Deinit")
+    }
+
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -36,7 +42,7 @@ class SpecialSaleButton: UIButton {
         setShadow()
     }
     
-    private func startPulsatingAnimation() {
+    func startPulsatingAnimation() {
         let pulseAnimation = CABasicAnimation(keyPath: "transform.scale")
         pulseAnimation.duration = 1.0
         pulseAnimation.fromValue = 1.0
@@ -45,6 +51,11 @@ class SpecialSaleButton: UIButton {
         pulseAnimation.repeatCount = .infinity
         layer.add(pulseAnimation, forKey: "pulsating")
     }
+    
+    func stopPulsatingAnimation() {
+        layer.removeAnimation(forKey: "pulsating")
+    }
+
     
     private func setShadow() {
         layer.shadowColor = UIColor.yellow.cgColor
