@@ -95,18 +95,18 @@ class BasketCell: UITableViewCell {
     
    //MARK: - Configurations
     
-    public func configure(menuItem: (any MenuItemProtocol), itemCounts: Int) {
+    public func configure(menuItem: (any MenuItemProtocol), itemCounts: Int, totalPrice: (Double, Double)) {
         
-        if let discountMenuItem = menuItem as? (any Discountable) {
+        if menuItem as? (any Discountable) != nil {
             
-            let crossedString = "\(menuItem.price)"
+            let crossedString = "\(totalPrice.1)"
             let crossedPrice = crossedString.crossOutTheLine()
             
             crossPriceLabel.attributedText = crossedPrice
-            priceLabel.text = "\(discountMenuItem.newPrice)$"
+            priceLabel.text = "\(totalPrice.0)$"
         } else {
             crossPriceLabel.text = ""
-            priceLabel.text = "\(menuItem.price)$"
+            priceLabel.text = "\(totalPrice.0)$"
         }
         
         
@@ -246,12 +246,6 @@ extension BasketCell {
     }
     
     @objc private func addButtonTapped() {
-        guard let itemCountsText = itemCountsLabel.text,
-              let itemCounts = Int(itemCountsText) else {
-            return
-        }
-        
-        itemCountsLabel.text = "\(itemCounts + 1)"
         
         delegate?.didTapAddButton(self)
     }
@@ -262,14 +256,6 @@ extension BasketCell {
     }
     
     @objc private func subtractButtonTapped() {
-        guard let itemCountsText = itemCountsLabel.text,
-              let itemCounts = Int(itemCountsText),
-              itemCounts > 0
-        else {
-            return
-        }
-        
-        itemCountsLabel.text = "\(itemCounts - 1)"
         
         delegate?.didTapSubtractButton(self)
     }

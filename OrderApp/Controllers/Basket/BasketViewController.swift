@@ -193,8 +193,9 @@ extension BasketViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: BasketCell.identifier, for: indexPath) as! BasketCell
         let basketItem = basketManager.basket.basketItems[indexPath.row]
+        let totalPrice = basketManager.basketItemTotalPrice(basketItem)
         
-        cell.configure(menuItem: basketItem.menuItem, itemCounts: basketItem.count)
+        cell.configure(menuItem: basketItem.menuItem, itemCounts: basketItem.count, totalPrice: totalPrice)
         cell.delegate = self
         
         return cell

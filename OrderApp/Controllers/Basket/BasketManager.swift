@@ -78,4 +78,22 @@ class BasketManager {
         }
     }
     
+    
+    func basketItemTotalPrice(_ basketItem: BasketItem) -> (Double, Double) {
+        if let menuItem = basketItem.menuItem as? (any Discountable) {
+            
+            let newTotalPrice = (menuItem.newPrice * Double(basketItem.count)).twoDigitsFormat()
+            let oldTotalPrice = (menuItem.price * Double(basketItem.count)).twoDigitsFormat()
+            
+            return (newTotalPrice, oldTotalPrice)
+        } else {
+            
+            let newTotalPrice = (basketItem.menuItem.price * Double(basketItem.count)).twoDigitsFormat()
+            
+           return (newTotalPrice, 0)
+        }
+       
+    }
+    
+    
 }

@@ -70,6 +70,7 @@
 		45803B2E2B1056A200BB1081 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45803B2D2B1056A200BB1081 /* UIView+Animations.swift */; };
 		458292EE2B33E38E00FDED64 /* ConnectionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458292ED2B33E38E00FDED64 /* ConnectionError.swift */; };
 		458292F02B33E3BE00FDED64 /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458292EF2B33E3BE00FDED64 /* ErrorManager.swift */; };
+		458292F32B3464FA00FDED64 /* Double+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458292F22B3464F900FDED64 /* Double+Format.swift */; };
 		4586B6402B0F5FC900439562 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4586B63F2B0F5FC900439562 /* CustomButton.swift */; };
 		458FE0082B25C59100DAF0CF /* StarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458FE0072B25C59100DAF0CF /* StarView.swift */; };
 		45915F022B03651E0032D4BB /* MenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45915F012B03651E0032D4BB /* MenuHeaderView.swift */; };
@@ -148,6 +149,7 @@
 		45803B2D2B1056A200BB1081 /* UIView+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
 		458292ED2B33E38E00FDED64 /* ConnectionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionError.swift; sourceTree = "<group>"; };
 		458292EF2B33E3BE00FDED64 /* ErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
+		458292F22B3464F900FDED64 /* Double+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Format.swift"; sourceTree = "<group>"; };
 		4586B63F2B0F5FC900439562 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		458FE0072B25C59100DAF0CF /* StarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarView.swift; sourceTree = "<group>"; };
 		45915F012B03651E0032D4BB /* MenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHeaderView.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 				4576A6602B179FDD0011F35D /* NSAttributedString+Concatenation.swift */,
 				4578464E2B207CE300A8F84F /* UIButton+Animations.swift */,
 				4542F6BA2B29D92400F061DF /* UITextView+Hyperlinks.swift */,
+				458292F22B3464F900FDED64 /* Double+Format.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -621,6 +624,7 @@
 				453F50872ADD6D3F00D9DCF9 /* SaleViewController.swift in Sources */,
 				4576A65C2B174CC90011F35D /* FormContentBuilder.swift in Sources */,
 				4546A5202AD9A38F00A850A8 /* PopularCategoriesViewController.swift in Sources */,
+				458292F32B3464FA00FDED64 /* Double+Format.swift in Sources */,
 				4586B6402B0F5FC900439562 /* CustomButton.swift in Sources */,
 				454FBF2A2AD949E9001E75EB /* AppDelegate.swift in Sources */,
 				4567FEDB2B0DD6A500B032F2 /* CouponViewController.swift in Sources */,
