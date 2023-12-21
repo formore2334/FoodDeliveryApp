@@ -9,7 +9,7 @@ import UIKit
 
 class CouponViewController: UICollectionViewController {
     
-    private let coupons: [Coupon] = Coupon.mockData
+    private let coupons: [Coupon] = DataService.shared.coupons
     
     private let titleLabel: UILabel = {
         let label = UILabel()

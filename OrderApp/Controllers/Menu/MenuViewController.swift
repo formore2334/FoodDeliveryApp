@@ -11,7 +11,7 @@ class MenuViewController: UICollectionViewController {
 
     var coordinator: MainCoordinator?
     
-    var menu: [Menu] = Menu.mockData
+    var menu: [Menu] = DataService.shared.menu
     
     init() {
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
@@ -65,13 +65,13 @@ extension MenuViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return menu[section].menuItem.count
+        return menu[section].menuItems.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCell.identifier, for: indexPath) as! MenuCell
 
-        let menuItem = menu[indexPath.section].menuItem[indexPath.item]
+        let menuItem = menu[indexPath.section].menuItems[indexPath.item]
         cell.configure(menuItem: menuItem)
 
         return cell
@@ -85,7 +85,7 @@ extension MenuViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailInfoVC = DetailInfoViewController(menuItem: menu[indexPath.section].menuItem[indexPath.item], menuTitle: menu[indexPath.section].title, coordinator: coordinator)
+        let detailInfoVC = DetailInfoViewController(menuItem: menu[indexPath.section].menuItems[indexPath.item], menuTitle: menu[indexPath.section].title, coordinator: coordinator)
         
         navigationController?.pushViewController(detailInfoVC, animated: true)
     }

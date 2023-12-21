@@ -15,6 +15,11 @@ class MainCoordinator: Coordinator {
     
     init(tabBarController: UITabBarController) {
         self.tabBarController = tabBarController
+        print("TabBar init")
+    }
+    
+    deinit {
+    print("TabBar deinit")
     }
     
     func start() {
@@ -51,27 +56,28 @@ class MainCoordinator: Coordinator {
         }
         
     }
-        
     
-    func passOrderToBasket(menuItem: MenuItem) {
+    
+    func passOrderToBasket(menuItem: (any MenuItemProtocol)) {
         if let basketNavigationController = tabBarController.viewControllers?[2] as? UINavigationController,
            let basketVC = basketNavigationController.viewControllers.first as? BasketViewController {
             basketVC.addItemToBasket(menuItem: menuItem)
         }
     }
     
-    func goToCurrentSale(menuItem: MenuItem) {
-        let saleManager = SalesManager()
+    func goToCurrentSale(menuItem: (any MenuItemProtocol)) {
+        let salesManager = SalesManager()
         
-        guard let sale = saleManager.getCurrentSale(with: menuItem) else {
+        guard let sale = salesManager.getCurrentSale(with: menuItem) else {
             print("Sale not found")
             return
         }
         
-        let detailSaleVC = DetailSaleViewController(sale: sale, coordinator: self)
+        let detailSaleVC = DetailSaleViewController(sale: sale, salesManager: salesManager, coordinator: self)
         
         let navigationController = tabBarController.selectedViewController as? UINavigationController
         navigationController?.pushViewController(detailSaleVC, animated: true)
     }
+    
     
 }

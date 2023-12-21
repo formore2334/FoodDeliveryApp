@@ -9,9 +9,9 @@ import UIKit
 
 class SaleViewController: UICollectionViewController {
     
-    var coordinator: MainCoordinator?
+    private let salesManager: SalesManager
     
-    private let salesManager = SalesManager()
+    var coordinator: MainCoordinator?
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -22,7 +22,8 @@ class SaleViewController: UICollectionViewController {
         return label
     }()
     
-    init(coordinator: MainCoordinator? = nil) {
+    init(salesManager: SalesManager = SalesManager(sales: DataService.shared.sales), coordinator: MainCoordinator? = nil) {
+        self.salesManager = salesManager
         self.coordinator = coordinator
         super.init(collectionViewLayout: UICollectionViewLayout())
     }
@@ -85,7 +86,7 @@ extension SaleViewController {
     
    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-       let detailSaleVC = DetailSaleViewController(sale: salesManager.sales[indexPath.row], coordinator: coordinator)
+       let detailSaleVC = DetailSaleViewController(sale: salesManager.sales[indexPath.row], salesManager: salesManager, coordinator: coordinator)
         
         navigationController?.pushViewController(detailSaleVC, animated: true)
     }

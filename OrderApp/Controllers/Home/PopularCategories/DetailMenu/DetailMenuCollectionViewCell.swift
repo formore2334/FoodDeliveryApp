@@ -73,7 +73,7 @@ class DetailMenuCollectionViewCell: UICollectionViewCell {
        setDetailMenuConstraints()
     }
     
-    public func configure(menuItem: MenuItem) {
+    public func configure(menuItem: (any MenuItemProtocol)) {
         
         if let discountMenuItem = menuItem as? DiscountMenuItem {
             let priceString = "\(discountMenuItem.newPrice)$"
@@ -87,7 +87,7 @@ class DetailMenuCollectionViewCell: UICollectionViewCell {
             priceLabel.text = "\(menuItem.price)$"
         }
         
-        if menuItem as? SpecialSaleMenuItem != nil {
+        if menuItem as? SpecialMenuItem != nil {
             starView.isHidden = false
         } else {
             starView.isHidden = true

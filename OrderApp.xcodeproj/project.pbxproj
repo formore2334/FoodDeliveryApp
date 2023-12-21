@@ -202,17 +202,16 @@
 			path = DiscountOffer;
 			sourceTree = "<group>";
 		};
-		4542F6BC2B2A046200F061DF /* Resourses */ = {
+		4542F6BC2B2A046200F061DF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				4542F6BD2B2A047700F061DF /* DataService.swift */,
 				45413D432B3044CB00D38B70 /* regularMenuItemsData.json */,
 				45413D452B3044F300D38B70 /* discountMenuItemsData.json */,
 				4542F6BF2B2A05F400F061DF /* specialMenuItemsData.json */,
 				45413D472B30451200D38B70 /* salesData.json */,
 				45413D492B30454A00D38B70 /* couponsData.json */,
 			);
-			path = Resourses;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		454FBF1D2AD949E9001E75EB = {
@@ -236,17 +235,18 @@
 		454FBF282AD949E9001E75EB /* OrderApp */ = {
 			isa = PBXGroup;
 			children = (
-				458292EC2B33E33700FDED64 /* Errors */,
-				4542F6BC2B2A046200F061DF /* Resourses */,
 				454FBF292AD949E9001E75EB /* AppDelegate.swift */,
 				454FBF2B2AD949E9001E75EB /* SceneDelegate.swift */,
 				455A7A5D2AE7F06200EE1844 /* Extensions */,
 				454FBF3F2AD9513E001E75EB /* Model */,
-				4576A65D2B17573F0011F35D /* SalesManager */,
+				458292EC2B33E33700FDED64 /* Errors */,
+				458292F12B34491F00FDED64 /* DataService */,
 				4576A6562B17418B0011F35D /* ValidateUserInfo */,
+				4576A65D2B17573F0011F35D /* SalesManager */,
 				457846502B20C27500A8F84F /* PaymentManager */,
 				456A0D132B0BA29D0029247D /* NetworkLayer */,
 				454FBF402AD97646001E75EB /* Controllers */,
+				4542F6BC2B2A046200F061DF /* Resources */,
 				454FBF2F2AD949E9001E75EB /* Main.storyboard */,
 				454FBF322AD949F5001E75EB /* Assets.xcassets */,
 				454FBF342AD949F5001E75EB /* LaunchScreen.storyboard */,
@@ -426,6 +426,14 @@
 				45413D4F2B3068BD00D38B70 /* ErrorScreenViewController.swift */,
 			);
 			path = Errors;
+			sourceTree = "<group>";
+		};
+		458292F12B34491F00FDED64 /* DataService */ = {
+			isa = PBXGroup;
+			children = (
+				4542F6BD2B2A047700F061DF /* DataService.swift */,
+			);
+			path = DataService;
 			sourceTree = "<group>";
 		};
 		45DEED5E2ADFC62700CB6439 /* MenuItemInfo */ = {

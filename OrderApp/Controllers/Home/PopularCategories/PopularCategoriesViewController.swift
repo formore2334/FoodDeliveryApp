@@ -11,7 +11,7 @@ class PopularCategoriesViewController: UICollectionViewController {
     
     var coordinator: MainCoordinator?
     
-    private let menu: [Menu] = Menu.mockData
+    private let menu: [Menu] = DataService.shared.menu
     
     private let titleLabel: UILabel = {
         let label = UILabel()

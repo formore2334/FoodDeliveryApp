@@ -39,8 +39,8 @@ class BasketManager {
         self.basket.basketItems.removeAll()
     }
     
-    func addItemToBasket(with menuItem: MenuItem) {
-        if let existingBasketItemIndex = basket.basketItems.firstIndex(where: { $0.menuItem == menuItem }) {
+    func addItemToBasket(with menuItem: (any MenuItemProtocol)) {
+        if let existingBasketItemIndex = basket.basketItems.firstIndex(where: { $0.menuItem.id == menuItem.id }) {
             var basketItem = basket.basketItems[existingBasketItemIndex]
             basketItem.count += 1
             basket.basketItems[existingBasketItemIndex] = basketItem
@@ -50,8 +50,8 @@ class BasketManager {
         }
     }
 
-    func removeItemFromBasket(with menuItem: MenuItem) {
-        if let existingBasketItemIndex = basket.basketItems.firstIndex(where: { $0.menuItem == menuItem }) {
+    func removeItemFromBasket(with menuItem: (any MenuItemProtocol)) {
+        if let existingBasketItemIndex = basket.basketItems.firstIndex(where: { $0.menuItem.id == menuItem.id }) {
             var basketItem = basket.basketItems[existingBasketItemIndex]
             basketItem.count -= 1
             if basketItem.count == 0 {

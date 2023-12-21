@@ -12,7 +12,7 @@ import UIKit
 
 class DetailInfoViewController: UIViewController {
     
-    var menuItem: MenuItem
+    var menuItem: (any MenuItemProtocol)
     
     var menuTitle: String
     
@@ -58,7 +58,7 @@ class DetailInfoViewController: UIViewController {
         return textView
     }()
 
-    init(menuItem: MenuItem, menuTitle: String, coordinator: MainCoordinator? = nil) {
+    init(menuItem: (any MenuItemProtocol), menuTitle: String, coordinator: MainCoordinator? = nil) {
         self.menuItem = menuItem
         self.menuTitle = menuTitle
         self.coordinator = coordinator
@@ -77,11 +77,14 @@ class DetailInfoViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         navigationController?.navigationBar.tintColor = .black
-            UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
         
         title = menuTitle
         view.backgroundColor = .white
+        
+        specialSaleButton.startPulsatingAnimation()
     }
    
 
@@ -240,7 +243,7 @@ extension DetailInfoViewController {
         view.addSubview(specialSaleButton)
         
         // Add special sale button if needs
-        if menuItem as? SpecialSaleMenuItem != nil {
+        if menuItem as? SpecialMenuItem != nil {
             addActionToSpecialSaleButton()
             setSpecialSaleButtonConstraints()
         }
@@ -252,6 +255,7 @@ extension DetailInfoViewController {
     
     @objc private func specialSaleButtonTapped() {
         coordinator?.goToCurrentSale(menuItem: menuItem)
+        specialSaleButton.stopPulsatingAnimation()
     }
     
 }

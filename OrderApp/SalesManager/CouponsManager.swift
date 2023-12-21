@@ -10,7 +10,7 @@ import Foundation
 
 struct CouponsManager {
 
-    private let coupons: [Coupon] = Coupon.mockData
+    private let coupons: [Coupon] = DataService.shared.coupons
     
     private var appliedCoupon: Coupon?
     

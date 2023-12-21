@@ -115,19 +115,19 @@ class CategoryDetailMenuViewController: UICollectionViewController {
 
 extension CategoryDetailMenuViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return menu.menuItem.count
+        return menu.menuItems.count
     }
     
    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailMenuCollectionViewCell.identifier, for: indexPath) as! DetailMenuCollectionViewCell
         
-       cell.configure(menuItem: menu.menuItem[indexPath.row])
+        cell.configure(menuItem: menu.menuItems[indexPath.row])
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailInfoVC = DetailInfoViewController(menuItem: menu.menuItem[indexPath.row], menuTitle: menu.title, coordinator: coordinator)
+        let detailInfoVC = DetailInfoViewController(menuItem: menu.menuItems[indexPath.row], menuTitle: menu.title, coordinator: coordinator)
         
         navigationController?.pushViewController(detailInfoVC, animated: true)
     }

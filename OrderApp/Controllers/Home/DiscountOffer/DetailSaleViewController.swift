@@ -11,6 +11,8 @@ class DetailSaleViewController: UIViewController {
     
     var sale: Sale
     
+    var salesManager: SalesManager
+    
     var coordinator: MainCoordinator?
     
     private let networkManager = NetworkManager()
@@ -56,11 +58,12 @@ class DetailSaleViewController: UIViewController {
     }()
     
     private var isValid: Bool {
-        return sale.menuItems != nil
+        return sale.menuItemsID != nil
     }
 
-    init(sale: Sale, coordinator: MainCoordinator? = nil) {
+    init(sale: Sale, salesManager: SalesManager, coordinator: MainCoordinator? = nil) {
         self.sale = sale
+        self.salesManager = salesManager
         self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
@@ -89,13 +92,10 @@ class DetailSaleViewController: UIViewController {
             UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
     }
     
-    // Return navigation title color to black after view is disappear
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         
-        navigationController?.navigationBar.tintColor = .black
-            UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
+        navigationController?.popViewController(animated: false)
     }
     
     deinit {
@@ -152,12 +152,14 @@ class DetailSaleViewController: UIViewController {
                                             headlineTextLabel.bounds.height + descriptionTextView.bounds.height)
         
         scrollView.addSubview(headlineTextLabel)
+        scrollView.addSubview(dividerView)
         scrollView.addSubview(descriptionTextView)
        
         setHeadlineTextLabel()
+        setDividerView()
         setTextView()
         
-        setDividerViewConstraints()
+        
         setScrollViewConstrains()
     }
     
@@ -166,6 +168,12 @@ class DetailSaleViewController: UIViewController {
         headlineTextLabel.text = sale.textHeadline
         
         setHeadlineTextLabelConstrains()
+    }
+    
+    private func setDividerView() {
+        view.addSubview(dividerView)
+        
+        setDividerViewConstraints()
     }
     
     private func setTextView() {
@@ -234,10 +242,14 @@ private extension DetailSaleViewController {
         customButton.pressWithEnable()
         customButton.setTitle("Special added!", for: .normal)
         
-        if let menuItems = sale.menuItems {
-            for menuItem in menuItems {
-                coordinator?.passOrderToBasket(menuItem: menuItem)
+        if let ids = sale.menuItemsID {
+            for id in ids {
+                if let menuItem = salesManager.getMenuItem(at: id) {
+                    coordinator?.passOrderToBasket(menuItem: menuItem)
+                }
             }
+        } else {
+            print("No valid menuItems")
         }
     }
     

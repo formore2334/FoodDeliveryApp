@@ -206,13 +206,13 @@ extension BasketViewController: UITableViewDataSource {
 
 extension BasketViewController {
     
-    public func addItemToBasket(menuItem: MenuItem) {
+    public func addItemToBasket(menuItem: (any MenuItemProtocol)) {
         basketManager.addItemToBasket(with: menuItem)
         
         updateData()
     }
 
-    public func removeItemFromBasket(menuItem: MenuItem) {
+    public func removeItemFromBasket(menuItem: (any MenuItemProtocol)) {
         basketManager.removeItemFromBasket(with: menuItem)
         
         updateData()
