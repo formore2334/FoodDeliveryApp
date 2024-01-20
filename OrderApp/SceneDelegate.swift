@@ -27,13 +27,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, DataDelegate {
         
         let window = UIWindow(windowScene: windowScene)
         
-        errorManager.dataDelegate = self
-        
-        if errorManager.error != nil {
-            self.setErrorScreenViewController(to: window)
-        } else {
-            self.setTabBarController(to: window)
-        }
+       
+//        let navVC = UINavigationController(rootViewController: vc)
+//        window.rootViewController = navVC
+//        setWindow(window)
+        //errorManager.dataDelegate = self
+        self.setTabBarController(to: window)
+//        if errorManager.error != nil {
+//            self.setErrorScreenViewController(to: window)
+//        } else {
+//            self.setTabBarController(to: window)
+//        }
         
     }
     
