@@ -14,6 +14,7 @@ struct BasketItem {
 }
 
 struct BasketSpecialItem {
+    let saleID: Int
     let discountTitle: String
     let specialMenuItems: [SpecialItem]
     

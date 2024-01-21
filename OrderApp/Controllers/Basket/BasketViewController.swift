@@ -199,8 +199,8 @@ extension BasketViewController {
     }
     
     // Adds specialMenuItems in basket
-    func addSpecialItemToBasket(with specialMenuItems: [SpecialMenuItem], discountTitle: String) {
-        basketManager.addSpecialItemToBasket(with: specialMenuItems, discountTitle: discountTitle)
+    func addSpecialItemToBasket(with specialMenuItems: [SpecialMenuItem], saleID: Int, discountTitle: String) {
+        basketManager.addSpecialItemToBasket(with: specialMenuItems, saleID: saleID, discountTitle: discountTitle)
         
         updateData()
     }

@@ -79,7 +79,7 @@ class MainCoordinator: Coordinator {
     }
     
     // Sends array of special menuItem's to basket
-    func passSpecialOrderToBasket(with specialMenuItems: [SpecialMenuItem], discountTitle: String) {
+    func passSpecialOrderToBasket(with specialMenuItems: [SpecialMenuItem], saleID: Int, discountTitle: String) {
         
         // Finds a basket nav controller in an tab bar controller array
         if let basketNavigationController = tabBarController.viewControllers?[2] as? UINavigationController,
@@ -88,7 +88,7 @@ class MainCoordinator: Coordinator {
            let basketVC = basketNavigationController.viewControllers.first as? BasketViewController {
             
             // Pass another data to vc
-            basketVC.addSpecialItemToBasket(with: specialMenuItems, discountTitle: discountTitle)
+            basketVC.addSpecialItemToBasket(with: specialMenuItems, saleID: saleID, discountTitle: discountTitle)
         }
         
     }
