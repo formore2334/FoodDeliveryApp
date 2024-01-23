@@ -82,6 +82,13 @@ class BasketViewController: UIViewController {
         configureVC()
         setAllConstraint()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        // When basket is open send this notification to DetailInfoVC
+        NotificationCenter.default.post(name: NSNotification.Name("BasketDidOpenNotification"), object: nil)
+    }
     
     deinit {
         NotificationCenter.default.removeObserver(self)

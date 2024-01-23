@@ -8,8 +8,6 @@
 import UIKit
 
 
-// MARK: - Detail info about selected item from menu
-
 class DetailInfoViewController: UIViewController {
     
     var menuItem: (any MenuItemProtocol)
@@ -23,6 +21,8 @@ class DetailInfoViewController: UIViewController {
     private let customButton = CustomButton()
     
     private let specialSaleButton = SpecialSaleButton()
+    
+    //MARK: - Set variables
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -57,7 +57,9 @@ class DetailInfoViewController: UIViewController {
         textView.layer.cornerRadius = 10
         return textView
     }()
-
+    
+    //MARK: - Init
+    
     init(menuItem: (any MenuItemProtocol), menuTitle: String, coordinator: MainCoordinator? = nil) {
         self.menuItem = menuItem
         self.menuTitle = menuTitle
@@ -71,12 +73,21 @@ class DetailInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureVC()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // Listens to notification from basket
+        // If the basket is open, closes current vc
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(closeVC),
+                                               name: NSNotification.Name("BasketDidOpenNotification"),
+                                               object: nil)
+        
+        // Sets color of navigation items to black
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         navigationController?.navigationBar.tintColor = .black
         UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
@@ -86,10 +97,13 @@ class DetailInfoViewController: UIViewController {
         
         specialSaleButton.startPulsatingAnimation()
     }
-   
-
     
-    // MARK: - Configure DetailInfo VC
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    
+    // MARK: - Configurations
     
     private func configureVC() {
         prepareVC()
@@ -99,7 +113,7 @@ class DetailInfoViewController: UIViewController {
         setAllConstraints()
     }
     
-    // MARK: - Configure varibles
+    // MARK: - Configure variables
     
     private func prepareVC() {
         view.addSubview(scrollView)
@@ -126,7 +140,91 @@ class DetailInfoViewController: UIViewController {
         }
     }
     
-    //MARK: - Constraints
+    // Pop one vc back
+    @objc private func closeVC() {
+        navigationController?.popViewController(animated: false)
+    }
+    
+}
+
+
+// MARK: - Buttons Logic
+
+extension DetailInfoViewController {
+    
+    // Go to Basket
+    
+    // Sets transition to Basket
+    private func setCustomButton() {
+        view.addSubview(customButton)
+        
+        // Add sale string to button label if needs
+        if let discountMenuItem = menuItem as? DiscountMenuItem {
+            
+            // Config label with new price string
+            let priceString = "Add for \(discountMenuItem.newPrice)$"
+            
+            // Makes string strike out
+            let crossedOldPriceString = " \(menuItem.price)"
+            let attributedString = NSAttributedString()
+            let prepareAttributedString = attributedString.concatenationWithCrossOut(baseString: priceString, crossedString: crossedOldPriceString)
+            
+            // Config label with old price crossed string
+            customButton.setAttributedTitle(prepareAttributedString, for: .normal)
+        } else {
+            
+            // Config label only with old price
+            customButton.setTitle("Add for \(menuItem.price)$", for: .normal)
+        }
+        
+        customButton.pin(to: view)
+        addActionToCustomButton()
+    }
+    
+    private func addActionToCustomButton() {
+        customButton.addTarget(self, action: #selector(customButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc private func customButtonTapped() {
+        
+        // Removes attributed string from button label (if string with an attribute)
+        customButton.setAttributedTitle(nil, for: .normal)
+        
+        // Sets final title to button
+        customButton.setTitle("\(menuItem.title) added", for: .normal)
+        
+        customButton.pressWithEnable()
+        coordinator?.passOrderToBasket(menuItem: menuItem)
+    }
+    
+    // Go to DetailSaleVC
+    
+    // Sets transition to DetailSaleVC
+    private func setSpecialSaleButton() {
+        view.addSubview(specialSaleButton)
+        
+        // Adds special sale button to vc with current menuItem if needs
+        if menuItem as? SpecialMenuItem != nil {
+            addActionToSpecialSaleButton()
+            setSpecialSaleButtonConstraints()
+        }
+    }
+    
+    // Adds action with trasition to DetailSaleVC through coordinator
+    private func addActionToSpecialSaleButton() {
+        specialSaleButton.addTarget(self, action: #selector(specialSaleButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc private func specialSaleButtonTapped() {
+        coordinator?.goToCurrentSale(menuItem: menuItem)
+        specialSaleButton.stopPulsatingAnimation()
+    }
+    
+}
+
+//MARK: - Constraints
+
+extension DetailInfoViewController {
     
     private func setAllConstraints() {
         setScrollViewConstraints()
@@ -196,66 +294,6 @@ class DetailInfoViewController: UIViewController {
             specialSaleButton.heightAnchor.constraint(equalToConstant: 35),
             specialSaleButton.widthAnchor.constraint(equalToConstant: 100)
         ])
-    }
-    
-}
-
-
-// MARK: - Buttons Logic
-
-extension DetailInfoViewController {
-    
-    // Basket Button translation
-    private func setCustomButton() {
-        view.addSubview(customButton)
-        
-        // Add sale string to button label if needs
-        if let discountMenuItem = menuItem as? DiscountMenuItem {
-            let priceString = "Add for \(discountMenuItem.newPrice)$"
-            let crossedOldPriceString = " \(menuItem.price)"
-            
-            let attributedString = NSAttributedString()
-            let prepareAttributedString = attributedString.concatenationWithCrossOut(baseString: priceString, crossedString: crossedOldPriceString)
-            
-            customButton.setAttributedTitle(prepareAttributedString, for: .normal)
-        } else {
-            customButton.setTitle("Add for \(menuItem.price)$", for: .normal)
-        }
-        
-        customButton.pin(to: view)
-        addActionToCustomButton()
-    }
-    
-    private func addActionToCustomButton() {
-        customButton.addTarget(self, action: #selector(customButtonTapped), for: .touchUpInside)
-    }
-    
-    @objc private func customButtonTapped() {
-        customButton.setAttributedTitle(nil, for: .normal)
-        customButton.setTitle("\(menuItem.title) added", for: .normal)
-        customButton.pressWithEnable()
-        coordinator?.passOrderToBasket(menuItem: menuItem)
-    }
-    
-    
-    // Special Button translation
-    private func setSpecialSaleButton() {
-        view.addSubview(specialSaleButton)
-        
-        // Add special sale button if needs
-        if menuItem as? SpecialMenuItem != nil {
-            addActionToSpecialSaleButton()
-            setSpecialSaleButtonConstraints()
-        }
-    }
-    
-    private func addActionToSpecialSaleButton() {
-        specialSaleButton.addTarget(self, action: #selector(specialSaleButtonTapped), for: .touchUpInside)
-    }
-    
-    @objc private func specialSaleButtonTapped() {
-        coordinator?.goToCurrentSale(menuItem: menuItem)
-        specialSaleButton.stopPulsatingAnimation()
     }
     
 }
