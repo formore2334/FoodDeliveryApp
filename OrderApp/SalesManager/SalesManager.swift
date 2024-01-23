@@ -35,4 +35,16 @@ struct SalesManager {
         }
     }
     
+    // Checks availability of sale.
+    func checkAvailablilaty(with sale: Sale, coordinator: MainCoordinator?) -> Bool {
+        
+        // If sale item already added to basket
+        // Makes unavailable "add to basket" button
+        if let coordinator = coordinator {
+            return !coordinator.availabilityValidator.unavailableItems.contains(sale.id)
+        }
+        
+       return false
+    }
+    
 }

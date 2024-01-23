@@ -65,6 +65,7 @@
 		4576A65C2B174CC90011F35D /* FormContentBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4576A65B2B174CC90011F35D /* FormContentBuilder.swift */; };
 		4576A65F2B17578A0011F35D /* CouponsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4576A65E2B1757890011F35D /* CouponsManager.swift */; };
 		4576A6612B179FDD0011F35D /* NSAttributedString+Concatenation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4576A6602B179FDD0011F35D /* NSAttributedString+Concatenation.swift */; };
+		457810222B5D3B5100C32B3C /* String+Hyperlink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457810212B5D3B5100C32B3C /* String+Hyperlink.swift */; };
 		4578464F2B207CE300A8F84F /* UIButton+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4578464E2B207CE300A8F84F /* UIButton+Animations.swift */; };
 		457846522B20C2A600A8F84F /* PaymentDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457846512B20C2A500A8F84F /* PaymentDataLoader.swift */; };
 		457846542B20C2EC00A8F84F /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457846532B20C2EC00A8F84F /* LoadingView.swift */; };
@@ -150,6 +151,7 @@
 		4576A65B2B174CC90011F35D /* FormContentBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormContentBuilder.swift; sourceTree = "<group>"; };
 		4576A65E2B1757890011F35D /* CouponsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponsManager.swift; sourceTree = "<group>"; };
 		4576A6602B179FDD0011F35D /* NSAttributedString+Concatenation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Concatenation.swift"; sourceTree = "<group>"; };
+		457810212B5D3B5100C32B3C /* String+Hyperlink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Hyperlink.swift"; sourceTree = "<group>"; };
 		4578464E2B207CE300A8F84F /* UIButton+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Animations.swift"; sourceTree = "<group>"; };
 		457846512B20C2A500A8F84F /* PaymentDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDataLoader.swift; sourceTree = "<group>"; };
 		457846532B20C2EC00A8F84F /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 				4542F6BA2B29D92400F061DF /* UITextView+Hyperlinks.swift */,
 				458292F22B3464F900FDED64 /* Double+Format.swift */,
 				45DB51912B3F2522007F2372 /* UILabel+TextAttachment.swift */,
+				457810212B5D3B5100C32B3C /* String+Hyperlink.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -625,6 +628,7 @@
 				455E903C2AF3C0F3002DB5E3 /* MainCoordinator.swift in Sources */,
 				4542F6BB2B29D92400F061DF /* UITextView+Hyperlinks.swift in Sources */,
 				457847FE2B066597009B14CA /* User.swift in Sources */,
+				457810222B5D3B5100C32B3C /* String+Hyperlink.swift in Sources */,
 				457846542B20C2EC00A8F84F /* LoadingView.swift in Sources */,
 				454FBF3E2AD95132001E75EB /* Menu.swift in Sources */,
 				4546A5222AD9A67A00A850A8 /* PopularCategoriesCollectionViewCell.swift in Sources */,

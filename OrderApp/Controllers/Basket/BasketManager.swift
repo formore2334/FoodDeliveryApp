@@ -17,6 +17,7 @@ class BasketManager {
     var basket: Basket {
         didSet {
             delegate?.valuesDidUpdate()
+            sendNotification()
         }
     }
     
@@ -48,6 +49,12 @@ class BasketManager {
     
     
     // MARK: - Methods
+    
+    // Sends basketSpecialItems to AvailabilityValidator
+    private func sendNotification() {
+        NotificationCenter.default.post(name: NSNotification.Name("BasketSpecialItemsDidCangeNotification"),
+                                        object: basket.basketSpecialItems)
+    }
     
     // Deletes all content from basket
     func clearBasket() {
@@ -148,7 +155,7 @@ class BasketManager {
     //MARK: - Spacial table items adding & deleting logic
     
     // Adds specialMenuItem's in basket
-    func addSpecialItemToBasket(with specialMenuItems: [SpecialMenuItem], discountTitle: String) {
+    func addSpecialItemToBasket(with specialMenuItems: [SpecialMenuItem], saleID: Int, discountTitle: String) {
         
         // Creates temp array of SpecialItem's
         var specialItems: [BasketSpecialItem.SpecialItem] = []
@@ -176,7 +183,7 @@ class BasketManager {
         }
         
         // Creates a new basket item and adds it to the end of the basket array
-        let basketSpecialItem = BasketSpecialItem(discountTitle: discountTitle, specialMenuItems: specialItems)
+        let basketSpecialItem = BasketSpecialItem(saleID: saleID, discountTitle: discountTitle, specialMenuItems: specialItems)
         basket.basketSpecialItems.append(basketSpecialItem)
     }
 

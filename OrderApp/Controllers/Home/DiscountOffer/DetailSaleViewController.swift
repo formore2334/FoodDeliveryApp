@@ -19,6 +19,10 @@ class DetailSaleViewController: UIViewController {
     
     private let customButton = CustomButton()
     
+    //MARK: - Set Variables
+    
+    private var isAvailable: Bool = true
+    
     private var saleTitleLabel = UILabel()
     
     private lazy var dividerView: UIView = {
@@ -57,10 +61,14 @@ class DetailSaleViewController: UIViewController {
         return imageView
     }()
     
+    //MARK: - Computed property
+    
     private var isValid: Bool {
         return sale.menuItemsID != nil
     }
 
+    //MARK: - Init
+    
     init(sale: Sale, salesManager: SalesManager, coordinator: MainCoordinator? = nil) {
         self.sale = sale
         self.salesManager = salesManager
@@ -75,21 +83,27 @@ class DetailSaleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        coordinator?.availabilityValidator.delegate = self
+        
         configureVC()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        // Listens to notification from last page (when user returnes from final pay page)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(popToRootVC),
                                                name: NSNotification.Name("BackToHomeNotification"),
                                                object: nil)
         
+        // Sets color of navigation items to white
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        
         navigationController?.navigationBar.tintColor = .white
-            UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
+        
+        // Checks availability of current sale
+        updateButtonAvailability()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -102,7 +116,7 @@ class DetailSaleViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    // MARK: - Configure DetailInfo VC
+    // MARK: - Configurations
     
     private func configureVC() {
         view.backgroundColor = .white
@@ -113,6 +127,7 @@ class DetailSaleViewController: UIViewController {
         setBackgroundImage()
     }
     
+    // Sets sale background image
     private func setBackgroundImage() {
         view.addSubview(backgroundImageView)
         view.sendSubviewToBack(backgroundImageView)
@@ -121,9 +136,11 @@ class DetailSaleViewController: UIViewController {
         setBackgroundImageConstraint()
     }
     
+    // Receives image with url
     private func getImage() {
         guard let url = URL(string: sale.backgroundImageURL) else { return }
         
+        // Calls a completion handler to get image
         networkManager.fetchImage(url: url) { [weak self] image, error in
             DispatchQueue.main.async {
                 self?.backgroundImageView.image = image
@@ -131,7 +148,7 @@ class DetailSaleViewController: UIViewController {
         }
     }
     
-    // Listening to notification
+    // Returnes to home vc
     @objc func popToRootVC() {
         navigationController?.popToRootViewController(animated: false)
     }
@@ -145,6 +162,7 @@ class DetailSaleViewController: UIViewController {
         navigationItem.title = saleTitleLabel.text
     }
     
+    // Adds all containers to scrollView
     private func setScrollView() {
         view.addSubview(scrollView)
         scrollView.contentSize = CGSize(width: view.bounds.width,
@@ -158,7 +176,6 @@ class DetailSaleViewController: UIViewController {
         setHeadlineTextLabel()
         setDividerView()
         setTextView()
-        
         
         setScrollViewConstrains()
     }
@@ -176,64 +193,55 @@ class DetailSaleViewController: UIViewController {
         setDividerViewConstraints()
     }
     
+    // Config textView with browser opening possibility
     private func setTextView() {
         view.addSubview(descriptionTextView)
-        let hyperlinkString = extractHyperlinkText(in: sale.textDescription)
-        descriptionTextView.addHyperLinksToText(originalText: sale.textDescription, hyperLinks: [hyperlinkString: hyperlinkString])
+        
+        // Finds hyperlink inside text description
+        let textDescription: String = ""
+        let hyperlinkString = textDescription.extractHyperlinkText(in: sale.textDescription)
+        
+        // Makes text clickable
+        descriptionTextView.addHyperLinksToText(originalText: sale.textDescription,
+                                                hyperLinks: [hyperlinkString: hyperlinkString])
         
         descriptionTextView.delegate = self
         
         setTextViewConstrains()
     }
     
-}
-
-//MARK: - Open Link from textView in browser if needs
-
-extension DetailSaleViewController: UITextViewDelegate {
-    
-    private func extractHyperlinkText(in text: String) -> String {
-        let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-        let matches = detector.matches(in: text, options: [], range: NSRange(location: 0, length: text.utf16.count))
+    // Checks availability of sale
+    private func updateButtonAvailability() {
+        isAvailable = salesManager.checkAvailablilaty(with: sale, coordinator: coordinator)
         
-        for match in matches {
-            guard let url = match.url else { continue }
-            return String(describing: url)
-        }
-        
-        return ""
-    }
-    
-    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        if interaction == .invokeDefaultAction {
-            UIApplication.shared.open(URL)
-        }
-        return false
+        isAvailable ? addToBasketAction() : addUnavailableAction()
     }
     
 }
-
 
 //MARK: - Basket Button translations
 
 private extension DetailSaleViewController {
     
+    // Sets button depending on current condition
     func setCustomButton() {
         view.addSubview(customButton)
         setCustomButtonConstraints()
         
         if isValid {
+            
+            // This title for sale with menuItem's
             customButton.setTitle("Add to basket", for: .normal)
-            
-            addToBasketAction()
         } else {
-            customButton.setTitle("Clear", for: .normal)
             
+            // This title for sale which contains only info
+            customButton.setTitle("Clear", for: .normal)
             clearButtonAction()
         }
+        
     }
     
-    // Add to Basket
+    // Adds to Basket button action
     func addToBasketAction() {
         customButton.addTarget(self, action: #selector(addToBasketTapped), for: .touchUpInside)
     }
@@ -242,15 +250,31 @@ private extension DetailSaleViewController {
         customButton.pressWithEnable()
         customButton.setTitle("Special added!", for: .normal)
         
+        // Temp array to passing throw coordinator
+        var specialMenuItems: [SpecialMenuItem] = []
+        
+        // Takes id's from current sale
         if let ids = sale.menuItemsID {
-            for id in ids {
-                if let menuItem = salesManager.getMenuItem(at: id) {
-                    coordinator?.passOrderToBasket(menuItem: menuItem)
-                }
+            
+            // Receives menuItem's with id's and fills specialMenuItems array
+            specialMenuItems = ids.compactMap { id in
+                return salesManager.getMenuItem(at: id) as? SpecialMenuItem
             }
-        } else {
-            print("No valid menuItems")
+            
         }
+        
+        // Pass received array to coordinator
+        coordinator?.passSpecialOrderToBasket(with: specialMenuItems, saleID: sale.id, discountTitle: sale.title)
+    }
+    
+    // Sets unavailable text to custom button
+    func addUnavailableAction() {
+        customButton.addTarget(self, action: #selector(unavailableTapped), for: .touchUpInside)
+    }
+    
+    @objc func unavailableTapped() {
+        customButton.shake()
+        customButton.setTitle("Your are already have Speial in basket!", for: .normal)
     }
     
     // Go back to Home
@@ -265,6 +289,22 @@ private extension DetailSaleViewController {
             self.navigationController?.popViewController(animated: true)
         }
         
+    }
+    
+}
+
+//MARK: - Open Link from textView in browser if needs
+
+extension DetailSaleViewController: UITextViewDelegate {
+    
+    // Opens hyperlink in browser
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        
+        if interaction == .invokeDefaultAction {
+            UIApplication.shared.open(URL)
+        }
+        
+        return false
     }
     
 }
@@ -341,4 +381,15 @@ private extension DetailSaleViewController {
             customButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -10)
         ])
     }
+}
+
+//MARK: - Delegate
+
+extension DetailSaleViewController: AvailabilityValidatorDelegate {
+    
+    // Checks availability of sale
+    func unavailableItemsDidChange() {
+        updateButtonAvailability()
+    }
+    
 }
