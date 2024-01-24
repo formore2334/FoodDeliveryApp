@@ -7,12 +7,21 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, UIScrollViewDelegate {
+class HomeViewController: UIViewController, UIScrollViewDelegate, Coordinating {
     
     var coordinator: MainCoordinator?
     
-    private var scrollView = UIScrollView()
+    //MARK: - Set variables
     
+    private let scrollView = UIScrollView()
+    
+    private let popularCategoriesStackView = UIStackView()
+    
+    private let salesCategoriesStackView = UIStackView()
+    
+    private let couponsCategoriesStackView = UIStackView()
+    
+    // Stack view for each other stack view in this vc
     private var masterStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -21,20 +30,15 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         return stackView
     }()
     
-    private var popularCategoriesStackView = UIStackView()
-    
-    private var salesCategoriesStackView = UIStackView()
-    
-    private var couponsCategoriesStackView = UIStackView()
-    
-    private var lastPresentedViewController = UIViewController()
+    //MARK: - Init
     
     override func viewDidLoad() {
         super.viewDidLoad()
        
+        // Listens to notification from last page (when user returns from final pay page)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(didAppearTranslationAnimation),
-                                               name: NSNotification.Name("BackToHomeNotification"),
+                                               name: .backToHome,
                                                object: nil)
         
         configureLogo()
@@ -48,14 +52,23 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     
     // MARK: - Configurations
     
-    func configureLogo() {
+    // Sets logo to nav bar pannel
+    private func configureLogo() {
         guard let navigationController = navigationController else { return }
         
         let logoView = LogoView()
         logoView.setupNavigationBarLogo(in: navigationController, with: navigationItem)
     }
     
-    func configureScrollView() {
+    // Sets an animation of the first entry to the screen
+    @objc private func didAppearTranslationAnimation() {
+        CGAffineTransform.animateContentFlyIn(middleItem: salesCategoriesStackView, firstItem: popularCategoriesStackView, lastItem: couponsCategoriesStackView, superView: view)
+    }
+    
+    //MARK: - Adds all collections to view
+    
+    // Sets scrollView with all stackView's
+    private func configureScrollView() {
         view.addSubview(scrollView)
         scrollView.alwaysBounceVertical = true
         
@@ -73,9 +86,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         setStackViewConstraints()
     }
     
-    //MARK: - Adding collections to stackView
-    
-    func addPopularCategoriesToStackView() {
+    private func addPopularCategoriesToStackView() {
         let popularCategoriesVC = PopularCategoriesViewController(coordinator: coordinator)
         
         addChild(popularCategoriesVC)
@@ -85,7 +96,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         popularCategoriesVC.didMove(toParent: self)
     }
     
-    func addSalesToStackView() {
+    private func addSalesToStackView() {
         let salesVC = SaleViewController(coordinator: coordinator)
         
         addChild(salesVC)
@@ -95,7 +106,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         salesVC.didMove(toParent: self)
     }
     
-    func addCouponsToStackView() {
+    private func addCouponsToStackView() {
         let couponsVC = CouponViewController()
         
         addChild(couponsVC)
@@ -105,14 +116,13 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         couponsVC.didMove(toParent: self)
     }
     
-    // Animate appear
-    @objc func didAppearTranslationAnimation() {
-        CGAffineTransform.animateContentFlyIn(middleItem: salesCategoriesStackView, firstItem: popularCategoriesStackView, lastItem: couponsCategoriesStackView, superView: view)
-    }
+}
 
-    // MARK: - Constraints
+// MARK: - Constraints
+
+private extension HomeViewController {
     
-    private func setScrollViewConstraints() {
+    func setScrollViewConstraints() {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -125,8 +135,8 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
     }
     
-    // Set constraints to each stack view
-    private func setStackViewConstraints() {
+    // Sets constraints to each stack view
+    func setStackViewConstraints() {
         masterStackView.translatesAutoresizingMaskIntoConstraints = false
         popularCategoriesStackView.translatesAutoresizingMaskIntoConstraints = false
         salesCategoriesStackView.translatesAutoresizingMaskIntoConstraints = false
