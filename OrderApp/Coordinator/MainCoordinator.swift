@@ -26,7 +26,7 @@ class MainCoordinator: Coordinator {
     
     func start() {
         let homeVC = HomeViewController()
-        let menuVC = MenuViewController()
+        let menuVC = MenuCollectionViewController()
         let basketVC = BasketViewController()
        
         homeVC.coordinator = self
@@ -103,11 +103,11 @@ class MainCoordinator: Coordinator {
             return
         }
         
-        let detailSaleVC = DetailSaleViewController(sale: sale, salesManager: salesManager, coordinator: self)
+        let saleInfoVC = SaleInfoViewController(sale: sale, salesManager: salesManager, coordinator: self)
         
         // Creates new nav controller & open detailSaleVC
         let navigationController = tabBarController.selectedViewController as? UINavigationController
-        navigationController?.pushViewController(detailSaleVC, animated: true)
+        navigationController?.pushViewController(saleInfoVC, animated: true)
     }
     
     
