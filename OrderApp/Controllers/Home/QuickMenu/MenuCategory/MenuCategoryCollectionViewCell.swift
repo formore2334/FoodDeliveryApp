@@ -7,11 +7,13 @@
 
 import UIKit
 
-class DetailMenuCollectionViewCell: UICollectionViewCell {
+class MenuCategoryCollectionViewCell: UICollectionViewCell {
     
     private let networkManager = NetworkManager()
     
     private let starView = StarView()
+    
+    // MARK: - Set variables
     
     private lazy var cellContainer: UIView = {
         let container = UIView()
@@ -47,61 +49,79 @@ class DetailMenuCollectionViewCell: UICollectionViewCell {
         return title
     }()
     
+    // MARK: - Init
+    
     override init(frame: CGRect) {
         super .init(frame: frame)
-
-        configureCell()
+        
+        setup()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         
         starView.layer.removeAllAnimations()
     }
-
-    private func configureCell() {
+    
+    // MARK: - Setup
+    
+    private func setup() {
         contentView.addSubview(cellContainer)
         contentView.addSubview(imageView)
         contentView.addSubview(starView)
         contentView.addSubview(titleLabel)
         contentView.addSubview(priceLabel)
         
-       setDetailMenuConstraints()
+        setDetailMenuConstraints()
     }
+    
+    // MARK: - Configurations
     
     public func configure(menuItem: (any MenuItemProtocol)) {
         
         if let discountMenuItem = menuItem as? DiscountMenuItem {
+            
+            // New price string
             let priceString = "\(discountMenuItem.newPrice)$"
-            let crossedOldPriceString = " \(menuItem.price)"
             
+            // Makes string strike out
+            let oldPriceString = " \(menuItem.price)"
             let attributedString = NSAttributedString()
-            let prepareAttributedString = attributedString.concatenationWithCrossOut(baseString: priceString, crossedString: crossedOldPriceString, crossedStringFontSize: 11)
+            let crossedPriceString = attributedString.concatenationWithCrossOut(baseString: priceString,
+                                           crossedString: oldPriceString,
+                                           crossedStringFontSize: 11)
             
-            priceLabel.attributedText = prepareAttributedString
+            // Config label with crossed price string
+            priceLabel.attributedText = crossedPriceString
         } else {
+            
+            // Config label only with old price
             priceLabel.text = "\(menuItem.price)$"
         }
         
+        // Sets starView only for SpecialMenuItem's
         if menuItem as? SpecialMenuItem != nil {
             starView.isHidden = false
         } else {
             starView.isHidden = true
         }
         
-        titleLabel.text = menuItem.title
-        getImage(stringURL: menuItem.imageURL)
-        
         starView.startPulseAnimation()
+        titleLabel.text = menuItem.title
+        
+        // Config imageView
+        getImage(stringURL: menuItem.imageURL)
     }
     
+    // Receives image with url
     private func getImage(stringURL: String) {
         guard let url = URL(string: stringURL) else { return }
         
+        // Calls a completion handler to get image
         networkManager.fetchImage(url: url) { [weak self] image, error in
             DispatchQueue.main.async {
                 self?.imageView.image = image
@@ -109,9 +129,13 @@ class DetailMenuCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    //MARK: - Constraints
+}
+
+//MARK: - Constraints
+
+private extension MenuCategoryCollectionViewCell {
     
-    private func setDetailMenuConstraints() {
+    func setDetailMenuConstraints() {
         cellContainer.translatesAutoresizingMaskIntoConstraints = false
         starView.translatesAutoresizingMaskIntoConstraints = false
         imageView.translatesAutoresizingMaskIntoConstraints = false
