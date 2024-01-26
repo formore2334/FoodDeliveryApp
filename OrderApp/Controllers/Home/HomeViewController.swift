@@ -15,9 +15,9 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, Coordinating {
     
     private let scrollView = UIScrollView()
     
-    private let popularCategoriesStackView = UIStackView()
+    private let quickMenuStackView = UIStackView()
     
-    private let salesCategoriesStackView = UIStackView()
+    private let salesStackView = UIStackView()
     
     private let couponsCategoriesStackView = UIStackView()
     
@@ -62,7 +62,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, Coordinating {
     
     // Sets an animation of the first entry to the screen
     @objc private func didAppearTranslationAnimation() {
-        CGAffineTransform.animateContentFlyIn(middleItem: salesCategoriesStackView, firstItem: popularCategoriesStackView, lastItem: couponsCategoriesStackView, superView: view)
+        CGAffineTransform.animateContentFlyIn(middleItem: salesStackView, firstItem: quickMenuStackView, lastItem: couponsCategoriesStackView, superView: view)
     }
     
     //MARK: - Adds all collections to view
@@ -74,11 +74,11 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, Coordinating {
         
         scrollView.addSubview(masterStackView)
         
-        masterStackView.addArrangedSubview(popularCategoriesStackView)
-        masterStackView.addArrangedSubview(salesCategoriesStackView)
+        masterStackView.addArrangedSubview(quickMenuStackView)
+        masterStackView.addArrangedSubview(salesStackView)
         masterStackView.addArrangedSubview(couponsCategoriesStackView)
         
-        addPopularCategoriesToStackView()
+        addQuickMenuToStackView()
         addSalesToStackView()
         addCouponsToStackView()
         
@@ -86,28 +86,28 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, Coordinating {
         setStackViewConstraints()
     }
     
-    private func addPopularCategoriesToStackView() {
-        let popularCategoriesVC = PopularCategoriesViewController(coordinator: coordinator)
+    private func addQuickMenuToStackView() {
+        let quickMenuVC = QuickMenuCollectionViewController(coordinator: coordinator)
         
-        addChild(popularCategoriesVC)
+        addChild(quickMenuVC)
         
-        popularCategoriesStackView.addArrangedSubview(popularCategoriesVC.view)
+        quickMenuStackView.addArrangedSubview(quickMenuVC.view)
         
-        popularCategoriesVC.didMove(toParent: self)
+        quickMenuVC.didMove(toParent: self)
     }
     
     private func addSalesToStackView() {
-        let salesVC = SaleViewController(coordinator: coordinator)
+        let saleVC = SaleCollectionViewController(coordinator: coordinator)
         
-        addChild(salesVC)
+        addChild(saleVC)
         
-        salesCategoriesStackView.addArrangedSubview(salesVC.view)
+        salesStackView.addArrangedSubview(saleVC.view)
         
-        salesVC.didMove(toParent: self)
+        saleVC.didMove(toParent: self)
     }
     
     private func addCouponsToStackView() {
-        let couponsVC = CouponViewController()
+        let couponsVC = CouponCollectionViewController()
         
         addChild(couponsVC)
         
@@ -138,8 +138,8 @@ private extension HomeViewController {
     // Sets constraints to each stack view
     func setStackViewConstraints() {
         masterStackView.translatesAutoresizingMaskIntoConstraints = false
-        popularCategoriesStackView.translatesAutoresizingMaskIntoConstraints = false
-        salesCategoriesStackView.translatesAutoresizingMaskIntoConstraints = false
+        quickMenuStackView.translatesAutoresizingMaskIntoConstraints = false
+        salesStackView.translatesAutoresizingMaskIntoConstraints = false
         couponsCategoriesStackView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -150,11 +150,11 @@ private extension HomeViewController {
             masterStackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             
             
-            popularCategoriesStackView.widthAnchor.constraint(equalTo: masterStackView.widthAnchor),
-            popularCategoriesStackView.heightAnchor.constraint(equalToConstant: 200),
+            quickMenuStackView.widthAnchor.constraint(equalTo: masterStackView.widthAnchor),
+            quickMenuStackView.heightAnchor.constraint(equalToConstant: 200),
             
-            salesCategoriesStackView.widthAnchor.constraint(equalTo: masterStackView.widthAnchor),
-            salesCategoriesStackView.heightAnchor.constraint(equalToConstant: 250),
+            salesStackView.widthAnchor.constraint(equalTo: masterStackView.widthAnchor),
+            salesStackView.heightAnchor.constraint(equalToConstant: 250),
             
             couponsCategoriesStackView.widthAnchor.constraint(equalTo: masterStackView.widthAnchor),
             couponsCategoriesStackView.heightAnchor.constraint(equalToConstant: 230),
