@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailSaleViewController: UIViewController {
+class SaleInfoViewController: UIViewController, Coordinating {
     
     var sale: Sale
     
@@ -100,7 +100,9 @@ class DetailSaleViewController: UIViewController {
         // Sets color of navigation items to white
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationController?.navigationBar.tintColor = .white
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
+        UIBarButtonItem.appearance()
+            .setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white],
+                                                            for: .normal)
         
         // Checks availability of current sale
         updateButtonAvailability()
@@ -219,9 +221,9 @@ class DetailSaleViewController: UIViewController {
     
 }
 
-//MARK: - Basket Button translations
+//MARK: - Button actions
 
-private extension DetailSaleViewController {
+private extension SaleInfoViewController {
     
     // Sets button depending on current condition
     func setCustomButton() {
@@ -295,7 +297,7 @@ private extension DetailSaleViewController {
 
 //MARK: - Open Link from textView in browser if needs
 
-extension DetailSaleViewController: UITextViewDelegate {
+extension SaleInfoViewController: UITextViewDelegate {
     
     // Opens hyperlink in browser
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
@@ -311,7 +313,7 @@ extension DetailSaleViewController: UITextViewDelegate {
 
 //MARK: - Constraints
 
-private extension DetailSaleViewController {
+private extension SaleInfoViewController {
 
     func setScrollViewConstrains() {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -385,7 +387,7 @@ private extension DetailSaleViewController {
 
 //MARK: - Delegate
 
-extension DetailSaleViewController: AvailabilityValidatorDelegate {
+extension SaleInfoViewController: AvailabilityValidatorDelegate {
     
     // Checks availability of sale
     func unavailableItemsDidChange() {
