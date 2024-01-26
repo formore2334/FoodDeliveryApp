@@ -8,7 +8,7 @@
 import UIKit
 
 
-class DetailInfoViewController: UIViewController {
+class MenuItemReviewViewController: UIViewController, Coordinating {
     
     var menuItem: (any MenuItemProtocol)
     
@@ -24,14 +24,14 @@ class DetailInfoViewController: UIViewController {
     
     //MARK: - Set variables
     
+    private let contentContainer = UIView()
+    
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = true
         scrollView.alwaysBounceVertical = true
         return scrollView
     }()
-    
-    private var contentView = UIView()
     
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
@@ -90,7 +90,9 @@ class DetailInfoViewController: UIViewController {
         // Sets color of navigation items to black
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         navigationController?.navigationBar.tintColor = .black
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
+        UIBarButtonItem.appearance()
+            .setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black],
+                                                            for: .normal)
         
         title = menuTitle
         view.backgroundColor = .white
@@ -113,26 +115,26 @@ class DetailInfoViewController: UIViewController {
         setAllConstraints()
     }
     
-    // MARK: - Configure variables
-    
     private func prepareVC() {
         view.addSubview(scrollView)
-        scrollView.addSubview(contentView)
+        scrollView.addSubview(contentContainer)
         
-        contentView.addSubview(imageView)
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(textView)
+        contentContainer.addSubview(imageView)
+        contentContainer.addSubview(titleLabel)
+        contentContainer.addSubview(textView)
         
         titleLabel.text = menuItem.title.uppercased()
         textView.text = menuItem.description
         
+        // Config imageView
         getImage()
     }
     
-    // Fetch image
+    // Receives image with url
     private func getImage() {
         guard let url = URL(string: menuItem.imageURL) else { return }
         
+        // Calls a completion handler to get image
         networkManager.fetchImage(url: url) { [weak self] image, error in
             DispatchQueue.main.async {
                 self?.imageView.image = image
@@ -147,10 +149,9 @@ class DetailInfoViewController: UIViewController {
     
 }
 
-
 // MARK: - Buttons Logic
 
-extension DetailInfoViewController {
+extension MenuItemReviewViewController {
     
     // Go to Basket
     
@@ -224,7 +225,7 @@ extension DetailInfoViewController {
 
 //MARK: - Constraints
 
-extension DetailInfoViewController {
+extension MenuItemReviewViewController {
     
     private func setAllConstraints() {
         setScrollViewConstraints()
@@ -236,19 +237,19 @@ extension DetailInfoViewController {
     // Scroll view & content view constraints
     func setScrollViewConstraints() {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-
+        contentContainer.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+            contentContainer.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentContainer.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentContainer.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentContainer.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentContainer.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
     }
     
@@ -257,7 +258,7 @@ extension DetailInfoViewController {
         
         NSLayoutConstraint.activate([
             
-            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            imageView.topAnchor.constraint(equalTo: contentContainer.topAnchor),
             imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4),
             imageView.widthAnchor.constraint(equalTo: view.widthAnchor)
         ])
@@ -281,7 +282,7 @@ extension DetailInfoViewController {
             textView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
             textView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             textView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            textView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -100)
+            textView.bottomAnchor.constraint(equalTo: contentContainer.bottomAnchor, constant: -100)
         ])
     }
     
