@@ -7,13 +7,13 @@
 
 import UIKit
 
-class DetailCouponInfoViewController: UIViewController {
+class CouponReviewViewController: UIViewController {
 
     var coupon: Coupon
     
     //MARK: - Set varibles
     
-    private let titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .caption2)
         label.font = UIFont.systemFont(ofSize: 25)
@@ -23,7 +23,7 @@ class DetailCouponInfoViewController: UIViewController {
         return label
     }()
     
-    private let discountLabel: UILabel = {
+    private lazy var discountLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 30)
         label.backgroundColor = .systemGray3
@@ -32,7 +32,7 @@ class DetailCouponInfoViewController: UIViewController {
         return label
     }()
     
-    private let promoLabel: UILabel = {
+    private lazy var promoLabel: UILabel = {
         let label = UILabel()
         label.text = "Promo:"
         label.textColor = .black
@@ -40,7 +40,7 @@ class DetailCouponInfoViewController: UIViewController {
         return label
     }()
     
-    let discountBlurContainerView: UIView = {
+    private lazy var blurContainer: UIView = {
         let container = UIView()
         container.layer.cornerRadius = 7
         container.backgroundColor = .clear
@@ -48,14 +48,14 @@ class DetailCouponInfoViewController: UIViewController {
         return container
     }()
     
-    var discountBlurView: UIVisualEffectView = {
+    private lazy var discountBlurView: UIVisualEffectView = {
         let blurView = UIVisualEffectView()
         blurView.effect = UIBlurEffect(style: .regular)
         blurView.alpha = 0.96
         return blurView
     }()
     
-    //MARK: - Initialization
+    //MARK: - Init
     
     init(coupon: Coupon) {
         self.coupon = coupon
@@ -70,16 +70,19 @@ class DetailCouponInfoViewController: UIViewController {
         super.viewDidLoad()
 
         configureVC()
-       
     }
     
     //MARK: - Configurations
     
     private func configureVC() {
+        
+        // Sets blur effect for vc background
         let backgroundBlurEffect = UIBlurEffect(style: .extraLight)
         let backgroundBlurView = UIVisualEffectView(effect: backgroundBlurEffect)
         
         backgroundBlurView.frame = view.bounds
+        
+        // Cleared view background to correctly display blur effect
         view.backgroundColor = .clear
         
         view.addSubview(backgroundBlurView)
@@ -90,16 +93,17 @@ class DetailCouponInfoViewController: UIViewController {
         titleLabel.text = coupon.description
         discountLabel.text = coupon.discountKeyWord
         
+        // Sets one more blur effect to discount text
         setDiscountBlurView()
         blurViewGestureRecognizer()
         
         setConstraints()
     }
     
+    // Sets blur view on the foreground of discount title to hide it
     private func setDiscountBlurView() {
-    
-        view.addSubview(discountBlurContainerView)
-        discountBlurContainerView.addSubview(discountBlurView)
+        view.addSubview(blurContainer)
+        blurContainer.addSubview(discountBlurView)
         
        setBlurViewConstraints()
     }
@@ -107,28 +111,39 @@ class DetailCouponInfoViewController: UIViewController {
     //MARK: - Handle tap gesture in Blur View
     
     private func blurViewGestureRecognizer() {
+        
+        // Sets tap gesture recognizer
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
 
+        // Adds recognizer on the discountBlurView
         discountBlurView.addGestureRecognizer(tapGestureRecognizer)
         discountBlurView.isUserInteractionEnabled = true
     }
     
+    // Sets tap gesture handling
     @objc private func handleTap(_ gestureRecognizer: UITapGestureRecognizer) {
         removeBlurAnimationAndText()
     }
     
+    // Removes blur from discount text
     private func removeBlurAnimationAndText() {
+        
+        // Configure animator
         let animator = UIViewPropertyAnimator(duration: 1.0, curve: .linear) {
             self.discountBlurView.effect = nil
             self.promoLabel.alpha = 0
         }
+        
         animator.startAnimation()
     }
 
-    
-    //MARK: - Constraints
-    
-    private func setConstraints() {
+}
+
+//MARK: - Constraints
+
+private extension CouponReviewViewController {
+
+    func setConstraints() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         promoLabel.translatesAutoresizingMaskIntoConstraints = false
         discountLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -148,20 +163,20 @@ class DetailCouponInfoViewController: UIViewController {
     
     // Only Blur constraits
     private func setBlurViewConstraints() {
-        discountBlurContainerView.translatesAutoresizingMaskIntoConstraints = false
+        blurContainer.translatesAutoresizingMaskIntoConstraints = false
         discountBlurView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            discountBlurContainerView.topAnchor.constraint(equalTo: discountLabel.topAnchor),
-            discountBlurContainerView.leadingAnchor.constraint(equalTo: discountLabel.leadingAnchor),
-            discountBlurContainerView.trailingAnchor.constraint(equalTo: discountLabel.trailingAnchor),
-            discountBlurContainerView.bottomAnchor.constraint(equalTo: discountLabel.bottomAnchor),
+            blurContainer.topAnchor.constraint(equalTo: discountLabel.topAnchor),
+            blurContainer.leadingAnchor.constraint(equalTo: discountLabel.leadingAnchor),
+            blurContainer.trailingAnchor.constraint(equalTo: discountLabel.trailingAnchor),
+            blurContainer.bottomAnchor.constraint(equalTo: discountLabel.bottomAnchor),
             
-            discountBlurView.topAnchor.constraint(equalTo: discountBlurContainerView.topAnchor),
-            discountBlurView.leadingAnchor.constraint(equalTo: discountBlurContainerView.leadingAnchor),
-            discountBlurView.trailingAnchor.constraint(equalTo: discountBlurContainerView.trailingAnchor),
-            discountBlurView.bottomAnchor.constraint(equalTo: discountBlurContainerView.bottomAnchor)
+            discountBlurView.topAnchor.constraint(equalTo: blurContainer.topAnchor),
+            discountBlurView.leadingAnchor.constraint(equalTo: blurContainer.leadingAnchor),
+            discountBlurView.trailingAnchor.constraint(equalTo: blurContainer.trailingAnchor),
+            discountBlurView.bottomAnchor.constraint(equalTo: blurContainer.bottomAnchor)
         ])
     }
-
+    
 }
