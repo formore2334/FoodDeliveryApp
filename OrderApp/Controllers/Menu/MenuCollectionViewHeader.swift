@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MenuHeaderView: UICollectionReusableView {
+class MenuCollectionViewHeader: UICollectionReusableView {
     
     static let identifier = "MenuHeaderView"
     
@@ -19,8 +19,11 @@ class MenuHeaderView: UICollectionReusableView {
         return label
     }()
     
+    // MARK: - Init
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         addSubview(titleLabel)
         
         setConstraints()
@@ -30,7 +33,9 @@ class MenuHeaderView: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setConstraints() {
+    // MARK: - Constraints
+    
+    private func setConstraints() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -40,4 +45,5 @@ class MenuHeaderView: UICollectionReusableView {
             titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 20)
         ])
     }
+    
 }

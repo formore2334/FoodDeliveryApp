@@ -7,13 +7,18 @@
 
 import UIKit
 
-class MenuViewController: UICollectionViewController {
-
+class MenuCollectionViewController: UICollectionViewController, Coordinating {
+    
+    let menu: [Menu]
+    
     var coordinator: MainCoordinator?
     
-    var menu: [Menu] = DataService.shared.menu
+    // MARK: - Init
     
-    init() {
+    init(menu: [Menu] = DataService.shared.menu,
+         coordinator: MainCoordinator? = nil) {
+        self.menu = menu
+        self.coordinator = coordinator
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
     }
     
@@ -23,42 +28,51 @@ class MenuViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureLogo()
         configureVC()
     }
     
     //MARK: - Configurations
     
-   private func configureLogo() {
+    // Sets logo to nav bar pannel
+    private func configureLogo() {
         guard let navigationController = navigationController else { return }
         
         let logoView = LogoView()
         logoView.setupNavigationBarLogo(in: navigationController, with: navigationItem)
     }
     
+    // Configure vc
     private func configureVC() {
-        collectionView.register(MenuCell.self, forCellWithReuseIdentifier: MenuCell.identifier)
-        collectionView.register(MenuHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MenuHeaderView.identifier)
+        collectionView.register(MenuCollectionViewCell.self,
+                                forCellWithReuseIdentifier: MenuCollectionViewCell.identifier)
+        
+        collectionView.register(MenuCollectionViewHeader.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                withReuseIdentifier: MenuCollectionViewHeader.identifier)
+        
         collectionView.collectionViewLayout = layoutCollection()
+        
         setBackgroundImage()
     }
     
+    // Sets background image to vc
     private func setBackgroundImage() {
         let backgroundImageView = UIImageView(image: UIImage(named: "backgroundFullImage"))
         backgroundImageView.contentMode = .scaleAspectFit
         backgroundImageView.clipsToBounds = true
         backgroundImageView.layer.opacity = 0.3
-
+        
         collectionView.backgroundView = backgroundImageView
     }
-
+    
 }
 
 
 //MARK: - Data Source
 
-extension MenuViewController {
+extension MenuCollectionViewController {
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return menu.count
@@ -67,35 +81,46 @@ extension MenuViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return menu[section].menuItems.count
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCell.identifier, for: indexPath) as! MenuCell
-
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCollectionViewCell.identifier,
+                                                      for: indexPath) as! MenuCollectionViewCell
+        
         let menuItem = menu[indexPath.section].menuItems[indexPath.item]
+        
         cell.configure(menuItem: menuItem)
-
+        
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: MenuHeaderView.identifier, for: indexPath) as! MenuHeaderView
+        
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                         withReuseIdentifier: MenuCollectionViewHeader.identifier,
+                                                                         for: indexPath) as! MenuCollectionViewHeader
         
         headerView.titleLabel.text = menu[indexPath.section].title
+        
         return headerView
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailInfoVC = DetailInfoViewController(menuItem: menu[indexPath.section].menuItems[indexPath.item], menuTitle: menu[indexPath.section].title, coordinator: coordinator)
         
-        navigationController?.pushViewController(detailInfoVC, animated: true)
+        let menuItem = menu[indexPath.section].menuItems[indexPath.item]
+        let menuTitle = menu[indexPath.section].title
+        
+        let menuItemReviewVC = MenuItemReviewViewController(menuItem: menuItem,
+                                                            menuTitle: menuTitle,
+                                                            coordinator: coordinator)
+        
+        navigationController?.pushViewController(menuItemReviewVC, animated: true)
     }
     
 }
 
-
 //MARK: - Layout
 
-extension MenuViewController: UICollectionViewDelegateFlowLayout {
+extension MenuCollectionViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: collectionView.bounds.width, height: 30)
@@ -105,6 +130,7 @@ extension MenuViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: 100, height: 100)
     }
     
+    // Sets layout model to vc
     func layoutCollection() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
