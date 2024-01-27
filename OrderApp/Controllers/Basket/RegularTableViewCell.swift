@@ -12,7 +12,7 @@ protocol RegularCellDelegate: AnyObject {
     func didTapSubtractButton(_ cell: UITableViewCell)
 }
 
-class RegularCell: UITableViewCell {
+class RegularTableViewCell: UITableViewCell {
     
     private let networkManager = NetworkManager()
     
@@ -115,7 +115,7 @@ class RegularCell: UITableViewCell {
             let crossedString = "\(totalPrice.1)"
             let crossedPrice = crossedString.crossOutTheLine()
             
-            // Config label with new price crossed string
+            // Config label with old price crossed string
             crossPriceLabel.attributedText = crossedPrice
             
             // Config label with old price
@@ -148,10 +148,40 @@ class RegularCell: UITableViewCell {
         
     }
     
-    //MARK: - Constraints
+}
+
+// MARK: - Add & Subtract buttons logic
+
+extension RegularTableViewCell {
+    
+    // Calls delegate for adding menuItem
+    private func configureAddItemButton() {
+        addItemButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc private func addButtonTapped() {
+        
+        delegate?.didTapAddButton(self)
+    }
+
+    // Calls delegate for subtracting menuItem
+    private func configureSubtractItemButton() {
+        subtractItemButton.addTarget(self, action: #selector(subtractButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc private func subtractButtonTapped() {
+        
+        delegate?.didTapSubtractButton(self)
+    }
+    
+}
+
+//MARK: - Constraints
+
+private extension RegularTableViewCell {
     
     // Set All constraints together
-    private func setAllConstraints() {
+    func setAllConstraints() {
         setPriceLabelConstraints()
         setCrossPriceLabelConstraints()
         setItemImageViewConstraints()
@@ -162,7 +192,7 @@ class RegularCell: UITableViewCell {
     }
     
     // Set constraints to each varible
-    private func setPriceLabelConstraints() {
+    func setPriceLabelConstraints() {
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -174,7 +204,7 @@ class RegularCell: UITableViewCell {
         ])
     }
     
-    private func setCrossPriceLabelConstraints() {
+    func setCrossPriceLabelConstraints() {
         crossPriceLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -186,7 +216,7 @@ class RegularCell: UITableViewCell {
         ])
     }
     
-    private func setItemImageViewConstraints() {
+    func setItemImageViewConstraints() {
         itemImageView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -198,7 +228,7 @@ class RegularCell: UITableViewCell {
         ])
     }
     
-    private func setItemTextLabelConstraints() {
+    func setItemTextLabelConstraints() {
         itemTextLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -210,7 +240,7 @@ class RegularCell: UITableViewCell {
         ])
     }
     
-    private func setSubtractItemButtonConstraints() {
+    func setSubtractItemButtonConstraints() {
         subtractItemButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -222,7 +252,7 @@ class RegularCell: UITableViewCell {
         ])
     }
     
-    private func setItemCountsLabelConstraints() {
+    func setItemCountsLabelConstraints() {
         itemsCountLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -231,7 +261,7 @@ class RegularCell: UITableViewCell {
         ])
     }
     
-    private func setAddItemButtonConstraints() {
+    func setAddItemButtonConstraints() {
         addItemButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -241,32 +271,6 @@ class RegularCell: UITableViewCell {
             addItemButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             addItemButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
         ])
-    }
-    
-}
-
-// MARK: - Add & Subtract buttons logic
-
-extension RegularCell {
-    
-    // Calls delegate to add
-    private func configureAddItemButton() {
-        addItemButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
-    }
-    
-    @objc private func addButtonTapped() {
-        
-        delegate?.didTapAddButton(self)
-    }
-
-    // Calls delegate to subtract
-    private func configureSubtractItemButton() {
-        subtractItemButton.addTarget(self, action: #selector(subtractButtonTapped), for: .touchUpInside)
-    }
-    
-    @objc private func subtractButtonTapped() {
-        
-        delegate?.didTapSubtractButton(self)
     }
     
 }

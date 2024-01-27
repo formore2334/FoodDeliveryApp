@@ -15,7 +15,8 @@ class RegularTableView: UITableView {
         super.init(frame: frame, style: style)
         
         self.dataSource = self
-        self.register(RegularCell.self, forCellReuseIdentifier: RegularCell.identifier)
+        self.register(RegularTableViewCell.self,
+                      forCellReuseIdentifier: RegularTableViewCell.identifier)
         self.rowHeight = 80
         self.isScrollEnabled = false
         self.allowsSelection = false
@@ -44,15 +45,20 @@ extension RegularTableView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let basketManager = basketManager else { return 0 }
+        
         return basketManager.basket.basketItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let basketManager = basketManager else { return UITableViewCell() }
+        guard let basketManager = basketManager else {
+            return UITableViewCell()
+        }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: RegularCell.identifier, for: indexPath) as! RegularCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: RegularTableViewCell.identifier,
+                                                 for: indexPath) as! RegularTableViewCell
         
         let basketItem = basketManager.basket.basketItems[indexPath.row]
+        
         let totalPrice = basketManager.basketItemTotalPrice(basketItem)
         let itemsCount = basketItem.count
         
@@ -69,7 +75,7 @@ extension RegularTableView: UITableViewDataSource {
 
 //MARK: - Updates & adds logic
 
-extension RegularTableView {
+private extension RegularTableView {
     
     // Adds menuItem in regular section of basket
     func addItemToBasket(menuItem: (any MenuItemProtocol)) {
@@ -90,7 +96,7 @@ extension RegularTableView {
     }
 
     // Increments regular item count
-    private func incrementItemCount(at index: Int) {
+    func incrementItemCount(at index: Int) {
         guard let basketManager = basketManager else { return }
         
         basketManager.incrementItemCount(at: index)
@@ -99,7 +105,7 @@ extension RegularTableView {
     }
 
     // Decrements regular item count
-    private func decrementItemCount(at index: Int) {
+    func decrementItemCount(at index: Int) {
         guard let basketManager = basketManager else { return }
         
         basketManager.decrementItemCount(at: index)
@@ -108,7 +114,7 @@ extension RegularTableView {
     }
     
     // Reloads data in table
-    private func updateData() {
+    func updateData() {
         self.reloadData()
     }
     
@@ -119,16 +125,17 @@ extension RegularTableView {
 extension RegularTableView: RegularCellDelegate {
     
     func didTapAddButton(_ cell: UITableViewCell) {
-        guard let indexPath = self.indexPath(for: cell as! RegularCell) else { return }
+        guard let indexPath = self.indexPath(for: cell as! RegularTableViewCell) else { return }
         
         let index = indexPath.row
         incrementItemCount(at: index)
     }
     
     func didTapSubtractButton(_ cell: UITableViewCell) {
-        guard let indexPath = self.indexPath(for: cell as! RegularCell) else { return }
+        guard let indexPath = self.indexPath(for: cell as! RegularTableViewCell) else { return }
         
         let index = indexPath.row
         decrementItemCount(at: index)
     }
+    
 }

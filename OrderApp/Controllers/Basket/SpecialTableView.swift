@@ -15,7 +15,8 @@ class SpecialTableView: UITableView {
         super.init(frame: frame, style: style)
 
         self.dataSource = self
-        self.register(SpecialCell.self, forCellReuseIdentifier: SpecialCell.identifier)
+        self.register(SpecialTableViewCell.self,
+                      forCellReuseIdentifier: SpecialTableViewCell.identifier)
         self.isScrollEnabled = false
         self.allowsSelection = false
         self.separatorInset = UIEdgeInsets(top: 0, left: 56, bottom: 0, right: 16)
@@ -54,9 +55,12 @@ extension SpecialTableView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let basketManager = basketManager else { return UITableViewCell()}
+        guard let basketManager = basketManager else {
+            return UITableViewCell()
+        }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: SpecialCell.identifier, for: indexPath) as! SpecialCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: SpecialTableViewCell.identifier,
+                                                 for: indexPath) as! SpecialTableViewCell
         
         let basketSpecialItem = basketManager.basket.basketSpecialItems[indexPath.row]
         let currentRow = indexPath.row + 1
@@ -74,7 +78,7 @@ extension SpecialTableView: UITableViewDataSource {
 extension SpecialTableView: SpecialCellDelegate {
     
     func deleteButtonDidTapped(_ cell: UITableViewCell) {
-        guard let indexPath = self.indexPath(for: cell as! SpecialCell) else { return }
+        guard let indexPath = self.indexPath(for: cell as! SpecialTableViewCell) else { return }
         
         let index = indexPath.row
         basketManager?.deleteSpecialFromBasket(at: index)

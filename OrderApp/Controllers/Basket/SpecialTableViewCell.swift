@@ -11,13 +11,13 @@ protocol SpecialCellDelegate: AnyObject {
     func deleteButtonDidTapped(_ cell: UITableViewCell)
 }
 
-class SpecialCell: UITableViewCell {
+class SpecialTableViewCell: UITableViewCell {
     
     weak var delegate: SpecialCellDelegate?
     
     // MARK: - Set varibles
     
-    // Container only to hold color
+    // Container to hold only color
     private let colorContainer = UIView()
     
     private var titleLabel: UILabel = {
@@ -116,8 +116,29 @@ class SpecialCell: UITableViewCell {
         
         cellNumberLabel.text = "\(cellNumber)" + "."
     }
+
+}
+
+//MARK: - Delete button logic
+
+private extension SpecialTableViewCell {
     
-    private func setConstraints() {
+    func configureDeleteButton() {
+        deleteButton.addTarget(self, action: #selector(deleteButtonDidTapped), for: .touchUpInside)
+    }
+    
+    @objc func deleteButtonDidTapped() {
+        
+        delegate?.deleteButtonDidTapped(self)
+    }
+    
+}
+
+// MARK: - Constraints
+
+private extension SpecialTableViewCell {
+    
+    func setConstraints() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         stackView.translatesAutoresizingMaskIntoConstraints = false
         deleteButton.translatesAutoresizingMaskIntoConstraints = false
@@ -162,21 +183,6 @@ class SpecialCell: UITableViewCell {
             deleteButton.widthAnchor.constraint(equalToConstant: 24.0),
             deleteButton.heightAnchor.constraint(equalTo: deleteButton.widthAnchor),
         ])
-    }
-
-}
-
-//MARK: - Delete button logic
-
-extension SpecialCell {
-    
-    private func configureDeleteButton() {
-        deleteButton.addTarget(self, action: #selector(deleteButtonDidTapped), for: .touchUpInside)
-    }
-    
-    @objc private func deleteButtonDidTapped() {
-        
-        delegate?.deleteButtonDidTapped(self)
     }
     
 }

@@ -128,11 +128,15 @@ class SpecialItemView: UIView {
         }
         
     }
-    
-    //MARK: - Constraints
+
+}
+
+//MARK: - Constraints
+
+private extension SpecialItemView {
 
     // Set All constraints together
-    private func setAllConstraints() {
+    func setAllConstraints() {
         setContainerConstraints()
         setHeightHolderConstraints()
         setItemTextLabelConstraints()
@@ -144,7 +148,7 @@ class SpecialItemView: UIView {
     
     // Set constraints to each varible
     
-    private func setContainerConstraints() {
+    func setContainerConstraints() {
         container.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -155,7 +159,7 @@ class SpecialItemView: UIView {
         ])
     }
 
-    private func setHeightHolderConstraints() {
+    func setHeightHolderConstraints() {
         heightHolder.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
@@ -166,7 +170,7 @@ class SpecialItemView: UIView {
         ])
     }
 
-    private func setItemImageViewConstraints() {
+    func setItemImageViewConstraints() {
         itemImageView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
@@ -178,7 +182,7 @@ class SpecialItemView: UIView {
         ])
     }
 
-    private func setItemTextLabelConstraints() {
+    func setItemTextLabelConstraints() {
         itemTextLabel.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
@@ -191,7 +195,7 @@ class SpecialItemView: UIView {
         ])
     }
 
-    private func setItemCountsLabelConstraints() {
+    func setItemCountsLabelConstraints() {
         itemCountsLabel.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
@@ -200,7 +204,7 @@ class SpecialItemView: UIView {
         ])
     }
     
-    private func setPriceLabelConstraints() {
+    func setPriceLabelConstraints() {
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
@@ -209,7 +213,7 @@ class SpecialItemView: UIView {
         ])
     }
     
-    private func setCrossPriceLabelConstraints() {
+    func setCrossPriceLabelConstraints() {
         crossPriceLabel.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
@@ -217,6 +221,5 @@ class SpecialItemView: UIView {
             crossPriceLabel.leadingAnchor.constraint(equalTo: priceLabel.centerXAnchor, constant: 5)
         ])
     }
-
-
+    
 }
