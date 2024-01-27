@@ -10,6 +10,8 @@ import UIKit
 
 class BillView: UIView {
     
+    // MARK: - Set variables
+    
     private var container = UIView()
     
     private lazy var thankYouLabel: UILabel = {
@@ -39,12 +41,15 @@ class BillView: UIView {
         return label
     }()
     
+    // MARK: - Computed property's
+    
     // Return random number in interval 15-60 minutes
     private var orderWaitingTime: String {
         let randomNumber = Int.random(in: 3...12) * 5
         return String(randomNumber)
     }
 
+    // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -56,6 +61,18 @@ class BillView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Setup
+    
+    private func setup() {
+         addSubview(container)
+         
+         container.addSubview(thankYouLabel)
+         container.addSubview(waitingLabel)
+         container.addSubview(emailLabel)
+         
+         setConstraints()
+     }
+    
     //MARK: - Configurations
     
     func configure(with userOrder: UserOrder) {
@@ -64,19 +81,13 @@ class BillView: UIView {
         emailLabel.text = "We send bill on your Email:" + " " + userOrder.userInfo.email
     }
     
-   private func setup() {
-        addSubview(container)
-        
-        container.addSubview(thankYouLabel)
-        container.addSubview(waitingLabel)
-        container.addSubview(emailLabel)
-        
-        setConstraints()
-    }
+}
+
+//MARK: - Constraints
+
+private extension BillView {
     
-    //MARK: - Constraints
-    
-    private func setConstraints() {
+    func setConstraints() {
         container.translatesAutoresizingMaskIntoConstraints = false
         thankYouLabel.translatesAutoresizingMaskIntoConstraints = false
         waitingLabel.translatesAutoresizingMaskIntoConstraints = false

@@ -12,7 +12,7 @@ protocol ConformButtonDelegate: AnyObject {
     func didTapButton()
 }
 
-class CheckDetailsView: UIView {
+class UserDetailsView: UIView {
     
     private var userInfoView = UserInfoView()
     
@@ -39,6 +39,8 @@ class CheckDetailsView: UIView {
         return button
     }()
     
+    // MARK: - Init
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -49,11 +51,7 @@ class CheckDetailsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
   
-    //MARK: - Configurations
-    
-    func configure(with userInfo: UserInfo) {
-        userInfoView.configure(with: userInfo)
-    }
+    // MARK: - Setup
     
     private func setup() {
         addSubview(container)
@@ -67,6 +65,12 @@ class CheckDetailsView: UIView {
         setConstraints()
     }
     
+    //MARK: - Configurations
+    
+    func configure(with userInfo: UserInfo) {
+        userInfoView.configure(with: userInfo)
+    }
+    
     // Adding action
     private func conformButtonAction() {
         conformButton.addTarget(self, action: #selector(conformButtonDidTapped), for: .touchUpInside)
@@ -77,9 +81,13 @@ class CheckDetailsView: UIView {
         conformButton.scaleAnimation()
     }
     
-    //MARK: - Constraints
+}
+
+//MARK: - Constraints
+
+private extension UserDetailsView {
     
-    private func setConstraints() {
+    func setConstraints() {
         container.translatesAutoresizingMaskIntoConstraints = false
         headerLabel.translatesAutoresizingMaskIntoConstraints = false
         conformButton.translatesAutoresizingMaskIntoConstraints = false

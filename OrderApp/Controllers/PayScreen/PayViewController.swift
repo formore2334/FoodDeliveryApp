@@ -15,6 +15,8 @@ class PayViewController: UIViewController {
     
     private var paymentManager = PaymentManager()
     
+    // MARK: - Set variables
+    
     private var controlButtonsContainer = UIView()
     
     private var paymentInfoContainer = UIView()
@@ -33,14 +35,16 @@ class PayViewController: UIViewController {
         return container
     }()
     
-    var containerPortrait: [NSLayoutConstraint] = []
+    // Setup holders to movable constraints
+    private var containerPortrait: [NSLayoutConstraint] = []
     
-    var containerLandscape: [NSLayoutConstraint] = []
+    private var containerLandscape: [NSLayoutConstraint] = []
     
-    var paymentInfoContainerPortrait: [NSLayoutConstraint] = []
+    private var paymentInfoContainerPortrait: [NSLayoutConstraint] = []
     
-    var paymentInfoContainerLandscape: [NSLayoutConstraint] = []
+    private var paymentInfoContainerLandscape: [NSLayoutConstraint] = []
    
+    // MARK: - Init
     
     init(userInfo: UserInfo, basket: Basket) {
         self.userInfo = userInfo
@@ -67,10 +71,14 @@ class PayViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
       
+        // Sets color of navigation items to black
         navigationController?.navigationBar.tintColor = .black
         
-        /// Color set to .white because after exit to home screen navigation color for Sales group is changed
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
+        // Color set to .white because after exit to home screen
+        // Navigation color for Sales group is changed
+        UIBarButtonItem.appearance()
+            .setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white],
+                                                            for: .normal)
     }
     
     // Change layout with device orientation
@@ -98,18 +106,17 @@ class PayViewController: UIViewController {
     
     //MARK: - Configurations
     
-    func configureVC() {
+    private func configureVC() {
         setContainer()
         setBackgroundColorContainer()
         setPayViewControlsButtons()
         configurePaymentManager()
     }
     
-    //MARK: - Set all variables
-    
     // Adding all view to containers on screen
     
-    func configurePaymentManager() {
+    // Config with paymentManager methods
+    private func configurePaymentManager() {
         view.addSubview(paymentInfoContainer)
 
         paymentManager.createOrder(userInfo: userInfo, basket: basket)
@@ -119,7 +126,8 @@ class PayViewController: UIViewController {
         setPaymentInfoContainerConstraints()
     }
     
-    func setPayViewControlsButtons() {
+    // Config with paymentManager methods
+    private func setPayViewControlsButtons() {
         view.addSubview(controlButtonsContainer)
         
         paymentManager.configureControlButtons(containerView: controlButtonsContainer)
@@ -127,13 +135,13 @@ class PayViewController: UIViewController {
         setControlButtonsContainerConstraints()
     }
     
-    func setContainer() {
+    private func setContainer() {
         view.addSubview(container)
         
         setContainerConstraints()
     }
     
-    func setBackgroundColorContainer() {
+    private func setBackgroundColorContainer() {
         view.addSubview(backgroundColorContainer)
         
         setBackgroundColorContainerConstraints()
@@ -146,9 +154,12 @@ class PayViewController: UIViewController {
 extension PayViewController: ConformButtonDelegate {
     
     func didTapButton() {
+        
+        // Delay simulates the operation of the request
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
             self.paymentManager.configurePayControlButton()
         }
+        
     }
     
 }
@@ -156,30 +167,39 @@ extension PayViewController: ConformButtonDelegate {
 extension PayViewController: PayViewControlButtonsDelegate {
     
     func backButtonDidTap() {
+        
+        // Delay simulates the operation of the request
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.navigationController?.popViewController(animated: true)
         }
+        
     }
     
     func payButtonDidTap() {
+        
+        // Delay simulates the operation of the request
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.paymentManager.handlePayButtonTap(containerView: self.paymentInfoContainer)
         }
+        
     }
     
     func homeButtonDidTap() {
+        
+        // Delay just for good appearance
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.paymentManager.sendNotification()
             self.tabBarController?.selectedIndex = 0
             self.navigationController?.popToRootViewController(animated: false)
         }
+        
     }
     
 }
 
 //MARK: - Constraints
 
-extension PayViewController {
+private extension PayViewController {
 
     func setContainerConstraints() {
         container.translatesAutoresizingMaskIntoConstraints = false

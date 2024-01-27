@@ -18,6 +18,8 @@ class PayViewControlButtons: UIView {
     
     weak var delegate: PayViewControlButtonsDelegate?
     
+    // MARK: - Set variables
+    
     private let container = UIView()
 
     private lazy var stackView: UIStackView = {
@@ -67,6 +69,8 @@ class PayViewControlButtons: UIView {
         return button
     }()
     
+    // MARK: - Init
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -77,24 +81,7 @@ class PayViewControlButtons: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Configurations
-    
-    // Makes vivible pay button
-    func configurePayButton() {
-        payButton.isEnabled = true
-        payButton.layer.opacity = 1.0
-    }
-    
-    // Leave only home control button on screen
-    func setHomeButton() {
-        stackView.removeFromSuperview()
-        
-        addSubview(homeStackView)
-        homeStackView.addArrangedSubview(homeButton)
-        
-        homeButtonAction()
-        setHomeConstraints()
-    }
+    // MARK: - Setup
     
     private func setup() {
         addSubview(stackView)
@@ -106,40 +93,70 @@ class PayViewControlButtons: UIView {
         payButtonAction()
         
         setConstraints()
-        
     }
     
-    //All buttons actions
-    private func backButtonAction() {
+    //MARK: - Configurations
+    
+    // Makes visible pay button
+    func configurePayButton() {
+        payButton.isEnabled = true
+        payButton.layer.opacity = 1.0
+    }
+    
+    // Leaves only home control button on screen
+    func setHomeButton() {
+        stackView.removeFromSuperview()
+        
+        addSubview(homeStackView)
+        homeStackView.addArrangedSubview(homeButton)
+        
+        homeButtonAction()
+        setHomeConstraints()
+    }
+
+}
+
+// MARK: - Buttons actions
+
+private extension PayViewControlButtons {
+    
+    // Adds go back action delegate
+    func backButtonAction() {
         backButton.addTarget(self, action: #selector(backButtonDidTap), for: .touchUpInside)
     }
     
-    @objc private func backButtonDidTap() {
+    @objc func backButtonDidTap() {
         delegate?.backButtonDidTap()
         backButton.scaleAnimation()
     }
     
-    private func payButtonAction() {
+    // Adds pay action delegate
+    func payButtonAction() {
         payButton.addTarget(self, action: #selector(payButtonDidTap), for: .touchUpInside)
     }
     
-    @objc private func payButtonDidTap() {
+    @objc func payButtonDidTap() {
         delegate?.payButtonDidTap()
         payButton.scaleAnimation()
     }
     
-    private func homeButtonAction() {
+    // Adds home action delegate
+    func homeButtonAction() {
         homeButton.addTarget(self, action: #selector(homeButtonDidTap), for: .touchUpInside)
     }
     
-    @objc private func homeButtonDidTap() {
+    @objc func homeButtonDidTap() {
         delegate?.homeButtonDidTap()
         homeButton.scaleAnimation()
     }
     
-    //MARK: - Constraints
-    
-    private func setConstraints() {
+}
+
+//MARK: - Constraints
+
+private extension PayViewControlButtons {
+
+    func setConstraints() {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -149,7 +166,7 @@ class PayViewControlButtons: UIView {
         ])
     }
     
-    private func setHomeConstraints() {
+    func setHomeConstraints() {
         homeStackView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
@@ -158,5 +175,5 @@ class PayViewControlButtons: UIView {
             homeStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
         ])
     }
-
+    
 }

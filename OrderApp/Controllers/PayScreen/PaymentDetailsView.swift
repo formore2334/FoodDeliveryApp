@@ -12,6 +12,8 @@ class PaymentDetailsView: UIView {
     
     private var userInfoView = UserInfoView()
     
+    // MARK: - Set variables
+    
     private var container = UIView()
     
     private lazy var topDividerView: UIView = {
@@ -61,6 +63,8 @@ class PaymentDetailsView: UIView {
         return label
     }()
     
+    // MARK: - Init
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -71,14 +75,7 @@ class PaymentDetailsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Configurations
-    
-    func configure(with userOrder: UserOrder) {
-        userInfoView.configure(with: userOrder.userInfo, isBillTextStyle: true)
-        
-        orderNumberLabel.text = "Order #:" + " " + userOrder.userInfo.orderNumber
-        totalSumLabel.text = "Total:" + " " + "\(userOrder.basket.totalSum)" + "$"
-    }
+    // MARK: - Setup
     
     private func setup() {
         addSubview(container)
@@ -95,9 +92,22 @@ class PaymentDetailsView: UIView {
         setConstraints()
     }
     
-    //MARK: - Constraints
+    //MARK: - Configurations
     
-    private func setConstraints() {
+    func configure(with userOrder: UserOrder) {
+        userInfoView.configure(with: userOrder.userInfo, isBillTextStyle: true)
+        
+        orderNumberLabel.text = "Order #:" + " " + userOrder.userInfo.orderNumber
+        totalSumLabel.text = "Total:" + " " + "\(userOrder.basket.totalSum)" + "$"
+    }
+    
+}
+
+//MARK: - Constraints
+
+private extension PaymentDetailsView {
+
+    func setConstraints() {
         container.translatesAutoresizingMaskIntoConstraints = false
         nestedContainer.translatesAutoresizingMaskIntoConstraints = false
         headerLabel.translatesAutoresizingMaskIntoConstraints = false

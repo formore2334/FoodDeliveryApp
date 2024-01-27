@@ -10,14 +10,16 @@ import UIKit
 
 class UserInfoView: UIView {
     
-    lazy var stackView: UIStackView = {
+    // MARK: - Set variables
+    
+    private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .equalCentering
         return stackView
     }()
     
-    lazy var nameLabel: UILabel = {
+    private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: 26, y: 0, width: bounds.width, height: 20)
         label.font = UIFont.preferredFont(forTextStyle: .title2)
@@ -27,7 +29,7 @@ class UserInfoView: UIView {
         return label
     }()
     
-    lazy var phoneNumberLabel: UILabel = {
+    private lazy var phoneNumberLabel: UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: 26, y: 0, width: bounds.width, height: 20)
         label.font = UIFont.preferredFont(forTextStyle: .title2)
@@ -37,7 +39,7 @@ class UserInfoView: UIView {
         return label
     }()
     
-    lazy var emailLabel: UILabel = {
+    private lazy var emailLabel: UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: 26, y: 0, width: bounds.width, height: 20)
         label.font = UIFont.preferredFont(forTextStyle: .title2)
@@ -47,7 +49,7 @@ class UserInfoView: UIView {
         return label
     }()
     
-    lazy var addressLabel: UILabel = {
+    private lazy var addressLabel: UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: 26, y: 0, width: bounds.width, height: 20)
         label.font = UIFont.preferredFont(forTextStyle: .title2)
@@ -56,6 +58,8 @@ class UserInfoView: UIView {
         label.textAlignment = .left
         return label
     }()
+    
+    // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -67,11 +71,25 @@ class UserInfoView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Setup
+    
+    private func setup() {
+        addSubview(stackView)
+        
+        // Constraints
+        stackView.pinToBounds(to: self)
+ 
+        stackView.addArrangedSubview(nameLabel)
+        stackView.addArrangedSubview(phoneNumberLabel)
+        stackView.addArrangedSubview(emailLabel)
+        stackView.addArrangedSubview(addressLabel)
+    }
+    
     //MARK: - Configurations
     
     func configure(with userInfo: UserInfo, isBillTextStyle: Bool = false) {
+        
         if isBillTextStyle {
-            
             billStyleTextFormat(userInfo: userInfo)
         } else {
             nameLabel.text = userInfo.name
@@ -79,35 +97,12 @@ class UserInfoView: UIView {
             emailLabel.text = userInfo.email
             addressLabel.text = userInfo.address
         }
-    }
-    
-    private func setup() {
-        addSubview(stackView)
- 
-        stackView.addArrangedSubview(nameLabel)
-        stackView.addArrangedSubview(phoneNumberLabel)
-        stackView.addArrangedSubview(emailLabel)
-        stackView.addArrangedSubview(addressLabel)
         
-        setConstraints()
-    }
-    
-    //MARK: - Constraints
-    
-    private func setConstraints() {
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
     }
     
 }
 
-// Text style like bill info
+// Makes text style like bill info
 extension UserInfoView {
     
     func billStyleTextFormat(userInfo: UserInfo) {
