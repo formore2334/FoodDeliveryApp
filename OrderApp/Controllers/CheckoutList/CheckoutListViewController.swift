@@ -12,13 +12,18 @@ class CheckoutListViewController: UIViewController {
     
     var basket: Basket
     
-    private let formContentBuilder = FormContentBuilder()
+    // Sets enum array which represents each tableView cell
+    private let checkoutListItems: [CheckoutList] = [.name, .phone, .email, .address, .comment, .coupon]
     
-    private var tableView = UITableView()
+    private let formContentBuilder = FormContentBuilder()
     
     private let customButton = CustomButton()
     
-    private let checkoutListItems: [CheckoutList] = [.name, .phone, .email, .address, .comment, .coupon]
+    // MARK: - Set variables
+    
+    private var tableView = UITableView()
+    
+    private var contentView = UIView()
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -27,27 +32,26 @@ class CheckoutListViewController: UIViewController {
         return scrollView
     }()
     
-    private var contentView = UIView()
-    
-    private let totalTitleLabel: UILabel = {
+    private lazy var totalTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "Total:"
         label.font = UIFont.boldSystemFont(ofSize: 25)
         return label
     }()
     
-    private let totalSumLabel: UILabel = {
+    private lazy var totalSumLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
         return label
     }()
     
-    private let discountLabel: UILabel = {
+    private lazy var discountLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 25)
         return label
     }()
     
+    // This label needs just for present static info for developers
     private lazy var noteLabel: UILabel = {
         let label = UILabel()
         label.text = "Note: If you enter correctly all information, click on comment field to continue, because i'm doing this table validation without Combine -_-"
@@ -57,6 +61,7 @@ class CheckoutListViewController: UIViewController {
         return label
     }()
     
+    // MARK: - Init
     
     init(basket: Basket) {
         self.basket = basket
@@ -78,12 +83,17 @@ class CheckoutListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // Sets color of navigation items to black
         navigationController?.navigationBar.tintColor = .black
-            UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
+        UIBarButtonItem.appearance()
+            .setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black],
+                                    for: .normal)
     }
     
     //MARK: - Configurations
     
+    // Sets logo to nav bar pannel
     private func configureLogo() {
          guard let navigationController = navigationController else { return }
          
@@ -96,26 +106,29 @@ class CheckoutListViewController: UIViewController {
         scrollView.addSubview(contentView)
         
         configureTableView()
-        configureTotalInfo()
+        configureTotalSum()
         
         setScrollViewConstraints()
     }
     
     private func configureTableView() {
+        
         // Create and configure the table view
         tableView = UITableView(frame: view.bounds, style: .plain)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = 60
         tableView.isScrollEnabled = false
-        tableView.register(CheckoutListCell.self, forCellReuseIdentifier: CheckoutListCell.identifier)
+        tableView.register(CheckoutListTableViewCell.self,
+                           forCellReuseIdentifier: CheckoutListTableViewCell.identifier)
         
         contentView.addSubview(tableView)
         
         setTableViewConstraints()
     }
     
-    private func configureTotalInfo() {
+    // Config final label with total sum for pay
+    private func configureTotalSum() {
         contentView.addSubview(totalTitleLabel)
         contentView.addSubview(totalSumLabel)
         contentView.addSubview(discountLabel)
@@ -125,35 +138,139 @@ class CheckoutListViewController: UIViewController {
         
         setTotalInfoConstraints()
     }
+   
+}
+
+// MARK: - Delegate
+
+extension CheckoutListViewController: UITableViewDelegate {
     
-    //MARK: - Basket Button translation
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
     
-    private func setCustomButton() {
+}
+
+// MARK: - DataSource
+
+extension CheckoutListViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return checkoutListItems.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CheckoutListTableViewCell.identifier,
+                                                 for: indexPath) as! CheckoutListTableViewCell
+        
+        let checkoutListItem = checkoutListItems[indexPath.row]
+        cell.configure(with: checkoutListItem)
+        
+        // Closure from cell which fills user model with the necessary data
+        cell.didEnterText = { [weak self] text in
+            
+            guard let self = self else { return }
+            
+            // Validate all text fields
+            switch checkoutListItem {
+                
+                // Validate name text field
+                // Returns error for error label in this vc
+            case .name:
+                if let (_, errorText) = self.formContentBuilder.updateUserInfo(text: text, for: .name) {
+                    cell.errorLabel?.text = errorText as? String
+                }
+                
+                // Validate phone text field
+                // Returns error for error label in this vc
+            case .phone:
+                if let (_, errorText) = self.formContentBuilder.updateUserInfo(text: text, for: .phone) {
+                    cell.errorLabel?.text = errorText as? String
+                }
+                
+                // Validate email text field
+                // Returns error for error label in this vc
+            case .email:
+                if let (_, errorText) = self.formContentBuilder.updateUserInfo(text: text, for: .email) {
+                    cell.errorLabel?.text = errorText as? String
+                }
+                
+                // Validate address text field
+                // Returns error for error label in this vc
+            case .address:
+                if let (_, errorText) = self.formContentBuilder.updateUserInfo(text: text, for: .address) {
+                    cell.errorLabel?.text = errorText as? String
+                }
+                
+                // Validate comment text field
+            case .comment:
+                if let (_, _) = self.formContentBuilder.updateUserInfo(text: text, for: .comment) {
+                    //
+                }
+                
+                // Validate coupon text field
+                // Returns final price and old price
+            case .coupon:
+                if let (calculatedDiscount, crossedTotalSum) = self.formContentBuilder.updateUserInfo(text: text, for: .coupon, with: self.basket) {
+                    self.discountLabel.text = calculatedDiscount
+                    self.totalSumLabel.attributedText = crossedTotalSum as? NSAttributedString
+                } else {
+                    self.discountLabel.text = "\(self.basket.totalSum)"
+                    self.totalSumLabel.text = ""
+                }
+                
+            }
+           
+        }
+        
+        return cell
+    }
+    
+}
+
+//MARK: - Custom button action
+
+private extension CheckoutListViewController {
+    
+    // Config custom button with pay action
+    func setCustomButton() {
         view.addSubview(customButton)
         customButton.setTitle("Pay", for: .normal)
         customButton.backgroundColor = UIColor(named: "lightBlue")
         customButton.pinPayBtn(to: view)
+        
         addActionToCustomButton()
     }
     
-    private func addActionToCustomButton() {
+    // Adds action
+    func addActionToCustomButton() {
         customButton.addTarget(self, action: #selector(customButtonTapped), for: .touchUpInside)
     }
     
-    @objc private func customButtonTapped() {
+    @objc func customButtonTapped() {
+        
+        // Checks for valid data to continue
         if formContentBuilder.isValid {
+            
             customButton.press()
 
-            let payVC = PayViewController(userInfo: formContentBuilder.userInfo, basket: basket)
+            let userInfo = formContentBuilder.userInfo
+            let payVC = PayViewController(userInfo: userInfo, basket: basket)
             
+            // Makes style for nav back button
             navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
             navigationController?.pushViewController(payVC, animated: true)
         } else {
             customButton.shake()
         }
+        
     }
     
-    // MARK: - Constraints
+}
+
+// MARK: - Constraints
+
+private extension CheckoutListViewController {
     
     // Scroll view & content view constraints
     func setScrollViewConstraints() {
@@ -212,75 +329,6 @@ class CheckoutListViewController: UIViewController {
             noteLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -50),
             noteLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -100),
         ])
-    }
-   
-}
-
-extension CheckoutListViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-}
-
-extension CheckoutListViewController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return checkoutListItems.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CheckoutListCell.identifier, for: indexPath) as! CheckoutListCell
-        
-        let checkoutListItem = checkoutListItems[indexPath.row]
-        cell.configure(with: checkoutListItem)
-        cell.didEnterText = { [weak self] text in
-            
-            guard let self = self else { return }
-            
-            // Validate all text fields
-            switch checkoutListItem {
-                
-            case .name:
-                if let (_, errorText) = self.formContentBuilder.updateUserInfo(text: text, for: .name) {
-                    cell.errorLabel.text = errorText as? String
-                }
-                
-            case .phone:
-                if let (_, errorText) = self.formContentBuilder.updateUserInfo(text: text, for: .phone) {
-                    cell.errorLabel.text = errorText as? String
-                }
-                
-            case .email:
-                if let (_, errorText) = self.formContentBuilder.updateUserInfo(text: text, for: .email) {
-                    cell.errorLabel.text = errorText as? String
-                }
-                
-            case .address:
-                if let (_, errorText) = self.formContentBuilder.updateUserInfo(text: text, for: .address) {
-                    cell.errorLabel.text = errorText as? String
-                }
-                
-            case .comment:
-                if let (_, _) = self.formContentBuilder.updateUserInfo(text: text, for: .comment) {
-                    //
-                }
-                
-            case .coupon:
-                if let (calculatedDiscount, crossedTotalSum) = self.formContentBuilder.updateUserInfo(text: text, for: .coupon, with: self.basket) {
-                    self.discountLabel.text = calculatedDiscount
-                    self.totalSumLabel.attributedText = crossedTotalSum as? NSAttributedString
-                } else {
-                    self.discountLabel.text = "\(self.basket.totalSum)"
-                    self.totalSumLabel.text = ""
-                }
-                
-            }
-           
-        }
-        
-        return cell
     }
     
 }
