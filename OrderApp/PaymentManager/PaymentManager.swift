@@ -12,7 +12,7 @@ struct PaymentManager {
     
     var userOrder: UserOrder?
     
-    private var checkDetailsView = CheckDetailsView()
+    private var checkDetailsView = UserDetailsView()
     
     private var paymentDetailsView = PaymentDetailsView()
     
@@ -54,9 +54,10 @@ struct PaymentManager {
         controlButtons.pinToBounds(to: containerView)
     }
     
-    // Send notification when home button was tapped to clear basket & return from secondary vc to home (optional)
+    // Sends notification when home button was tapped to clear basket
+    // And return from secondary vc to home (optional)
     func sendNotification() {
-        NotificationCenter.default.post(name: Notification.Name("BackToHomeNotification"), object: nil)
+        NotificationCenter.default.post(name: .backToHome, object: nil)
     }
     
     // Configure checkDetailsView. Used inside this manager
@@ -84,9 +85,8 @@ struct PaymentManager {
             paymentDataLoader.loadingView.pinToBounds(to: containerView)
             
             // Delay to project the appearance of work
-            paymentDataLoader.getPaymentWindow { //[weak self] in
+            paymentDataLoader.getPaymentWindow {
                 DispatchQueue.main.async {
-                    // guard let self = self else { return }
                     self.paymentDataLoader.loadingView.removeFromSuperview()
                     
                     containerView.addSubview(self.paymentDetailsView)
@@ -105,9 +105,8 @@ struct PaymentManager {
             paymentDataLoader.loadingView.pinToBounds(to: containerView)
             
             // Delay to project the appearance of work
-            paymentDataLoader.processPayment { //[weak self] in
+            paymentDataLoader.processPayment {
                 DispatchQueue.main.async {
-                    // guard let self = self else { return }
                     self.paymentDataLoader.loadingView.removeFromSuperview()
                     
                     containerView.addSubview(self.billView)
