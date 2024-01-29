@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+// Custom error enum for network connection error
 enum ConnectionError: Error, LocalizedError {
     case unavailable
     

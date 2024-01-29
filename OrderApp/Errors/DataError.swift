@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+// Custom error enum for data loading errors
 enum DataError: Error, LocalizedError, CustomDebugStringConvertible {
     case fileNotFound(String)
     case fileLoadFailed(String, Error)

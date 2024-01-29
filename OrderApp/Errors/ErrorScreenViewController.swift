@@ -10,12 +10,16 @@ import FLAnimatedImage
 
 class ErrorScreenViewController: UIViewController {
     
-    // Set navigation controller to appear alert
-    let customNavigationController = UINavigationController()
-    
-    let networkManager = NetworkManager()
+    private let networkManager = NetworkManager()
     
     private let loadingView = LoadingView()
+    
+    private let gifStringURL = "https://cdn.dribbble.com/users/707433/screenshots/6720160/gears2.gif"
+    
+    // MARK: - Set variables
+    
+    // Set navigation controller to appear alert
+    let customNavigationController = UINavigationController()
 
     private let container = UIView()
     
@@ -83,6 +87,8 @@ class ErrorScreenViewController: UIViewController {
         return label
     }()
     
+    // MARK: - Init
+    
     init() {
         super.init(nibName: nil, bundle: nil)
         print("Error VC init")
@@ -95,9 +101,10 @@ class ErrorScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Listens to notification from ErrorManager
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(handleErrorChange(notification:)),
-                                               name: NSNotification.Name("ErrorValueChangedNotification"),
+                                               name: .errorValueChanged,
                                                object: nil)
         
         
@@ -117,6 +124,7 @@ class ErrorScreenViewController: UIViewController {
         view.addSubview(backgroundGIFImageView)
         view.sendSubviewToBack(backgroundGIFImageView)
         
+        // Set constraints
         backgroundGIFImageView.pinToBounds(to: view)
         
         view.addSubview(container)
@@ -140,6 +148,7 @@ class ErrorScreenViewController: UIViewController {
         setStackViewConstraints()
     }
   
+    // Sets nav controller
     private func setCustomViewController() {
         addChild(customNavigationController)
         view.addSubview(customNavigationController.view)
@@ -150,16 +159,20 @@ class ErrorScreenViewController: UIViewController {
     
     // Fetch GIF image
     private func getImage() {
-        guard let urlString = URL(string: "https://cdn.dribbble.com/users/707433/screenshots/6720160/gears2.gif") else { return }
+        guard let urlString = URL(string: gifStringURL) else { return }
         
+        // Animate vc with helpers while gif is fatching from network
         loadingView.startAnimating()
         loadinglabel.startBlinkingAnimation()
         errorLabel.isHidden = true
         
         networkManager.fetchData(url: urlString) { [weak self] data, error in
             DispatchQueue.main.async {
+                
+                // Sets gif animation to vc
                 self?.backgroundGIFImageView.animatedImage = FLAnimatedImage(gifData: data)
                 
+                // Finish animate helpers when gif is ready
                 self?.loadingView.stopAnimating()
                 self?.loadinglabel.stopBlinkingAnimation()
                 self?.loadinglabel.isHidden = true
@@ -174,9 +187,12 @@ class ErrorScreenViewController: UIViewController {
     private func activateAdditionalDescription() {
         setSimulateDescriptionConstraints()
         
+        // Sets delays for appear info about errors for user
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
             self?.simulateDescriptionLabel.isHidden = false
         }
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
             self?.loadinglabel.isHidden = false
             self?.loadinglabel.startBlinkingAnimation()
@@ -184,6 +200,7 @@ class ErrorScreenViewController: UIViewController {
         
     }
     
+    // Sets alert with error description
     private func showAlert(message: String) {
         let alert = UIAlertController(title: "Oops...", message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default)
@@ -195,13 +212,20 @@ class ErrorScreenViewController: UIViewController {
     // Handle notification
     @objc private func handleErrorChange(notification: Notification) {
         if let error = notification.object as? Error {
+            
+            // Pass error description from ErrorManager
             showAlert(message: error.localizedDescription)
         }
+        
     }
-    
-    //MARK: - Set constraints
-    
-    private func setConstraints() {
+
+}
+
+//MARK: - Set constraints
+
+private extension ErrorScreenViewController {
+
+    func setConstraints() {
         container.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         serviceImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -231,7 +255,7 @@ class ErrorScreenViewController: UIViewController {
         ])
     }
     
-    private func setStackViewConstraints() {
+    func setStackViewConstraints() {
         loadingStackView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -241,10 +265,9 @@ class ErrorScreenViewController: UIViewController {
             loadingStackView.widthAnchor.constraint(equalToConstant: 120),
             loadingStackView.heightAnchor.constraint(equalToConstant: 80),
         ])
-        
     }
     
-    private func setSimulateDescriptionConstraints() {
+    func setSimulateDescriptionConstraints() {
         simulateDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -254,7 +277,6 @@ class ErrorScreenViewController: UIViewController {
             simulateDescriptionLabel.widthAnchor.constraint(equalToConstant: 300),
             simulateDescriptionLabel.heightAnchor.constraint(equalToConstant: 150),
         ])
-        
     }
-
+    
 }

@@ -13,33 +13,42 @@ class ErrorManager {
     
     var error: Error?
     
-    private var dataService = DataService.shared
+    private var dataService: DataService
     
     private var cancellables = Set<AnyCancellable>()
     
     weak var dataDelegate: DataDelegate?
     
-    init() {
+    // MARK: - Init
+    
+    init(error: Error? = nil,
+         dataService: DataService = DataService.shared) {
+        self.dataService = dataService
         
         getError()
     }
     
-    // Check DataService for errors
+    // MARK: - Methods
+    
+    // Checks DataService for errors
     private func getError() {
+        
         dataService.$error
             .sink { [weak self] newError in
                 self?.handleNewError(newError)
             }
             .store(in: &cancellables)
+        
     }
     
+    // Sets error & launches handle method
     private func handleNewError(_ error: Error?) {
         self.error = error
         
         handleErrorData()
     }
 
-    
+    // Handle error in data
     private func handleErrorData() {
         
         if self.error != nil {
@@ -48,13 +57,14 @@ class ErrorManager {
             dataDelegate?.didReceiveValidData()
         }
         
+        // Post notification about current error condition
         DispatchQueue.main.async { [weak self] in
-            NotificationCenter.default.post(name: NSNotification.Name("ErrorValueChangedNotification"), object: self?.error)
+            NotificationCenter.default.post(name: .errorValueChanged, object: self?.error)
         }
         
     }
     
-    
+    // Handle user network connection
     private func handleConnectionError() {
         let reachability = try? Reachability()
         
@@ -66,7 +76,7 @@ class ErrorManager {
                 print("DEBUG: connection ok")
             }
         }
+        
     }
-    
     
 }
