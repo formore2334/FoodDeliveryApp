@@ -10,4 +10,9 @@ import Foundation
 
 extension Notification.Name {
     static let backToHome = Notification.Name("BackToHomeNotification")
+    
+    static let basketDidOpen = NSNotification.Name("BasketDidOpenNotification")
+    static let basketSpecialItemsDidCange = Notification.Name("BasketSpecialItemsDidCangeNotification")
+    
+    static let errorValueChanged = NSNotification.Name("ErrorValueChangedNotification")
 }
