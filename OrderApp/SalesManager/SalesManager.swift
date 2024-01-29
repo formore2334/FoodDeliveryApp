@@ -12,23 +12,28 @@ struct SalesManager {
     
     var sales: [Sale]
     
-    var menu: [Menu] = DataService.shared.menu
+    var menu: [Menu]
     
-    init(sales: [Sale] = DataService.shared.sales) {
+    init(sales: [Sale] = DataService.shared.sales,
+         menu: [Menu] = DataService.shared.menu) {
         self.sales = sales
+        self.menu = menu
     }
     
-    
+    // Returnes menuItem based on id
     func getMenuItem(at id: Int) -> (any MenuItemProtocol)? {
+        
+        // Finds first match with menuItem id inside menu array
         for menuCategory in menu {
             if let menuItem = menuCategory.menuItems.first(where: { $0.id == id }) {
                 return menuItem
             }
         }
+        
         return nil
     }
 
-    
+    // Finds sale based on menuItem id
     func getCurrentSale(with menuItem: (any MenuItemProtocol)) -> Sale? {
         return sales.first { sale in
             sale.menuItemsID?.contains(menuItem.id) ?? false
