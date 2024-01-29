@@ -30,7 +30,7 @@ class BasketManager {
     //MARK: - Computed property's
     
     var basketItemsCount: Int {
-        return basket.basketItems.count
+        return basket.basketItems.count + basket.basketSpecialItems.count
     }
     
     var checkoutWithTotalSum: String {
