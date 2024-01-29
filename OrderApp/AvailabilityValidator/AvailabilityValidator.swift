@@ -23,7 +23,7 @@ class AvailabilityValidator {
         // Listens to notification from BasketManager
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(getUnavailableItems),
-                                               name: Notification.Name("BasketSpecialItemsDidCangeNotification"),
+                                               name: .basketSpecialItemsDidCange,
                                                object: nil)
         
     }
