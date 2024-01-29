@@ -94,7 +94,7 @@ class SaleInfoViewController: UIViewController, Coordinating {
         // Listens to notification from last page (when user returnes from final pay page)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(popToRootVC),
-                                               name: NSNotification.Name("BackToHomeNotification"),
+                                               name: .backToHome,
                                                object: nil)
         
         // Sets color of navigation items to white
@@ -249,7 +249,7 @@ private extension SaleInfoViewController {
     }
     
     @objc func addToBasketTapped() {
-        customButton.pressWithEnable()
+        customButton.pressWithSwitchOff()
         customButton.setTitle("Special added!", for: .normal)
         
         // Temp array to passing throw coordinator

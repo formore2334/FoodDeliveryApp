@@ -84,7 +84,7 @@ class MenuItemReviewViewController: UIViewController, Coordinating {
         // If the basket is open, closes current vc
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(closeVC),
-                                               name: NSNotification.Name("BasketDidOpenNotification"),
+                                               name: .basketDidOpen,
                                                object: nil)
         
         // Sets color of navigation items to black
@@ -194,7 +194,7 @@ extension MenuItemReviewViewController {
         // Sets final title to button
         customButton.setTitle("\(menuItem.title) added", for: .normal)
         
-        customButton.pressWithEnable()
+        customButton.pressWithSwitchOff()
         coordinator?.passOrderToBasket(menuItem: menuItem)
     }
     
