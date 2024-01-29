@@ -40,7 +40,7 @@ class MenuCollectionViewController: UICollectionViewController, Coordinating {
         guard let navigationController = navigationController else { return }
         
         let logoView = LogoView()
-        logoView.setupNavigationBarLogo(in: navigationController, with: navigationItem)
+        logoView.configureIntoNavBar(in: navigationController, with: navigationItem)
     }
     
     // Configure vc

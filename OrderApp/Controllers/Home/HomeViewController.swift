@@ -57,7 +57,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate, Coordinating {
         guard let navigationController = navigationController else { return }
         
         let logoView = LogoView()
-        logoView.setupNavigationBarLogo(in: navigationController, with: navigationItem)
+        logoView.configureIntoNavBar(in: navigationController, with: navigationItem)
     }
     
     // Sets an animation of the first entry to the screen

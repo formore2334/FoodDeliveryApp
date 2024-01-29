@@ -98,7 +98,7 @@ class CheckoutListViewController: UIViewController {
          guard let navigationController = navigationController else { return }
          
          let logoView = LogoView()
-         logoView.setupNavigationBarLogo(in: navigationController, with: navigationItem)
+         logoView.configureIntoNavBar(in: navigationController, with: navigationItem)
      }
     
     private func configureVC() {
@@ -237,7 +237,7 @@ private extension CheckoutListViewController {
         view.addSubview(customButton)
         customButton.setTitle("Pay", for: .normal)
         customButton.backgroundColor = UIColor(named: "lightBlue")
-        customButton.pinPayBtn(to: view)
+        customButton.pinWithSmallFrame(to: view)
         
         addActionToCustomButton()
     }
