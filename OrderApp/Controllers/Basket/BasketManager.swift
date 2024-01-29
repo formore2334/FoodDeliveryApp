@@ -12,7 +12,7 @@ protocol BasketManagerDelegate: AnyObject {
     func valuesDidUpdate()
 }
 
-class BasketManager {
+final class BasketManager {
     
     var basket: Basket {
         didSet {

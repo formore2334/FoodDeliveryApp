@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RegularTableView: UITableView {
+final class RegularTableView: UITableView {
     
     var basketManager: BasketManager?
     

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SpecialItemView: UIView {
+final class SpecialItemView: UIView {
     
     private let networkManager = NetworkManager()
     

@@ -8,7 +8,7 @@
 import UIKit
 
 
-class PaymentDetailsView: UIView {
+final class PaymentDetailsView: UIView {
     
     private var userInfoView = UserInfoView()
     

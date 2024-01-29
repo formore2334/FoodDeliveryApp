@@ -8,7 +8,7 @@
 import UIKit
 
 
-class CouponCollectionViewCell: UICollectionViewCell {
+final class CouponCollectionViewCell: UICollectionViewCell {
     
     let networkManager = NetworkManager()
     

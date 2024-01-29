@@ -9,7 +9,7 @@ import Foundation
 import Reachability
 import Combine
 
-class ErrorManager {
+final class ErrorManager {
     
     var error: Error?
     

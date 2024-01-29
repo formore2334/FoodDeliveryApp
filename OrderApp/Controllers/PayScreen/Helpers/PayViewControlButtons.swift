@@ -14,7 +14,7 @@ protocol PayViewControlButtonsDelegate: AnyObject {
     func homeButtonDidTap()
 }
 
-class PayViewControlButtons: UIView {
+final class PayViewControlButtons: UIView {
     
     weak var delegate: PayViewControlButtonsDelegate?
     

@@ -12,7 +12,7 @@ protocol ConformButtonDelegate: AnyObject {
     func didTapButton()
 }
 
-class UserDetailsView: UIView {
+final class UserDetailsView: UIView {
     
     private var userInfoView = UserInfoView()
     

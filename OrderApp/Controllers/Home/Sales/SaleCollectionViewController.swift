@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SaleCollectionViewController: UICollectionViewController, Coordinating {
+final class SaleCollectionViewController: UICollectionViewController, Coordinating {
     
     private let salesManager: SalesManager
     

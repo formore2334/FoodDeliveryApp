@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CouponReviewViewController: UIViewController {
+final class CouponReviewViewController: UIViewController {
 
     var coupon: Coupon
     

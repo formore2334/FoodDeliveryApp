@@ -8,7 +8,7 @@
 import UIKit
 
 
-class CheckoutListViewController: UIViewController {
+final class CheckoutListViewController: UIViewController {
     
     var basket: Basket
     

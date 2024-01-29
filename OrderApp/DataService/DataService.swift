@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DataService {
+final class DataService {
     
     static let shared = DataService()
     

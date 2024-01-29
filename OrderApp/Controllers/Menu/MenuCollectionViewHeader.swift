@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MenuCollectionViewHeader: UICollectionReusableView {
+final class MenuCollectionViewHeader: UICollectionReusableView {
     
     static let identifier = "MenuHeaderView"
     

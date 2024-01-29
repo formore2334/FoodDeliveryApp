@@ -8,7 +8,7 @@
 import UIKit
 
 
-class MenuItemReviewViewController: UIViewController, Coordinating {
+final class MenuItemReviewViewController: UIViewController, Coordinating {
     
     var menuItem: (any MenuItemProtocol)
     

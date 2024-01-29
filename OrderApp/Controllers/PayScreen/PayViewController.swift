@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PayViewController: UIViewController {
+final class PayViewController: UIViewController {
     
     var userInfo: UserInfo
     

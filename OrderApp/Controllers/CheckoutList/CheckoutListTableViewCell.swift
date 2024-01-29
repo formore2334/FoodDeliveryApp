@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CheckoutListTableViewCell: UITableViewCell {
+final class CheckoutListTableViewCell: UITableViewCell {
     
     private var textField = UITextField()
     

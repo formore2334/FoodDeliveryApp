@@ -7,7 +7,7 @@
 
 import UIKit
 
-class QuickMenuCollectionViewCell: UICollectionViewCell {
+final class QuickMenuCollectionViewCell: UICollectionViewCell {
     
     private lazy var cellContainer: UIView = {
         let container = UIView()

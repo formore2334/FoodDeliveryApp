@@ -8,7 +8,7 @@
 import UIKit
 import FLAnimatedImage
 
-class ErrorScreenViewController: UIViewController {
+final class ErrorScreenViewController: UIViewController {
     
     private let networkManager = NetworkManager()
     

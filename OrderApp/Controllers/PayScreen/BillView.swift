@@ -8,7 +8,7 @@
 import UIKit
 
 
-class BillView: UIView {
+final class BillView: UIView {
     
     // MARK: - Set variables
     

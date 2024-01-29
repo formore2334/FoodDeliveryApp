@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - Detail menu for each category from menu
 
-class MenuCategoryCollectionViewController: UICollectionViewController, Coordinating {
+final class MenuCategoryCollectionViewController: UICollectionViewController, Coordinating {
     
     var menu: Menu
     

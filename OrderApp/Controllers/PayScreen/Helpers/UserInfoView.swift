@@ -8,7 +8,7 @@
 import UIKit
 
 
-class UserInfoView: UIView {
+final class UserInfoView: UIView {
     
     // MARK: - Set variables
     

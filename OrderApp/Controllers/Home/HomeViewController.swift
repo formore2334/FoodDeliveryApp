@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, UIScrollViewDelegate, Coordinating {
+final class HomeViewController: UIViewController, UIScrollViewDelegate, Coordinating {
     
     var coordinator: MainCoordinator?
     

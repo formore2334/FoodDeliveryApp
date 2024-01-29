@@ -10,7 +10,7 @@ import Foundation
 
 // Build content for CheckoutList form
 
-class FormContentBuilder {
+final class FormContentBuilder {
     
     var couponsManager = CouponsManager()
     

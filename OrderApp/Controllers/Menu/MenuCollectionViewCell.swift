@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MenuCollectionViewCell: UICollectionViewCell {
+final class MenuCollectionViewCell: UICollectionViewCell {
     
     private let networkManager = NetworkManager()
     

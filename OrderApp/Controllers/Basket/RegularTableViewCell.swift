@@ -12,7 +12,7 @@ protocol RegularCellDelegate: AnyObject {
     func didTapSubtractButton(_ cell: UITableViewCell)
 }
 
-class RegularTableViewCell: UITableViewCell {
+final class RegularTableViewCell: UITableViewCell {
     
     private let networkManager = NetworkManager()
     

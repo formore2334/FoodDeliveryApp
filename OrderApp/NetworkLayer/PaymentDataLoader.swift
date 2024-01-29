@@ -7,7 +7,7 @@
 
 import Foundation
 
-class PaymentDataLoader {
+final class PaymentDataLoader {
     
     let loadingView = LoadingView()
     

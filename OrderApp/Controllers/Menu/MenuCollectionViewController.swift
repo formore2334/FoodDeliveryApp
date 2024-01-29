@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MenuCollectionViewController: UICollectionViewController, Coordinating {
+final class MenuCollectionViewController: UICollectionViewController, Coordinating {
     
     let menu: [Menu]
     

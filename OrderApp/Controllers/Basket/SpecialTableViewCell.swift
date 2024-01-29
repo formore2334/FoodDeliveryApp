@@ -11,7 +11,7 @@ protocol SpecialCellDelegate: AnyObject {
     func deleteButtonDidTapped(_ cell: UITableViewCell)
 }
 
-class SpecialTableViewCell: UITableViewCell {
+final class SpecialTableViewCell: UITableViewCell {
     
     weak var delegate: SpecialCellDelegate?
     

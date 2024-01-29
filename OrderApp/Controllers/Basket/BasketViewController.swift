@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BasketViewController: UIViewController {
+final class BasketViewController: UIViewController {
 
     var coordinator: MainCoordinator?
     

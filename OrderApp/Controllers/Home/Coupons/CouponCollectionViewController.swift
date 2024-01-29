@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CouponCollectionViewController: UICollectionViewController {
+final class CouponCollectionViewController: UICollectionViewController {
     
     private let coupons: [Coupon]
     

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SaleInfoViewController: UIViewController, Coordinating {
+final class SaleInfoViewController: UIViewController, Coordinating {
     
     var sale: Sale
     

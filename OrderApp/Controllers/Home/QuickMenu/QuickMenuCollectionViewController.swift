@@ -7,7 +7,7 @@
 
 import UIKit
 
-class QuickMenuCollectionViewController: UICollectionViewController, Coordinating {
+final class QuickMenuCollectionViewController: UICollectionViewController, Coordinating {
     
     private let menu: [Menu]
     

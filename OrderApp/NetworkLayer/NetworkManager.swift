@@ -8,8 +8,7 @@
 import UIKit
 
 
-
-class NetworkManager {
+final class NetworkManager {
     
     // Handle network response, returnes UIImage
     private func handleResponse(data: Data?, response: URLResponse?) -> UIImage? {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SaleCollectionViewCell: UICollectionViewCell {
+final class SaleCollectionViewCell: UICollectionViewCell {
     
     let networkManager = NetworkManager()
     

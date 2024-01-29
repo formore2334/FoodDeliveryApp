@@ -12,7 +12,7 @@ protocol AvailabilityValidatorDelegate: AnyObject {
     func unavailableItemsDidChange()
 }
 
-class AvailabilityValidator {
+final class AvailabilityValidator {
     
     var unavailableItems: [Int] = []
     
