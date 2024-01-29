@@ -7,6 +7,7 @@
 
 import UIKit
 
+// Extension with custom constraints for any UIView
 
 extension UIView {
     
@@ -19,10 +20,10 @@ extension UIView {
             trailingAnchor.constraint(equalTo: superView.trailingAnchor, constant: -50),
             bottomAnchor.constraint(equalTo: superView.safeAreaLayoutGuide.bottomAnchor, constant: -30)
         ])
-
+        
     }
     
-    func pinPayBtn(to superView: UIView) {
+    func pinWithSmallFrame(to superView: UIView) {
         translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -37,11 +38,11 @@ extension UIView {
         translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-               topAnchor.constraint(equalTo: superView.topAnchor),
-               bottomAnchor.constraint(equalTo: superView.bottomAnchor),
-               leadingAnchor.constraint(equalTo: superView.leadingAnchor),
-               trailingAnchor.constraint(equalTo: superView.trailingAnchor)
-           ])
+            topAnchor.constraint(equalTo: superView.topAnchor),
+            bottomAnchor.constraint(equalTo: superView.bottomAnchor),
+            leadingAnchor.constraint(equalTo: superView.leadingAnchor),
+            trailingAnchor.constraint(equalTo: superView.trailingAnchor)
+        ])
     }
     
 }
