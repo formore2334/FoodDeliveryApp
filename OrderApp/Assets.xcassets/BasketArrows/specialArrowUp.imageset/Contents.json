@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "57922-PhotoRoom.png-PhotoRoom.png",
+      "filename" : "specialArrowUp.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "57922-PhotoRoom.png-PhotoRoom 1.png",
+      "filename" : "specialArrowUp 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "57922-PhotoRoom.png-PhotoRoom 2.png",
+      "filename" : "specialArrowUp 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
