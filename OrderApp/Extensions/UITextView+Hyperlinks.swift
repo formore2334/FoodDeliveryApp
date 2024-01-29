@@ -7,6 +7,7 @@
 
 import UIKit
 
+// Extension which set hyperlink from text
 
 extension UITextView {
     
