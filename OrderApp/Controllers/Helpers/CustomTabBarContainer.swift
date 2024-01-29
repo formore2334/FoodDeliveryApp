@@ -8,7 +8,7 @@
 import UIKit
 
 
-class CustomTabBarContainer: UIView {
+final class CustomTabBarContainer: UIView {
     
     private lazy var circleView: UIView = {
         let view = UIView()

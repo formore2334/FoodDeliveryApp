@@ -8,7 +8,7 @@
 import UIKit
 
 
-class StarView: UIView {
+final class StarView: UIView {
     
     private let starImageView: UIImageView = {
         let imageView = UIImageView()
