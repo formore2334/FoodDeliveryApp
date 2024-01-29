@@ -16,7 +16,7 @@ class CouponCollectionViewCell: UICollectionViewCell {
         let container = UIView()
         container.layer.cornerRadius = 15
         container.layer.borderWidth = 2
-        container.layer.borderColor = UIColor(patternImage: UIImage(named: "brb")!).cgColor
+        container.layer.borderColor = UIColor(patternImage: UIImage(named: "redWhiteDottedLine")!).cgColor
         container.layer.opacity = 0.8
         return container
     }()

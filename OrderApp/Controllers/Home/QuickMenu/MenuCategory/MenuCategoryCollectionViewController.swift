@@ -88,7 +88,7 @@ class MenuCategoryCollectionViewController: UICollectionViewController, Coordina
     
     // Sets background image to vc
     private func setBackgroundImage() {
-        let backgroundImageView = UIImageView(image: UIImage(named: "backgroundImageSecondPart"))
+        let backgroundImageView = UIImageView(image: UIImage(named: "backgroundImageCenterPart"))
         backgroundImageView.contentMode = .scaleAspectFill
         backgroundImageView.clipsToBounds = true
         backgroundImageView.layer.opacity = 0.1
