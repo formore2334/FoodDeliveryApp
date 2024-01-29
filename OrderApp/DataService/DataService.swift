@@ -39,13 +39,18 @@ class DataService {
     
     @Published var error: Error?
     
+    // MARK: - Init
+    
     private init() {
         getMenuData()
         getSalesData()
         getCouponData()
         
+        // Error simulation
         simulateErrorBehavior()
     }
+    
+    // MARK: - Methods
     
     // Fetch all categories of menuItem
     private func getMenuData() {
@@ -105,8 +110,14 @@ class DataService {
     
     // Sort each category of memuItem to right place in array of menu with id
     private func sortMenuItems<T: MenuItemProtocol>(with menuItems: [T]) {
+        
         for menuItem in menuItems {
+            
+            // Finds a unique code for each menu category which every menuItem has in id
             let idPrefix = Int(String(menuItem.id).prefix(3))
+            
+            // Fills array of menu with menuItems
+            // Each menuItem goes into its own category
             switch idPrefix {
             case 100:
                 menu[0].menuItems.append(menuItem)
@@ -121,25 +132,28 @@ class DataService {
             default:
                 break
             }
+            
         }
+        
     }
     
     // Generic loading function for internal json data files
     private func load<T: Decodable>(_ filename: String) throws -> T {
         let data: Data
         
+        // Looking for files in main bundle
         guard let file = Bundle.main.url(forResource: filename, withExtension: nil) else {
             throw DataError.fileNotFound(filename)
         }
         
-        
+        // Trying to pull out data from file
         do {
             data = try Data(contentsOf: file)
         } catch {
             throw DataError.fileLoadFailed(filename, error)
         }
         
-        
+        // Trying to decoding this data
         do {
             let decoder = JSONDecoder()
             return try decoder.decode(T.self, from: data)
@@ -152,6 +166,7 @@ class DataService {
     
 }
 
+// MARK: - Error behavior
 
 // Simulation logic of error response just for demonstration error handling
 private extension DataService {
