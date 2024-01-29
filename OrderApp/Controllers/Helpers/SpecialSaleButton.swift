@@ -8,12 +8,14 @@
 import UIKit
 
 
-class SpecialSaleButton: UIButton {
+final class SpecialSaleButton: UIButton {
+    
+    // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setupButton()
+        setup()
         startPulsatingAnimation()
     }
     
@@ -26,14 +28,15 @@ class SpecialSaleButton: UIButton {
         print("Deinit")
     }
 
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         
         applyGradient()
     }
     
-    private func setupButton() {
+    // MARK: - Setup
+    
+    private func setup() {
         setTitle("Special!", for: .normal)
         setTitleColor(.white, for: .normal)
         
@@ -42,21 +45,6 @@ class SpecialSaleButton: UIButton {
         setShadow()
     }
     
-    func startPulsatingAnimation() {
-        let pulseAnimation = CABasicAnimation(keyPath: "transform.scale")
-        pulseAnimation.duration = 1.0
-        pulseAnimation.fromValue = 1.0
-        pulseAnimation.toValue = 1.1
-        pulseAnimation.autoreverses = true
-        pulseAnimation.repeatCount = .infinity
-        layer.add(pulseAnimation, forKey: "pulsating")
-    }
-    
-    func stopPulsatingAnimation() {
-        layer.removeAnimation(forKey: "pulsating")
-    }
-
-    
     private func setShadow() {
         layer.shadowColor = UIColor.yellow.cgColor
         layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
@@ -64,7 +52,6 @@ class SpecialSaleButton: UIButton {
         layer.shadowOpacity = 0.5
         layer.masksToBounds = false
     }
-
     
     private func applyGradient() {
         let gradientLayer = CAGradientLayer()
@@ -78,6 +65,22 @@ class SpecialSaleButton: UIButton {
         
         // Insert the gradient layer at the bottom of the layer hierarchy
         layer.insertSublayer(gradientLayer, at: 0)
+    }
+    
+    // MARK: - Configurations
+    
+    func startPulsatingAnimation() {
+        let pulseAnimation = CABasicAnimation(keyPath: "transform.scale")
+        pulseAnimation.duration = 1.0
+        pulseAnimation.fromValue = 1.0
+        pulseAnimation.toValue = 1.1
+        pulseAnimation.autoreverses = true
+        pulseAnimation.repeatCount = .infinity
+        layer.add(pulseAnimation, forKey: "pulsating")
+    }
+    
+    func stopPulsatingAnimation() {
+        layer.removeAnimation(forKey: "pulsating")
     }
     
 }
