@@ -71,7 +71,7 @@ class BasketViewController: UIViewController {
         // Listens to notification from last page (when user returns from final pay page)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(clearBasket),
-                                               name: Notification.Name("BackToHomeNotification"),
+                                               name: .backToHome,
                                                object: nil)
         
         basketManager.delegate = self
@@ -87,7 +87,7 @@ class BasketViewController: UIViewController {
         super.viewWillAppear(animated)
 
         // When basket is open send this notification to DetailInfoVC
-        NotificationCenter.default.post(name: NSNotification.Name("BasketDidOpenNotification"), object: nil)
+        NotificationCenter.default.post(name: .basketDidOpen, object: nil)
     }
     
     deinit {
