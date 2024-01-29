@@ -8,22 +8,25 @@
 import UIKit
 
 
-class CustomButton: UIButton {
+final class CustomButton: UIButton {
+    
+    // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setupButton()
+        setup()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Setup
     
-    private func setupButton() {
+    private func setup() {
         setTitleColor(.white, for: .normal)
-
+        
         backgroundColor = .red
         titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         layer.cornerRadius = 20
@@ -41,7 +44,7 @@ class CustomButton: UIButton {
         layer.masksToBounds = false
     }
     
-    public func shake() {
+    private func shakeAnimation() {
         let shake = CABasicAnimation(keyPath: "position")
         shake.duration = 0.1
         shake.repeatCount = 2
@@ -59,14 +62,6 @@ class CustomButton: UIButton {
         layer.add(shake, forKey: "position")
     }
     
-    public func press() {
-        scaleAnimation(isEnabled: false)
-    }
-    
-    public func pressWithEnable() {
-        scaleAnimation(isEnabled: true)
-    }
-    
     private func scaleAnimation(isEnabled: Bool) {
         let scaleAnimation = CABasicAnimation(keyPath: "transform.scale")
         scaleAnimation.duration = 0.1
@@ -78,19 +73,33 @@ class CustomButton: UIButton {
         if isEnabled {
             scaleAnimation.delegate = self
         }
-
+        
         layer.add(scaleAnimation, forKey: "buttonPress")
+    }
+    
+    // MARK: - Configurations
+    
+    func press() {
+        scaleAnimation(isEnabled: false)
+    }
+    
+    func pressWithSwitchOff() {
+        scaleAnimation(isEnabled: true)
+    }
+    
+    func shake() {
+        shakeAnimation()
     }
     
 }
 
-//MARK: - Enable button
+//MARK: - Switch off condition delegate
 
 extension CustomButton: CAAnimationDelegate {
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         isEnabled = !flag
         layer.opacity = 0.7
         setTitleColor(.lightGray, for: .disabled)
-
+        
     }
 }
