@@ -52,7 +52,7 @@ class BasketManager {
     
     // Sends basketSpecialItems to AvailabilityValidator
     private func sendNotification() {
-        NotificationCenter.default.post(name: NSNotification.Name("BasketSpecialItemsDidCangeNotification"),
+        NotificationCenter.default.post(name: .basketSpecialItemsDidCange,
                                         object: basket.basketSpecialItems)
     }
     
