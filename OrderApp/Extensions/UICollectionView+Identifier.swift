@@ -7,10 +7,12 @@
 
 import UIKit
 
+// Extension with static identifier for any cell inherited from UICollectionViewCell class
 
 extension UICollectionViewCell {
     
     static var identifier: String {
         String(describing: self)
     }
+    
 }
