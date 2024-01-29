@@ -250,7 +250,10 @@ private extension SaleInfoViewController {
     
     @objc func addToBasketTapped() {
         customButton.pressWithSwitchOff()
-        customButton.setTitle("Special added!", for: .normal)
+        
+        if isValid {
+            customButton.setTitle("Special added!", for: .normal)
+        }
         
         // Temp array to passing throw coordinator
         var specialMenuItems: [SpecialMenuItem] = []
@@ -266,7 +269,9 @@ private extension SaleInfoViewController {
         }
         
         // Pass received array to coordinator
-        coordinator?.passSpecialOrderToBasket(with: specialMenuItems, saleID: sale.id, discountTitle: sale.title)
+        if !specialMenuItems.isEmpty {
+            coordinator?.passSpecialOrderToBasket(with: specialMenuItems, saleID: sale.id, discountTitle: sale.title)
+        }
     }
     
     // Sets unavailable text to custom button
