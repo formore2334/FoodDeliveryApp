@@ -11,9 +11,11 @@ class MainCoordinator: Coordinator {
     
     var tabBarController: UITabBarController
     
+    var availabilityValidator = AvailabilityValidator()
+    
     private let container = CustomTabBarContainer()
     
-    var availabilityValidator = AvailabilityValidator()
+    // MARK: - Init
     
     init(tabBarController: UITabBarController) {
         self.tabBarController = tabBarController
@@ -23,6 +25,8 @@ class MainCoordinator: Coordinator {
     deinit {
     print("TabBar deinit")
     }
+    
+    // MARK: - Methods
     
     func start() {
         let homeVC = HomeViewController()
