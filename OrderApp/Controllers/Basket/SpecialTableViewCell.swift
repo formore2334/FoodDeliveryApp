@@ -94,7 +94,7 @@ class SpecialTableViewCell: UITableViewCell {
         contentView.addSubview(cellNumberLabel)
         
         // Sets color container appearance
-        colorContainer.backgroundColor = UIColor(red: 255, green: 200, blue: 0, alpha: 0.3)
+        colorContainer.backgroundColor = UIColor(named: "lightYellowTranslucent")
         
         setConstraints()
     }

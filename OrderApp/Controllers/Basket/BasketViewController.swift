@@ -129,7 +129,7 @@ class BasketViewController: UIViewController {
         
         // Sets special table container appearance
         colorCornerContainer.layer.cornerRadius = 10
-        colorCornerContainer.backgroundColor = UIColor(red: 255, green: 200, blue: 0, alpha: 0.3)
+        colorCornerContainer.backgroundColor = UIColor(named: "lightYellowTranslucent")
         
         spacerBetweenTables.addSubview(arrowUpImageView)
         spacerBetweenTables.addSubview(arrowDownImageView)
