@@ -7,10 +7,12 @@
 
 import UIKit
 
-
+// Extension with static identifier for any cell inherited from UITableViewCell class
+                                        
 extension UITableViewCell {
     
     static var identifier: String {
         String(describing: self)
     }
+    
 }
