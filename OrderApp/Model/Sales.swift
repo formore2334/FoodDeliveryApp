@@ -23,7 +23,7 @@ struct Sale: Identifiable, Decodable {
 extension Sale {
     
     private enum CodingKeys: String, CodingKey {
-        case id, previewImageURL, backgroundImageURL, title, textHeadline, textDescription
+        case id, previewImageURL, backgroundImageURL, title, textHeadline, textDescription, menuItemsID
     }
     
     init(from decoder: Decoder) throws {
@@ -34,6 +34,8 @@ extension Sale {
         title = try container.decode(String.self, forKey: .title)
         textHeadline = try container.decode(String.self, forKey: .textHeadline)
         textDescription = try container.decode(String.self, forKey: .textDescription)
+        menuItemsID = try container.decode([Int]?.self, forKey: .menuItemsID)
+        
         
         // Replace special formatting characters
         
