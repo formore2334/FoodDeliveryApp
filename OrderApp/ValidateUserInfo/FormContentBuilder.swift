@@ -109,8 +109,8 @@ final class FormContentBuilder {
             if couponsManager.appliedCouponIsValid {
                 
                 // Set needs total sum values
-                let newTotalSum = couponsManager.calculatedDiscountString
-                let totalSum = "\(basket.totalSum)"
+                let newTotalSum = couponsManager.calculatedDiscountString + "$"
+                let totalSum = "\(basket.totalSum)$"
                 let oldTotalSum = totalSum.crossOutTheLine()
                 
                 return (newTotalSum, oldTotalSum)

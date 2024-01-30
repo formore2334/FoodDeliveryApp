@@ -39,13 +39,13 @@ final class CheckoutListViewController: UIViewController {
         return label
     }()
     
-    private lazy var totalSumLabel: UILabel = {
+    private lazy var oldPriceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
         return label
     }()
     
-    private lazy var discountLabel: UILabel = {
+    private lazy var newPriceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 25)
         return label
@@ -83,6 +83,8 @@ final class CheckoutListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        view.backgroundColor = .white
         
         // Sets color of navigation items to black
         navigationController?.navigationBar.tintColor = .black
@@ -130,11 +132,11 @@ final class CheckoutListViewController: UIViewController {
     // Config final label with total sum for pay
     private func configureTotalSum() {
         contentView.addSubview(totalTitleLabel)
-        contentView.addSubview(totalSumLabel)
-        contentView.addSubview(discountLabel)
+        contentView.addSubview(oldPriceLabel)
+        contentView.addSubview(newPriceLabel)
         contentView.addSubview(noteLabel)
         
-        discountLabel.text = "\(basket.totalSum)$"
+        newPriceLabel.text = "\(basket.totalSum)$"
         
         setTotalInfoConstraints()
     }
@@ -211,12 +213,14 @@ extension CheckoutListViewController: UITableViewDataSource {
                 // Validate coupon text field
                 // Returns final price and old price
             case .coupon:
-                if let (calculatedDiscount, crossedTotalSum) = self.formContentBuilder.updateUserInfo(text: text, for: .coupon, with: self.basket) {
-                    self.discountLabel.text = calculatedDiscount
-                    self.totalSumLabel.attributedText = crossedTotalSum as? NSAttributedString
+                if let (newTotalSum, oldTotalSum) = self.formContentBuilder.updateUserInfo(text: text,
+                                                                                           for: .coupon,
+                                                                                           with: self.basket) {
+                    self.newPriceLabel.text = newTotalSum
+                    self.oldPriceLabel.attributedText = oldTotalSum as? NSAttributedString
                 } else {
-                    self.discountLabel.text = "\(self.basket.totalSum)"
-                    self.totalSumLabel.text = ""
+                    self.newPriceLabel.text = "\(self.basket.totalSum)$"
+                    self.oldPriceLabel.text = ""
                 }
                 
             }
@@ -306,8 +310,8 @@ private extension CheckoutListViewController {
     //Total info constraints
     func setTotalInfoConstraints() {
         totalTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        totalSumLabel.translatesAutoresizingMaskIntoConstraints = false
-        discountLabel.translatesAutoresizingMaskIntoConstraints = false
+        oldPriceLabel.translatesAutoresizingMaskIntoConstraints = false
+        newPriceLabel.translatesAutoresizingMaskIntoConstraints = false
         noteLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -315,14 +319,14 @@ private extension CheckoutListViewController {
             totalTitleLabel.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 20),
             totalTitleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             
-            discountLabel.heightAnchor.constraint(equalToConstant: 25),
-            discountLabel.centerYAnchor.constraint(equalTo: totalTitleLabel.centerYAnchor),
-            discountLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
+            newPriceLabel.heightAnchor.constraint(equalToConstant: 25),
+            newPriceLabel.centerYAnchor.constraint(equalTo: totalTitleLabel.centerYAnchor),
+            newPriceLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
             
-            totalSumLabel.heightAnchor.constraint(equalToConstant: 25),
-            totalSumLabel.leadingAnchor.constraint(equalTo: discountLabel.trailingAnchor, constant: -16),
-            totalSumLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
-            totalSumLabel.bottomAnchor.constraint(equalTo: discountLabel.topAnchor),
+            oldPriceLabel.heightAnchor.constraint(equalToConstant: 25),
+            oldPriceLabel.leadingAnchor.constraint(equalTo: newPriceLabel.trailingAnchor, constant: -16),
+            oldPriceLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
+            oldPriceLabel.bottomAnchor.constraint(equalTo: newPriceLabel.topAnchor),
             
             noteLabel.topAnchor.constraint(equalTo: totalTitleLabel.bottomAnchor, constant: 10),
             noteLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
