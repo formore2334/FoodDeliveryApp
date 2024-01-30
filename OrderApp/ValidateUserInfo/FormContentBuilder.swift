@@ -106,7 +106,7 @@ final class FormContentBuilder {
             couponsManager.applyCoupon(text)
             
             // Checks the returned value
-            if couponsManager.couponIsValid {
+            if couponsManager.appliedCouponIsValid {
                 
                 // Set needs total sum values
                 let newTotalSum = couponsManager.calculatedDiscountString
