@@ -27,7 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, DataDelegate {
         
         let window = UIWindow(windowScene: windowScene)
         
-       
+//       let vc = PayViewController(userInfo: UserInfo(orderNumber: "23", name: "dfs", phone: "433", email: "", address: "", comment: "", coupon: ""), basket: Basket(basketItems: [], basketSpecialItems: []))
 //        let navVC = UINavigationController(rootViewController: vc)
 //        window.rootViewController = navVC
 //        setWindow(window)

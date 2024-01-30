@@ -7,6 +7,9 @@
 
 import UIKit
 
+protocol PaymentManagerDelegate: AnyObject {
+    func payButtonDidPressedTwice()
+}
 
 struct PaymentManager {
     
@@ -21,6 +24,8 @@ struct PaymentManager {
     private var controlButtons = PayViewControlButtons()
     
     private var paymentDataLoader = PaymentDataLoader()
+    
+    weak var delegate: PaymentManagerDelegate?
     
     //MARK: - Computed property
     
@@ -107,6 +112,8 @@ struct PaymentManager {
             
             // When pay button is pressed twice to main container is added last view
         } else if self.billView.superview == nil {
+            
+            self.delegate?.payButtonDidPressedTwice()
             
             self.paymentDetailsView.removeFromSuperview()
             

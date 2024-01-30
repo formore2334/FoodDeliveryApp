@@ -64,6 +64,7 @@ final class PayViewController: UIViewController {
         view.backgroundColor = .systemGray5
         
         paymentManager.setupDelegates(delegate: self)
+        paymentManager.delegate = self
         
         configureVC()
     }
@@ -197,6 +198,14 @@ extension PayViewController: PayViewControlButtonsDelegate {
             self.navigationController?.popToRootViewController(animated: false)
         }
         
+    }
+    
+}
+
+extension PayViewController: PaymentManagerDelegate {
+    
+    func payButtonDidPressedTwice() {
+        self.navigationItem.hidesBackButton = true
     }
     
 }
