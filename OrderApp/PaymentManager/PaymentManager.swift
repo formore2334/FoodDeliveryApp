@@ -22,6 +22,15 @@ struct PaymentManager {
     
     private var paymentDataLoader = PaymentDataLoader()
     
+    //MARK: - Computed property
+    
+    // Return random number in interval 15-60 minutes
+    private var orderWaitingTime: String {
+        let randomNumber = Int.random(in: 3...12) * 5
+        return String(randomNumber)
+    }
+    
+    //MARK: - Methods
     
     // Setup delegates with one method
     func setupDelegates(delegate: PayViewControlButtonsDelegate & ConformButtonDelegate) {
@@ -111,9 +120,10 @@ struct PaymentManager {
                     
                     containerView.addSubview(self.billView)
                     
-                    self.billView.configure(with: userOrder)
+                    self.billView.configure(with: userOrder, orderWaitingTime: orderWaitingTime)
                     self.billView.pinToBounds(to: containerView)
                     
+                    self.sendUserOrder()
                     self.controlButtons.setHomeButton()
                 }
             }
@@ -122,5 +132,55 @@ struct PaymentManager {
         
     }
     
+    
+}
+
+
+private extension PaymentManager {
+    
+    // Print an order to console
+    func sendUserOrder() {
+        guard let userOrder = userOrder else { return }
+        
+        print("*****************************************")
+        print("Order #\(userOrder.userInfo.orderNumber)")
+        
+        // Special menu
+        if !userOrder.basket.basketSpecialItems.isEmpty {
+            print(" ", "Special menu:")
+            
+            for specialBasketItem in userOrder.basket.basketSpecialItems {
+                print(" ", " ", "\(specialBasketItem.discountTitle):")
+                
+                for specialItem in specialBasketItem.specialMenuItems {
+                    print(" ", " ", " ", "- \(specialItem.menuItem.title) - \(specialItem.count)")
+                }
+                
+            }
+            
+        }
+        
+        // Regular menu
+        if !userOrder.basket.basketItems.isEmpty {
+            print(" ", "Regular menu:")
+            for regularMenuItem in userOrder.basket.basketItems {
+                print(" ", " ", "- \(regularMenuItem.menuItem.title) - \(regularMenuItem.count)")
+            }
+            
+        }
+        
+        print("Order should delivered for \(orderWaitingTime) minutes")
+        
+        // User info
+        print("Customer information:")
+        print("Name: \(userOrder.userInfo.name)")
+        print("Phone: \(userOrder.userInfo.phone)")
+        print("Address: \(userOrder.userInfo.address)")
+        print("Comment: \(userOrder.userInfo.comment)")
+        print("Email: \(userOrder.userInfo.email)")
+        print("Coupon: \(userOrder.userInfo.coupon)")
+        
+        print("*****************************************")
+    }
     
 }

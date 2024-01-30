@@ -156,8 +156,8 @@ extension PayViewController: ConformButtonDelegate {
     func didTapButton() {
         
         // Delay simulates the operation of the request
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
-            self.paymentManager.configurePayControlButton()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) { [weak self] in
+            self?.paymentManager.configurePayControlButton()
         }
         
     }
@@ -169,8 +169,8 @@ extension PayViewController: PayViewControlButtonsDelegate {
     func backButtonDidTap() {
         
         // Delay simulates the operation of the request
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.navigationController?.popViewController(animated: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+            self?.navigationController?.popViewController(animated: true)
         }
         
     }
@@ -178,7 +178,9 @@ extension PayViewController: PayViewControlButtonsDelegate {
     func payButtonDidTap() {
         
         // Delay simulates the operation of the request
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+            guard let self = self else { return }
+            
             self.paymentManager.handlePayButtonTap(containerView: self.paymentInfoContainer)
         }
         
@@ -187,7 +189,9 @@ extension PayViewController: PayViewControlButtonsDelegate {
     func homeButtonDidTap() {
         
         // Delay just for good appearance
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+            guard let self = self else { return }
+            
             self.paymentManager.sendNotification()
             self.tabBarController?.selectedIndex = 0
             self.navigationController?.popToRootViewController(animated: false)

@@ -40,14 +40,6 @@ final class BillView: UIView {
         label.textColor = .white
         return label
     }()
-    
-    // MARK: - Computed property's
-    
-    // Return random number in interval 15-60 minutes
-    private var orderWaitingTime: String {
-        let randomNumber = Int.random(in: 3...12) * 5
-        return String(randomNumber)
-    }
 
     // MARK: - Init
     
@@ -75,7 +67,7 @@ final class BillView: UIView {
     
     //MARK: - Configurations
     
-    func configure(with userOrder: UserOrder) {
+    func configure(with userOrder: UserOrder, orderWaitingTime: String) {
         thankYouLabel.text = userOrder.userInfo.name + "," + " " + "Thank you for your order"
         waitingLabel.text = "Your order #\(userOrder.userInfo.orderNumber) will be delivered within \(orderWaitingTime) minutes"
         emailLabel.text = "We send bill on your Email:" + " " + userOrder.userInfo.email
