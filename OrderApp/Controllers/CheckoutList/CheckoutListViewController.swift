@@ -32,7 +32,7 @@ final class CheckoutListViewController: UIViewController {
         return scrollView
     }()
     
-    private lazy var totalTitleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Total:"
         label.font = UIFont.boldSystemFont(ofSize: 25)
@@ -131,7 +131,7 @@ final class CheckoutListViewController: UIViewController {
     
     // Config final label with total sum for pay
     private func configureTotalSum() {
-        contentView.addSubview(totalTitleLabel)
+        contentView.addSubview(titleLabel)
         contentView.addSubview(oldPriceLabel)
         contentView.addSubview(newPriceLabel)
         contentView.addSubview(noteLabel)
@@ -309,18 +309,18 @@ private extension CheckoutListViewController {
     
     //Total info constraints
     func setTotalInfoConstraints() {
-        totalTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         oldPriceLabel.translatesAutoresizingMaskIntoConstraints = false
         newPriceLabel.translatesAutoresizingMaskIntoConstraints = false
         noteLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            totalTitleLabel.heightAnchor.constraint(equalToConstant: 50),
-            totalTitleLabel.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 20),
-            totalTitleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            titleLabel.heightAnchor.constraint(equalToConstant: 50),
+            titleLabel.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 20),
+            titleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             
             newPriceLabel.heightAnchor.constraint(equalToConstant: 25),
-            newPriceLabel.centerYAnchor.constraint(equalTo: totalTitleLabel.centerYAnchor),
+            newPriceLabel.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
             newPriceLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
             
             oldPriceLabel.heightAnchor.constraint(equalToConstant: 25),
@@ -328,7 +328,7 @@ private extension CheckoutListViewController {
             oldPriceLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
             oldPriceLabel.bottomAnchor.constraint(equalTo: newPriceLabel.topAnchor),
             
-            noteLabel.topAnchor.constraint(equalTo: totalTitleLabel.bottomAnchor, constant: 10),
+            noteLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
             noteLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
             noteLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -50),
             noteLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -100),
