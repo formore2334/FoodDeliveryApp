@@ -74,12 +74,6 @@ final class PayViewController: UIViewController {
       
         // Sets color of navigation items to black
         navigationController?.navigationBar.tintColor = .black
-        
-        // Color set to .white because after exit to home screen
-        // Navigation color for Sales group is changed
-        UIBarButtonItem.appearance()
-            .setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white],
-                                                            for: .normal)
     }
     
     // Change layout with device orientation

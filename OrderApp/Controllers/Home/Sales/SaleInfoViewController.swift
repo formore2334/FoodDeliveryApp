@@ -97,11 +97,11 @@ final class SaleInfoViewController: UIViewController, Coordinating {
                                                name: .backToHome,
                                                object: nil)
         
-        // Sets color of navigation items to white
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        navigationController?.navigationBar.tintColor = .white
+        // Sets color of navigation items to black
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        navigationController?.navigationBar.tintColor = .black
         UIBarButtonItem.appearance()
-            .setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white],
+            .setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black],
                                                             for: .normal)
         
         // Checks availability of current sale
@@ -371,7 +371,7 @@ private extension SaleInfoViewController {
         
         NSLayoutConstraint.activate([
             
-            backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             backgroundImageView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
