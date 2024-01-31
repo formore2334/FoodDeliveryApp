@@ -89,15 +89,6 @@ final class ErrorScreenViewController: UIViewController {
     
     // MARK: - Init
     
-    init() {
-        super.init(nibName: nil, bundle: nil)
-        print("Error VC init")
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -115,7 +106,6 @@ final class ErrorScreenViewController: UIViewController {
     deinit {
         NotificationCenter.default.removeObserver(self)
         loadinglabel.stopBlinkingAnimation()
-        print("Error VC deinit")
     }
     
     // MARK: - Configurations

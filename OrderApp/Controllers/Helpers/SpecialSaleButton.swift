@@ -25,7 +25,6 @@ final class SpecialSaleButton: UIButton {
     
     deinit {
         stopPulsatingAnimation()
-        print("Deinit")
     }
 
     override func layoutSubviews() {

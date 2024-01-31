@@ -19,11 +19,6 @@ final class MainCoordinator: Coordinator {
     
     init(tabBarController: UITabBarController) {
         self.tabBarController = tabBarController
-        print("TabBar init")
-    }
-    
-    deinit {
-    print("TabBar deinit")
     }
     
     // MARK: - Methods
