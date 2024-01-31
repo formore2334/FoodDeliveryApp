@@ -201,13 +201,25 @@ final class ErrorScreenViewController: UIViewController {
     
     // Handle notification
     @objc private func handleErrorChange(notification: Notification) {
+        
         if let error = notification.object as? Error {
             
-            // Pass error description from ErrorManager
-            showAlert(message: error.localizedDescription)
+            // Dismiss any existing alert
+            if let presentedAlert = self.presentedViewController as? UIAlertController {
+                presentedAlert.dismiss(animated: true, completion: { [weak self] in
+                    
+                    // Show the new alert after dismissing the existing one
+                    self?.showAlert(message: error.localizedDescription)
+                })
+            } else {
+                
+                // Show the new alert if no existing alert is being presented
+                self.showAlert(message: error.localizedDescription)
+            }
         }
         
     }
+
 
 }
 
