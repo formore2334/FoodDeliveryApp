@@ -27,6 +27,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, DataDelegate {
         
         let window = UIWindow(windowScene: windowScene)
         
+        errorManager.dataDelegate = self
+        
         // Checks to loading error
         if errorManager.error != nil {
             self.setErrorScreenViewController(to: window)
