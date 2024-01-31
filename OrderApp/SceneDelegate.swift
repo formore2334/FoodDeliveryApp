@@ -27,21 +27,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, DataDelegate {
         
         let window = UIWindow(windowScene: windowScene)
         
-//       let vc = PayViewController(userInfo: UserInfo(orderNumber: "23", name: "dfs", phone: "433", email: "", address: "", comment: "", coupon: ""), basket: Basket(basketItems: [], basketSpecialItems: []))
-//        let navVC = UINavigationController(rootViewController: vc)
-//        window.rootViewController = navVC
-//        setWindow(window)
-        //errorManager.dataDelegate = self
-        self.setTabBarController(to: window)
-//        if errorManager.error != nil {
-//            self.setErrorScreenViewController(to: window)
-//        } else {
-//            self.setTabBarController(to: window)
-//        }
+        // Checks to loading error
+        if errorManager.error != nil {
+            self.setErrorScreenViewController(to: window)
+        } else {
+            self.setTabBarController(to: window)
+        }
         
     }
     
-    
+    // Setup tab bar contoller in window
     func didReceiveValidData() {
         guard let window = window else { return }
         
@@ -51,6 +46,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, DataDelegate {
         
     }
     
+    // Setup error controller in window
     func didReceiveInvalidData() {
         guard let window = window else { return }
         
@@ -99,26 +95,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, DataDelegate {
         window.makeKeyAndVisible()
         self.window = window
     }
-
-//        let window = UIWindow(windowScene: windowScene)
-//
-//
-//        let tabBarController = UITabBarController()
-//        coordinator = MainCoordinator(tabBarController: tabBarController)
-//        coordinator?.start()
-//
-////        let vc = PayViewController(userInfo: UserInfo(orderNumber: "", name: "Mike", phone: "123456789", email: "heloeverybodyimfine@gmail.com", address: "st. St. Patrick, b.74, 221", comment: "", coupon: ""), basket: Basket(basketItems: []))
-//
-//        let vc = ErrorScreenViewController()
-//
-//        //let vc = CheckoutListViewController(basket: Basket(basketItems: Basket.mockData.basketItems))
-//        let navVC = UINavigationController(rootViewController: vc)
-//
-//        window.rootViewController = navVC
-//        window.backgroundColor = .white
-//        window.makeKeyAndVisible()
-//        self.window = window
-//    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
