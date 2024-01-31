@@ -51,10 +51,9 @@ final class CheckoutListViewController: UIViewController {
         return label
     }()
     
-    // This label needs just for present static info for developers
     private lazy var noteLabel: UILabel = {
         let label = UILabel()
-        label.text = "Note: If you enter correctly all information, click on comment field to continue, because i'm doing this table validation without Combine -_-"
+        label.text = "Note: Make sure you entered all information correctly.\nThis determines how quickly the order will be delivered."
         label.numberOfLines = 3
         label.font = UIFont.preferredFont(forTextStyle: .caption1)
         label.textColor = .gray
@@ -180,28 +179,28 @@ extension CheckoutListViewController: UITableViewDataSource {
                 // Returns error for error label in this vc
             case .name:
                 if let (_, errorText) = self.formContentBuilder.updateUserInfo(text: text, for: .name) {
-                    cell.errorLabel?.text = errorText as? String
+                    cell.configureErrorLabel(errorText as? String ?? "")
                 }
                 
                 // Validate phone text field
                 // Returns error for error label in this vc
             case .phone:
                 if let (_, errorText) = self.formContentBuilder.updateUserInfo(text: text, for: .phone) {
-                    cell.errorLabel?.text = errorText as? String
+                    cell.configureErrorLabel(errorText as? String ?? "")
                 }
                 
                 // Validate email text field
                 // Returns error for error label in this vc
             case .email:
                 if let (_, errorText) = self.formContentBuilder.updateUserInfo(text: text, for: .email) {
-                    cell.errorLabel?.text = errorText as? String
+                    cell.configureErrorLabel(errorText as? String ?? "")
                 }
                 
                 // Validate address text field
                 // Returns error for error label in this vc
             case .address:
                 if let (_, errorText) = self.formContentBuilder.updateUserInfo(text: text, for: .address) {
-                    cell.errorLabel?.text = errorText as? String
+                    cell.configureErrorLabel(errorText as? String ?? "")
                 }
                 
                 // Validate comment text field

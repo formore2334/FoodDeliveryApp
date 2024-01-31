@@ -9,10 +9,10 @@ import UIKit
 
 final class CheckoutListTableViewCell: UITableViewCell {
     
-    private var textField = UITextField()
+    private let textField = UITextField()
     
     // Configurates from master vc
-    weak var errorLabel: UILabel? = {
+     private lazy var errorLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .caption1)
         label.textColor = .red
@@ -51,9 +51,7 @@ final class CheckoutListTableViewCell: UITableViewCell {
         
         stackView.addArrangedSubview(textField)
         
-        if let errorLabel = errorLabel {
-            stackView.addArrangedSubview(errorLabel)
-        }
+        stackView.addArrangedSubview(errorLabel)
         
         textField.delegate = self
     }
@@ -64,12 +62,19 @@ final class CheckoutListTableViewCell: UITableViewCell {
         textField.placeholder = checkoutListItem.rawValue
     }
     
+    func configureErrorLabel(_ errorText: String) {
+        errorLabel.text = errorText
+    }
+    
 }
 
 // MARK: - Text Delegate
 
 extension CheckoutListTableViewCell: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        didEnterText?(textField.text ?? "")
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if let text = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) {
+            didEnterText?(text)
+        }
+        return true
     }
 }

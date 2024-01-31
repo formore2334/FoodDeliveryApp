@@ -19,7 +19,7 @@ enum CheckoutList: String {
 
 enum CheckoutListError: String, CaseIterable, Error {
     case name = "Name is invalid"
-    case phone = "Invalid phone number"
+    case phone = "Invalid phone number. Number must be 10 characters long"
     case email = "Missing @ char"
     case address = "Address should be higher then 6 chars"
     case coupon = "Coupon not valid"
