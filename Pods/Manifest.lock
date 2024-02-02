@@ -1,0 +1,20 @@
+PODS:
+  - FLAnimatedImage (1.0.17)
+  - ReachabilitySwift (5.0.0)
+
+DEPENDENCIES:
+  - FLAnimatedImage
+  - ReachabilitySwift
+
+SPEC REPOS:
+  trunk:
+    - FLAnimatedImage
+    - ReachabilitySwift
+
+SPEC CHECKSUMS:
+  FLAnimatedImage: bbf914596368867157cc71b38a8ec834b3eeb32b
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
+
+PODFILE CHECKSUM: ebc24c61413e4daff683712e3351a4161c4c077a
+
+COCOAPODS: 1.12.1

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		199623295428A132911EDD87 /* Pods_OrderApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4496BE6F8F281ABBF56E2F7 /* Pods_OrderApp.framework */; };
 		450219B12B15C73A00347211 /* UICollectionView+Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450219B02B15C73A00347211 /* UICollectionView+Identifier.swift */; };
 		450219B32B15C83300347211 /* UITableViewCell+Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450219B22B15C83300347211 /* UITableViewCell+Identifier.swift */; };
 		450219B92B15D42400347211 /* UITextField+Validate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450219B82B15D42300347211 /* UITextField+Validate.swift */; };
@@ -88,9 +87,11 @@
 		45DEED642AE00C0E00CB6439 /* SaleInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DEED632AE00C0D00CB6439 /* SaleInfoViewController.swift */; };
 		45F9A1C22B614C7F00DEE4EC /* QuickMenuCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F9A1C12B614C7F00DEE4EC /* QuickMenuCollectionViewController.swift */; };
 		45FF89292ADEC532006FE6EC /* MenuCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FF89282ADEC532006FE6EC /* MenuCategoryCollectionViewCell.swift */; };
+		864F462844CB92F5400939C7 /* Pods_WelmsDelivery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63AF687BC170DF6E7C4E2A47 /* Pods_WelmsDelivery.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		29C53DC8EF13286049E1141C /* Pods-WelmsDelivery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WelmsDelivery.release.xcconfig"; path = "Target Support Files/Pods-WelmsDelivery/Pods-WelmsDelivery.release.xcconfig"; sourceTree = "<group>"; };
 		2CB85B2BD0C2F861577AF6B3 /* Pods-OrderApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrderApp.debug.xcconfig"; path = "Target Support Files/Pods-OrderApp/Pods-OrderApp.debug.xcconfig"; sourceTree = "<group>"; };
 		450219B02B15C73A00347211 /* UICollectionView+Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Identifier.swift"; sourceTree = "<group>"; };
 		450219B22B15C83300347211 /* UITableViewCell+Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Identifier.swift"; sourceTree = "<group>"; };
@@ -119,7 +120,7 @@
 		4542F6BD2B2A047700F061DF /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		4542F6BF2B2A05F400F061DF /* specialMenuItemsData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = specialMenuItemsData.json; sourceTree = "<group>"; };
 		4546A5212AD9A67A00A850A8 /* QuickMenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMenuCollectionViewCell.swift; sourceTree = "<group>"; };
-		454FBF262AD949E9001E75EB /* OrderApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrderApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		454FBF262AD949E9001E75EB /* WelmsDelivery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WelmsDelivery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		454FBF292AD949E9001E75EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		454FBF2B2AD949E9001E75EB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		454FBF302AD949E9001E75EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -175,8 +176,9 @@
 		45DEED632AE00C0D00CB6439 /* SaleInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleInfoViewController.swift; sourceTree = "<group>"; };
 		45F9A1C12B614C7F00DEE4EC /* QuickMenuCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickMenuCollectionViewController.swift; sourceTree = "<group>"; };
 		45FF89282ADEC532006FE6EC /* MenuCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		4CA34034115ACD1E7AE6433A /* Pods-WelmsDelivery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WelmsDelivery.debug.xcconfig"; path = "Target Support Files/Pods-WelmsDelivery/Pods-WelmsDelivery.debug.xcconfig"; sourceTree = "<group>"; };
+		63AF687BC170DF6E7C4E2A47 /* Pods_WelmsDelivery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WelmsDelivery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AB66B8A76BFA192CA63C07B /* Pods-OrderApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrderApp.release.xcconfig"; path = "Target Support Files/Pods-OrderApp/Pods-OrderApp.release.xcconfig"; sourceTree = "<group>"; };
-		E4496BE6F8F281ABBF56E2F7 /* Pods_OrderApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OrderApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,7 +186,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				199623295428A132911EDD87 /* Pods_OrderApp.framework in Frameworks */,
+				864F462844CB92F5400939C7 /* Pods_WelmsDelivery.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,7 +240,7 @@
 		454FBF1D2AD949E9001E75EB = {
 			isa = PBXGroup;
 			children = (
-				454FBF282AD949E9001E75EB /* OrderApp */,
+				454FBF282AD949E9001E75EB /* WelmsDelivery */,
 				454FBF272AD949E9001E75EB /* Products */,
 				D69C2C5D7C501FB1AA903CA8 /* Pods */,
 				CB3FD5E22BD577BCD41B7968 /* Frameworks */,
@@ -248,12 +250,12 @@
 		454FBF272AD949E9001E75EB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				454FBF262AD949E9001E75EB /* OrderApp.app */,
+				454FBF262AD949E9001E75EB /* WelmsDelivery.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		454FBF282AD949E9001E75EB /* OrderApp */ = {
+		454FBF282AD949E9001E75EB /* WelmsDelivery */ = {
 			isa = PBXGroup;
 			children = (
 				454FBF292AD949E9001E75EB /* AppDelegate.swift */,
@@ -275,7 +277,7 @@
 				454FBF342AD949F5001E75EB /* LaunchScreen.storyboard */,
 				454FBF372AD949F5001E75EB /* Info.plist */,
 			);
-			path = OrderApp;
+			path = WelmsDelivery;
 			sourceTree = "<group>";
 		};
 		454FBF3F2AD9513E001E75EB /* Model */ = {
@@ -501,7 +503,7 @@
 			isa = PBXGroup;
 			children = (
 				45413D4B2B3064CB00D38B70 /* FLAnimatedImage.framework */,
-				E4496BE6F8F281ABBF56E2F7 /* Pods_OrderApp.framework */,
+				63AF687BC170DF6E7C4E2A47 /* Pods_WelmsDelivery.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -511,6 +513,8 @@
 			children = (
 				2CB85B2BD0C2F861577AF6B3 /* Pods-OrderApp.debug.xcconfig */,
 				6AB66B8A76BFA192CA63C07B /* Pods-OrderApp.release.xcconfig */,
+				4CA34034115ACD1E7AE6433A /* Pods-WelmsDelivery.debug.xcconfig */,
+				29C53DC8EF13286049E1141C /* Pods-WelmsDelivery.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -518,9 +522,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		454FBF252AD949E9001E75EB /* OrderApp */ = {
+		454FBF252AD949E9001E75EB /* WelmsDelivery */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 454FBF3A2AD949F5001E75EB /* Build configuration list for PBXNativeTarget "OrderApp" */;
+			buildConfigurationList = 454FBF3A2AD949F5001E75EB /* Build configuration list for PBXNativeTarget "WelmsDelivery" */;
 			buildPhases = (
 				D852E142561E6F7CB5F273F5 /* [CP] Check Pods Manifest.lock */,
 				454FBF222AD949E9001E75EB /* Sources */,
@@ -532,9 +536,9 @@
 			);
 			dependencies = (
 			);
-			name = OrderApp;
+			name = WelmsDelivery;
 			productName = OrderApp;
-			productReference = 454FBF262AD949E9001E75EB /* OrderApp.app */;
+			productReference = 454FBF262AD949E9001E75EB /* WelmsDelivery.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -552,7 +556,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 454FBF212AD949E9001E75EB /* Build configuration list for PBXProject "OrderApp" */;
+			buildConfigurationList = 454FBF212AD949E9001E75EB /* Build configuration list for PBXProject "WelmsDelivery" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -565,7 +569,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				454FBF252AD949E9001E75EB /* OrderApp */,
+				454FBF252AD949E9001E75EB /* WelmsDelivery */,
 			);
 		};
 /* End PBXProject section */
@@ -604,7 +608,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OrderApp-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-WelmsDelivery-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -617,15 +621,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OrderApp/Pods-OrderApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-WelmsDelivery/Pods-WelmsDelivery-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OrderApp/Pods-OrderApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-WelmsDelivery/Pods-WelmsDelivery-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OrderApp/Pods-OrderApp-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WelmsDelivery/Pods-WelmsDelivery-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -848,7 +852,7 @@
 		};
 		454FBF3B2AD949F5001E75EB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2CB85B2BD0C2F861577AF6B3 /* Pods-OrderApp.debug.xcconfig */;
+			baseConfigurationReference = 4CA34034115ACD1E7AE6433A /* Pods-WelmsDelivery.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -856,7 +860,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = K28R8TH2JY;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = OrderApp/Info.plist;
+				INFOPLIST_FILE = WelmsDelivery/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -867,7 +871,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = one.OrderApp;
+				PRODUCT_BUNDLE_IDENTIFIER = one.WelmsDelivery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -877,7 +881,7 @@
 		};
 		454FBF3C2AD949F5001E75EB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6AB66B8A76BFA192CA63C07B /* Pods-OrderApp.release.xcconfig */;
+			baseConfigurationReference = 29C53DC8EF13286049E1141C /* Pods-WelmsDelivery.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -885,7 +889,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = K28R8TH2JY;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = OrderApp/Info.plist;
+				INFOPLIST_FILE = WelmsDelivery/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -896,7 +900,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = one.OrderApp;
+				PRODUCT_BUNDLE_IDENTIFIER = one.WelmsDelivery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -907,7 +911,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		454FBF212AD949E9001E75EB /* Build configuration list for PBXProject "OrderApp" */ = {
+		454FBF212AD949E9001E75EB /* Build configuration list for PBXProject "WelmsDelivery" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				454FBF382AD949F5001E75EB /* Debug */,
@@ -916,7 +920,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		454FBF3A2AD949F5001E75EB /* Build configuration list for PBXNativeTarget "OrderApp" */ = {
+		454FBF3A2AD949F5001E75EB /* Build configuration list for PBXNativeTarget "WelmsDelivery" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				454FBF3B2AD949F5001E75EB /* Debug */,
