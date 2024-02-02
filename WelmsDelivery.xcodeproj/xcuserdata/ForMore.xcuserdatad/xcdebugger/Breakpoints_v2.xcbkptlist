@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "2480D62D-0ED7-4A65-ACD9-8CD31B3EE566"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A8AED297-8109-4D75-A159-75C93D637254"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OrderApp/Controllers/Bascket/BasketViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "BasketViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "A8AED297-8109-4D75-A159-75C93D637254 - 64f021c305a2129a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OrderApp.BasketViewController.basket.getter : OrderApp.Basket"
+                  moduleName = "OrderApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ForMore/Documents/Dev/Swift/UIKit/OrderApp/OrderApp/Controllers/Bascket/BasketViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "120">
+               </Location>
+               <Location
+                  uuid = "A8AED297-8109-4D75-A159-75C93D637254 - 18e3cf9795816696"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OrderApp.BasketViewController.basket.setter : OrderApp.Basket"
+                  moduleName = "OrderApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ForMore/Documents/Dev/Swift/UIKit/OrderApp/OrderApp/Controllers/Bascket/BasketViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "169">
+               </Location>
+               <Location
+                  uuid = "A8AED297-8109-4D75-A159-75C93D637254 - d0c1c8034226dfa5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OrderApp.BasketViewController.basket.modify : OrderApp.Basket"
+                  moduleName = "OrderApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ForMore/Documents/Dev/Swift/UIKit/OrderApp/OrderApp/Controllers/Bascket/BasketViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "A8AED297-8109-4D75-A159-75C93D637254 - dcb1736e8f960596"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OrderApp.BasketViewController.basket.modify : OrderApp.Basket with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "OrderApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ForMore/Documents/Dev/Swift/UIKit/OrderApp/OrderApp/Controllers/Bascket/BasketViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "15">
+               </Location>
+               <Location
+                  uuid = "A8AED297-8109-4D75-A159-75C93D637254 - d4d045b51b602b87"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OrderApp.BasketViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; OrderApp.BasketViewController"
+                  moduleName = "OrderApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ForMore/Documents/Dev/Swift/UIKit/OrderApp/OrderApp/Controllers/Bascket/BasketViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "212">
+               </Location>
+               <Location
+                  uuid = "A8AED297-8109-4D75-A159-75C93D637254 - fea6554345b6653b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OrderApp.BasketViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;OrderApp.BasketViewController&gt;"
+                  moduleName = "OrderApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ForMore/Documents/Dev/Swift/UIKit/OrderApp/OrderApp/Controllers/Bascket/BasketViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "160">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DFE8FDA2-ED80-4D17-BFBB-67C444E86DC3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OrderApp/Controllers/Bascket/AddToBascketButton.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "addButtonTapped()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7003E7FD-346E-4755-A4D1-57A620086B46"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OrderApp/Controllers/Bascket/AddToBascketButton.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "AddToBascketButton"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "7003E7FD-346E-4755-A4D1-57A620086B46 - a9b39468ad05b74e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OrderApp.AddToBascketButton.coordinator.getter : Swift.Optional&lt;OrderApp.MainCoordinator&gt;"
+                  moduleName = "OrderApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ForMore/Documents/Dev/Swift/UIKit/OrderApp/OrderApp/Controllers/Bascket/AddToBascketButton.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "90">
+               </Location>
+               <Location
+                  uuid = "7003E7FD-346E-4755-A4D1-57A620086B46 - e25cac47a06076ba"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OrderApp.AddToBascketButton.coordinator.setter : Swift.Optional&lt;OrderApp.MainCoordinator&gt;"
+                  moduleName = "OrderApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ForMore/Documents/Dev/Swift/UIKit/OrderApp/OrderApp/Controllers/Bascket/AddToBascketButton.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "116">
+               </Location>
+               <Location
+                  uuid = "7003E7FD-346E-4755-A4D1-57A620086B46 - 3caf0044c2703749"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OrderApp.AddToBascketButton.coordinator.modify : Swift.Optional&lt;OrderApp.MainCoordinator&gt;"
+                  moduleName = "OrderApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ForMore/Documents/Dev/Swift/UIKit/OrderApp/OrderApp/Controllers/Bascket/AddToBascketButton.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "7003E7FD-346E-4755-A4D1-57A620086B46 - a7b62f085aa69e31"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OrderApp.AddToBascketButton.coordinator.modify : Swift.Optional&lt;OrderApp.MainCoordinator&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "OrderApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ForMore/Documents/Dev/Swift/UIKit/OrderApp/OrderApp/Controllers/Bascket/AddToBascketButton.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "15">
+               </Location>
+               <Location
+                  uuid = "7003E7FD-346E-4755-A4D1-57A620086B46 - 5070cefb8fd03dcf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OrderApp.AddToBascketButton.init(frame: __C.CGRect) -&gt; OrderApp.AddToBascketButton"
+                  moduleName = "OrderApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ForMore/Documents/Dev/Swift/UIKit/OrderApp/OrderApp/Controllers/Bascket/AddToBascketButton.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "153">
+               </Location>
+               <Location
+                  uuid = "7003E7FD-346E-4755-A4D1-57A620086B46 - 4f2e4dfddd689cb3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OrderApp.AddToBascketButton.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;OrderApp.AddToBascketButton&gt;"
+                  moduleName = "OrderApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ForMore/Documents/Dev/Swift/UIKit/OrderApp/OrderApp/Controllers/Bascket/AddToBascketButton.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "94">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "533B1262-F809-4CF9-AADC-C85B09985802"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OrderApp/Controllers/MenuItemInfo/DetailInfoViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "DetailInfoViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "533B1262-F809-4CF9-AADC-C85B09985802 - 812dfd27302f215c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OrderApp.DetailInfoViewController.coordinator.getter : Swift.Optional&lt;OrderApp.MainCoordinator&gt;"
+                  moduleName = "OrderApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ForMore/Documents/Dev/Swift/UIKit/OrderApp/OrderApp/Controllers/MenuItemInfo/DetailInfoViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "90">
+               </Location>
+               <Location
+                  uuid = "533B1262-F809-4CF9-AADC-C85B09985802 - ea4c50ca270ce168"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OrderApp.DetailInfoViewController.coordinator.setter : Swift.Optional&lt;OrderApp.MainCoordinator&gt;"
+                  moduleName = "OrderApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ForMore/Documents/Dev/Swift/UIKit/OrderApp/OrderApp/Controllers/MenuItemInfo/DetailInfoViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "116">
+               </Location>
+               <Location
+                  uuid = "533B1262-F809-4CF9-AADC-C85B09985802 - 42a1292f231ca159"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OrderApp.DetailInfoViewController.coordinator.modify : Swift.Optional&lt;OrderApp.MainCoordinator&gt;"
+                  moduleName = "OrderApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ForMore/Documents/Dev/Swift/UIKit/OrderApp/OrderApp/Controllers/MenuItemInfo/DetailInfoViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "533B1262-F809-4CF9-AADC-C85B09985802 - 60002b0cb869cb9b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OrderApp.DetailInfoViewController.coordinator.modify : Swift.Optional&lt;OrderApp.MainCoordinator&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "OrderApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ForMore/Documents/Dev/Swift/UIKit/OrderApp/OrderApp/Controllers/MenuItemInfo/DetailInfoViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "15">
+               </Location>
+               <Location
+                  uuid = "533B1262-F809-4CF9-AADC-C85B09985802 - b6447ade9dcb101"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OrderApp.DetailInfoViewController.init(menuItem: OrderApp.MenuItem, coordinator: Swift.Optional&lt;OrderApp.MainCoordinator&gt;) -&gt; OrderApp.DetailInfoViewController"
+                  moduleName = "OrderApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ForMore/Documents/Dev/Swift/UIKit/OrderApp/OrderApp/Controllers/MenuItemInfo/DetailInfoViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "193">
+               </Location>
+               <Location
+                  uuid = "533B1262-F809-4CF9-AADC-C85B09985802 - a675fab95b838172"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OrderApp.DetailInfoViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;OrderApp.DetailInfoViewController&gt;"
+                  moduleName = "OrderApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ForMore/Documents/Dev/Swift/UIKit/OrderApp/OrderApp/Controllers/MenuItemInfo/DetailInfoViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "116">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0DED12AD-8F2F-49AF-A951-EE9B17BC2F48"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OrderApp/Controllers/Menu/MenuViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "MenuCollectionViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "0DED12AD-8F2F-49AF-A951-EE9B17BC2F48 - 2ece4e1ff7929f6f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OrderApp.MenuViewController.coordinator.getter : Swift.Optional&lt;OrderApp.MainCoordinator&gt;"
+                  moduleName = "OrderApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ForMore/Documents/Dev/Swift/UIKit/OrderApp/OrderApp/Controllers/Menu/MenuViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "90">
+               </Location>
+               <Location
+                  uuid = "0DED12AD-8F2F-49AF-A951-EE9B17BC2F48 - 7b214626fabcdf7b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OrderApp.MenuViewController.coordinator.setter : Swift.Optional&lt;OrderApp.MainCoordinator&gt;"
+                  moduleName = "OrderApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ForMore/Documents/Dev/Swift/UIKit/OrderApp/OrderApp/Controllers/Menu/MenuViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "116">
+               </Location>
+               <Location
+                  uuid = "0DED12AD-8F2F-49AF-A951-EE9B17BC2F48 - c1f2da2b18cc1f6a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OrderApp.MenuViewController.coordinator.modify : Swift.Optional&lt;OrderApp.MainCoordinator&gt;"
+                  moduleName = "OrderApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ForMore/Documents/Dev/Swift/UIKit/OrderApp/OrderApp/Controllers/Menu/MenuViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "0DED12AD-8F2F-49AF-A951-EE9B17BC2F48 - 1e75fa6d8e52d8f2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OrderApp.MenuViewController.coordinator.modify : Swift.Optional&lt;OrderApp.MainCoordinator&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "OrderApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ForMore/Documents/Dev/Swift/UIKit/OrderApp/OrderApp/Controllers/Menu/MenuViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "15">
+               </Location>
+               <Location
+                  uuid = "0DED12AD-8F2F-49AF-A951-EE9B17BC2F48 - 6cad94916692bc34"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OrderApp.MenuViewController.init() -&gt; OrderApp.MenuViewController"
+                  moduleName = "OrderApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ForMore/Documents/Dev/Swift/UIKit/OrderApp/OrderApp/Controllers/Menu/MenuViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  uuid = "0DED12AD-8F2F-49AF-A951-EE9B17BC2F48 - 858f4cbb89976ead"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "OrderApp.MenuViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;OrderApp.MenuViewController&gt;"
+                  moduleName = "OrderApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ForMore/Documents/Dev/Swift/UIKit/OrderApp/OrderApp/Controllers/Menu/MenuViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "106">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
