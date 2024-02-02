@@ -849,6 +849,8 @@
 				DEVELOPMENT_TEAM = K28R8TH2JY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WelmsDelivery/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Welm's Delivery";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -877,6 +879,8 @@
 				DEVELOPMENT_TEAM = K28R8TH2JY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WelmsDelivery/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Welm's Delivery";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
