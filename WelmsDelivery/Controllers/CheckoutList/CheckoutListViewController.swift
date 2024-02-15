@@ -76,6 +76,7 @@ final class CheckoutListViewController: UIViewController {
         
         configureLogo()
         configureVC()
+        setGestureRecognizer()
         
         setCustomButton()
     }
@@ -138,6 +139,18 @@ final class CheckoutListViewController: UIViewController {
         newPriceLabel.text = "\(basket.totalSum)$"
         
         setTotalInfoConstraints()
+    }
+    
+    // Setup gesture which cancels touches in view
+    private func setGestureRecognizer() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    // Stop editing & hide keyboard
+    @objc func hideKeyboard() {
+        view.endEditing(true)
     }
    
 }
