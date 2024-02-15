@@ -23,7 +23,7 @@ struct BasketSpecialItem {
         var count: Int
     }
     
-    // Returnes total sum of all special items
+    // Returns total sum of all special items
     var totalSum: Double {
         let specialItemsSum = specialMenuItems.reduce(0.0) { result, specialItem in
             return result + (specialItem.menuItem.newPrice * Double(specialItem.count))
@@ -38,13 +38,13 @@ struct Basket {
     var basketItems: [BasketItem]
     var basketSpecialItems: [BasketSpecialItem]
     
-    // Returnes total count of basket items & basket special items
+    // Returns total count of basket items & basket special items
     var totalCount: Int {
         let totalCount = (basketItems.reduce(0) { $0 + $1.count }) + (basketSpecialItems.count)
         return totalCount
     }
     
-    // Returnes total sum of basket items + basket special items
+    // Returns total sum of basket items + basket special items
     var totalSum: Double {
         
         // Finds regular basket menuItem's sum of price
