@@ -42,28 +42,28 @@ You can check all the possibilities live here:
 
 The application greets you with a start animation. The user sees this animation twice: when entering the application and after returning from the final screen.
 
-<img src="https://github.com/formore2334/OrderAppGitTest/blob/main/README_assets/startAnimation.gif?raw=true" width="150" height="290">
+<img src="https://github.com/formore2334/WelmsDelivery/blob/main/README_assets/startAnimation.gif?raw=true" width="150" height="290">
 
 ### Bad data response
 
 Imagine bad data response when the user launch application. This case shows similar behaviour after a few seconds of running the application.
 
-<img src="https://github.com/formore2334/OrderAppGitTest/blob/main/README_assets/errorScreen.gif?raw=true" width="150" height="290">
+<img src="https://github.com/formore2334/WelmsDelivery/blob/main/README_assets/errorScreen.gif?raw=true" width="150" height="290">
 
 ### Text validation
 
 This user info form comprises of UITableView where each cell is a separate field for entering user data. Also this table have possibility of entering coupon key word to validate final discount price.
 
-<img src="https://github.com/formore2334/OrderAppGitTest/blob/main/README_assets/textValidation.gif?raw=true" width="150" height="290">
+<img src="https://github.com/formore2334/WelmsDelivery/blob/main/README_assets/textValidation.gif?raw=true" width="150" height="290">
 
 ### Different menu groups
 
 Handling of menu groups is a big part of project. Each menu item can be “special”, this depends only on the wishes of the customer.
 If menu item is special user sees star next to it, also next in hierarchy controller have “special button” which is only visible for “special” group. And finally all special and regular items are displayed in basket in separate tables 
 
-<div style="display: flex;">
-  <img src="https://github.com/formore2334/OrderAppGitTest/blob/main/README_assets/menuDemonstration.gif?raw=true" width="150" height="290" style="margin-right: 10px;">
-  <img src="https://github.com/formore2334/OrderAppGitTest/blob/main/README_assets/salesDemontration.gif?raw=true" width="150" height="290">
+<div>
+  <img src="https://github.com/formore2334/WelmsDelivery/blob/main/README_assets/menuDemonstration.gif?raw=true" width="150" height="290">
+  <img src="https://github.com/formore2334/WelmsDelivery/blob/main/README_assets/salesDemontration.gif?raw=true" width="150" height="290">
 </div>
 
 
