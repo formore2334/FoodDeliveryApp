@@ -60,7 +60,7 @@ final class MainCoordinator: Coordinator {
         
     }
     
-// MARK: - Transfering data between view's
+    // MARK: - Passing data between view's
     
     // Sends regular menuItem to basket
     func passOrderToBasket(menuItem: (any MenuItemProtocol)) {
