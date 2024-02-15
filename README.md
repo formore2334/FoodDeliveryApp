@@ -34,7 +34,7 @@ You can check all the possibilities live here:
 
 - [Complex data models](https://github.com/formore2334/WelmsDelivery#app-features)
 
-- [Conclusion](https://github.com/formore2334/WelmsDelivery#conclusion)
+- [Wrap-up](https://github.com/formore2334/WelmsDelivery#wrap-up)
 
 ## App Features
 
@@ -380,7 +380,7 @@ And finally, a coordinator is also used to transfer the items to the basket. Thi
     }
 ```
 
-### Conclusion
+### Wrap-up
 
 Now you have seen the main points and design approaches that where used in this project. Of course, you can find more interesting solutions inside the project itself.
 
