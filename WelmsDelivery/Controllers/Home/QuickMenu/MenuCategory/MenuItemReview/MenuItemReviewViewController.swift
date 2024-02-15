@@ -142,9 +142,9 @@ final class MenuItemReviewViewController: UIViewController, Coordinating {
         }
     }
     
-    // Pop one vc back
+    // Pop to root vc in hierarchy
     @objc private func closeVC() {
-        navigationController?.popViewController(animated: false)
+        navigationController?.popToRootViewController(animated: false)
     }
     
 }
