@@ -281,7 +281,7 @@ private extension SaleInfoViewController {
     
     @objc func unavailableTapped() {
         customButton.shake()
-        customButton.setTitle("Your are already have Speial in basket!", for: .normal)
+        customButton.setTitle("Special is already in basket!", for: .normal)
     }
     
     // Go back to Home
