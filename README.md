@@ -16,7 +16,7 @@ The main requirements of the project where:
 ```
 
 ***
-You can check all the possibilities live here:
+### You can check all the possibilities live here:
 
 - [Normal behaviour](https://appetize.io/app/fpdxhpwdawn2pszplhkb4fiupe) 
 - [With a simulated error after a few seconds of running the app](https://appetize.io/app/sf3kbzyfccftzgrpminn6mlb54)
