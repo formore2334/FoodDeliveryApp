@@ -71,10 +71,19 @@ final class CheckoutListTableViewCell: UITableViewCell {
 // MARK: - Text Delegate
 
 extension CheckoutListTableViewCell: UITextFieldDelegate {
+    
+    // Handle each character in textField immediately
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if let text = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) {
             didEnterText?(text)
         }
         return true
     }
+    
+    // Hide keyboard when user press return button
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return self.textField.resignFirstResponder()
+    }
+
+    
 }
