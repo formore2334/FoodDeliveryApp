@@ -63,7 +63,7 @@ If menu item is special user sees star next to it, also next in hierarchy contro
 
 <div>
   <img src="https://github.com/formore2334/WelmsDelivery/blob/main/README_assets/menuDemonstration.gif?raw=true" width="150" height="290">
-  <img src="https://github.com/formore2334/WelmsDelivery/blob/main/README_assets/salesDemontration.gif?raw=true" width="150" height="290">
+  <img src="https://github.com/formore2334/WelmsDelivery/blob/main/README_assets/salesDemonstration.gif?raw=true" width="150" height="290">
 </div>
 
 
