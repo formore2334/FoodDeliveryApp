@@ -203,6 +203,14 @@
 			path = PayScreen;
 			sourceTree = "<group>";
 		};
+		453E47F72B7E20E6005923A3 /* BasketManager */ = {
+			isa = PBXGroup;
+			children = (
+				456520E92B21B29500559283 /* BasketManager.swift */,
+			);
+			path = BasketManager;
+			sourceTree = "<group>";
+		};
 		453F50842ADD6B2A00D9DCF9 /* QuickMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -263,6 +271,7 @@
 				458292EC2B33E33700FDED64 /* Errors */,
 				458292F12B34491F00FDED64 /* DataService */,
 				4576A6562B17418B0011F35D /* ValidateUserInfo */,
+				453E47F72B7E20E6005923A3 /* BasketManager */,
 				4576A65D2B17573F0011F35D /* SalesManager */,
 				457846502B20C27500A8F84F /* PaymentManager */,
 				456A0D132B0BA29D0029247D /* NetworkLayer */,
@@ -307,7 +316,6 @@
 			children = (
 				45857F642B5C1ADE006BC50C /* Helpers */,
 				455A7A572AE7DF1D00EE1844 /* BasketViewController.swift */,
-				456520E92B21B29500559283 /* BasketManager.swift */,
 				450AC15D2B3D691300159773 /* SpecialTableView.swift */,
 				4571E51F2B3C22DA00AEB32A /* SpecialTableViewCell.swift */,
 				450AC15F2B3D693300159773 /* RegularTableView.swift */,
