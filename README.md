@@ -26,13 +26,13 @@ You can check all the possibilities live here:
 
 - [App Features](https://github.com/formore2334/WelmsDelivery#app-features)
 
-- [Error Handling](https://github.com/formore2334/WelmsDelivery#app-features)
+- [Error Handling](https://github.com/formore2334/WelmsDelivery#error-handling)
 
-- [Result type in Swift](https://github.com/formore2334/WelmsDelivery#app-features)
+- [Result type in Swift](https://github.com/formore2334/WelmsDelivery#result-type-in-Swift)
 
-- [Coordinator pattern](https://github.com/formore2334/WelmsDelivery#app-features)
+- [Coordinator pattern](https://github.com/formore2334/WelmsDelivery#coordinator-pattern)
 
-- [Complex data models](https://github.com/formore2334/WelmsDelivery#app-features)
+- [Complex data models](https://github.com/formore2334/WelmsDelivery#complex-data-models)
 
 - [Wrap-up](https://github.com/formore2334/WelmsDelivery#wrap-up)
 
